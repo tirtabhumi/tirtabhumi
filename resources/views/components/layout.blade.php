@@ -73,9 +73,9 @@
                         inset -5px -5px 10px #ffffff;
         }
         
-        /* Invert logo for light theme */
+        /* Make logo dark/black for light theme */
         .logo-dark {
-            filter: invert(1) brightness(0.2);
+            filter: brightness(0) saturate(100%);
         }
     </style>
 </head>
@@ -83,7 +83,7 @@
     <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="/" class="flex items-center gap-3 group">
-                <x-logo class="h-8 w-auto transition-opacity hover:opacity-80 logo-dark" />
+                <x-logo class="h-10 w-auto transition-opacity hover:opacity-80" />
             </a>
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="/" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.home') }}</a>
@@ -149,7 +149,7 @@
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div class="col-span-1 md:col-span-2">
                     <div class="flex items-center gap-2 mb-4">
-                        <x-logo class="h-10 w-auto logo-dark" />
+                        <x-logo class="h-10 w-auto" />
                     </div>
                     <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-sm">
                         PT Tirta Bhumi Indonesia.<br>
