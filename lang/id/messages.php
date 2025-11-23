@@ -56,4 +56,62 @@ return [
     'no_posts' => 'Tidak ada postingan ditemukan.',
     'our_blog' => 'Blog Kami',
     'blog_desc' => 'Wawasan, tutorial, dan berita dari tim Tirtabhumi.',
+
+    // Digital
+    'digital_sub_1_title' => 'Pengembangan Software & Web',
+    'digital_sub_1_desc' => 'Pengembangan aplikasi web dan mobile (SaaS/Apps) yang disesuaikan dengan kebutuhan bisnis Anda. Menggunakan teknologi terkini seperti Laravel, React, dan Flutter.',
+    'digital_sub_1_list_1' => 'Aplikasi Web Custom',
+    'digital_sub_1_list_2' => 'Aplikasi Mobile',
+    'digital_sub_1_list_3' => 'Solusi E-Commerce',
+    
+    'digital_sub_2_title' => 'Otomasi & AI',
+    'digital_sub_2_desc' => 'Otomatisasi proses bisnis dan integrasi kecerdasan buatan (AI) untuk meningkatkan efisiensi operasional. Termasuk Chatbot dan AI Response.',
+    'digital_sub_2_list_1' => 'Otomasi Bisnis',
+    'digital_sub_2_list_2' => 'Chatbot AI',
+    'digital_sub_2_list_3' => 'Analisis Data',
+    
+    'digital_sub_3_title' => 'Pemasaran Digital',
+    'digital_sub_3_desc' => 'Strategi pemasaran digital komprehensif untuk meningkatkan kehadiran online dan menjangkau audiens yang tepat.',
+    'digital_sub_3_list_1' => 'Manajemen Media Sosial',
+    'digital_sub_3_list_2' => 'SEO & SEM',
+    'digital_sub_3_list_3' => 'Strategi Konten',
+
+    // Infrastructure
+    'infra_sub_1_title' => 'Solusi Jaringan',
+    'infra_sub_1_desc' => 'Solusi jaringan handal untuk memastikan konektivitas bisnis Anda selalu terjaga. Mulai dari instalasi Access Point hingga interkoneksi antar cabang.',
+    'infra_sub_1_list_1' => 'Instalasi Access Point',
+    'infra_sub_1_list_2' => 'Desain & Setup Jaringan',
+    'infra_sub_1_list_3' => 'Pemeliharaan & Dukungan',
+
+    'infra_sub_2_title' => 'Sistem Keamanan (CCTV)',
+    'infra_sub_2_desc' => 'Sistem keamanan terpadu dengan teknologi CCTV terbaru untuk memantau dan melindungi aset berharga Anda 24/7.',
+    'infra_sub_2_list_1' => 'Instalasi CCTV',
+    'infra_sub_2_list_2' => 'Monitoring Jarak Jauh',
+    'infra_sub_2_list_3' => 'Sistem Kontrol Akses',
+
+    // People
+    'people_sub_1_title' => 'Penyelenggara Acara',
+    'people_sub_1_desc' => 'Layanan manajemen acara profesional untuk berbagai kebutuhan, mulai dari seminar, workshop, hingga corporate gathering.',
+    'people_sub_1_list_1' => 'Acara Korporat',
+    'people_sub_1_list_2' => 'Seminar & Workshop',
+    'people_sub_1_list_3' => 'Peluncuran Produk',
+
+    'people_sub_2_title' => 'Akademi & Pelatihan',
+    'people_sub_2_desc' => 'Program pelatihan komprehensif untuk meningkatkan kompetensi SDM di bidang teknologi terkini.',
+    'people_sub_2_list_1' => 'Bootcamp Coding',
+    'people_sub_2_list_2' => 'Workshop IoT & AI',
+    'people_sub_2_list_3' => 'Kelas Desain & Kreatif',
+
+    // Procurement
+    'procurement_sub_1_title' => 'Katalog Sewa (Rental)',
+    'procurement_sub_1_desc' => 'Layanan penyewaan berbagai kebutuhan operasional dan fasilitas untuk jangka pendek maupun panjang.',
+    'procurement_sub_1_list_1' => 'Sewa Peralatan',
+    'procurement_sub_1_list_2' => 'Layanan Taman',
+    'procurement_sub_1_list_3' => 'Properti Acara',
+
+    'procurement_sub_2_title' => 'Katalog Jual/Beli (Pengadaan)',
+    'procurement_sub_2_desc' => 'Pengadaan barang dan jasa terpercaya untuk memenuhi kebutuhan inventaris kantor dan operasional.',
+    'procurement_sub_2_list_1' => 'Perlengkapan Kantor',
+    'procurement_sub_2_list_2' => 'Perangkat Keras IT',
+    'procurement_sub_2_list_3' => 'Barang Umum',
 ];

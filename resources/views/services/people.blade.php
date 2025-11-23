@@ -6,6 +6,30 @@
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
         </div>
         <div class="container mx-auto px-6 relative z-10 text-center">
+            <!-- Breadcrumb -->
+            <nav class="flex justify-center mb-8 text-sm text-slate-500" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50 shadow-sm">
+                    <li class="inline-flex items-center">
+                        <a href="/" class="inline-flex items-center hover:text-indigo-600 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                            {{ __('messages.home') }}
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <span class="ml-1 text-slate-500 md:ml-2 font-medium">{{ __('messages.services') }}</span>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <span class="ml-1 text-slate-800 md:ml-2 font-medium">{{ __('messages.service_people_title') }}</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
             <div class="inline-flex items-center justify-center p-3 mb-6 rounded-2xl neu-pressed text-cyan-600">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
             </div>
@@ -24,27 +48,27 @@
             <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
                 <!-- Event Organizer -->
                 <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Penyelenggara Acara</h3>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.people_sub_1_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        Layanan manajemen acara profesional untuk berbagai kebutuhan, mulai dari seminar, workshop, hingga corporate gathering.
+                        {{ __('messages.people_sub_1_desc') }}
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Acara Korporat</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Seminar & Workshop</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Peluncuran Produk</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.people_sub_1_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.people_sub_1_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.people_sub_1_list_3') }}</li>
                     </ul>
                 </div>
 
                 <!-- Academy / Training -->
                 <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Akademi & Pelatihan</h3>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.people_sub_2_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        Program pelatihan komprehensif untuk meningkatkan kompetensi SDM di bidang teknologi terkini.
+                        {{ __('messages.people_sub_2_desc') }}
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Bootcamp Coding</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Workshop IoT & AI</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Kelas Desain & Kreatif</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.people_sub_2_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.people_sub_2_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.people_sub_2_list_3') }}</li>
                     </ul>
                 </div>
             </div>

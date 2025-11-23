@@ -56,4 +56,62 @@ return [
     'no_posts' => 'No posts found.',
     'our_blog' => 'Our Blog',
     'blog_desc' => 'Insights, tutorials, and news from the Tirtabhumi team.',
+
+    // Digital
+    'digital_sub_1_title' => 'Software & Web Development',
+    'digital_sub_1_desc' => 'Web and mobile application development (SaaS/Apps) tailored to your business needs. Using the latest technologies like Laravel, React, and Flutter.',
+    'digital_sub_1_list_1' => 'Custom Web Apps',
+    'digital_sub_1_list_2' => 'Mobile Apps',
+    'digital_sub_1_list_3' => 'E-Commerce Solutions',
+    
+    'digital_sub_2_title' => 'Automation & AI',
+    'digital_sub_2_desc' => 'Business process automation and artificial intelligence (AI) integration to improve operational efficiency. Including Chatbots and AI Response.',
+    'digital_sub_2_list_1' => 'Business Automation',
+    'digital_sub_2_list_2' => 'AI Chatbots',
+    'digital_sub_2_list_3' => 'Data Analysis',
+    
+    'digital_sub_3_title' => 'Digital Marketing',
+    'digital_sub_3_desc' => 'Comprehensive digital marketing strategies to enhance online presence and reach the right audience.',
+    'digital_sub_3_list_1' => 'Social Media Management',
+    'digital_sub_3_list_2' => 'SEO & SEM',
+    'digital_sub_3_list_3' => 'Content Strategy',
+
+    // Infrastructure
+    'infra_sub_1_title' => 'Network Solutions',
+    'infra_sub_1_desc' => 'Reliable network solutions to ensure your business connectivity is always maintained. From Access Point installation to inter-branch interconnection.',
+    'infra_sub_1_list_1' => 'Access Point Installation',
+    'infra_sub_1_list_2' => 'Network Design & Setup',
+    'infra_sub_1_list_3' => 'Maintenance & Support',
+
+    'infra_sub_2_title' => 'Security Systems (CCTV)',
+    'infra_sub_2_desc' => 'Integrated security systems with the latest CCTV technology to monitor and protect your valuable assets 24/7.',
+    'infra_sub_2_list_1' => 'CCTV Installation',
+    'infra_sub_2_list_2' => 'Remote Monitoring',
+    'infra_sub_2_list_3' => 'Access Control Systems',
+
+    // People
+    'people_sub_1_title' => 'Event Organizer',
+    'people_sub_1_desc' => 'Professional event management services for various needs, from seminars, workshops, to corporate gatherings.',
+    'people_sub_1_list_1' => 'Corporate Events',
+    'people_sub_1_list_2' => 'Seminars & Workshops',
+    'people_sub_1_list_3' => 'Product Launches',
+
+    'people_sub_2_title' => 'Academy & Training',
+    'people_sub_2_desc' => 'Comprehensive training programs to improve HR competencies in the latest technology fields.',
+    'people_sub_2_list_1' => 'Coding Bootcamp',
+    'people_sub_2_list_2' => 'IoT & AI Workshops',
+    'people_sub_2_list_3' => 'Design & Creative Classes',
+
+    // Procurement
+    'procurement_sub_1_title' => 'Rental Catalog',
+    'procurement_sub_1_desc' => 'Rental services for various operational needs and facilities for both short and long term.',
+    'procurement_sub_1_list_1' => 'Equipment Rental',
+    'procurement_sub_1_list_2' => 'Gardening Services',
+    'procurement_sub_1_list_3' => 'Event Properties',
+
+    'procurement_sub_2_title' => 'Sales & Procurement Catalog',
+    'procurement_sub_2_desc' => 'Trusted goods and services procurement to meet office inventory and operational needs.',
+    'procurement_sub_2_list_1' => 'Office Supplies',
+    'procurement_sub_2_list_2' => 'IT Hardware',
+    'procurement_sub_2_list_3' => 'General Goods',
 ];

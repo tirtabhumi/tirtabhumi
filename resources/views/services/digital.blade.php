@@ -6,6 +6,30 @@
             <div class="absolute bottom-0 left-0 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
         </div>
         <div class="container mx-auto px-6 relative z-10 text-center">
+            <!-- Breadcrumb -->
+            <nav class="flex justify-center mb-8 text-sm text-slate-500" aria-label="Breadcrumb">
+                <ol class="inline-flex items-center space-x-1 md:space-x-3 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50 shadow-sm">
+                    <li class="inline-flex items-center">
+                        <a href="/" class="inline-flex items-center hover:text-indigo-600 transition-colors">
+                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20"><path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path></svg>
+                            {{ __('messages.home') }}
+                        </a>
+                    </li>
+                    <li>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <span class="ml-1 text-slate-500 md:ml-2 font-medium">{{ __('messages.services') }}</span>
+                        </div>
+                    </li>
+                    <li aria-current="page">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 text-slate-400" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path></svg>
+                            <span class="ml-1 text-slate-800 md:ml-2 font-medium">{{ __('messages.service_digital_title') }}</span>
+                        </div>
+                    </li>
+                </ol>
+            </nav>
+
             <div class="inline-flex items-center justify-center p-3 mb-6 rounded-2xl neu-pressed text-indigo-600">
                 <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 16l4-16M6 9h14M4 15h14"></path></svg>
             </div>
@@ -24,40 +48,40 @@
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Software & Web Development -->
                 <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Pengembangan Software & Web</h3>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.digital_sub_1_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        Pengembangan aplikasi web dan mobile (SaaS/Apps) yang disesuaikan dengan kebutuhan bisnis Anda. Menggunakan teknologi terkini seperti Laravel, React, dan Flutter.
+                        {{ __('messages.digital_sub_1_desc') }}
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Aplikasi Web Custom</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Aplikasi Mobile</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Solusi E-Commerce</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_1_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_1_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_1_list_3') }}</li>
                     </ul>
                 </div>
 
                 <!-- Automation & AI -->
                 <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Otomasi & AI</h3>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.digital_sub_2_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        Otomatisasi proses bisnis dan integrasi kecerdasan buatan (AI) untuk meningkatkan efisiensi operasional. Termasuk Chatbot dan AI Response.
+                        {{ __('messages.digital_sub_2_desc') }}
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Otomasi Bisnis</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Chatbot AI</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Analisis Data</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_2_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_2_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_2_list_3') }}</li>
                     </ul>
                 </div>
 
                 <!-- Digital Marketing -->
                 <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">Pemasaran Digital</h3>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.digital_sub_3_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        Strategi pemasaran digital komprehensif untuk meningkatkan kehadiran online dan menjangkau audiens yang tepat.
+                        {{ __('messages.digital_sub_3_desc') }}
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Manajemen Media Sosial</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>SEO & SEM</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>Strategi Konten</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_3_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_3_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_3_list_3') }}</li>
                     </ul>
                 </div>
             </div>
