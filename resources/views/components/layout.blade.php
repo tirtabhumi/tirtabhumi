@@ -96,9 +96,18 @@
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
     <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center">
-            <a href="/" class="flex items-center gap-3 group">
-                <x-logo class="h-10 w-auto transition-opacity hover:opacity-80" />
-            </a>
+            <div class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-3 group">
+                    <x-logo class="h-10 w-auto transition-opacity hover:opacity-80" />
+                </a>
+                <!-- Mobile Language Switcher -->
+                <div class="md:hidden">
+                    <a href="{{ route('locale.switch', app()->getLocale() == 'en' ? 'id' : 'en') }}" 
+                       class="text-xs font-bold text-slate-600 border border-slate-300 rounded-md px-2 py-1 hover:bg-slate-100 transition-colors">
+                        {{ app()->getLocale() == 'en' ? 'ID' : 'EN' }}
+                    </a>
+                </div>
+            </div>
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="/"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.home') }}</a>
@@ -169,64 +178,248 @@
                     </div>
                 </div>
             </nav>
-            <a href="https://wa.me/6282229046099" target="_blank"
-                class="hidden md:inline-flex items-center justify-center px-6 py-2.5 text-sm font-bold neu-btn">
-                {{ __('messages.contact_us') }}
-            </a>
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-slate-600 focus:outline-none p-2 relative z-50 active:scale-90 transition-transform duration-200">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
         </div>
     </header>
 
-    <main>
-        {{ $slot }}
-    </main>
+    <div id="content-wrapper" class="transition-all duration-300 ease-in-out">
+        <main id="main-content">
+            {{ $slot }}
+        </main>
 
-    <footer class="bg-[#eef2f6] py-12 border-t border-slate-200/50 neu-pressed mt-12">
-        <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-1 md:col-span-2">
-                    <div class="flex items-center gap-2 mb-4">
-                        <x-logo class="h-10 w-auto" />
+        <footer class="bg-[#eef2f6] py-12 border-t border-slate-200/50 neu-pressed mt-12">
+            <div class="container mx-auto px-6">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div class="col-span-1 md:col-span-2">
+                        <div class="flex items-center gap-2 mb-4">
+                            <x-logo class="h-10 w-auto" />
+                        </div>
+                        <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-sm">
+                            PT Tirta Bhumi Indonesia.<br>
+                            Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.
+                        </p>
                     </div>
-                    <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-sm">
-                        PT Tirta Bhumi Indonesia.<br>
-                        Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.
-                    </p>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-4">Quick Links</h4>
+                        <ul class="space-y-2 text-sm text-slate-500">
+                            <li><a href="/" class="hover:text-indigo-600 transition-colors">Home</a></li>
+                            <li><a href="/#about" class="hover:text-indigo-600 transition-colors">Tentang Kami</a></li>
+                            <li><a href="/#services" class="hover:text-indigo-600 transition-colors">Layanan</a></li>
+                            <li><a href="{{ route('blog.index') }}" class="hover:text-indigo-600 transition-colors">Blog</a>
+                            </li>
+                            <li><a href="/#contact" class="hover:text-indigo-600 transition-colors">Kontak</a></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-slate-800 mb-4">Connect</h4>
+                        <ul class="space-y-2 text-sm text-slate-500">
+                            <li><a href="#" class="hover:text-indigo-600 transition-colors">LinkedIn</a></li>
+                            <li><a href="#" class="hover:text-indigo-600 transition-colors">Instagram</a></li>
+                            <li><a href="#" class="hover:text-indigo-600 transition-colors">Facebook</a></li>
+                            <li><a href="https://wa.me/6282229046099"
+                                    class="hover:text-indigo-600 transition-colors">WhatsApp</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div>
-                    <h4 class="font-bold text-slate-800 mb-4">Quick Links</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="/" class="hover:text-indigo-600 transition-colors">Home</a></li>
-                        <li><a href="/#about" class="hover:text-indigo-600 transition-colors">Tentang Kami</a></li>
-                        <li><a href="/#services" class="hover:text-indigo-600 transition-colors">Layanan</a></li>
-                        <li><a href="{{ route('blog.index') }}" class="hover:text-indigo-600 transition-colors">Blog</a>
-                        </li>
-                        <li><a href="/#contact" class="hover:text-indigo-600 transition-colors">Kontak</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 class="font-bold text-slate-800 mb-4">Connect</h4>
-                    <ul class="space-y-2 text-sm text-slate-500">
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">LinkedIn</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Instagram</a></li>
-                        <li><a href="#" class="hover:text-indigo-600 transition-colors">Facebook</a></li>
-                        <li><a href="https://wa.me/6282229046099"
-                                class="hover:text-indigo-600 transition-colors">WhatsApp</a></li>
-                    </ul>
+                <div class="pt-8 border-t border-slate-200/50 text-center text-slate-400 text-sm">
+                    &copy; {{ date('Y') }} PT Tirta Bhumi Indonesia. All rights reserved.
                 </div>
             </div>
-            <div class="pt-8 border-t border-slate-200/50 text-center text-slate-400 text-sm">
-                &copy; {{ date('Y') }} PT Tirta Bhumi Indonesia. All rights reserved.
+        </footer>
+    </div>
+
+    <!-- Mobile Menu Backdrop -->
+    <div id="mobile-menu-backdrop" class="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 md:hidden"></div>
+
+    <!-- Mobile Menu Drawer -->
+    <div id="mobile-menu" class="fixed inset-0 z-[10000] bg-white transform translate-x-full transition-transform duration-300 md:hidden flex flex-col h-full" style="background-color: #ffffff !important;">
+        <div class="flex flex-col h-full">
+            <!-- Drawer Header -->
+            <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 flex-shrink-0">
+                <div class="flex items-center gap-2">
+                    <x-logo class="h-8 w-auto" />
+                </div>
+                <button id="close-menu-btn" class="text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none p-2 active:scale-90 transition-transform duration-200">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
             </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 overflow-y-auto px-6 py-4">
+                <div class="flex flex-col text-center">
+                    <a href="/" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.home') }}</a>
+                    
+                    <!-- Services Dropdown -->
+                    <div class="border-b border-slate-100">
+                        <button id="mobile-services-btn" class="flex items-center justify-center w-full text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none py-4 group gap-2">
+                            <span>{{ __('messages.services') }}</span>
+                            <svg id="mobile-services-icon" class="w-5 h-5 transform transition-transform duration-200 text-slate-400 group-hover:text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="mobile-services-menu" class="hidden flex-col space-y-2 pb-4">
+                            <a href="{{ route('services.digital') }}" class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_digital_title') }}</a>
+                            <a href="{{ route('services.infrastructure') }}" class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_infra_title') }}</a>
+                            <a href="{{ route('services.people') }}" class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_people_title') }}</a>
+                            <a href="{{ route('services.procurement') }}" class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_procurement_title') }}</a>
+                        </div>
+                    </div>
+
+                    <a href="/#about" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
+                    <a href="{{ route('blog.index') }}" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.blog') }}</a>
+                    <a href="/#contact" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.contact') }}</a>
+                    
+                    <div class="mt-auto pt-8 pb-8">
+                        <div class="flex gap-4 justify-center">
+                            <!-- Instagram -->
+                            <a href="#" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.373c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <!-- LinkedIn -->
+                            <a href="#" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                            <!-- WhatsApp -->
+                            <a href="https://wa.me/6282229046099" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all">
+                                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.07 16.1C15.9 16.5 15.2 16.9 14.6 17C14.2 17.1 13.7 17.1 12.5 16.6C11.1 16 9.9 15.1 8.9 14.1C7.9 13.1 7 11.9 6.4 10.5C5.9 9.3 5.9 8.8 6 8.4C6.1 7.8 6.5 7.1 6.9 7.1C7 7.1 7.1 7.1 7.2 7.1C7.4 7.1 7.6 7.1 7.7 7.4C7.9 7.8 8.4 9 8.5 9.2C8.6 9.4 8.6 9.6 8.5 9.8C8.4 10 8.2 10.1 8 10.3C7.8 10.5 7.6 10.6 7.8 11C8.3 11.8 9 12.8 10 13.5C10.5 13.8 10.9 13.9 11.2 13.8C11.5 13.7 11.9 13.3 12.1 12.9C12.3 12.6 12.6 12.6 12.9 12.7C13.2 12.8 14.7 13.5 15 13.7C15.3 13.8 15.5 13.9 15.6 14C15.7 14.3 15.6 15.6 16.07 16.1Z" clip-rule="evenodd" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
         </div>
-    </footer>
+    </div>
 
     <script>
+        // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('glass');
             } else {
                 navbar.classList.remove('glass');
+            }
+        });
+
+        // Mobile Menu Logic
+        document.addEventListener('DOMContentLoaded', () => {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+            const mobileServicesBtn = document.getElementById('mobile-services-btn');
+            const mobileServicesMenu = document.getElementById('mobile-services-menu');
+            const mobileServicesIcon = document.getElementById('mobile-services-icon');
+
+            function openMenu() {
+                if(mobileMenu && backdrop) {
+                    mobileMenu.classList.remove('translate-x-full');
+                    backdrop.classList.remove('hidden');
+                    // Small delay to allow display:block to apply before opacity transition
+                    setTimeout(() => {
+                        backdrop.classList.remove('opacity-0');
+                    }, 10);
+                    document.body.style.overflow = 'hidden';
+                    
+                    // Fade out Navbar to prevent stacking issues
+                    const navbar = document.getElementById('navbar');
+                    if(navbar) {
+                        navbar.classList.add('opacity-0', 'pointer-events-none');
+                    }
+
+                    // Fade out content wrapper to prevent bleed-through smoothly
+                    const contentWrapper = document.getElementById('content-wrapper');
+                    if(contentWrapper) {
+                        contentWrapper.classList.add('opacity-0', 'pointer-events-none');
+                    }
+                }
+            }
+
+            function closeMenu() {
+                if(mobileMenu && backdrop) {
+                    mobileMenu.classList.add('translate-x-full');
+                    backdrop.classList.add('opacity-0');
+                    
+                    // Fade in Navbar immediately so it's visible as menu slides out
+                    const navbar = document.getElementById('navbar');
+                    if(navbar) {
+                        navbar.classList.remove('opacity-0', 'pointer-events-none');
+                    }
+
+                    // Fade in content wrapper immediately
+                    const contentWrapper = document.getElementById('content-wrapper');
+                    if(contentWrapper) {
+                        contentWrapper.classList.remove('opacity-0', 'pointer-events-none');
+                    }
+
+                    setTimeout(() => {
+                        backdrop.classList.add('hidden');
+                    }, 300);
+                    document.body.style.overflow = '';
+                }
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    openMenu();
+                });
+            }
+
+            if (closeMenuBtn) {
+                closeMenuBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    closeMenu();
+                });
+            }
+
+            if (backdrop) {
+                backdrop.addEventListener('click', closeMenu);
+            }
+
+            // Close menu when clicking a link (but NOT the services toggle button)
+            if (mobileMenu) {
+                mobileMenu.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', closeMenu);
+                });
+            }
+
+            // Services Dropdown Toggle
+            if (mobileServicesBtn && mobileServicesMenu && mobileServicesIcon) {
+                mobileServicesBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation(); // CRITICAL: Stop event from bubbling to parents
+                    
+                    const isHidden = mobileServicesMenu.classList.contains('hidden');
+                    if (isHidden) {
+                        mobileServicesMenu.classList.remove('hidden');
+                        mobileServicesMenu.classList.add('flex');
+                        mobileServicesIcon.style.transform = 'rotate(180deg)';
+                    } else {
+                        mobileServicesMenu.classList.add('hidden');
+                        mobileServicesMenu.classList.remove('flex');
+                        mobileServicesIcon.style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Prevent clicks inside the services menu from closing the main menu immediately 
+                // (unless it's a link, which is handled by the 'a' tag listener above)
+                mobileServicesMenu.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                });
             }
         });
     </script>
