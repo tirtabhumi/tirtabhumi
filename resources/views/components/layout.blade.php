@@ -5,6 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
+    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
     <title>{{ $title ?? 'Tirta Bhumi Indonesia' }}</title>
     <meta name="description"
         content="Tirta Bhumi Indonesia - Solusi terpercaya untuk Jasa Digital Marketing, Jasa Membuat Website, Jasa Membuat Company Profile, dan Pengadaan barang dan jasa.">
@@ -110,14 +112,14 @@
             </div>
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="/"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.home') }}</a>
+                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
                 <a href="/#about"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.about') }}</a>
+                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.about') }}</a>
 
                 <!-- Services Dropdown -->
                 <div class="relative group">
                     <button
-                        class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors focus:outline-none py-4">
+                        class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors focus:outline-none py-4 hover-underline-animation">
                         {{ __('messages.services') }}
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -149,9 +151,9 @@
                 </div>
 
                 <a href="{{ route('blog.index') }}"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.blog') }}</a>
+                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
                 <a href="/#contact"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.contact') }}</a>
+                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
 
                 <!-- Language Switcher -->
                 <div class="relative group">
@@ -207,22 +209,22 @@
                     <div>
                         <h4 class="font-bold text-slate-800 mb-4">Quick Links</h4>
                         <ul class="space-y-2 text-sm text-slate-500">
-                            <li><a href="/" class="hover:text-indigo-600 transition-colors">Home</a></li>
-                            <li><a href="/#about" class="hover:text-indigo-600 transition-colors">Tentang Kami</a></li>
-                            <li><a href="/#services" class="hover:text-indigo-600 transition-colors">Layanan</a></li>
-                            <li><a href="{{ route('blog.index') }}" class="hover:text-indigo-600 transition-colors">Blog</a>
+                            <li><a href="/" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Home</a></li>
+                            <li><a href="/#about" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Tentang Kami</a></li>
+                            <li><a href="/#services" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Layanan</a></li>
+                            <li><a href="{{ route('blog.index') }}" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Blog</a>
                             </li>
-                            <li><a href="/#contact" class="hover:text-indigo-600 transition-colors">Kontak</a></li>
+                            <li><a href="/#contact" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Kontak</a></li>
                         </ul>
                     </div>
                     <div>
                         <h4 class="font-bold text-slate-800 mb-4">Connect</h4>
                         <ul class="space-y-2 text-sm text-slate-500">
-                            <li><a href="#" class="hover:text-indigo-600 transition-colors">LinkedIn</a></li>
-                            <li><a href="#" class="hover:text-indigo-600 transition-colors">Instagram</a></li>
-                            <li><a href="#" class="hover:text-indigo-600 transition-colors">Facebook</a></li>
+                            <li><a href="#" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">LinkedIn</a></li>
+                            <li><a href="#" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Instagram</a></li>
+                            <li><a href="#" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Facebook</a></li>
                             <li><a href="https://wa.me/6282229046099"
-                                    class="hover:text-indigo-600 transition-colors">WhatsApp</a></li>
+                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">WhatsApp</a></li>
                         </ul>
                     </div>
                 </div>
@@ -279,19 +281,19 @@
                     <div class="mt-auto pt-8 pb-8">
                         <div class="flex gap-4 justify-center">
                             <!-- Instagram -->
-                            <a href="#" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all">
+                            <a href="#" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all hover:-translate-y-1 hover:shadow-md">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.468 2.373c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z" clip-rule="evenodd" />
                                 </svg>
                             </a>
                             <!-- LinkedIn -->
-                            <a href="#" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all">
+                            <a href="#" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all hover:-translate-y-1 hover:shadow-md">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" clip-rule="evenodd" />
                                 </svg>
                             </a>
                             <!-- WhatsApp -->
-                            <a href="https://wa.me/6282229046099" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all">
+                            <a href="https://wa.me/6282229046099" class="w-10 h-10 rounded-full border border-slate-300 flex items-center justify-center text-slate-600 hover:border-indigo-600 hover:text-indigo-600 transition-all hover:-translate-y-1 hover:shadow-md">
                                 <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
                                     <path fill-rule="evenodd" d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM16.07 16.1C15.9 16.5 15.2 16.9 14.6 17C14.2 17.1 13.7 17.1 12.5 16.6C11.1 16 9.9 15.1 8.9 14.1C7.9 13.1 7 11.9 6.4 10.5C5.9 9.3 5.9 8.8 6 8.4C6.1 7.8 6.5 7.1 6.9 7.1C7 7.1 7.1 7.1 7.2 7.1C7.4 7.1 7.6 7.1 7.7 7.4C7.9 7.8 8.4 9 8.5 9.2C8.6 9.4 8.6 9.6 8.5 9.8C8.4 10 8.2 10.1 8 10.3C7.8 10.5 7.6 10.6 7.8 11C8.3 11.8 9 12.8 10 13.5C10.5 13.8 10.9 13.9 11.2 13.8C11.5 13.7 11.9 13.3 12.1 12.9C12.3 12.6 12.6 12.6 12.9 12.7C13.2 12.8 14.7 13.5 15 13.7C15.3 13.8 15.5 13.9 15.6 14C15.7 14.3 15.6 15.6 16.07 16.1Z" clip-rule="evenodd" />
                                 </svg>
@@ -303,6 +305,49 @@
         </div>
     </div>
 
+    <!-- Custom Cursor Elements -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Hover Underline Animation */
+        .hover-underline-animation {
+            position: relative;
+        }
+
+        .hover-underline-animation::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            transform: scaleX(0);
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: #4f46e5; /* Indigo-600 */
+            transform-origin: bottom right;
+            transition: transform 0.25s ease-out;
+        }
+
+        .hover-underline-animation:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+        @media (pointer: fine) {
+            #fluid-cursor {
+                display: block;
+            }
+        }
+        @media (pointer: coarse) {
+            #fluid-cursor {
+                display: none;
+            }
+        }
+    </style>
+    <div id="fluid-cursor" class="fixed top-0 left-0 w-8 h-8 rounded-full pointer-events-none z-[9999] opacity-0 transition-opacity duration-500"
+         style="border: 1px solid rgba(99, 102, 241, 0.5); background: rgba(99, 102, 241, 0.05);"></div>
+
     <script>
         // Navbar Scroll Effect
         window.addEventListener('scroll', () => {
@@ -312,6 +357,92 @@
             } else {
                 navbar.classList.remove('glass');
             }
+        });
+
+        // Fluid Jelly Cursor Animation
+        document.addEventListener('DOMContentLoaded', () => {
+            if (!window.matchMedia('(pointer: fine)').matches) return;
+
+            const cursor = document.getElementById('fluid-cursor');
+            if (!cursor) return;
+
+            let mouseX = window.innerWidth / 2;
+            let mouseY = window.innerHeight / 2;
+            let cursorX = mouseX;
+            let cursorY = mouseY;
+            let velX = 0;
+            let velY = 0;
+            let scale = 1;
+            let isHovering = false;
+
+            // Show cursor
+            setTimeout(() => {
+                cursor.classList.remove('opacity-0');
+            }, 500);
+
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+            });
+
+            // Hover effects
+            const interactiveElements = document.querySelectorAll('a, button, input, textarea, select');
+            interactiveElements.forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    isHovering = true;
+                    cursor.style.background = 'rgba(99, 102, 241, 0.15)';
+                    cursor.style.borderColor = 'transparent';
+                });
+                el.addEventListener('mouseleave', () => {
+                    isHovering = false;
+                    cursor.style.background = 'rgba(99, 102, 241, 0.05)';
+                    cursor.style.borderColor = 'rgba(99, 102, 241, 0.5)';
+                });
+            });
+
+            function animate() {
+                // Calculate velocity for smooth follow
+                const speed = 0.15;
+                const targetX = mouseX;
+                const targetY = mouseY;
+                
+                // Previous position
+                const prevX = cursorX;
+                const prevY = cursorY;
+
+                // Update position
+                cursorX += (targetX - cursorX) * speed;
+                cursorY += (targetY - cursorY) * speed;
+
+                // Calculate current velocity
+                velX = cursorX - prevX;
+                velY = cursorY - prevY;
+                
+                const velocity = Math.sqrt(velX * velX + velY * velY);
+                const angle = Math.atan2(velY, velX) * 180 / Math.PI;
+
+                // Calculate stretch based on velocity
+                // Clamp max stretch to avoid extreme distortion
+                const stretch = Math.min(velocity * 0.04, 0.5); 
+                
+                let scaleX = 1 + stretch;
+                let scaleY = 1 - stretch * 0.5; // Maintain approximate volume
+
+                // If hovering, override squash/stretch for a stable "magnetic" feel
+                if (isHovering) {
+                    scaleX = 1.8; // Scale up uniformly
+                    scaleY = 1.8;
+                    // Smoothly interpolate rotation back to 0 or keep it? 
+                    // Let's just apply the scale and ignore rotation for hover to make it look stable
+                    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%) scale(${scaleX}, ${scaleY})`;
+                } else {
+                    cursor.style.transform = `translate3d(${cursorX}px, ${cursorY}px, 0) translate(-50%, -50%) rotate(${angle}deg) scale(${scaleX}, ${scaleY})`;
+                }
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
         });
 
         // Mobile Menu Logic
@@ -421,6 +552,28 @@
                     e.stopPropagation();
                 });
             }
+        });
+
+        // Disable Developer Tools (F12, Inspect, View Source)
+        document.addEventListener('keydown', (e) => {
+            if (
+                // F12
+                e.key === 'F12' || 
+                e.keyCode === 123 ||
+                // Ctrl+Shift+I (Windows) / Cmd+Option+I (Mac)
+                ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) ||
+                // Ctrl+Shift+J (Windows) / Cmd+Option+J (Mac)
+                ((e.ctrlKey || e.metaKey) && e.shiftKey && (e.key === 'J' || e.key === 'j')) ||
+                // Ctrl+U (View Source) / Cmd+Option+U (Mac)
+                ((e.ctrlKey || e.metaKey) && (e.key === 'U' || e.key === 'u'))
+            ) {
+                e.preventDefault();
+            }
+        });
+
+        // Disable Right Click
+        document.addEventListener('contextmenu', (e) => {
+            e.preventDefault();
         });
     </script>
 </body>
