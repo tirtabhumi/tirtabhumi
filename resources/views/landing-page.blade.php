@@ -447,7 +447,7 @@
                 <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
                     <h3 class="text-xl font-bold text-slate-800 mb-2">Paket Rintisan</h3>
                     <p class="text-slate-500 text-sm mb-6">Buat yang baru coba-coba online.</p>
-                    <div class="text-3xl font-bold text-slate-900 mb-8">2 Juta-an</div>
+                    <div class="text-3xl font-bold text-slate-900 mb-8">3 Juta-an</div>
                     <ul class="space-y-4 mb-8 text-slate-700 text-sm">
                         <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> Web Landing Page Simple</li>
                         <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> Setup Ads Dasar</li>
@@ -458,15 +458,15 @@
 
                 <!-- Pro (Highlighted) -->
                 <div class="neu-flat rounded-3xl p-8 relative transform md:scale-110 shadow-2xl z-10 border-2 border-indigo-500">
-                    <div class="absolute -top-3 -right-3 neu-flat border border-indigo-200 text-indigo-700 px-4 py-1 rounded-full text-xs font-bold shadow-lg whitespace-nowrap">
+                    <div class="absolute top-0 right-0 bg-indigo-100 text-indigo-700 px-6 py-2 rounded-bl-3xl rounded-tr-3xl text-xs font-bold shadow-sm whitespace-nowrap border-b border-l border-indigo-200">
                         PALING LARIS 🔥
                     </div>
                     <h3 class="text-2xl font-bold mb-2 text-slate-800">Paket Juragan</h3>
                     <p class="text-slate-500 text-sm mb-8 font-medium">Paling pas buat kejar omzet.</p>
-                    <div class="text-4xl font-bold text-slate-900 mb-8">5 Juta-an</div>
+                    <div class="text-4xl font-bold text-slate-900 mb-8">17 Juta-an</div>
                     <ul class="space-y-5 mb-10 text-slate-700 text-sm font-medium">
                         <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>Web Professional & Lengkap</strong></li>
-                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>Riset Keyword "Uang"</strong></li>
+                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>Riset Keyword</strong></li>
                         <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> Copywriting Penjualan</li>
                         <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> Prioritas Support</li>
                     </ul>
