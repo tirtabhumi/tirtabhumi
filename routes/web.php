@@ -35,3 +35,7 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/people', function () { return view('services.people'); })->name('people');
     Route::get('/procurement', function () { return view('services.procurement'); })->name('procurement');
 });
+
+Route::get('/landingpage', function () {
+    return view('landing-page');
+})->name('landing-page');
