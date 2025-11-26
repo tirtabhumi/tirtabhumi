@@ -8,10 +8,17 @@ Route::get('/', function () {
 });
 
 Route::get('/blog', function () {
-    $posts = Post::with('category')
-        ->whereNotNull('published_at')
-        ->latest()
-        ->paginate(9);
+    $query = Post::with('category')->whereNotNull('published_at');
+
+    if (request('search')) {
+        $query->where(function($q) {
+            $q->where('title', 'like', '%' . request('search') . '%')
+              ->orWhere('content', 'like', '%' . request('search') . '%');
+        });
+    }
+
+    $posts = $query->latest()->paginate(6)->withQueryString();
+    
     return view('blog.index', compact('posts'));
 })->name('blog.index');
 

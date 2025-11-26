@@ -52,6 +52,7 @@ return [
     'footer_desc' => 'Membangun masa depan, satu piksel setiap waktu.',
     'rights_reserved' => 'Hak cipta dilindungi undang-undang.',
     'read_article' => 'Baca Artikel',
+    'search_placeholder' => 'Cari sesuatu disini',
     'back_to_blog' => 'Kembali ke Blog',
     'no_posts' => 'Tidak ada postingan ditemukan.',
     'our_blog' => 'Blog Kami',

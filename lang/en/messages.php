@@ -52,6 +52,7 @@ return [
     'footer_desc' => 'Building the future, one pixel at a time.',
     'rights_reserved' => 'All rights reserved.',
     'read_article' => 'Read Article',
+    'search_placeholder' => 'Find Something Here',
     'back_to_blog' => 'Back to Blog',
     'no_posts' => 'No posts found.',
     'our_blog' => 'Our Blog',

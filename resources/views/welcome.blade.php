@@ -32,10 +32,8 @@
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl md:text-4xl font-bold mb-8 text-slate-800">{{ __('messages.why_us_title') }}</h2>
-                <div class="neu-flat p-8 md:p-12 rounded-3xl border border-white/50">
-                    <p class="text-slate-600 text-lg leading-relaxed whitespace-pre-line">
-                        {{ __('messages.why_us_desc') }}
-                    </p>
+                <div class="neu-flat p-8 md:p-12 rounded-3xl border border-white/50 w-fit mx-auto">
+                    <p class="text-slate-600 text-lg leading-relaxed whitespace-pre-line">{{ __('messages.why_us_desc') }}</p>
                 </div>
             </div>
         </div>
