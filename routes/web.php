@@ -43,6 +43,10 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/procurement', function () { return view('services.procurement'); })->name('procurement');
 });
 
-Route::get('/landingpage', function () {
+Route::get('/webbundling', function () {
     return view('landing-page');
-})->name('landing-page');
+})->name('webbundling');
+
+Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('trainings.index');
+Route::get('/trainings/{training:slug}', [App\Http\Controllers\TrainingController::class, 'show'])->name('trainings.show');
+Route::post('/trainings/{training:slug}/register', [App\Http\Controllers\TrainingController::class, 'register'])->name('trainings.register');

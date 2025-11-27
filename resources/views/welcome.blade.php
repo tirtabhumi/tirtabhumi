@@ -128,52 +128,161 @@
         </div>
     </section>
 
-    <!-- Latest Blog Posts -->
-    <section class="py-24 bg-[#eef2f6]">
+    <!-- News & Blog Section -->
+    <section class="py-24 bg-white" id="news-blog">
         <div class="container mx-auto px-6">
-            <div class="flex justify-between items-end mb-12">
-                <div>
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.latest_insights') }}</h2>
-                    <p class="text-slate-500">
-                        {{ __('messages.latest_insights_desc') }}
-                    </p>
+            <!-- Header -->
+            <div class="mb-12">
+                <h2 class="text-xl font-bold text-slate-500 mb-2">{{ __('messages.news_blog_title') }}</h2>
+                <h3 class="text-3xl md:text-5xl font-bold text-slate-800 mb-4 leading-tight">
+                    {{ __('messages.news_blog_subtitle') }}
+                </h3>
+                <p class="text-slate-500 text-lg mb-8">
+                    {{ __('messages.news_blog_desc') }}
+                </p>
+
+                <!-- Filter & See All -->
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                    <!-- Filter Toggle -->
+                    <div class="neu-pressed p-2 rounded-full flex items-center gap-2">
+                        <button onclick="switchTab('blog')" id="btn-blog" class="px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 neu-flat text-indigo-600 transform hover:-translate-y-0.5">
+                            {{ __('messages.filter_blog') }}
+                        </button>
+                        <button onclick="switchTab('training')" id="btn-training" class="px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-slate-700 hover:bg-slate-200/50">
+                            {{ __('messages.filter_training') }}
+                        </button>
+                    </div>
+
+                    <!-- See All Button -->
+                    <a id="see-all-btn" href="{{ route('blog.index') }}" class="neu-flat px-6 py-2 rounded-full text-sm font-bold text-slate-700 hover:text-indigo-600 transition-colors flex items-center">
+                        {{ __('messages.see_all') }}
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                    </a>
                 </div>
-                <a href="{{ route('blog.index') }}" class="hidden md:flex items-center text-indigo-600 hover:text-indigo-500 transition-colors font-medium">
-                    {{ __('messages.view_all_posts') }}
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
             </div>
 
-            <div class="grid md:grid-cols-3 gap-8">
-                @foreach(\App\Models\Post::with('category')->latest()->take(3)->get() as $post)
-                <a href="{{ route('blog.show', $post) }}" class="block group cursor-pointer neu-flat p-4 border border-white/50 hover:shadow-none transition-all">
-                    <div class="relative overflow-hidden rounded-xl mb-4 aspect-video bg-slate-100">
-                        <img src="{{ $post->image ? Storage::url($post->image) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $post->title }}" class="object-contain w-full h-full transform group-hover:scale-105 transition-transform duration-500">
+            <!-- Content Container -->
+            <div class="relative min-h-[400px]">
+                <!-- Blog Grid (Default Visible) -->
+                <div id="content-blog" class="transition-opacity duration-300">
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        @foreach(\App\Models\Post::with('category')->latest()->take(4)->get() as $post)
+                        <a href="{{ route('blog.show', $post) }}" class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-none transition-all hover:-translate-y-1">
+                            <div class="relative aspect-video overflow-hidden bg-slate-100">
+                                <img src="{{ $post->image ? Storage::url($post->image) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $post->title }}" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3 mb-4">
+                                    <span class="text-xs font-bold px-3 py-1 rounded-full neu-pressed text-indigo-600">
+                                        {{ $post->category->name }}
+                                    </span>
+                                    <span class="text-xs text-slate-500">{{ $post->created_at->format('M d, Y') }}</span>
+                                </div>
+                                <h3 class="text-xl font-bold mb-3 text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                                    {{ $post->title }}
+                                </h3>
+                                <p class="text-slate-500 text-sm line-clamp-3 mb-4">
+                                    {{ Str::limit(strip_tags($post->content), 100) }}
+                                </p>
+                                <div class="mt-auto flex items-center text-indigo-600 font-bold text-sm group-hover:gap-2 transition-all">
+                                    Baca Selengkapnya
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
                     </div>
-                    <div class="flex items-center gap-3 mb-3">
-                        <span class="text-xs font-bold px-3 py-1 rounded-full neu-pressed text-indigo-600">
-                            {{ $post->category->name }}
-                        </span>
-                        <span class="text-xs text-slate-500">{{ $post->created_at->format('M d, Y') }}</span>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-indigo-600 transition-colors">
-                        {{ $post->title }}
-                    </h3>
-                    <p class="text-slate-500 text-sm line-clamp-2">
-                        {{ Str::limit(strip_tags($post->content), 100) }}
-                    </p>
-                </a>
-                @endforeach
-            </div>
-            
-            <div class="mt-8 text-center md:hidden">
-                <a href="{{ route('blog.index') }}" class="inline-flex items-center text-indigo-600 hover:text-indigo-500 transition-colors font-medium">
-                    {{ __('messages.view_all_posts') }}
-                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                </a>
+                </div>
+
+                <!-- Trainings Grid (Default Hidden) -->
+                <div id="content-training" class="hidden transition-opacity duration-300">
+                    @php
+                        $upcomingTrainings = \App\Models\Training::where('is_active', true)
+                            ->where('event_date', '>=', now())
+                            ->orderBy('event_date', 'asc')
+                            ->take(4)
+                            ->get();
+                    @endphp
+
+                    @if($upcomingTrainings->count() > 0)
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            @foreach($upcomingTrainings as $training)
+                                <a href="{{ route('trainings.show', $training) }}" class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-none transition-all hover:-translate-y-1">
+                                    <div class="relative aspect-video overflow-hidden bg-slate-100">
+                                        @if($training->image)
+                                            <img src="{{ Storage::url($training->image) }}" alt="{{ $training->title }}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                        @else
+                                            <div class="w-full h-full flex items-center justify-center text-slate-400">
+                                                <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                            </div>
+                                        @endif
+                                        <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
+                                            {{ ucfirst($training->type) }}
+                                        </div>
+                                    </div>
+                                    <div class="p-6">
+                                        <div class="flex items-center gap-2 text-sm text-slate-500 mb-4">
+                                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                            {{ $training->event_date->format('d M, Y') }}
+                                        </div>
+                                        <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2">{{ $training->title }}</h3>
+                                        <div class="mt-auto flex items-center text-indigo-600 font-bold text-sm group-hover:gap-2 transition-all">
+                                            Lihat Detail
+                                            <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                        </div>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center py-12 bg-white rounded-3xl border border-slate-100">
+                            <p class="text-slate-500">Belum ada jadwal pelatihan terbaru.</p>
+                        </div>
+                    @endif
+                </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function switchTab(tab) {
+            const btnTraining = document.getElementById('btn-training');
+            const btnBlog = document.getElementById('btn-blog');
+            const contentTraining = document.getElementById('content-training');
+            const contentBlog = document.getElementById('content-blog');
+            const seeAllBtn = document.getElementById('see-all-btn');
+
+            if (tab === 'training') {
+                // Update Buttons
+                btnTraining.classList.add('neu-flat', 'text-indigo-600', 'transform', 'hover:-translate-y-0.5');
+                btnTraining.classList.remove('text-slate-500', 'hover:text-slate-700', 'hover:bg-slate-200/50');
+                
+                btnBlog.classList.remove('neu-flat', 'text-indigo-600', 'transform', 'hover:-translate-y-0.5');
+                btnBlog.classList.add('text-slate-500', 'hover:text-slate-700', 'hover:bg-slate-200/50');
+
+                // Update Content
+                contentTraining.classList.remove('hidden');
+                contentBlog.classList.add('hidden');
+
+                // Update See All Link
+                seeAllBtn.href = "{{ route('trainings.index') }}";
+            } else {
+                // Update Buttons
+                btnBlog.classList.add('neu-flat', 'text-indigo-600', 'transform', 'hover:-translate-y-0.5');
+                btnBlog.classList.remove('text-slate-500', 'hover:text-slate-700', 'hover:bg-slate-200/50');
+                
+                btnTraining.classList.remove('neu-flat', 'text-indigo-600', 'transform', 'hover:-translate-y-0.5');
+                btnTraining.classList.add('text-slate-500', 'hover:text-slate-700', 'hover:bg-slate-200/50');
+
+                // Update Content
+                contentBlog.classList.remove('hidden');
+                contentTraining.classList.add('hidden');
+
+                // Update See All Link
+                seeAllBtn.href = "{{ route('blog.index') }}";
+            }
+        }
+    </script>
 
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-[#eef2f6]">
