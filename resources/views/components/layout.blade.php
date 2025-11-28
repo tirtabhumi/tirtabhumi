@@ -136,6 +136,27 @@
             box-shadow: inset 5px 5px 10px #d1d9e6,
                 inset -5px -5px 10px #ffffff;
         }
+
+        /* Neumorphism Button Dark */
+        .neu-btn-dark {
+            border-radius: 50px;
+            background: #eef2f6;
+            box-shadow: 5px 5px 10px #d1d9e6,
+                -5px -5px 10px #ffffff;
+            transition: all 0.3s ease;
+            color: #334155; /* Slate-700 */
+        }
+
+        .neu-btn-dark:hover {
+            box-shadow: 2px 2px 5px #d1d9e6,
+                -2px -2px 5px #ffffff;
+            transform: translateY(1px);
+        }
+
+        .neu-btn-dark:active {
+            box-shadow: inset 5px 5px 10px #d1d9e6,
+                inset -5px -5px 10px #ffffff;
+        }
         
         /* Make logo dark/black for light theme */
         .logo-dark {

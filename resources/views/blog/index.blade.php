@@ -63,7 +63,7 @@
             </div>
 
             <div class="mt-12">
-                {{ $posts->links() }}
+                {{ $posts->links('components.pagination') }}
             </div>
         </div>
     </section>

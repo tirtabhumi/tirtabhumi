@@ -8,21 +8,96 @@
         </div>
 
         <div class="relative container mx-auto px-6 text-center z-10">
+            <!-- Rotating Badge -->
+            <div class="inline-flex items-center gap-3 px-8 py-2.5 rounded-full bg-white/60 border border-white/60 backdrop-blur-md shadow-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default">
+                <span class="relative flex h-3 w-3">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+                </span>
+                <span id="rotating-text" class="text-sm font-semibold text-slate-700 transition-opacity duration-500">
+                    {{ __('messages.hero_rotating_text.0') }}
+                </span>
+            </div>
+
             <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black">
                 {{ __('messages.hero_title_1') }}
                 <br />
                 {{ __('messages.hero_title_2') }}
             </h1>
-            <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed">
                 {{ __('messages.hero_subtitle') }}
             </p>
-            <div class="flex flex-col md:flex-row gap-6 justify-center">
+            <div class="flex flex-col md:flex-row gap-8 justify-center">
                 <a href="https://wa.me/6282229046099" target="_blank" class="px-8 py-4 neu-btn font-bold text-indigo-600">
                     {{ __('messages.get_started') }}
                 </a>
-                <a href="#services" class="px-8 py-4 neu-flat hover:shadow-none transition-all text-slate-600 rounded-full font-medium border border-slate-200/50">
+                <a href="#services" class="px-8 py-4 neu-btn-dark font-bold">
                     {{ __('messages.our_services') }}
                 </a>
+            </div>
+            <div class="h-8 md:h-8"></div>
+            <div class="mt-32">
+                <p class="text-sm font-bold text-black uppercase tracking-wider mb-8">Trusted by Global Leaders</p>
+                
+                <div class="relative flex w-full flex-col items-center justify-center overflow-hidden">
+                    <!-- Marquee Container -->
+                    <div class="group relative flex overflow-hidden py-10 px-4 gap-8 flex-row w-full max-w-6xl mx-auto">
+                        
+                        <!-- First Row (Original) -->
+                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row min-w-full group-hover:[animation-play-state:paused] py-4">
+                            @for($i = 0; $i < 6; $i++)
+                                <div class="w-40 h-24 neu-flat rounded-xl flex items-center justify-center p-4 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <img src="https://placehold.co/150x50/e2e8f0/64748b?text=Logo+{{ $i+1 }}" alt="Partner {{ $i+1 }}" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+                                </div>
+                            @endfor
+                        </div>
+
+                        <!-- Second Row (Duplicate for seamless loop) -->
+                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row min-w-full group-hover:[animation-play-state:paused] py-4">
+                            @for($i = 0; $i < 6; $i++)
+                                <div class="w-40 h-24 neu-flat rounded-xl flex items-center justify-center p-4 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                    <img src="https://placehold.co/150x50/e2e8f0/64748b?text=Logo+{{ $i+1 }}" alt="Partner {{ $i+1 }}" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
+                                </div>
+                            @endfor
+                        </div>
+
+                        <!-- Gradient Masks -->
+                        <div class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#eef2f6] to-transparent z-10"></div>
+                        <div class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#eef2f6] to-transparent z-10"></div>
+                    </div>
+                </div>
+
+                <style>
+                    .animate-marquee-scroll {
+                        animation: marquee-scroll 25s linear infinite;
+                    }
+                    @keyframes marquee-scroll {
+                        from { transform: translateX(0); }
+                        to { transform: translateX(calc(-100% - 2rem)); }
+                    }
+                </style>
+                
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const texts = @json(__('messages.hero_rotating_text'));
+                        const textElement = document.getElementById('rotating-text');
+                        let currentIndex = 0;
+
+                        if (texts.length > 1) {
+                            setInterval(() => {
+                                // Fade out
+                                textElement.style.opacity = '0';
+                                
+                                setTimeout(() => {
+                                    currentIndex = (currentIndex + 1) % texts.length;
+                                    textElement.textContent = texts[currentIndex];
+                                    // Fade in
+                                    textElement.style.opacity = '1';
+                                }, 500); // Wait for fade out
+                            }, 2500); // Change every 2.5s (2s visible + 0.5s transition)
+                        }
+                    });
+                </script>
             </div>
         </div>
     </section>
@@ -236,7 +311,7 @@
                         </div>
                     @else
                         <div class="text-center py-12 bg-white rounded-3xl border border-slate-100">
-                            <p class="text-slate-500">Belum ada jadwal pelatihan terbaru.</p>
+                            <p class="text-slate-500">{{ __('messages.no_upcoming_trainings') }}</p>
                         </div>
                     @endif
                 </div>

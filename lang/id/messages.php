@@ -7,9 +7,14 @@ return [
     'blog' => 'Blog',
     'contact' => 'Kontak',
     'login' => 'Masuk',
-    'hero_title_1' => 'Mitra Strategis Solusi Digital,',
-    'hero_title_2' => 'Infrastruktur, dan Pengadaan Terpadu',
-    'hero_subtitle' => 'Dari inovasi AI dan Managed Service hingga Pengadaan Barang & Jasa. Kami siap mendukung pertumbuhan Institusi Pemerintah, Korporasi, hingga UMKM.',
+    'hero_title_1' => 'Solusi Digital &',
+    'hero_title_2' => 'Pengadaan Terpadu',
+    'hero_subtitle' => 'Memberdayakan Pemerintah & Korporasi dengan AI, Infrastruktur, dan Pengadaan Cerdas.',
+    'hero_rotating_text' => [
+        'Dipercaya oleh 50+ Instansi Pemerintah',
+        '9.000+ Implementasi AI & CCTV',
+        'Mitra Resmi E-Katalog',
+    ],
     'get_started' => 'Konsultasi Gratis',
     'our_services' => 'Lihat Katalog Layanan',
     
@@ -246,10 +251,12 @@ return [
     'training_empty_desc' => 'Saat ini belum ada jadwal pelatihan yang tersedia. Silakan cek kembali nanti.',
 
     // Merged Home Section
-    'news_blog_title' => 'News & Blog',
+    'news_blog_title' => 'Berita & Blog',
     'news_blog_subtitle' => 'Komitmen Kami untuk Keunggulan di Publik',
     'news_blog_desc' => 'Transformasi Digital sebagai Kunci Sukses Perusahaan',
     'filter_blog' => 'Blog',
     'filter_training' => 'Academy & Training',
     'see_all' => 'Lihat Semua',
+    'no_upcoming_trainings' => 'Belum ada jadwal pelatihan terbaru.',
+    'free' => 'Gratis',
 ];

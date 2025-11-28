@@ -13,6 +13,7 @@ class Training extends Model
         'image',
         'event_date',
         'type',
+        'price',
         'location',
         'is_active',
     ];

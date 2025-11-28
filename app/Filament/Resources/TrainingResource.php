@@ -39,7 +39,12 @@ class TrainingResource extends Resource
                             ->directory('trainings'),
                         Forms\Components\DateTimePicker::make('event_date')
                             ->required(),
-                        Forms\Components\Select::make('type')
+                        Forms\Components\TextInput::make('price')
+                        ->numeric()
+                        ->prefix('Rp')
+                        ->default(0)
+                        ->required(),
+                    Forms\Components\Select::make('type')
                             ->options([
                                 'online' => 'Online',
                                 'offline' => 'Offline',

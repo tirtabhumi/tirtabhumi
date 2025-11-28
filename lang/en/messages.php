@@ -7,9 +7,14 @@ return [
     'blog' => 'Blog',
     'contact' => 'Contact',
     'login' => 'Login',
-    'hero_title_1' => 'Strategic Partner for Digital Solutions,',
-    'hero_title_2' => 'Infrastructure, and Integrated Procurement',
-    'hero_subtitle' => 'From AI innovation and Managed Services to Goods & Services Procurement. We are ready to support the growth of Government Institutions, Corporations, and SMEs.',
+    'hero_title_1' => 'Integrated Digital &',
+    'hero_title_2' => 'Procurement Solutions',
+    'hero_subtitle' => 'Empowering Government & Enterprise with AI, Infrastructure, and Smart Procurement.',
+    'hero_rotating_text' => [
+        'Trusted by 50+ Government Agencies',
+        '9,000+ AI & CCTV Implementations',
+        'Official E-Catalog Partner',
+    ],
     'get_started' => 'Free Consultation',
     'our_services' => 'View Service Catalog',
     
@@ -244,4 +249,14 @@ return [
     'training_view_detail' => 'View Detail',
     'training_empty_title' => 'No Training Yet',
     'training_empty_desc' => 'There is currently no training schedule available. Please check again later.',
+
+    // Merged Home Section
+    'news_blog_title' => 'News & Blog',
+    'news_blog_subtitle' => 'Our Commitment to Public Excellence',
+    'news_blog_desc' => 'Digital Transformation as the Key to Corporate Success',
+    'filter_blog' => 'Blog',
+    'filter_training' => 'Academy & Training',
+    'see_all' => 'See All',
+    'no_upcoming_trainings' => 'No upcoming training schedules.',
+    'free' => 'Free',
 ];
