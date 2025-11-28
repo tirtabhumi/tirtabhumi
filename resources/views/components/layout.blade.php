@@ -187,8 +187,7 @@
             <nav class="hidden md:flex space-x-8 items-center">
                 <a href="/"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
-                <a href="/#about"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.about') }}</a>
+
 
                 <!-- Services Dropdown -->
                 <div class="relative group">
@@ -226,7 +225,7 @@
 
                 <a href="{{ route('blog.index') }}"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
-                <a href="/#contact"
+                <a href="{{ route('contacts.index') }}"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
 
                 <!-- Language Switcher -->
@@ -276,23 +275,22 @@
                             <x-logo class="h-10 w-auto" />
                         </div>
                         <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-sm">
-                            PT Tirta Bhumi Indonesia.<br>
-                            Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.
+                            {!! __('messages.footer_desc_full') !!}
                         </p>
                     </div>
                     <div>
-                        <h4 class="font-bold text-slate-800 mb-4">Quick Links</h4>
+                        <h4 class="font-bold text-slate-800 mb-4">{{ __('messages.quick_links') }}</h4>
                         <ul class="space-y-2 text-sm text-slate-500">
-                            <li><a href="/" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Home</a></li>
-                            <li><a href="/#about" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Tentang Kami</a></li>
-                            <li><a href="/#services" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Layanan</a></li>
-                            <li><a href="{{ route('blog.index') }}" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Blog</a>
+                            <li><a href="/" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.home') }}</a></li>
+                            <li><a href="/#about" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.about') }}</a></li>
+                            <li><a href="/#services" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.services') }}</a></li>
+                            <li><a href="{{ route('blog.index') }}" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.blog') }}</a>
                             </li>
-                            <li><a href="/#contact" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Kontak</a></li>
+                            <li><a href="{{ route('contacts.index') }}" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.contact') }}</a></li>
                         </ul>
                     </div>
                     <div>
-                        <h4 class="font-bold text-slate-800 mb-4">Connect</h4>
+                        <h4 class="font-bold text-slate-800 mb-4">{{ __('messages.connect') }}</h4>
                         <ul class="space-y-2 text-sm text-slate-500">
                             <li><a href="https://linkedin.com/company/pt-tirta-bhumi-indonesia" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">LinkedIn</a></li>
                             <li><a href="https://www.instagram.com/tirtabhumi.id/" target="_blank" rel="noopener noreferrer" class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Instagram</a></li>

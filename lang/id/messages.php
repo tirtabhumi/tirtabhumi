@@ -46,7 +46,7 @@ return [
     
     'footer_cta_title' => 'Siap Mengembangkan Bisnis atau Institusi Anda?',
     'footer_cta_desc' => 'Diskusikan kebutuhan spesifik Anda bersama tim ahli kami.',
-    'footer_cta_btn' => 'Hubungi Kami via WhatsApp',
+    'footer_cta_btn' => 'Hubungi Kami',
     
     'latest_insights' => 'Wawasan Terbaru',
     'latest_insights_desc' => 'Baca pemikiran dan pembaruan terbaru kami.',
@@ -259,4 +259,27 @@ return [
     'see_all' => 'Lihat Semua',
     'no_upcoming_trainings' => 'Belum ada jadwal pelatihan terbaru.',
     'free' => 'Gratis',
+    'read_more' => 'Baca Selengkapnya',
+    'view_detail' => 'Lihat Detail',
+    'quick_links' => 'Tautan Cepat',
+    'connect' => 'Terhubung',
+    'footer_desc_full' => 'PT Tirta Bhumi Indonesia.<br>Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.',
+
+    // Contact Page
+    'contact_office' => 'Kantor',
+    'contact_phone_wa' => 'Telepon & WhatsApp',
+    'contact_email' => 'Email',
+    'contact_form_title' => 'Kirim Pertanyaan Anda Di Sini',
+    'contact_name' => 'Nama',
+    'contact_name_placeholder' => 'Nama Anda',
+    'contact_email_label' => 'Email',
+    'contact_email_placeholder' => 'email@anda.com',
+    'contact_subject' => 'Subjek',
+    'contact_subject_placeholder' => 'Ada yang bisa kami bantu?',
+    'contact_message' => 'Pesan',
+    'contact_message_placeholder' => 'Tulis pesan Anda di sini...',
+    'contact_send_btn' => 'Kirim Pesan',
+    'contact_follow_us' => 'Ikuti Kami',
+    'contact_cta_whatsapp' => 'Chat WhatsApp',
+    'contact_cta_email' => 'Kirim Email',
 ];

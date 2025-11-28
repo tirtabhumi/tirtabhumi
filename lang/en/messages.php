@@ -46,7 +46,7 @@ return [
     
     'footer_cta_title' => 'Ready to Grow Your Business or Institution?',
     'footer_cta_desc' => 'Discuss your specific needs with our expert team.',
-    'footer_cta_btn' => 'Contact Us via WhatsApp',
+    'footer_cta_btn' => 'Contact Us',
     
     'latest_insights' => 'Latest Insights',
     'latest_insights_desc' => 'Read our latest thoughts and updates.',
@@ -259,4 +259,27 @@ return [
     'see_all' => 'See All',
     'no_upcoming_trainings' => 'No upcoming training schedules.',
     'free' => 'Free',
+    'read_more' => 'Read More',
+    'view_detail' => 'View Detail',
+    'quick_links' => 'Quick Links',
+    'connect' => 'Connect',
+    'footer_desc_full' => 'PT Tirta Bhumi Indonesia.<br>Strategic Partner for Digital Solutions, Infrastructure, and Integrated Procurement.',
+
+    // Contact Page
+    'contact_office' => 'Office',
+    'contact_phone_wa' => 'Phone & WhatsApp',
+    'contact_email' => 'Email',
+    'contact_form_title' => 'Submit Your Inquiry Here',
+    'contact_name' => 'Name',
+    'contact_name_placeholder' => 'Your Name',
+    'contact_email_label' => 'Email',
+    'contact_email_placeholder' => 'your@email.com',
+    'contact_subject' => 'Subject',
+    'contact_subject_placeholder' => 'How can we help?',
+    'contact_message' => 'Message',
+    'contact_message_placeholder' => 'Write your message here...',
+    'contact_send_btn' => 'Send Message',
+    'contact_follow_us' => 'Follow Us',
+    'contact_cta_whatsapp' => 'Chat on WhatsApp',
+    'contact_cta_email' => 'Send Email',
 ];

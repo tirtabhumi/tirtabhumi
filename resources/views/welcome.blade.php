@@ -9,7 +9,7 @@
 
         <div class="relative container mx-auto px-6 text-center z-10">
             <!-- Rotating Badge -->
-            <div class="inline-flex items-center gap-3 px-8 py-2.5 rounded-full bg-white/60 border border-white/60 backdrop-blur-md shadow-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default">
+            <div class="inline-flex items-center gap-3 px-8 py-2.5 rounded-full bg-white/60 border border-white/60 backdrop-blur-md shadow-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default animate-fade-in-up">
                 <span class="relative flex h-3 w-3">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
@@ -19,24 +19,24 @@
                 </span>
             </div>
 
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black animate-fade-in-up animation-delay-100">
                 {{ __('messages.hero_title_1') }}
                 <br />
                 {{ __('messages.hero_title_2') }}
             </h1>
-            <p class="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p class="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
                 {{ __('messages.hero_subtitle') }}
             </p>
-            <div class="flex flex-col md:flex-row gap-8 justify-center">
-                <a href="https://wa.me/6282229046099" target="_blank" class="px-8 py-4 neu-btn font-bold text-indigo-600">
-                    {{ __('messages.get_started') }}
+            <div class="flex flex-col md:flex-row gap-6 justify-center animate-fade-in-up animation-delay-300">
+                <a href="{{ route('contacts.index') }}" class="px-8 py-4 neu-flat text-indigo-600 font-bold hover:scale-105 transition-transform duration-300">
+                    {{ __('messages.footer_cta_btn') }}
                 </a>
                 <a href="#services" class="px-8 py-4 neu-btn-dark font-bold">
                     {{ __('messages.our_services') }}
                 </a>
             </div>
             <div class="h-8 md:h-8"></div>
-            <div class="mt-32">
+            <div class="mt-32 animate-fade-in-up animation-delay-400">
                 <p class="text-sm font-bold text-black uppercase tracking-wider mb-8">Trusted by Global Leaders</p>
                 
                 <div class="relative flex w-full flex-col items-center justify-center overflow-hidden">
@@ -44,21 +44,41 @@
                     <div class="group relative flex overflow-hidden py-10 px-4 gap-8 flex-row w-full max-w-6xl mx-auto">
                         
                         <!-- First Row (Original) -->
-                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row min-w-full group-hover:[animation-play-state:paused] py-4">
-                            @for($i = 0; $i < 6; $i++)
-                                <div class="w-40 h-24 neu-flat rounded-xl flex items-center justify-center p-4 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                    <img src="https://placehold.co/150x50/e2e8f0/64748b?text=Logo+{{ $i+1 }}" alt="Partner {{ $i+1 }}" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
-                                </div>
-                            @endfor
+                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
                         </div>
 
                         <!-- Second Row (Duplicate for seamless loop) -->
-                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row min-w-full group-hover:[animation-play-state:paused] py-4">
-                            @for($i = 0; $i < 6; $i++)
-                                <div class="w-40 h-24 neu-flat rounded-xl flex items-center justify-center p-4 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                    <img src="https://placehold.co/150x50/e2e8f0/64748b?text=Logo+{{ $i+1 }}" alt="Partner {{ $i+1 }}" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 transition-all duration-300">
-                                </div>
-                            @endfor
+                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
+                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                            </div>
                         </div>
 
                         <!-- Gradient Masks -->
@@ -75,10 +95,25 @@
                         from { transform: translateX(0); }
                         to { transform: translateX(calc(-100% - 2rem)); }
                     }
+                    @keyframes wiggle {
+                        0%, 100% { transform: rotate(-3deg); }
+                        50% { transform: rotate(3deg); }
+                    }
+                    .animate-wiggle {
+                        animation: wiggle 1s ease-in-out infinite;
+                    }
+                    @keyframes float {
+                        0%, 100% { transform: translateY(0); }
+                        50% { transform: translateY(-10px); }
+                    }
+                    .animate-float {
+                        animation: float 3s ease-in-out infinite;
+                    }
                 </style>
                 
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
+                        // Rotating Text Logic
                         const texts = @json(__('messages.hero_rotating_text'));
                         const textElement = document.getElementById('rotating-text');
                         let currentIndex = 0;
@@ -96,109 +131,21 @@
                                 }, 500); // Wait for fade out
                             }, 2500); // Change every 2.5s (2s visible + 0.5s transition)
                         }
+
+                        // Spotlight Effect Logic
+                        const cards = document.querySelectorAll('.spotlight-card');
+                        cards.forEach(card => {
+                            card.addEventListener('mousemove', (e) => {
+                                const rect = card.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
+                                
+                                card.style.setProperty('--mouse-x', `${x}px`);
+                                card.style.setProperty('--mouse-y', `${y}px`);
+                            });
+                        });
                     });
                 </script>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-24 bg-[#eef2f6] relative">
-        <div class="container mx-auto px-6">
-            <div class="max-w-4xl mx-auto text-center">
-                <h2 class="text-3xl md:text-4xl font-bold mb-8 text-slate-800">{{ __('messages.why_us_title') }}</h2>
-                <div class="neu-flat p-8 md:p-12 rounded-3xl border border-white/50 w-fit mx-auto">
-                    <p class="text-slate-600 text-lg leading-relaxed whitespace-pre-line">{{ __('messages.why_us_desc') }}</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-24 bg-[#eef2f6]">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.services_title') }}</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">
-                    {{ __('messages.services_desc') }}
-                </p>
-            </div>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Service 1: Digital & Automation -->
-                <a href="{{ route('services.digital') }}" class="block p-8 neu-flat hover:shadow-none transition-all group border border-white/50 hover:-translate-y-1">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-indigo-600 group-hover:text-indigo-500 transition-colors">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 16l4-16M6 9h14M4 15h14"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">{{ __('messages.service_digital_title') }}</h3>
-                    <p class="text-slate-500 text-sm">
-                        {{ __('messages.service_digital_desc') }}
-                    </p>
-                </a>
-                <!-- Service 2: Infrastructure -->
-                <a href="{{ route('services.infrastructure') }}" class="block p-8 neu-flat hover:shadow-none transition-all group border border-white/50 hover:-translate-y-1">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-purple-600 group-hover:text-purple-500 transition-colors">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">{{ __('messages.service_infra_title') }}</h3>
-                    <p class="text-slate-500 text-sm">
-                        {{ __('messages.service_infra_desc') }}
-                    </p>
-                </a>
-                <!-- Service 3: People & Events -->
-                <a href="{{ route('services.people') }}" class="block p-8 neu-flat hover:shadow-none transition-all group border border-white/50 hover:-translate-y-1">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-cyan-600 group-hover:text-cyan-500 transition-colors">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">{{ __('messages.service_people_title') }}</h3>
-                    <p class="text-slate-500 text-sm">
-                        {{ __('messages.service_people_desc') }}
-                    </p>
-                </a>
-                <!-- Service 4: Procurement -->
-                <a href="{{ route('services.procurement') }}" class="block p-8 neu-flat hover:shadow-none transition-all group border border-white/50 hover:-translate-y-1">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-emerald-600 group-hover:text-emerald-500 transition-colors">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-3 text-slate-800">{{ __('messages.service_procurement_title') }}</h3>
-                    <p class="text-slate-500 text-sm">
-                        {{ __('messages.service_procurement_desc') }}
-                    </p>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Target Market Section -->
-    <section class="py-24 bg-[#eef2f6] relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.target_market_title') }}</h2>
-            </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Government -->
-                <div class="neu-flat p-8 rounded-2xl border border-white/50 text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 neu-pressed rounded-full flex items-center justify-center text-slate-700">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-800">{{ __('messages.tm_gov') }}</h3>
-                    <p class="text-slate-500">{{ __('messages.tm_gov_desc') }}</p>
-                </div>
-                <!-- Enterprise -->
-                <div class="neu-flat p-8 rounded-2xl border border-white/50 text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 neu-pressed rounded-full flex items-center justify-center text-slate-700">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-800">{{ __('messages.tm_corp') }}</h3>
-                    <p class="text-slate-500">{{ __('messages.tm_corp_desc') }}</p>
-                </div>
-                <!-- UMKM -->
-                <div class="neu-flat p-8 rounded-2xl border border-white/50 text-center">
-                    <div class="w-16 h-16 mx-auto mb-6 neu-pressed rounded-full flex items-center justify-center text-slate-700">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                    </div>
-                    <h3 class="text-xl font-bold mb-2 text-slate-800">{{ __('messages.tm_sme') }}</h3>
-                    <p class="text-slate-500">{{ __('messages.tm_sme_desc') }}</p>
-                </div>
             </div>
         </div>
     </section>
@@ -207,7 +154,7 @@
     <section class="py-24 bg-white" id="news-blog">
         <div class="container mx-auto px-6">
             <!-- Header -->
-            <div class="mb-12">
+            <div class="mb-12 reveal-bottom">
                 <h2 class="text-xl font-bold text-slate-500 mb-2">{{ __('messages.news_blog_title') }}</h2>
                 <h3 class="text-3xl md:text-5xl font-bold text-slate-800 mb-4 leading-tight">
                     {{ __('messages.news_blog_subtitle') }}
@@ -237,7 +184,7 @@
             </div>
 
             <!-- Content Container -->
-            <div class="relative min-h-[400px]">
+            <div class="relative min-h-[400px] reveal-bottom delay-200">
                 <!-- Blog Grid (Default Visible) -->
                 <div id="content-blog" class="transition-opacity duration-300">
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -260,7 +207,7 @@
                                     {{ Str::limit(strip_tags($post->content), 100) }}
                                 </p>
                                 <div class="mt-auto flex items-center text-indigo-600 font-bold text-sm group-hover:gap-2 transition-all">
-                                    Baca Selengkapnya
+                                    {{ __('messages.read_more') }}
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                 </div>
                             </div>
@@ -273,8 +220,7 @@
                 <div id="content-training" class="hidden transition-opacity duration-300">
                     @php
                         $upcomingTrainings = \App\Models\Training::where('is_active', true)
-                            ->where('event_date', '>=', now())
-                            ->orderBy('event_date', 'asc')
+                            ->orderBy('event_date', 'desc')
                             ->take(4)
                             ->get();
                     @endphp
@@ -302,7 +248,7 @@
                                         </div>
                                         <h3 class="text-xl font-bold text-slate-800 mb-3 group-hover:text-indigo-600 transition-colors line-clamp-2">{{ $training->title }}</h3>
                                         <div class="mt-auto flex items-center text-indigo-600 font-bold text-sm group-hover:gap-2 transition-all">
-                                            Lihat Detail
+                                            {{ __('messages.view_detail') }}
                                             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                         </div>
                                     </div>
@@ -359,9 +305,238 @@
         }
     </script>
 
+    <!-- Services Section -->
+    <section id="services" class="py-24 bg-[#eef2f6]">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal-bottom">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.services_title') }}</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto">
+                    {{ __('messages.services_desc') }}
+                </p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-6" id="services-grid">
+                <!-- Service 1: Digital & Automation (Large - Span 2) -->
+                <a href="{{ route('services.digital') }}" class="spotlight-card group relative md:col-span-2 p-8 neu-flat hover:shadow-none transition-all duration-500 border border-white/50 hover:-translate-y-1 overflow-hidden reveal-bottom delay-100">
+                    <div class="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(79, 70, 229, 0.1), transparent 40%);"></div>
+
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center gap-6 h-full">
+                        <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center text-indigo-600 transition-all duration-500 shrink-0 group-hover:scale-110 group-hover:rotate-3">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 16l4-16M6 9h14M4 15h14"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-800 group-hover:text-indigo-600 transition-colors">{{ __('messages.service_digital_title') }}</h3>
+                            <p class="text-slate-500 text-base leading-relaxed group-hover:text-slate-600 transition-colors">
+                                {{ __('messages.service_digital_desc') }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+
+                <!-- Service 2: Infrastructure (Small - Span 1) -->
+                <a href="{{ route('services.infrastructure') }}" class="spotlight-card group relative md:col-span-1 p-8 neu-flat hover:shadow-none transition-all duration-500 border border-white/50 hover:-translate-y-2 overflow-hidden flex flex-col reveal-bottom delay-200">
+                    <div class="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(147, 51, 234, 0.1), transparent 40%);"></div>
+                    <div class="absolute -bottom-4 -right-4 opacity-5 group-hover:opacity-10 transition-all duration-700 transform group-hover:-translate-y-4 group-hover:scale-110 animate-float">
+                        <svg class="w-24 h-24 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-purple-600 transition-all duration-500 group-hover:shadow-lg group-hover:shadow-purple-200">
+                        <svg class="w-8 h-8 group-hover:-translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800 group-hover:text-purple-600 transition-colors">{{ __('messages.service_infra_title') }}</h3>
+                    <p class="text-slate-500 text-sm flex-grow relative z-10">
+                        {{ __('messages.service_infra_desc') }}
+                    </p>
+                </a>
+
+                <!-- Service 3: People & Events (Small - Span 1) -->
+                <a href="{{ route('services.people') }}" class="spotlight-card group relative md:col-span-1 p-8 neu-flat hover:shadow-none transition-all duration-500 border border-white/50 hover:-translate-y-1 overflow-hidden flex flex-col reveal-bottom delay-300">
+                    <div class="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(8, 145, 178, 0.1), transparent 40%);"></div>
+
+                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-cyan-600 transition-all duration-500 group-hover:animate-wiggle">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-slate-800 group-hover:text-cyan-600 transition-colors">{{ __('messages.service_people_title') }}</h3>
+                    <p class="text-slate-500 text-sm flex-grow">
+                        {{ __('messages.service_people_desc') }}
+                    </p>
+                </a>
+
+                <!-- Service 4: Procurement (Large - Span 2) -->
+                <a href="{{ route('services.procurement') }}" class="spotlight-card group relative md:col-span-2 p-8 neu-flat hover:shadow-none transition-all duration-500 border border-white/50 hover:-translate-y-1 overflow-hidden reveal-bottom delay-300">
+                    <div class="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(16, 185, 129, 0.1), transparent 40%);"></div>
+                    <div class="absolute -bottom-8 -right-8 p-8 opacity-10 group-hover:opacity-20 transition-all duration-700 transform group-hover:scale-150 group-hover:rotate-12 animate-float">
+                        <svg class="w-40 h-40 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                    </div>
+                    <div class="relative z-10 flex flex-col md:flex-row md:items-center gap-6 h-full">
+                        <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center text-emerald-600 transition-all duration-500 shrink-0 group-hover:scale-110 group-hover:shadow-lg group-hover:shadow-emerald-200">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2 text-slate-800 group-hover:text-emerald-600 transition-colors">{{ __('messages.service_procurement_title') }}</h3>
+                            <p class="text-slate-500 text-base leading-relaxed group-hover:text-slate-600 transition-colors">
+                                {{ __('messages.service_procurement_desc') }}
+                            </p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About & Target Market Section -->
+    <section id="about" class="py-24 bg-[#eef2f6] relative overflow-hidden">
+        <!-- Background Decor -->
+        <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/50 to-transparent pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Single Container for Both Sections -->
+            <div class="neu-flat p-6 md:p-12 rounded-3xl border border-white/50 relative overflow-hidden">
+                <div class="grid md:grid-cols-2 gap-16 md:gap-12 lg:gap-24">
+                    <!-- Left Column: Why Us -->
+                    <div class="reveal-left relative group flex flex-col h-full justify-center">
+                        <!-- Decorative Gradient -->
+                        <div class="absolute top-0 left-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl -ml-32 -mt-32 group-hover:bg-indigo-500/20 transition-all duration-700 pointer-events-none"></div>
+                        
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-800 leading-tight">
+                            {{ __('messages.why_us_title') }}
+                        </h2>
+                        <div class="prose prose-lg text-slate-600 leading-relaxed mb-8">
+                            <p>{{ __('messages.why_us_desc') }}</p>
+                        </div>
+                        
+                        <!-- Core Values -->
+                        <div>
+                            <p class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Core Values</p>
+                            <div class="flex gap-4">
+                                <div class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-indigo-600" title="Innovation">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                </div>
+                                <div class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-indigo-600" title="Integrity">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                </div>
+                                <div class="w-12 h-12 rounded-full neu-pressed flex items-center justify-center text-indigo-600" title="Excellence">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Who We Serve -->
+                    <div class="reveal-right flex flex-col h-full mt-12 md:mt-0">
+                        <div class="mb-8">
+                            <h2 class="text-3xl md:text-4xl font-bold text-slate-800">{{ __('messages.target_market_title') }}</h2>
+                        </div>
+
+                        <div class="space-y-6 flex-grow">
+                            <!-- Government -->
+                            <div class="bg-slate-50 p-4 md:p-6 rounded-2xl flex items-center gap-4 md:gap-6 hover:translate-x-2 transition-transform duration-300 border border-slate-100 shadow-sm">
+                                <div class="w-14 h-14 shrink-0 neu-flat rounded-xl flex items-center justify-center text-slate-700">
+                                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-800 mb-1">{{ __('messages.tm_gov') }}</h3>
+                                    <p class="text-slate-500 text-sm leading-relaxed">{{ __('messages.tm_gov_desc') }}</p>
+                                </div>
+                            </div>
+
+                            <!-- Enterprise -->
+                            <div class="bg-slate-50 p-4 md:p-6 rounded-2xl flex items-center gap-4 md:gap-6 hover:translate-x-2 transition-transform duration-300 border border-slate-100 shadow-sm">
+                                <div class="w-14 h-14 shrink-0 neu-flat rounded-xl flex items-center justify-center text-slate-700">
+                                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-800 mb-1">{{ __('messages.tm_corp') }}</h3>
+                                    <p class="text-slate-500 text-sm leading-relaxed">{{ __('messages.tm_corp_desc') }}</p>
+                                </div>
+                            </div>
+
+                            <!-- UMKM -->
+                            <div class="bg-slate-50 p-4 md:p-6 rounded-2xl flex items-center gap-4 md:gap-6 hover:translate-x-2 transition-transform duration-300 border border-slate-100 shadow-sm">
+                                <div class="w-14 h-14 shrink-0 neu-flat rounded-xl flex items-center justify-center text-slate-700">
+                                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-bold text-slate-800 mb-1">{{ __('messages.tm_sme') }}</h3>
+                                    <p class="text-slate-500 text-sm leading-relaxed">{{ __('messages.tm_sme_desc') }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            .reveal-left {
+                opacity: 0;
+                transform: translateX(-50px);
+                transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal-right {
+                opacity: 0;
+                transform: translateX(50px);
+                transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal-bottom {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+            }
+            .reveal-visible {
+                opacity: 1;
+                transform: translateX(0) translateY(0);
+            }
+            .delay-100 { transition-delay: 100ms; }
+            .delay-200 { transition-delay: 200ms; }
+            .delay-300 { transition-delay: 300ms; }
+            
+            /* Hero Animations */
+            @keyframes fadeInUp {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            .animate-fade-in-up {
+                animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+                opacity: 0; /* Start hidden */
+            }
+            .animation-delay-100 { animation-delay: 100ms; }
+            .animation-delay-200 { animation-delay: 200ms; }
+            .animation-delay-300 { animation-delay: 300ms; }
+            .animation-delay-400 { animation-delay: 400ms; }
+            .animation-delay-500 { animation-delay: 500ms; }
+        </style>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+                const observerOptions = {
+                    threshold: 0.1,
+                    rootMargin: '0px 0px -50px 0px'
+                };
+
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('reveal-visible');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, observerOptions);
+
+                document.querySelectorAll('.reveal-left, .reveal-right, .reveal-bottom').forEach(el => {
+                    observer.observe(el);
+                });
+            });
+        </script>
+    </section>
+
     <!-- Contact Section -->
     <section id="contact" class="py-24 bg-[#eef2f6]">
-        <div class="container mx-auto px-6 text-center">
+        <div class="container mx-auto px-6 text-center reveal-bottom">
             <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-800">{{ __('messages.footer_cta_title') }}</h2>
             <p class="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">
                 {{ __('messages.footer_cta_desc') }}
@@ -369,8 +544,7 @@
             
             <div class="flex justify-center">
                 <!-- WhatsApp -->
-                <a href="https://wa.me/6282229046099" target="_blank" class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-flex items-center">
-                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                <a href="{{ route('contacts.index') }}" class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-flex items-center hover:scale-105 transition-transform duration-300">
                     {{ __('messages.footer_cta_btn') }}
                 </a>
             </div>

@@ -2,6 +2,8 @@
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail;
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,6 +48,23 @@ Route::prefix('services')->name('services.')->group(function () {
 Route::get('/webbundling', function () {
     return view('landing-page');
 })->name('webbundling');
+
+Route::get('/contact', function () {
+    return view('contact');
+})->name('contacts.index');
+
+Route::post('/contact', function () {
+    $data = request()->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'subject' => 'required|string|max:255',
+        'message' => 'required|string',
+    ]);
+
+    Mail::to('hello@tirtabhumi.com')->send(new ContactFormMail($data));
+
+    return back()->with('success', 'Thank you for your message. We will get back to you soon!');
+})->name('contacts.store');
 
 Route::get('/trainings', [App\Http\Controllers\TrainingController::class, 'index'])->name('trainings.index');
 Route::get('/trainings/{training:slug}', [App\Http\Controllers\TrainingController::class, 'show'])->name('trainings.show');
