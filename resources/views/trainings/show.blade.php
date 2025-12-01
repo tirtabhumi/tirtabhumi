@@ -95,29 +95,39 @@
                                     </div>
                                 @endif
 
-                                <form action="{{ route('trainings.register', $training) }}" method="POST" class="space-y-5">
-                                    @csrf
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 mb-2">Nama Lengkap</label>
-                                        <input type="text" name="name" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="Masukkan nama Anda">
+                                @if($training->event_date->isPast())
+                                    <div class="bg-red-50 text-red-700 p-6 rounded-xl text-center border border-red-100">
+                                        <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500">
+                                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                        </div>
+                                        <h4 class="font-bold text-lg mb-2">Pendaftaran Ditutup</h4>
+                                        <p class="text-sm">Mohon maaf, waktu pelaksanaan pelatihan ini sudah berlalu.</p>
                                     </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 mb-2">Email</label>
-                                        <input type="email" name="email" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="nama@email.com">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 mb-2">No. WhatsApp</label>
-                                        <input type="tel" name="phone" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="08123456789">
-                                    </div>
-                                    <div>
-                                        <label class="block text-xs font-bold text-slate-700 mb-2">Instansi / Perusahaan (Opsional)</label>
-                                        <input type="text" name="institution" class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="Nama instansi">
-                                    </div>
-                                    
-                                    <button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 mt-2">
-                                        Daftar Pelatihan
-                                    </button>
-                                </form>
+                                @else
+                                    <form action="{{ route('trainings.register', $training) }}" method="POST" class="space-y-5">
+                                        @csrf
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">Nama Lengkap</label>
+                                            <input type="text" name="name" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="Masukkan nama Anda">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">Email</label>
+                                            <input type="email" name="email" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="nama@email.com">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">No. WhatsApp</label>
+                                            <input type="tel" name="phone" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="08123456789">
+                                        </div>
+                                        <div>
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">Instansi / Perusahaan (Opsional)</label>
+                                            <input type="text" name="institution" class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="Nama instansi">
+                                        </div>
+                                        
+                                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 mt-2">
+                                            Daftar Pelatihan
+                                        </button>
+                                    </form>
+                                @endif
                             </div>
                         </div>
                     </div>

@@ -11,7 +11,7 @@ class TrainingController extends Controller
     public function index()
     {
         $trainings = Training::where('is_active', true)
-            ->where('event_date', '>=', now())
+            // ->where('event_date', '>=', now())
             ->orderBy('event_date', 'asc')
             ->get();
 
@@ -29,6 +29,10 @@ class TrainingController extends Controller
 
     public function register(Request $request, Training $training)
     {
+        if ($training->event_date->isPast()) {
+            return back()->with('error', 'Pendaftaran sudah ditutup karena waktu pelatihan sudah berlalu.');
+        }
+
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
