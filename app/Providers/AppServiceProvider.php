@@ -3,6 +3,24 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Redis;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Facades\URL;
+
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +37,16 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+
+    if (Str::contains(Route::currentRouteName(), 'admin')) {
+        Blade::component('components.admin.navbar', 'admin-navbar');
+        Blade::component('components.admin.sidebar', 'admin-sidebar');
+        Blade::component('components.admin.footer', 'admin-footer');
+        Blade::component('components.admin.sidebar', 'admin-sidebar');
+        URL::forceScheme('https');
+    }
+
+    Schema::defaultStringLength(191);
         //
     }
 }
