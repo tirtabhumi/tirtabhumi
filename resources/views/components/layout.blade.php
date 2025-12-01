@@ -349,7 +349,7 @@
 
                     <a href="/#about" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
                     <a href="{{ route('blog.index') }}" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.blog') }}</a>
-                    <a href="/#contact" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.contact') }}</a>
+                    <a href="{{ route('contacts.index') }}" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.contact') }}</a>
                     
                     <div class="mt-auto pt-8 pb-8">
                         <div class="flex gap-4 justify-center">
