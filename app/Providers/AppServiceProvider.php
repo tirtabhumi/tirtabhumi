@@ -18,8 +18,9 @@ use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Redis;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Str;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
+use Illuminate\Support\Facades\Schema;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -38,7 +39,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-    if (Str::contains(Route::currentRouteName(), 'admin')) {
+    if (!app()->runningInConsole() && Route::currentRouteName() && Str::contains(Route::currentRouteName(), 'admin')) {
         Blade::component('components.admin.navbar', 'admin-navbar');
         Blade::component('components.admin.sidebar', 'admin-sidebar');
         Blade::component('components.admin.footer', 'admin-footer');
