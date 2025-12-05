@@ -46,38 +46,38 @@
                         <!-- First Row (Original) -->
                         <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                         </div>
 
                         <!-- Second Row (Duplicate for seamless loop) -->
                         <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                         </div>
 

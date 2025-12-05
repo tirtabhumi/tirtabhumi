@@ -45,7 +45,7 @@
       "@@type": "Organization",
       "name": "PT Tirta Bhumi Indonesia",
       "url": "{{ url('/') }}",
-      "logo": "{{ asset('images/logo-preview.png') }}",
+      "logo": "{{ asset('favicon.png') }}",
       "description": "Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.",
       "address": {
         "@@type": "PostalAddress",
@@ -70,7 +70,7 @@
     <meta property="og:title" content="{{ $title ?? 'PT Tirta Bhumi Indonesia | Solusi Digital & Pengadaan Terpadu' }}">
     <meta property="og:description"
         content="Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu untuk Pemerintah dan Korporasi.">
-    <meta property="og:image" content="{{ asset('images/logo-preview.png') }}">
+    <meta property="og:image" content="{{ asset('favicon.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
@@ -78,7 +78,7 @@
     <meta property="twitter:title" content="{{ $title ?? 'PT Tirta Bhumi Indonesia | Solusi Digital & Pengadaan Terpadu' }}">
     <meta property="twitter:description"
         content="Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu untuk Pemerintah dan Korporasi.">
-    <meta property="twitter:image" content="{{ asset('images/logo-preview.png') }}">
+    <meta property="twitter:image" content="{{ asset('favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
