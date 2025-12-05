@@ -14,7 +14,8 @@ class Training extends Model
         'event_date',
         'type',
         'price',
-        'location',
+        'location_offline',
+        'location_online',
         'is_active',
     ];
 

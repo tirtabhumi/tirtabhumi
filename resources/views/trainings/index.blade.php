@@ -152,11 +152,11 @@
                                 @endif
                                 @if($training->event_date->isPast())
                                     <div class="absolute top-4 right-4 bg-red-100/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-red-600">
-                                        Selesai
+                                        {{ __('messages.finished') }}
                                     </div>
                                 @else
                                     <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
-                                        {{ ucfirst($training->type) }}
+                                        {{ __('messages.training_type_' . $training->type) }}
                                     </div>
                                 @endif
                             </div>

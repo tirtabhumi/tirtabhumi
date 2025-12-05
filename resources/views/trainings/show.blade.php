@@ -10,7 +10,7 @@
                 <div class="mb-12">
                     <a href="{{ route('trainings.index') }}" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                        Kembali ke Daftar Pelatihan
+                        {{ __('messages.back_to_list') }}
                     </a>
                 </div>
 
@@ -43,14 +43,14 @@
                         <div class="sticky top-24 space-y-8">
                             <!-- Info Card -->
                             <div class="neu-flat rounded-2xl p-6 border border-white/50">
-                                <h3 class="font-bold text-slate-800 mb-6">Informasi Pelatihan</h3>
+                                <h3 class="font-bold text-slate-800 mb-6">{{ __('messages.training_info') }}</h3>
                                 <ul class="space-y-6 text-sm">
                                     <li class="flex items-start gap-4">
                                         <div class="neu-pressed p-3 rounded-full text-indigo-600">
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                                         </div>
                                         <div>
-                                            <span class="block text-slate-500 text-xs mb-1">Tanggal & Waktu</span>
+                                            <span class="block text-slate-500 text-xs mb-1">{{ __('messages.date_time') }}</span>
                                             <span class="font-bold text-slate-800 block">{{ $training->event_date->format('d F Y') }}</span>
                                             <span class="text-slate-600">{{ $training->event_date->format('H:i') }} WIB</span>
                                         </div>
@@ -60,10 +60,21 @@
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                         </div>
                                         <div>
-                                            <span class="block text-slate-500 text-xs mb-1">Lokasi</span>
-                                            <span class="font-bold text-slate-800 block">{{ ucfirst($training->type) }}</span>
-                                            @if($training->location)
-                                                <span class="text-slate-600">{{ $training->location }}</span>
+                                            <span class="block text-slate-500 text-xs mb-1">{{ __('messages.location') }}</span>
+                                            <span class="font-bold text-slate-800 block">{{ __('messages.training_type_' . $training->type) }}</span>
+                                            @if($training->type === 'online' || $training->type === 'hybrid')
+                                                @if($training->location_online)
+                                                    <span class="block text-slate-600 text-xs mt-1">
+                                                        <span class="font-semibold">Online:</span> {{ $training->location_online }}
+                                                    </span>
+                                                @endif
+                                            @endif
+                                            @if($training->type === 'offline' || $training->type === 'hybrid')
+                                                @if($training->location_offline)
+                                                    <span class="block text-slate-600 text-xs mt-1">
+                                                        <span class="font-semibold">Offline:</span> {{ $training->location_offline }}
+                                                    </span>
+                                                @endif
                                             @endif
                                         </div>
                                     </li>
@@ -72,7 +83,7 @@
                                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         </div>
                                         <div>
-                                            <span class="block text-slate-500 text-xs mb-1">Harga</span>
+                                            <span class="block text-slate-500 text-xs mb-1">{{ __('messages.price') }}</span>
                                             <span class="font-bold text-xl text-indigo-600">
                                                 @if($training->price > 0)
                                                     Rp {{ number_format($training->price, 0, ',', '.') }}
@@ -87,7 +98,7 @@
 
                             <!-- Registration Form -->
                             <div class="neu-flat rounded-2xl p-6 border border-white/50">
-                                <h3 class="font-bold text-slate-800 mb-6 text-lg">Daftar Sekarang</h3>
+                                <h3 class="font-bold text-slate-800 mb-6 text-lg">{{ __('messages.register_now') }}</h3>
                                 
                                 @if(session('success'))
                                     <div class="bg-green-50 text-green-700 p-4 rounded-xl text-sm mb-4 border border-green-100">
@@ -100,31 +111,31 @@
                                         <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                         </div>
-                                        <h4 class="font-bold text-lg mb-2">Pendaftaran Ditutup</h4>
-                                        <p class="text-sm">Mohon maaf, waktu pelaksanaan pelatihan ini sudah berlalu.</p>
+                                        <h4 class="font-bold text-lg mb-2">{{ __('messages.registration_closed') }}</h4>
+                                        <p class="text-sm">{{ __('messages.registration_closed_msg') }}</p>
                                     </div>
                                 @else
                                     <form action="{{ route('trainings.register', $training) }}" method="POST" class="space-y-5">
                                         @csrf
                                         <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">Nama Lengkap</label>
-                                            <input type="text" name="name" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="Masukkan nama Anda">
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.full_name') }}</label>
+                                            <input type="text" name="name" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="{{ __('messages.name_placeholder') }}">
                                         </div>
                                         <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">Email</label>
-                                            <input type="email" name="email" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="nama@email.com">
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.contact_email_label') }}</label>
+                                            <input type="email" name="email" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="{{ __('messages.email_placeholder') }}">
                                         </div>
                                         <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">No. WhatsApp</label>
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.whatsapp') }}</label>
                                             <input type="tel" name="phone" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="08123456789">
                                         </div>
                                         <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">Instansi / Perusahaan (Opsional)</label>
-                                            <input type="text" name="institution" class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="Nama instansi">
+                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.institution') }}</label>
+                                            <input type="text" name="institution" class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="{{ __('messages.institution_placeholder') }}">
                                         </div>
                                         
                                         <button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 mt-2">
-                                            Daftar Pelatihan
+                                            {{ __('messages.submit_registration') }}
                                         </button>
                                     </form>
                                 @endif

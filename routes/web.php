@@ -49,6 +49,12 @@ Route::get('/webbundling', function () {
     return view('landing-page');
 })->name('webbundling');
 
+Route::get('/digitalmarketing', function () {
+    return view('services.digital-marketing');
+})->name('digitalmarketing');
+
+Route::post('/ai-chat', [App\Http\Controllers\AiChatController::class, 'chat'])->name('ai.chat');
+
 Route::get('/contact', function () {
     return view('contact');
 })->name('contacts.index');

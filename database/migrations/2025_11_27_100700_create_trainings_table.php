@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('trainings', function (Blueprint $table) {
-            $table->id();
-            $table->string('title');
-            $table->string('slug')->unique();
-            $table->longText('description')->nullable();
-            $table->string('image')->nullable();
-            $table->datetime('event_date');
-            $table->enum('type', ['online', 'offline']);
-            $table->string('location')->nullable();
-            $table->boolean('is_active')->default(true);
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('trainings')) {
+            Schema::create('trainings', function (Blueprint $table) {
+                $table->id();
+                $table->string('title');
+                $table->string('slug')->unique();
+                $table->longText('description')->nullable();
+                $table->string('image')->nullable();
+                $table->datetime('event_date');
+                $table->enum('type', ['online', 'offline']);
+                $table->string('location')->nullable();
+                $table->boolean('is_active')->default(true);
+                $table->timestamps();
+            });
+        }
     }
 
     /**

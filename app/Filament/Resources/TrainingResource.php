@@ -48,10 +48,18 @@ class TrainingResource extends Resource
                             ->options([
                                 'online' => 'Online',
                                 'offline' => 'Offline',
+                                'hybrid' => 'Hybrid',
                             ])
-                            ->required(),
-                        Forms\Components\TextInput::make('location')
-                            ->maxLength(255),
+                            ->required()
+                            ->live(),
+                        Forms\Components\TextInput::make('location_offline')
+                            ->label('Location Offline')
+                            ->maxLength(255)
+                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['offline', 'hybrid'])),
+                        Forms\Components\TextInput::make('location_online')
+                            ->label('Location Online')
+                            ->maxLength(255)
+                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['online', 'hybrid'])),
                         Forms\Components\Toggle::make('is_active')
                             ->required()
                             ->default(true),
@@ -76,6 +84,7 @@ class TrainingResource extends Resource
                     ->color(fn (string $state): string => match ($state) {
                         'online' => 'success',
                         'offline' => 'warning',
+                        'hybrid' => 'info',
                     }),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
