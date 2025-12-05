@@ -1,23 +1,22 @@
-<x-layout title="{{ __('messages.service_infra_title') }} - {{ config('app.name') }}">
+<x-layout title="{{ __('messages.service_infrastructure_title') }} - {{ config('app.name') }}">
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 bg-[#eef2f6] overflow-hidden">
         <div class="absolute inset-0 w-full h-full">
-            <div class="absolute top-0 right-0 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
-            <div class="absolute bottom-0 left-0 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+            <div class="absolute top-0 right-0 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+            <div class="absolute bottom-0 left-0 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
         </div>
         <div class="container mx-auto px-6 relative z-10 text-center">
             <!-- Breadcrumb -->
-            <!-- Breadcrumb -->
-            <x-breadcrumb :paths="[__('messages.services') => '/#services']" :current="__('messages.service_infra_title')" />
+            <x-breadcrumb :paths="[__('messages.services') => '/#services']" :current="__('messages.service_infrastructure_title')" />
 
-            <div class="inline-flex items-center justify-center p-3 mb-6 rounded-2xl neu-pressed text-purple-600">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <div class="inline-flex items-center justify-center p-3 mb-6 rounded-2xl neu-pressed text-cyan-600">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
             </div>
             <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
-                {{ __('messages.service_infra_title') }}
+                {{ __('messages.service_infrastructure_title') }}
             </h1>
             <p class="text-lg text-slate-500 max-w-2xl mx-auto leading-relaxed">
-                {{ __('messages.service_infra_desc') }}
+                {{ __('messages.service_infrastructure_desc') }}
             </p>
         </div>
     </section>
@@ -25,31 +24,56 @@
     <!-- Detailed Services -->
     <section class="py-24 bg-[#eef2f6]">
         <div class="container mx-auto px-6">
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-                <!-- Network Solutions -->
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Network Installation -->
                 <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.infra_sub_1_title') }}</h3>
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.infrastructure_sub_1_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        {{ __('messages.infra_sub_1_desc') }}
+                        {{ __('messages.infrastructure_sub_1_desc') }}
                     </p>
                     <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infra_sub_1_list_1') }}</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infra_sub_1_list_2') }}</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infra_sub_1_list_3') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_1_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_1_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_1_list_3') }}</li>
                     </ul>
                 </div>
 
-                <!-- Security Systems -->
-                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.infra_sub_2_title') }}</h3>
+                <!-- Server Maintenance -->
+                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:border-indigo-300 transition-all duration-300 h-full flex flex-col">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.infrastructure_sub_2_title') }}</h3>
                     <p class="text-slate-500 mb-6">
-                        {{ __('messages.infra_sub_2_desc') }}
+                        {{ __('messages.infrastructure_sub_2_desc') }}
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-600">
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infra_sub_2_list_1') }}</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infra_sub_2_list_2') }}</li>
-                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infra_sub_2_list_3') }}</li>
+                    <ul class="space-y-2 text-sm text-slate-600 mb-6">
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_2_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_2_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_2_list_3') }}</li>
                     </ul>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="#contact" class="inline-flex items-center font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                            {{ __('messages.learn_more') }}
+                            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- IP PABX & CCTV -->
+                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:border-indigo-300 transition-all duration-300 h-full flex flex-col">
+                    <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.infrastructure_sub_3_title') }}</h3>
+                    <p class="text-slate-500 mb-6">
+                        {{ __('messages.infrastructure_sub_3_desc') }}
+                    </p>
+                    <ul class="space-y-2 text-sm text-slate-600 mb-6">
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_3_list_1') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_3_list_2') }}</li>
+                        <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_3_list_3') }}</li>
+                    </ul>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="#contact" class="inline-flex items-center font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                            {{ __('messages.learn_more') }}
+                            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -298,6 +298,26 @@ return [
     'dm_pkg_3_feat_2' => 'Target Market & Competitor Research',
     'dm_pkg_3_feat_3' => 'Monthly Analysis Report',
 
+    // Infrastructure Page
+    'service_infrastructure_title' => 'IT Infrastructure & Network',
+    'service_infrastructure_desc' => 'Reliable IT infrastructure solutions to support your business operations.',
+    'infrastructure_sub_1_title' => 'Network Installation',
+    'infrastructure_sub_1_desc' => 'Stable and secure LAN/WAN network installation.',
+    'infrastructure_sub_1_list_1' => 'Network Topology Design',
+    'infrastructure_sub_1_list_2' => 'Cabling & Device Installation',
+    'infrastructure_sub_1_list_3' => 'Mikrotik/Cisco Configuration',
+    'infrastructure_sub_2_title' => 'Server Maintenance',
+    'infrastructure_sub_2_desc' => 'Routine maintenance to ensure your server is always optimal.',
+    'infrastructure_sub_2_list_1' => '24/7 Performance Monitoring',
+    'infrastructure_sub_2_list_2' => 'Data Backup & Recovery',
+    'infrastructure_sub_2_list_3' => 'Security Patching',
+
+    'infrastructure_sub_3_title' => 'IP PABX & CCTV',
+    'infrastructure_sub_3_desc' => 'Integrated communication and security solutions for modern offices.',
+    'infrastructure_sub_3_list_1' => 'IP PABX Installation',
+    'infrastructure_sub_3_list_2' => 'CCTV & IP Cam Integration',
+    'infrastructure_sub_3_list_3' => 'System Maintenance',
+
     // DM Product Knowledge
     'dm_pk_title' => 'Know Your Digital Marketing Weapons',
     'dm_pk_subtitle' => 'Choose the right platform for your business goals.',

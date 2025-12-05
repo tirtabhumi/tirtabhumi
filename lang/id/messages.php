@@ -298,6 +298,26 @@ return [
     'dm_pkg_3_feat_2' => 'Riset Target Market & Kompetitor',
     'dm_pkg_3_feat_3' => 'Laporan Analisis Bulanan',
 
+    // Infrastructure Page
+    'service_infrastructure_title' => 'IT Infrastructure & Network',
+    'service_infrastructure_desc' => 'Solusi infrastruktur IT yang handal untuk mendukung operasional bisnis Anda.',
+    'infrastructure_sub_1_title' => 'Network Installation',
+    'infrastructure_sub_1_desc' => 'Instalasi jaringan LAN/WAN yang stabil dan aman.',
+    'infrastructure_sub_1_list_1' => 'Desain Topologi Jaringan',
+    'infrastructure_sub_1_list_2' => 'Instalasi Kabel & Perangkat',
+    'infrastructure_sub_1_list_3' => 'Konfigurasi Mikrotik/Cisco',
+    'infrastructure_sub_2_title' => 'Server Maintenance',
+    'infrastructure_sub_2_desc' => 'Perawatan rutin untuk memastikan server Anda selalu optimal.',
+    'infrastructure_sub_2_list_1' => 'Monitoring Performa 24/7',
+    'infrastructure_sub_2_list_2' => 'Backup & Recovery Data',
+    'infrastructure_sub_2_list_3' => 'Security Patching',
+
+    'infrastructure_sub_3_title' => 'IP PABX & CCTV',
+    'infrastructure_sub_3_desc' => 'Solusi komunikasi dan keamanan terintegrasi untuk kantor modern.',
+    'infrastructure_sub_3_list_1' => 'Instalasi IP PABX',
+    'infrastructure_sub_3_list_2' => 'Integrasi CCTV & IP Cam',
+    'infrastructure_sub_3_list_3' => 'Maintenance Sistem',
+
     // DM Product Knowledge
     'dm_pk_title' => 'Kenali Senjata Digital Marketing Anda',
     'dm_pk_subtitle' => 'Pilih platform yang tepat untuk tujuan bisnis Anda.',
