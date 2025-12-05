@@ -59,7 +59,7 @@
                         <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.digital_sub_2_list_3') }}</li>
                     </ul>
                     
-                    <button onclick="openAiChat()" class="w-full py-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 flex items-center justify-center gap-2">
+                    <button onclick="openAiChat()" class="neu-btn w-full py-3 font-bold text-indigo-600 flex items-center justify-center gap-2">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
                         Try AI Demo
                     </button>
@@ -126,7 +126,7 @@
                                     <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                     </div>
-                                    <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm text-slate-600">
+                                    <div class="neu-flat p-3 rounded-2xl rounded-tl-none border-white/50 text-sm text-slate-600">
                                         Halo! Saya asisten AI Tirtabhumi. Saya siap membantu kebutuhan <span id="selected-industry-text" class="font-bold"></span> Anda. Ada yang bisa saya bantu?
                                     </div>
                                 </div>
@@ -274,8 +274,8 @@
                             : `<div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-500 flex-shrink-0"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></div>`;
 
                         const bubbleClass = role === 'ai'
-                            ? 'bg-white rounded-tl-none border-slate-100 text-slate-600'
-                            : 'bg-indigo-600 text-white rounded-tr-none';
+                            ? 'neu-flat rounded-tl-none border-white/50 text-slate-600'
+                            : 'neu-pressed text-indigo-700 rounded-tr-none border border-indigo-100';
 
                         div.innerHTML = `
                             ${avatar}
@@ -297,7 +297,7 @@
                             <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                             </div>
-                            <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-slate-100 text-sm text-slate-600 flex gap-1">
+                            <div class="neu-flat p-4 rounded-2xl rounded-tl-none border-white/50 text-sm text-slate-600 flex gap-1">
                                 <span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce"></span>
                                 <span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.2s"></span>
                                 <span class="w-2 h-2 bg-slate-400 rounded-full animate-bounce" style="animation-delay: 0.4s"></span>

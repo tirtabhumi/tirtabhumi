@@ -37,8 +37,8 @@
                                     <div>
                                         <h4 class="font-bold text-slate-800 mb-1">{{ __('messages.contact_office') }}</h4>
                                         <p class="text-slate-500 text-sm leading-relaxed">
-                                            Klipang Pesona Asri Residence Kav 81,<br>
-                                            Sendangmulyo, Tembalang, Semarang, Jawa Tengah
+                                            Perumahan Klipang Pesona Asri Residence No.Kav 81,<br>
+                                            Sendangmulyo, Kec. Tembalang, Kota Semarang, Jawa Tengah 50272
                                         </p>
                                     </div>
                                 </div>
@@ -148,6 +148,6 @@
 
     <!-- Map Section (Optional) -->
     <section class="h-96 w-full bg-slate-200 relative">
-        <iframe src="https://maps.google.com/maps?q=Klipang+Pesona+Asri+Residence+Kav+81,+Sendangmulyo,+Tembalang,+Semarang,+Jawa+Tengah&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="grayscale hover:grayscale-0 transition-all duration-500"></iframe>
+        <iframe src="https://maps.google.com/maps?q=-7.031657042712186,110.47015121642238&t=&z=15&ie=UTF8&iwloc=&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="grayscale hover:grayscale-0 transition-all duration-500"></iframe>
     </section>
 </x-layout>
