@@ -24,16 +24,16 @@ return [
     'services_title' => 'Solusi Kami untuk Kebutuhan Anda',
     'services_desc' => 'Layanan terintegrasi untuk mendukung operasional dan pertumbuhan bisnis Anda.',
     
-    'service_digital_title' => 'Transformasi Digital & AI',
+    'service_digital_title' => 'Layanan Digital',
     'service_digital_desc' => 'Tingkatkan efisiensi dengan Website/SaaS, Otomasi Bisnis, dan AI Response Bot. Kami juga membantu pengelolaan Digital Marketing dan Social Media.',
     
-    'service_infra_title' => 'Infrastruktur IT & Keamanan',
+    'service_infra_title' => 'Infrastruktur',
     'service_infra_desc' => 'Layanan pengelolaan jaringan (Access Point/Interconnection) dan sistem keamanan (CCTV) yang terkelola penuh.',
     
-    'service_people_title' => 'Pengembangan SDM & Event',
+    'service_people_title' => 'Training Center',
     'service_people_desc' => 'Kami menyediakan Event Organizer profesional dan Pelatihan Terpadu (Coding, AI, IoT, Design) untuk meningkatkan kompetensi tim Anda.',
     
-    'service_procurement_title' => 'Pengadaan Barang & Jasa',
+    'service_procurement_title' => 'Pengadaan',
     'service_procurement_desc' => 'Solusi pengadaan fleksibel (Sewa & Beli) untuk kebutuhan umum, mulai dari Goods, Items, hingga perawatan taman (Gardening).',
     
     'target_market_title' => 'Siapa yang Kami Layani?',
@@ -299,7 +299,7 @@ return [
     'dm_pkg_3_feat_3' => 'Laporan Analisis Bulanan',
 
     // Infrastructure Page
-    'service_infrastructure_title' => 'IT Infrastructure & Network',
+    'service_infrastructure_title' => 'Infrastruktur',
     'service_infrastructure_desc' => 'Solusi infrastruktur IT yang handal untuk mendukung operasional bisnis Anda.',
     'infrastructure_sub_1_title' => 'Network Installation',
     'infrastructure_sub_1_desc' => 'Instalasi jaringan LAN/WAN yang stabil dan aman.',
@@ -317,6 +317,39 @@ return [
     'infrastructure_sub_3_list_1' => 'Instalasi IP PABX',
     'infrastructure_sub_3_list_2' => 'Integrasi CCTV & IP Cam',
     'infrastructure_sub_3_list_3' => 'Maintenance Sistem',
+
+    // Network Page
+    'network_title' => 'Konektivitas Tanpa Henti untuk Bisnis Anda',
+    'network_subtitle' => 'Konektivitas Tanpa Batas untuk Bisnis Anda',
+    'network_hero_desc' => 'Jangan biarkan Wi-Fi buruk mematikan produktivitas Anda. Kami menyediakan pemasangan Access Point, Switch, dan kabel profesional untuk jangkauan 100%.',
+    
+    'network_pain_title' => 'Apakah Wi-Fi Buruk Menghambat Anda?',
+    'network_pain_desc' => 'Ada tempat bisnismu yang tidak ada jaringan? Kami siap membantumu. Area mati dan koneksi lambat dapat menghambat produktivitas.',
+    'network_pain_badge' => 'Masalah Umum',
+    'network_pain_point_1' => 'Buffering saat video call',
+    'network_pain_point_2' => 'Area mati (dead zone) di ruang rapat',
+    'network_pain_point_3' => 'Kabel berantakan dan tidak aman',
+    
+    'network_benefit_title' => 'Mengapa Memilih Tirtabhumi?',
+    'network_benefit_1_title' => 'Kecepatan Tinggi',
+    'network_benefit_1_desc' => 'Performa Gigabit yang dioptimalkan untuk alur kerja Anda.',
+    'network_benefit_2_title' => 'Aman',
+    'network_benefit_2_desc' => 'Konfigurasi keamanan kelas enterprise untuk melindungi data.',
+    'network_benefit_3_title' => 'Skalabel',
+    'network_benefit_3_desc' => 'Infrastruktur yang tumbuh seiring kebutuhan bisnis Anda.',
+    
+    'network_sol_title' => 'Solusi Komprehensif Kami',
+    'network_sol_desc' => 'Kami merancang dan mengimplementasikan infrastruktur jaringan yang tangguh sesuai dengan tata letak Anda.',
+    
+    'network_sol_1_title' => 'Instalasi Access Point',
+    'network_sol_1_desc' => 'Penempatan strategis Access Point kelas enterprise untuk menghilangkan area mati dan memastikan jangkauan penuh.',
+    'network_sol_2_title' => 'Switch & Kabel',
+    'network_sol_2_desc' => 'Pengkabelan yang rapi dan terstruktur dengan switch berkecepatan tinggi untuk backbone yang stabil.',
+    'network_sol_3_title' => 'Desain Jaringan',
+    'network_sol_3_desc' => 'Desain topologi jaringan kustom yang mengoptimalkan kinerja dan keamanan.',
+    
+    'network_cta_title' => 'Siap Meningkatkan Jaringan Anda?',
+    'network_cta_desc' => 'Dapatkan konsultasi gratis dan survei lokasi hari ini.',
 
     // DM Product Knowledge
     'dm_pk_title' => 'Kenali Senjata Digital Marketing Anda',

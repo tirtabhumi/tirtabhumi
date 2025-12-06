@@ -24,16 +24,16 @@ return [
     'services_title' => 'Our Solutions for Your Needs',
     'services_desc' => 'Integrated services to support your business operations and growth.',
     
-    'service_digital_title' => 'Digital Transformation & AI',
+    'service_digital_title' => 'Digital Services',
     'service_digital_desc' => 'Increase efficiency with Website/SaaS, Business Automation, and AI Response Bot. We also help manage Digital Marketing and Social Media.',
     
-    'service_infra_title' => 'IT Infrastructure & Security',
+    'service_infra_title' => 'Infrastructure',
     'service_infra_desc' => 'Fully managed network services (Access Point/Interconnection) and security systems (CCTV).',
     
-    'service_people_title' => 'HR Development & Events',
+    'service_people_title' => 'Training Center',
     'service_people_desc' => 'We provide professional Event Organizer services and Integrated Training (Coding, AI, IoT, Design) to enhance your team\'s competencies.',
     
-    'service_procurement_title' => 'Goods & Services Procurement',
+    'service_procurement_title' => 'Procurement',
     'service_procurement_desc' => 'Flexible procurement solutions (Rental & Purchase) for general needs, from Goods, Items, to garden maintenance (Gardening).',
     
     'target_market_title' => 'Who Do We Serve?',
@@ -299,7 +299,7 @@ return [
     'dm_pkg_3_feat_3' => 'Monthly Analysis Report',
 
     // Infrastructure Page
-    'service_infrastructure_title' => 'IT Infrastructure & Network',
+    'service_infrastructure_title' => 'Infrastructure',
     'service_infrastructure_desc' => 'Reliable IT infrastructure solutions to support your business operations.',
     'infrastructure_sub_1_title' => 'Network Installation',
     'infrastructure_sub_1_desc' => 'Stable and secure LAN/WAN network installation.',
@@ -317,6 +317,39 @@ return [
     'infrastructure_sub_3_list_1' => 'IP PABX Installation',
     'infrastructure_sub_3_list_2' => 'CCTV & IP Cam Integration',
     'infrastructure_sub_3_list_3' => 'System Maintenance',
+
+    // Network Page
+    'network_title' => 'Unstoppable Connectivity for Your Business',
+    'network_subtitle' => 'Seamless Connectivity for Your Business',
+    'network_hero_desc' => 'Stop letting bad Wi-Fi kill your productivity. We provide professional installation of Access Points, Switches, and cabling infrastructure for 100% coverage.',
+    
+    'network_pain_title' => 'Is Poor Wi-Fi Slowing You Down?',
+    'network_pain_desc' => 'Is there a place in your business with no network? We are ready to help you. Dead zones and slow connections can hamper productivity.',
+    'network_pain_badge' => 'Common Problem',
+    'network_pain_point_1' => 'Buffering during video calls',
+    'network_pain_point_2' => 'Dead zones in meeting rooms',
+    'network_pain_point_3' => 'Messy and unsafe cabling',
+    
+    'network_benefit_title' => 'Why Choose Tirtabhumi?',
+    'network_benefit_1_title' => 'High Speed',
+    'network_benefit_1_desc' => 'Gigabit performance optimized for your workflow.',
+    'network_benefit_2_title' => 'Secure By Design',
+    'network_benefit_2_desc' => 'Enterprise-grade security configuration to protect your data.',
+    'network_benefit_3_title' => 'Scalable',
+    'network_benefit_3_desc' => 'Infrastructure that grows with your business needs.',
+    
+    'network_sol_title' => 'Our Comprehensive Solutions',
+    'network_sol_desc' => 'We design and implement robust network infrastructures tailored to your layout.',
+    
+    'network_sol_1_title' => 'Access Point Installation',
+    'network_sol_1_desc' => 'Strategic placement of enterprise-grade Access Points to eliminate dead zones and ensure full coverage.',
+    'network_sol_2_title' => 'Switch & Cabling',
+    'network_sol_2_desc' => 'Neat and structured cabling with high-speed switches for a stable backbone.',
+    'network_sol_3_title' => 'Network Design',
+    'network_sol_3_desc' => 'Custom network topology design optimizing performance and security.',
+    
+    'network_cta_title' => 'Ready to Upgrade Your Network?',
+    'network_cta_desc' => 'Get a free consultation and site survey today.',
 
     // DM Product Knowledge
     'dm_pk_title' => 'Know Your Digital Marketing Weapons',

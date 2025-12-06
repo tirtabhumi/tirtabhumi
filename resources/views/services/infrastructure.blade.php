@@ -26,16 +26,22 @@
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8">
                 <!-- Network Installation -->
-                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:border-indigo-300 transition-all duration-300 h-full flex flex-col group">
                     <h3 class="text-xl font-bold mb-4 text-slate-800">{{ __('messages.infrastructure_sub_1_title') }}</h3>
                     <p class="text-slate-500 mb-6">
                         {{ __('messages.infrastructure_sub_1_desc') }}
                     </p>
-                    <ul class="space-y-2 text-sm text-slate-600">
+                    <ul class="space-y-2 text-sm text-slate-600 mb-6">
                         <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_1_list_1') }}</li>
                         <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_1_list_2') }}</li>
                         <li class="flex items-center"><svg class="w-4 h-4 mr-2 text-cyan-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>{{ __('messages.infrastructure_sub_1_list_3') }}</li>
                     </ul>
+                    <div class="mt-auto pt-4 border-t border-slate-100">
+                        <a href="{{ route('services.network') }}" class="inline-flex items-center font-semibold text-indigo-600 group-hover:text-indigo-700 transition-colors">
+                            {{ __('messages.learn_more') }}
+                            <svg class="w-4 h-4 ml-2 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        </a>
+                    </div>
                 </div>
 
                 <!-- Server Maintenance -->

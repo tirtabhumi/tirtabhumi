@@ -41,6 +41,7 @@ Route::get('/locale/{locale}', function ($locale) {
 Route::prefix('services')->name('services.')->group(function () {
     Route::get('/digital', function () { return view('services.digital'); })->name('digital');
     Route::get('/infrastructure', function () { return view('services.infrastructure'); })->name('infrastructure');
+    Route::get('/network', function () { return view('services.network'); })->name('network');
     Route::get('/people', function () { return view('services.people'); })->name('people');
     Route::get('/procurement', function () { return view('services.procurement'); })->name('procurement');
 });
