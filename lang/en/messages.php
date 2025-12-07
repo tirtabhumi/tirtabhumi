@@ -319,9 +319,12 @@ return [
     'infrastructure_sub_3_list_3' => 'System Maintenance',
 
     // Network Page
-    'network_title' => 'Unstoppable Connectivity for Your Business',
-    'network_subtitle' => 'Seamless Connectivity for Your Business',
-    'network_hero_desc' => 'Stop letting bad Wi-Fi kill your productivity. We provide professional installation of Access Points, Switches, and cabling infrastructure for 100% coverage.',
+    'network_title' => 'Time to connect your entire office room with Internet',
+    'network_subtitle' => 'Wide & Stable Coverage',
+    'network_stat_1' => '100+ Clients Served',
+    'network_stat_2' => '500+ Access Points Installed',
+    'network_stat_3' => '99+ Network Designs Created',
+    'network_hero_desc' => 'Don\'t let bad Wi-Fi kill your productivity. We provide professional Access Point, Switch, and cabling installation for 100% coverage.',
     
     'network_pain_title' => 'Is Poor Wi-Fi Slowing You Down?',
     'network_pain_desc' => 'Is there a place in your business with no network? We are ready to help you. Dead zones and slow connections can hamper productivity.',
@@ -347,6 +350,8 @@ return [
     'network_sol_2_desc' => 'Neat and structured cabling with high-speed switches for a stable backbone.',
     'network_sol_3_title' => 'Network Design',
     'network_sol_3_desc' => 'Custom network topology design optimizing performance and security.',
+    'network_sol_4_title' => 'Mikrotik & Cisco Configuration',
+    'network_sol_4_desc' => 'Advanced routing and switching configuration for enterprise-grade network management.',
     
     'network_cta_title' => 'Ready to Upgrade Your Network?',
     'network_cta_desc' => 'Get a free consultation and site survey today.',

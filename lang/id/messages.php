@@ -319,8 +319,11 @@ return [
     'infrastructure_sub_3_list_3' => 'Maintenance Sistem',
 
     // Network Page
-    'network_title' => 'Konektivitas Tanpa Henti untuk Bisnis Anda',
-    'network_subtitle' => 'Konektivitas Tanpa Batas untuk Bisnis Anda',
+    'network_title' => 'Saatnya hubungkan seluruh ruangan kantormu dengan Internet',
+    'network_subtitle' => 'Jangkauan Luas & Stabil', // Fallback or unused
+    'network_stat_1' => '100+ Clients Menikmati Jasa Kami',
+    'network_stat_2' => '500+ Access Points Terpasang',
+    'network_stat_3' => '99+ Network Design Terbuat',
     'network_hero_desc' => 'Jangan biarkan Wi-Fi buruk mematikan produktivitas Anda. Kami menyediakan pemasangan Access Point, Switch, dan kabel profesional untuk jangkauan 100%.',
     
     'network_pain_title' => 'Apakah Wi-Fi Buruk Menghambat Anda?',
@@ -347,6 +350,8 @@ return [
     'network_sol_2_desc' => 'Pengkabelan yang rapi dan terstruktur dengan switch berkecepatan tinggi untuk backbone yang stabil.',
     'network_sol_3_title' => 'Desain Jaringan',
     'network_sol_3_desc' => 'Desain topologi jaringan kustom yang mengoptimalkan kinerja dan keamanan.',
+    'network_sol_4_title' => 'Konfigurasi Mikrotik/Cisco',
+    'network_sol_4_desc' => 'Konfigurasi routing dan switching tingkat lanjut untuk manajemen jaringan kelas enterprise.',
     
     'network_cta_title' => 'Siap Meningkatkan Jaringan Anda?',
     'network_cta_desc' => 'Dapatkan konsultasi gratis dan survei lokasi hari ini.',
