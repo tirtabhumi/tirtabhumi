@@ -44,6 +44,8 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/network', function () { return view('services.network'); })->name('network');
     Route::get('/people', function () { return view('services.people'); })->name('people');
     Route::get('/procurement', function () { return view('services.procurement'); })->name('procurement');
+    Route::get('/server', function () { return view('services.server'); })->name('server');
+    Route::get('/securityservices', function () { return view('services.security'); })->name('security');
 });
 
 Route::get('/webbundling', function () {
