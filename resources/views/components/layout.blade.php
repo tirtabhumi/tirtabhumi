@@ -1,3 +1,4 @@
+@props(['title' => null, 'description' => null, 'meta_description' => null])
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -23,9 +24,9 @@
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
     <link rel="apple-touch-icon" href="{{ asset('favicon.png') }}">
-    <title>{{ $title ?? 'PT Tirta Bhumi Indonesia | Solusi Digital & Pengadaan Terpadu' }}</title>
+    <title>{{ $title ?? 'PT Tirta Bhumi Indonesia' }} | Solusi Digital & Pengadaan Terpadu</title>
     <meta name="description"
-        content="PT Tirta Bhumi Indonesia adalah mitra strategis untuk Transformasi Digital, Infrastruktur IT, Pengembangan SDM, dan Pengadaan Barang & Jasa Terpadu (B2B/B2G).">
+        content="{{ $meta_description ?? $description ?? 'Mitra Strategis Transformasi Digital, Infrastruktur IT, Pengembangan SDM, dan Pengadaan Barang & Jasa Terpadu (B2B/B2G) di Indonesia.' }}">
     <meta name="keywords"
         content="PT Tirta Bhumi Indonesia, Jasa Digital Marketing, Web Development, Software House Indonesia, Pengadaan Barang dan Jasa, IT Infrastructure, Event Organizer, Pelatihan SDM, B2G Procurement, Vendor Pemerintah">
     <meta name="author" content="PT Tirta Bhumi Indonesia">
@@ -46,7 +47,7 @@
       "name": "PT Tirta Bhumi Indonesia",
       "url": "{{ url('/') }}",
       "logo": "{{ asset('favicon.png') }}",
-      "description": "Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.",
+      "description": "{{ $meta_description ?? $description ?? 'Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu.' }}",
       "address": {
         "@@type": "PostalAddress",
         "addressCountry": "ID"
@@ -67,17 +68,17 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:title" content="{{ $title ?? 'PT Tirta Bhumi Indonesia | Solusi Digital & Pengadaan Terpadu' }}">
+    <meta property="og:title" content="{{ $title ?? 'PT Tirta Bhumi Indonesia' }} | Solusi Digital & Pengadaan Terpadu">
     <meta property="og:description"
-        content="Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu untuk Pemerintah dan Korporasi.">
+        content="{{ $meta_description ?? $description ?? 'Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu untuk Pemerintah dan Korporasi.' }}">
     <meta property="og:image" content="{{ asset('favicon.png') }}">
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="{{ url()->current() }}">
-    <meta property="twitter:title" content="{{ $title ?? 'PT Tirta Bhumi Indonesia | Solusi Digital & Pengadaan Terpadu' }}">
+    <meta property="twitter:title" content="{{ $title ?? 'PT Tirta Bhumi Indonesia' }} | Solusi Digital & Pengadaan Terpadu">
     <meta property="twitter:description"
-        content="Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu untuk Pemerintah dan Korporasi.">
+        content="{{ $meta_description ?? $description ?? 'Mitra Strategis Solusi Digital, Infrastruktur, dan Pengadaan Terpadu untuk Pemerintah dan Korporasi.' }}">
     <meta property="twitter:image" content="{{ asset('favicon.png') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

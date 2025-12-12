@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout description="Paket Web Bundling & Google Ads All-in-One. Solusi praktis untuk Go Online dan tingkatkan penjualan bisnis Anda.">
     <x-slot:title>
         {{ __('messages.wb_title') }}
     </x-slot>

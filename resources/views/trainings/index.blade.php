@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="{{ __('messages.training_title') }} - {{ config('app.name') }}" description="{{ __('messages.training_subtitle') }}">
     <!-- Hero Section -->
     <section class="relative pt-20 pb-20 md:pt-32 md:pb-32 overflow-hidden">
         <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">

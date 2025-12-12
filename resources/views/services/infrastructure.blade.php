@@ -1,4 +1,4 @@
-<x-layout title="{{ __('messages.service_infrastructure_title') }} - {{ config('app.name') }}">
+<x-layout title="{{ __('messages.service_infrastructure_title') }} - {{ config('app.name') }}" description="{{ __('messages.service_infrastructure_desc') }}">
     <!-- Hero Section -->
     <section class="relative pt-32 pb-20 bg-[#eef2f6] overflow-hidden">
         <div class="absolute inset-0 w-full h-full">

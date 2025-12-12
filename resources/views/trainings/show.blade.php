@@ -1,7 +1,4 @@
-<x-layout>
-    <x-slot:title>
-        {{ $training->title }} - Tirtabhumi Training
-    </x-slot>
+<x-layout title="{{ $training->title }} - Tirtabhumi Training" description="{{ Str::limit(strip_tags($training->description), 150) }}">
 
     <section class="pt-32 pb-24 bg-[#eef2f6]">
         <div class="container mx-auto px-6">

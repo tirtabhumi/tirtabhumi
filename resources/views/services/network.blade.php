@@ -1,4 +1,4 @@
-<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}">
+<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
     <!-- Custom Styles -->
     <!-- Custom Styles -->
     <style>

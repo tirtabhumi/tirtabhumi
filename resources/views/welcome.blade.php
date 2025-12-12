@@ -1,4 +1,4 @@
-<x-layout>
+<x-layout title="Home - PT Tirta Bhumi Indonesia" description="Mitra Strategis Transformasi Digital, Infrastruktur IT, Pengembangan SDM, dan Pengadaan Barang & Jasa Terpadu.">
     <!-- Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">

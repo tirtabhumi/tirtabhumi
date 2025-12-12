@@ -1,4 +1,4 @@
-<x-layout title="{{ __('messages.server_title') }} - {{ config('app.name') }}">
+<x-layout title="{{ __('messages.server_title') }} - {{ config('app.name') }}" description="{{ __('messages.server_hero_desc') }}">
     <!-- Custom Styles (Copied from Network for consistency) -->
     <style>
         html { scroll-behavior: smooth; }
