@@ -245,7 +245,7 @@
     </section>
 
     <!-- Value Proposition -->
-    <section class="py-24 bg-[#eef2f6]">
+    <section class="py-24 bg-[#eef2f6] overflow-hidden">
         <div class="container mx-auto px-6">
             <div class="flex flex-col md:flex-row items-center gap-16">
                 <div class="w-full md:w-1/2 order-2 md:order-1">
