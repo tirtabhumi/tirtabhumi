@@ -291,7 +291,7 @@
                             <div class="flex items-center justify-between border-b border-slate-100 pb-6 mb-6">
                                 <div class="flex items-center gap-4">
                                     <div class="w-12 h-12 rounded-full bg-black flex items-center justify-center shadow-lg shadow-green-200 overflow-hidden">
-                                        <img src="{{ asset('images/buyer-profile.png') }}" alt="Buyer" class="w-full h-full object-cover">
+                                        <img src="{{ asset('images/buyer-profile.png') }}" alt="Buyer" loading="lazy" class="w-full h-full object-cover">
                                     </div>
                                     <div>
                                         <div class="font-bold text-slate-800 text-lg">{{ __('messages.wb_chat_buyer') }}</div>

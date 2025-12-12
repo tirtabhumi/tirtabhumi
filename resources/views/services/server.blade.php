@@ -124,7 +124,7 @@
                 <div class="w-full md:w-1/2 relative reveal-scale delay-200">
                     <div class="absolute -inset-1 bg-gradient-to-r from-red-500 to-orange-500 rounded-[2rem] opacity-20 blur-2xl animate-pulse"></div>
                     <div class="relative aspect-video bg-[#eef2f6] rounded-3xl flex items-center justify-center p-4 neu-pressed overflow-hidden border border-white/50">
-                        <img src="{{ asset('images/server-room.jpg') }}" alt="Server Room Maintenance" class="w-full h-full object-cover rounded-2xl hover:scale-[1.02] transition-transform duration-700 ease-out">
+                        <img src="{{ asset('images/server-room.jpg') }}" alt="Server Room Maintenance" loading="lazy" class="w-full h-full object-cover rounded-2xl hover:scale-[1.02] transition-transform duration-700 ease-out">
                     </div>
                 </div>
             </div>

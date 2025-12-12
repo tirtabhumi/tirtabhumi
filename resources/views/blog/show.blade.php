@@ -17,7 +17,7 @@
             @if($post->image)
             <div class="relative aspect-video rounded-2xl overflow-hidden neu-flat border border-white/50 p-2">
                 <div class="rounded-xl overflow-hidden w-full h-full bg-slate-100">
-                    <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" class="object-contain w-full h-full">
+                    <img src="{{ Storage::url($post->image) }}" alt="{{ $post->title }}" loading="lazy" class="object-contain w-full h-full">
                 </div>
             </div>
             @endif

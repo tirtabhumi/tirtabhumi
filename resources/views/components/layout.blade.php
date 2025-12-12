@@ -467,10 +467,12 @@
                 cursor.classList.remove('opacity-0');
             }, 500);
 
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-            });
+            if (window.matchMedia('(pointer: fine)').matches) {
+                document.addEventListener('mousemove', (e) => {
+                    mouseX = e.clientX;
+                    mouseY = e.clientY;
+                });
+            }
 
             // Hover effects
             const interactiveElements = document.querySelectorAll('a, button, input, textarea, select');

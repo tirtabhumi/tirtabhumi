@@ -46,38 +46,38 @@
                         <!-- First Row (Original) -->
                         <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                         </div>
 
                         <!-- Second Row (Duplicate for seamless loop) -->
                         <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                         </div>
 
@@ -132,18 +132,20 @@
                             }, 2500); // Change every 2.5s (2s visible + 0.5s transition)
                         }
 
-                        // Spotlight Effect Logic
-                        const cards = document.querySelectorAll('.spotlight-card');
-                        cards.forEach(card => {
-                            card.addEventListener('mousemove', (e) => {
-                                const rect = card.getBoundingClientRect();
-                                const x = e.clientX - rect.left;
-                                const y = e.clientY - rect.top;
-                                
-                                card.style.setProperty('--mouse-x', `${x}px`);
-                                card.style.setProperty('--mouse-y', `${y}px`);
+                        // Spotlight Effect Logic - Desktop Only
+                        if (window.matchMedia('(pointer: fine)').matches) {
+                            const cards = document.querySelectorAll('.spotlight-card');
+                            cards.forEach(card => {
+                                card.addEventListener('mousemove', (e) => {
+                                    const rect = card.getBoundingClientRect();
+                                    const x = e.clientX - rect.left;
+                                    const y = e.clientY - rect.top;
+                                    
+                                    card.style.setProperty('--mouse-x', `${x}px`);
+                                    card.style.setProperty('--mouse-y', `${y}px`);
+                                });
                             });
-                        });
+                        }
                     });
                 </script>
             </div>
@@ -191,7 +193,7 @@
                         @foreach(\App\Models\Post::with('category')->latest()->take(4)->get() as $post)
                         <a href="{{ route('blog.show', $post) }}" class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-none transition-all hover:-translate-y-1">
                             <div class="relative aspect-video overflow-hidden bg-slate-100">
-                                <img src="{{ $post->image ? Storage::url($post->image) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $post->title }}" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
+                                <img src="{{ $post->image ? Storage::url($post->image) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $post->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
                             </div>
                             <div class="p-6">
                                 <div class="flex items-center gap-3 mb-4">
