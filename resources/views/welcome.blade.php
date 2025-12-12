@@ -354,7 +354,7 @@
                 </a>
 
                 <!-- Service 3: People & Events (Small - Span 1) -->
-                <a href="{{ route('services.people') }}" class="spotlight-card group relative md:col-span-1 p-8 neu-flat hover:shadow-none transition-all duration-500 border border-white/50 hover:-translate-y-1 overflow-hidden flex flex-col reveal-bottom delay-300">
+                <a href="{{ route('trainings.index') }}" class="spotlight-card group relative md:col-span-1 p-8 neu-flat hover:shadow-none transition-all duration-500 border border-white/50 hover:-translate-y-1 overflow-hidden flex flex-col reveal-bottom delay-300">
                     <div class="spotlight absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" style="background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(8, 145, 178, 0.1), transparent 40%);"></div>
 
                     <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-cyan-600 transition-all duration-500 group-hover:animate-wiggle">
