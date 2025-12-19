@@ -218,7 +218,7 @@ return [
     'wb_final_cta_title' => 'Don\'t Let Your Competitors Read This First!',
     'wb_final_cta_desc' => 'Slots for our Google Ads handling are limited every month for maximum results. Secure your position now.',
     'wb_final_cta_btn' => 'Secure My Slot',
-    'wb_sticky_cta' => 'Free Consultation',
+    'wb_sticky_cta' => 'Contact Us',
 
     // Training Index Page
     'training_title' => 'Academy & Training',
@@ -343,6 +343,7 @@ return [
     'network_benefit_3_desc' => 'Infrastructure that grows with your business needs.',
     
     'network_sol_title' => 'Our Comprehensive Solutions',
+    'network_sol_desc' =>  'We design and deploy robust network infrastructure customized to your environment.',
     // Server Page
     'server_title' => 'Server Maintenance & Optimization',
     'server_stat_1' => '99.9% Uptime Guaranteed',
@@ -377,6 +378,7 @@ return [
     'server_service_4_desc' => 'Optimizing configurations for speed and stability.',
     
     'server_cta_title' => 'Ready to Secure correspond Your Server?',
+    'server_cta_desc' => 'Get a free consultation for a security audit, backups, and server performance optimization.',
     // Security Page
     'security_title' => 'IP PABX & CCTV Solutions',
     'security_stat_1' => 'HD Quality Surveillance',

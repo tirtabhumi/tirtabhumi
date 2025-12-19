@@ -218,7 +218,7 @@ return [
     'wb_final_cta_title' => 'Jangan Sampai Kompetitor Anda Baca Ini Duluan!',
     'wb_final_cta_desc' => 'Slot untuk penanganan Google Ads kami terbatas setiap bulannya agar hasil maksimal. Amankan posisi Anda sekarang.',
     'wb_final_cta_btn' => 'Amankan Slot Saya',
-    'wb_sticky_cta' => 'Konsultasi Gratis',
+    'wb_sticky_cta' => 'Hubungi Kami',
 
     // Training Index Page
     'training_title' => 'Akademi & Pelatihan',
@@ -386,6 +386,7 @@ return [
     'server_service_4_desc' => 'Optimasi konfigurasi untuk kecepatan dan stabilitas maksimal.',
     
     'server_cta_title' => 'Siap Mengamankan Server Anda?',
+    'server_cta_desc' => 'Dapatkan konsultasi gratis untuk audit keamanan, backup, dan optimasi performa server Anda.',
     // Security Page
     'security_title' => 'Solusi IP PABX & CCTV',
     'security_stat_1' => 'Kualitas Pengawasan HD',
