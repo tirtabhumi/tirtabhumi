@@ -120,7 +120,7 @@
                         <!-- Chat Interface (Hidden initially) -->
                         <div id="chat-interface" class="hidden flex-col flex-1 min-h-0 md:h-[500px]">
                             <!-- Chat Area -->
-                            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-slate-50 space-y-4 scroll-smooth">
+                            <div id="chat-messages" class="flex-1 min-h-0 p-4 overflow-y-auto bg-slate-50 space-y-4 overscroll-contain" style="-webkit-overflow-scrolling: touch; touch-action: pan-y;">
                                 <!-- Welcome Message -->
                                 <div class="flex items-start gap-3">
                                     <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
