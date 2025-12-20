@@ -17,25 +17,25 @@ return [
     ],
     'get_started' => 'Konsultasi Gratis',
     'our_services' => 'Lihat Katalog Layanan',
-    
+
     'why_us_title' => 'Mengapa PT Tirta Bhumi Indonesia?',
     'why_us_desc' => 'PT Tirta Bhumi Indonesia adalah perusahaan penyedia solusi end-to-end yang menghubungkan kebutuhan teknologi dan operasional bisnis Anda. Kami memahami bahwa setiap sektor—mulai dari Pemerintah (B2G), Pendidikan, Perhotelan, hingga UMKM—memiliki tantangan unik. Dengan dukungan jejaring kemitraan yang luas, kami menghadirkan layanan yang tidak hanya canggih secara digital, namun juga handal dalam pengadaan fisik dan manajemen fasilitas. Satu pintu untuk beragam kebutuhan Anda.',
-    
+
     'services_title' => 'Solusi Kami untuk Kebutuhan Anda',
     'services_desc' => 'Layanan terintegrasi untuk mendukung operasional dan pertumbuhan bisnis Anda.',
-    
+
     'service_digital_title' => 'Layanan Digital',
     'service_digital_desc' => 'Tingkatkan efisiensi dengan Website/SaaS, Otomasi Bisnis, dan AI Response Bot. Kami juga membantu pengelolaan Digital Marketing dan Social Media.',
-    
+
     'service_infra_title' => 'Infrastruktur',
     'service_infra_desc' => 'Layanan pengelolaan jaringan (Access Point/Interconnection) dan sistem keamanan (CCTV) yang terkelola penuh.',
-    
+
     'service_people_title' => 'Training Center',
     'service_people_desc' => 'Kami menyediakan Event Organizer profesional dan Pelatihan Terpadu (Coding, AI, IoT, Design) untuk meningkatkan kompetensi tim Anda.',
-    
+
     'service_procurement_title' => 'Pengadaan',
     'service_procurement_desc' => 'Solusi pengadaan fleksibel (Sewa & Beli) untuk kebutuhan umum, mulai dari Goods, Items, hingga perawatan taman (Gardening).',
-    
+
     'target_market_title' => 'Siapa yang Kami Layani?',
     'tm_gov' => 'Government (B2G)',
     'tm_gov_desc' => 'Kementerian, Pemkot, dan DPR. (Fokus pada Pengadaan & Kepatuhan).',
@@ -43,11 +43,11 @@ return [
     'tm_corp_desc' => 'Universitas, Sekolah, dan Hotel. (Fokus pada Managed Service & Training).',
     'tm_sme' => 'UMKM & Startups',
     'tm_sme_desc' => 'Komunitas HIPMI dan Bisnis Lokal. (Fokus pada Digital Marketing & Web Development).',
-    
+
     'footer_cta_title' => 'Siap Mengembangkan Bisnis atau Institusi Anda?',
     'footer_cta_desc' => 'Diskusikan kebutuhan spesifik Anda bersama tim ahli kami.',
     'footer_cta_btn' => 'Hubungi Kami',
-    
+
     'latest_insights' => 'Wawasan Terbaru',
     'latest_insights_desc' => 'Baca pemikiran dan pembaruan terbaru kami.',
     'view_all_posts' => 'Lihat semua postingan',
@@ -69,13 +69,13 @@ return [
     'digital_sub_1_list_1' => 'Website Profesional',
     'digital_sub_1_list_2' => 'Google & Meta Ads',
     'digital_sub_1_list_3' => 'Optimasi Konversi',
-    
+
     'digital_sub_2_title' => 'Otomasi & AI',
     'digital_sub_2_desc' => 'Otomatisasi proses bisnis dan integrasi kecerdasan buatan (AI) untuk meningkatkan efisiensi operasional. Termasuk Chatbot dan AI Response.',
     'digital_sub_2_list_1' => 'Otomasi Bisnis',
     'digital_sub_2_list_2' => 'Chatbot AI',
     'digital_sub_2_list_3' => 'Analisis Data',
-    
+
     'digital_sub_3_title' => 'Digital Marketing',
     'digital_sub_3_desc' => 'Strategi pemasaran digital komprehensif untuk meningkatkan kehadiran online dan menjangkau audiens yang tepat.',
     'digital_sub_3_list_1' => 'Manajemen Media Sosial',
@@ -125,7 +125,7 @@ return [
     // Pricing
     'pricing_title' => 'Investasi Sekali, Untung Berkali-kali',
     'pricing_subtitle' => 'Pilih paket yang pas buat kantong Anda.',
-    
+
     'pricing_basic_title' => 'Paket Rintisan',
     'pricing_basic_desc' => 'Buat yang baru coba-coba online.',
     'pricing_basic_price' => '500rb / bulan',
@@ -254,6 +254,9 @@ return [
     'training_type_online' => 'Online',
     'training_type_offline' => 'Offline',
     'training_type_hybrid' => 'Hybrid',
+    'training_contact_title' => 'Butuh Training untuk Tim Anda?',
+    'training_contact_desc' => 'Kami siap bantu susun materi dan jadwal training sesuai kebutuhan (Online / Offline).',
+    'training_contact_btn' => 'Hubungi Kami',
 
     // Training Detail Page
     'back_to_list' => 'Kembali ke Daftar Pelatihan',
@@ -325,14 +328,14 @@ return [
     'network_stat_2' => '500+ Access Points Terpasang',
     'network_stat_3' => '99+ Network Design Terbuat',
     'network_hero_desc' => 'Jangan biarkan Wi-Fi buruk mematikan produktivitas Anda. Kami menyediakan pemasangan Access Point, Switch, dan kabel profesional untuk jangkauan 100%.',
-    
+
     'network_pain_title' => 'Apakah Wi-Fi Buruk Menghambat Anda?',
     'network_pain_desc' => 'Ada tempat bisnismu yang tidak ada jaringan? Kami siap membantumu. Area mati dan koneksi lambat dapat menghambat produktivitas.',
     'network_pain_badge' => 'Masalah Umum',
     'network_pain_point_1' => 'Buffering saat video call',
     'network_pain_point_2' => 'Area mati (dead zone) di ruang rapat',
     'network_pain_point_3' => 'Kabel berantakan dan tidak aman',
-    
+
     'network_benefit_title' => 'Mengapa Memilih Tirtabhumi?',
     'network_benefit_1_title' => 'Kecepatan Tinggi',
     'network_benefit_1_desc' => 'Performa Gigabit yang dioptimalkan untuk alur kerja Anda.',
@@ -340,10 +343,10 @@ return [
     'network_benefit_2_desc' => 'Konfigurasi keamanan kelas enterprise untuk melindungi data.',
     'network_benefit_3_title' => 'Skalabel',
     'network_benefit_3_desc' => 'Infrastruktur yang tumbuh seiring kebutuhan bisnis Anda.',
-    
+
     'network_sol_title' => 'Solusi Komprehensif Kami',
     'network_sol_desc' => 'Kami merancang dan mengimplementasikan infrastruktur jaringan yang tangguh sesuai dengan tata letak Anda.',
-    
+
     'network_sol_1_title' => 'Instalasi Access Point',
     'network_sol_1_desc' => 'Penempatan strategis Access Point kelas enterprise untuk menghilangkan area mati dan memastikan jangkauan penuh.',
     'network_sol_2_title' => 'Switch & Kabel',
@@ -358,14 +361,14 @@ return [
     'server_stat_2' => '24/7 Proactive Monitoring',
     'server_stat_3' => 'Aman dari Kehilangan Data',
     'server_hero_desc' => 'Pastikan bisnis Anda berjalan lancar dengan layanan maintenance server profesional kami. Kami menjamin performa, keamanan, dan reliabilitas optimal.',
-    
+
     'server_pain_title' => 'Server Lemot Menghambat Bisnis?',
     'server_pain_desc' => 'Downtime merugikan bisnis. Jangan tunggu server crash baru diperbaiki. Kami mencegah masalah sebelum berdampak pada operasional Anda.',
     'server_pain_badge' => 'Masalah Umum',
     'server_pain_point_1' => 'Sering down atau crash tiba-tiba',
     'server_pain_point_2' => 'Aplikasi berjalan sangat lambat',
     'server_pain_point_3' => 'Resiko keamanan & kehilangan data',
-    
+
     'server_benefit_title' => 'Mengapa Memilih Maintenance Kami?',
     'server_benefit_1_title' => 'Uptime Maksimal',
     'server_benefit_1_desc' => 'Kami menjaga server Anda tetap aktif 24/7 agar bisnis tidak berhenti.',
@@ -373,7 +376,7 @@ return [
     'server_benefit_2_desc' => 'Update rutin dan audit keamanan untuk melindungi data sensitif Anda.',
     'server_benefit_3_title' => 'Performa Puncak',
     'server_benefit_3_desc' => 'Optimasi agar aplikasi Anda berjalan lebih cepat dan efisien.',
-    
+
     'server_services_title' => 'Layanan Lengkap Kami',
     'server_services_desc' => 'Dari pengecekan rutin hingga dukungan darurat, kami menangani semua aspek manajemen server.',
     'server_service_1_title' => 'Maintenance Rutin',
@@ -384,7 +387,7 @@ return [
     'server_service_3_desc' => 'Bantuan segera saat masalah kritis terjadi.',
     'server_service_4_title' => 'Tuning Performa',
     'server_service_4_desc' => 'Optimasi konfigurasi untuk kecepatan dan stabilitas maksimal.',
-    
+
     'server_cta_title' => 'Siap Mengamankan Server Anda?',
     'server_cta_desc' => 'Dapatkan konsultasi gratis untuk audit keamanan, backup, dan optimasi performa server Anda.',
     // Security Page
@@ -393,14 +396,14 @@ return [
     'security_stat_2' => 'Akses Remote Kapanpun',
     'security_stat_3' => 'Komunikasi Lancar',
     'security_hero_desc' => 'Amankan aset dan perlancar komunikasi bisnis Anda dengan sistem IP CCTV dan PABX canggih dari kami.',
-    
+
     'security_pain_title' => 'Khawatir Soal Keamanan?',
     'security_pain_desc' => 'Kurangnya pengawasan dan sistem komunikasi jadul membahayakan bisnis Anda. Kami sediakan solusi modern.',
     'security_pain_badge' => 'Keamanan & Komunikasi',
     'security_pain_point_1' => 'Banyak titik buta (blind spot)',
     'security_pain_point_2' => 'Rekaman video buram atau tidak jelas',
     'security_pain_point_3' => 'Sistem komunikasi internal yang buruk',
-    
+
     'security_benefit_title' => 'Proteksi & Kontrol Total',
     'security_benefit_1_title' => 'Monitoring 24/7',
     'security_benefit_1_desc' => 'Pantau tempat usaha Anda dari mana saja, kapan saja.',
@@ -408,7 +411,7 @@ return [
     'security_benefit_2_desc' => 'IP PABX menjamin suara jernih untuk koordinasi tim.',
     'security_benefit_3_title' => 'Kontrol Penuh',
     'security_benefit_3_desc' => 'Kelola akses masuk dan review rekaman dengan mudah.',
-    
+
     'security_services_title' => 'Layanan Keamanan Kami',
     'security_services_desc' => 'Solusi terintegrasi untuk keamanan dan produktivitas.',
     'security_service_1_title' => 'Instalasi IP CCTV',
@@ -419,10 +422,10 @@ return [
     'security_service_3_desc' => 'Smart door lock dan mesin absensi biometrik untuk area terbatas.',
     'security_service_4_title' => 'Integrasi Pintar',
     'security_service_4_desc' => 'Hubungkan kamera dan sensor ke satu dashboard terpusat.',
-    
+
     'security_cta_title' => 'Tingkatkan Keamanan Sekarang',
     'security_cta_desc' => 'Jangan tunggu insiden terjadi. Hubungi kami untuk rencana keamanan Anda.',
-    
+
     'network_cta_title' => 'Siap Meningkatkan Jaringan Anda?',
     'network_cta_desc' => 'Dapatkan konsultasi gratis dan survei lokasi hari ini.',
 

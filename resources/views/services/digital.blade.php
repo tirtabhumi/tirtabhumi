@@ -68,7 +68,7 @@
                 <!-- AI Chat Modal -->
                 <div id="ai-chat-modal" class="fixed inset-0 z-[9999] hidden">
                     <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" onclick="closeAiChat()"></div>
-                    <div class="absolute bottom-0 md:bottom-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[400px] bg-white md:rounded-2xl rounded-t-2xl shadow-2xl overflow-hidden flex flex-col h-[85dvh] md:h-auto md:max-h-[85dvh] min-h-0">
+                        <div class="fixed inset-0 md:absolute md:inset-auto md:top-1/2 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 w-full md:w-[400px] bg-white md:rounded-2xl shadow-2xl flex flex-col h-[100dvh] md:h-[600px] md:max-h-[85vh]">
                         <!-- Header -->
                         <div class="bg-indigo-600 p-4 flex items-center justify-between text-white shrink-0 z-10 relative">
                             <div class="flex items-center gap-3">

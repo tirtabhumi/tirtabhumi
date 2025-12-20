@@ -17,25 +17,25 @@ return [
     ],
     'get_started' => 'Free Consultation',
     'our_services' => 'View Service Catalog',
-    
+
     'why_us_title' => 'Why PT Tirta Bhumi Indonesia?',
     'why_us_desc' => 'PT Tirta Bhumi Indonesia is an end-to-end solution provider that connects your technology and operational business needs. We understand that every sector—from Government (B2G), Education, Hospitality, to SMEs—has unique challenges. With the support of an extensive partnership network, we deliver services that are not only digitally advanced but also reliable in physical procurement and facility management. One-stop solution for all your needs.',
-    
+
     'services_title' => 'Our Solutions for Your Needs',
     'services_desc' => 'Integrated services to support your business operations and growth.',
-    
+
     'service_digital_title' => 'Digital Services',
     'service_digital_desc' => 'Increase efficiency with Website/SaaS, Business Automation, and AI Response Bot. We also help manage Digital Marketing and Social Media.',
-    
+
     'service_infra_title' => 'Infrastructure',
     'service_infra_desc' => 'Fully managed network services (Access Point/Interconnection) and security systems (CCTV).',
-    
+
     'service_people_title' => 'Training Center',
     'service_people_desc' => 'We provide professional Event Organizer services and Integrated Training (Coding, AI, IoT, Design) to enhance your team\'s competencies.',
-    
+
     'service_procurement_title' => 'Procurement',
     'service_procurement_desc' => 'Flexible procurement solutions (Rental & Purchase) for general needs, from Goods, Items, to garden maintenance (Gardening).',
-    
+
     'target_market_title' => 'Who Do We Serve?',
     'tm_gov' => 'Government (B2G)',
     'tm_gov_desc' => 'Ministries, City Governments, and Parliament. (Focus on Procurement & Compliance).',
@@ -43,11 +43,11 @@ return [
     'tm_corp_desc' => 'Universities, Schools, and Hotels. (Focus on Managed Services & Training).',
     'tm_sme' => 'SMEs & Startups',
     'tm_sme_desc' => 'HIPMI Communities and Local Businesses. (Focus on Digital Marketing & Web Development).',
-    
+
     'footer_cta_title' => 'Ready to Grow Your Business or Institution?',
     'footer_cta_desc' => 'Discuss your specific needs with our expert team.',
     'footer_cta_btn' => 'Contact Us',
-    
+
     'latest_insights' => 'Latest Insights',
     'latest_insights_desc' => 'Read our latest thoughts and updates.',
     'view_all_posts' => 'View all posts',
@@ -69,13 +69,13 @@ return [
     'digital_sub_1_list_1' => 'Professional Website',
     'digital_sub_1_list_2' => 'Google & Meta Ads',
     'digital_sub_1_list_3' => 'Conversion Optimization',
-    
+
     'digital_sub_2_title' => 'Automation & AI',
     'digital_sub_2_desc' => 'Business process automation and artificial intelligence (AI) integration to improve operational efficiency. Including Chatbots and AI Response.',
     'digital_sub_2_list_1' => 'Business Automation',
     'digital_sub_2_list_2' => 'AI Chatbots',
     'digital_sub_2_list_3' => 'Data Analysis',
-    
+
     'digital_sub_3_title' => 'Digital Marketing',
     'digital_sub_3_desc' => 'Comprehensive digital marketing strategies to enhance online presence and reach the right audience.',
     'digital_sub_3_list_1' => 'Social Media Management',
@@ -125,7 +125,7 @@ return [
     // Pricing
     'pricing_title' => 'One-time Investment, Recurring Profits',
     'pricing_subtitle' => 'Choose the package that fits your budget.',
-    
+
     'pricing_basic_title' => 'Starter Package',
     'pricing_basic_desc' => 'For those just starting online.',
     'pricing_basic_price' => '500k / month',
@@ -254,6 +254,9 @@ return [
     'training_type_online' => 'Online',
     'training_type_offline' => 'Offline',
     'training_type_hybrid' => 'Hybrid',
+    'training_contact_title' => 'Need a Training for Your Team?',
+    'training_contact_desc' => 'We can tailor the materials and schedule to your needs (Online / Offline).',
+    'training_contact_btn' => 'Contact Us',
 
     // Training Detail Page
     'back_to_list' => 'Back to Training List',
@@ -325,14 +328,14 @@ return [
     'network_stat_2' => '500+ Access Points Installed',
     'network_stat_3' => '99+ Network Designs Created',
     'network_hero_desc' => 'Don\'t let bad Wi-Fi kill your productivity. We provide professional Access Point, Switch, and cabling installation for 100% coverage.',
-    
+
     'network_pain_title' => 'Is Poor Wi-Fi Slowing You Down?',
     'network_pain_desc' => 'Is there a place in your business with no network? We are ready to help you. Dead zones and slow connections can hamper productivity.',
     'network_pain_badge' => 'Common Problem',
     'network_pain_point_1' => 'Buffering during video calls',
     'network_pain_point_2' => 'Dead zones in meeting rooms',
     'network_pain_point_3' => 'Messy and unsafe cabling',
-    
+
     'network_benefit_title' => 'Why Choose Tirtabhumi?',
     'network_benefit_1_title' => 'High Speed',
     'network_benefit_1_desc' => 'Gigabit performance optimized for your workflow.',
@@ -341,23 +344,23 @@ return [
     'network_benefit_2_desc' => 'Enterprise-grade security configuration to protect your data.',
     'network_benefit_3_title' => 'Scalable',
     'network_benefit_3_desc' => 'Infrastructure that grows with your business needs.',
-    
+
     'network_sol_title' => 'Our Comprehensive Solutions',
-    'network_sol_desc' =>  'We design and deploy robust network infrastructure customized to your environment.',
+    'network_sol_desc' => 'We design and deploy robust network infrastructure customized to your environment.',
     // Server Page
     'server_title' => 'Server Maintenance & Optimization',
     'server_stat_1' => '99.9% Uptime Guaranteed',
     'server_stat_2' => '24/7 Proactive Monitoring',
     'server_stat_3' => 'Secure Data Backups',
     'server_hero_desc' => 'Keep your business running smoothly with our professional server maintenance services. We ensure optimal performance, security, and reliability.',
-    
+
     'server_pain_title' => 'Is Your Server Slowing Down Your Business?',
     'server_pain_desc' => 'Downtime costs money. Don\'t wait for a crash to fix your server. We prevent issues before they impact your operations.',
     'server_pain_badge' => 'Common Issues',
     'server_pain_point_1' => 'Frequent crashes or downtime',
     'server_pain_point_2' => 'Slow application performance',
     'server_pain_point_3' => 'Security vulnerabilities & data loss risks',
-    
+
     'server_benefit_title' => 'Why Choose Our Maintenance?',
     'server_benefit_1_title' => 'Maximum Uptime',
     'server_benefit_1_desc' => 'We keep your servers running 24/7 so your business never stops.',
@@ -365,7 +368,7 @@ return [
     'server_benefit_2_desc' => 'Regular patches and security audits to protect your sensitive data.',
     'server_benefit_3_title' => 'Peak Performance',
     'server_benefit_3_desc' => 'Optimization to ensure your applications run faster and more efficiently.',
-    
+
     'server_services_title' => 'Our Comprehensive Services',
     'server_services_desc' => 'From routine checkups to emergency support, we cover all aspects of server management.',
     'server_service_1_title' => 'Routine Maintenance',
@@ -376,7 +379,7 @@ return [
     'server_service_3_desc' => 'Immediate assistance when critical issues arise.',
     'server_service_4_title' => 'Performance Tuning',
     'server_service_4_desc' => 'Optimizing configurations for speed and stability.',
-    
+
     'server_cta_title' => 'Ready to Secure correspond Your Server?',
     'server_cta_desc' => 'Get a free consultation for a security audit, backups, and server performance optimization.',
     // Security Page
@@ -385,14 +388,14 @@ return [
     'security_stat_2' => 'Remote Access Anytime',
     'security_stat_3' => 'Seamless Communication',
     'security_hero_desc' => 'Secure your assets and streamline your communication with our advanced IP CCTV and PABX systems.',
-    
+
     'security_pain_title' => 'Concerned About Security?',
     'security_pain_desc' => 'Lack of monitoring and outdated communication systems put your business at risk. We provide modern solutions for modern threats.',
     'security_pain_badge' => 'Security & Comms',
     'security_pain_point_1' => 'Blind spots in office surveillance',
     'security_pain_point_2' => 'Low quality or fuzzy video recordings',
     'security_pain_point_3' => 'Poor internal communication systems',
-    
+
     'security_benefit_title' => 'Complete Protection & Control',
     'security_benefit_1_title' => '24/7 Monitoring',
     'security_benefit_1_desc' => 'Keep an eye on your premises from anywhere, at any time.',
@@ -400,7 +403,7 @@ return [
     'security_benefit_2_desc' => 'IP PABX ensures crystal clear voice calls for your team.',
     'security_benefit_3_title' => 'Full Control',
     'security_benefit_3_desc' => 'Manage access and review footage with user-friendly interfaces.',
-    
+
     'security_services_title' => 'Our Security Services',
     'security_services_desc' => 'Integrated solutions for safety and productivity.',
     'security_service_1_title' => 'IP CCTV Installation',
@@ -411,10 +414,10 @@ return [
     'security_service_3_desc' => 'Smart door locks and biometric systems for restricted areas.',
     'security_service_4_title' => 'Smart Integration',
     'security_service_4_desc' => 'Connect cameras and sensors to a central dashboard.',
-    
+
     'security_cta_title' => 'Upgrade Your Security Today',
     'security_cta_desc' => 'Don\'t wait for an incident. Contact us for a customized security plan.',
-    
+
     'network_sol_1_title' => 'Access Point Installation',
     'network_sol_1_desc' => 'Strategic placement of enterprise-grade Access Points to eliminate dead zones and ensure full coverage.',
     'network_sol_2_title' => 'Switch & Cabling',
@@ -423,7 +426,7 @@ return [
     'network_sol_3_desc' => 'Custom network topology design optimizing performance and security.',
     'network_sol_4_title' => 'Mikrotik & Cisco Configuration',
     'network_sol_4_desc' => 'Advanced routing and switching configuration for enterprise-grade network management.',
-    
+
     'network_cta_title' => 'Ready to Upgrade Your Network?',
     'network_cta_desc' => 'Get a free consultation and site survey today.',
 
