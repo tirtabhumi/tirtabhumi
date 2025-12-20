@@ -13,14 +13,14 @@ Route::get('/blog', function () {
     $query = Post::with('category')->whereNotNull('published_at');
 
     if (request('search')) {
-        $query->where(function($q) {
+        $query->where(function ($q) {
             $q->where('title', 'like', '%' . request('search') . '%')
-              ->orWhere('content', 'like', '%' . request('search') . '%');
+                ->orWhere('content', 'like', '%' . request('search') . '%');
         });
     }
 
     $posts = $query->latest()->paginate(6)->withQueryString();
-    
+
     return view('blog.index', compact('posts'));
 })->name('blog.index');
 
@@ -39,12 +39,17 @@ Route::get('/locale/{locale}', function ($locale) {
 })->name('locale.switch');
 
 Route::prefix('services')->name('services.')->group(function () {
-    Route::get('/digital', function () { return view('services.digital'); })->name('digital');
-    Route::get('/infrastructure', function () { return view('services.infrastructure'); })->name('infrastructure');
-    Route::get('/network', function () { return view('services.network'); })->name('network');
-    Route::get('/procurement', function () { return view('services.procurement'); })->name('procurement');
-    Route::get('/server', function () { return view('services.server'); })->name('server');
-    Route::get('/securityservices', function () { return view('services.security'); })->name('security');
+    Route::get('/digital', function () {
+        return view('services.digital'); })->name('digital');
+    Route::get('/infrastructure', function () {
+        return view('services.infrastructure'); })->name('infrastructure');
+    Route::get('/network', function () {
+        return view('services.network'); })->name('network');
+    Route::get('/procurement', [App\Http\Controllers\ProductController::class, 'index'])->name('procurement');
+    Route::get('/server', function () {
+        return view('services.server'); })->name('server');
+    Route::get('/securityservices', function () {
+        return view('services.security'); })->name('security');
 });
 
 Route::get('/webbundling', function () {
