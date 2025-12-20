@@ -40,16 +40,22 @@ Route::get('/locale/{locale}', function ($locale) {
 
 Route::prefix('services')->name('services.')->group(function () {
     Route::get('/digital', function () {
-        return view('services.digital'); })->name('digital');
+        return view('services.digital');
+    })->name('digital');
     Route::get('/infrastructure', function () {
-        return view('services.infrastructure'); })->name('infrastructure');
+        return view('services.infrastructure');
+    })->name('infrastructure');
     Route::get('/network', function () {
-        return view('services.network'); })->name('network');
+        return view('services.network');
+    })->name('network');
     Route::get('/procurement', [App\Http\Controllers\ProductController::class, 'index'])->name('procurement');
+    Route::get('/procurement/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('procurement.show');
     Route::get('/server', function () {
-        return view('services.server'); })->name('server');
+        return view('services.server');
+    })->name('server');
     Route::get('/securityservices', function () {
-        return view('services.security'); })->name('security');
+        return view('services.security');
+    })->name('security');
 });
 
 Route::get('/webbundling', function () {

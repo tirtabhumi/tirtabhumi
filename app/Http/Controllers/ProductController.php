@@ -49,4 +49,8 @@ class ProductController extends Controller
 
         return view('services.procurement', compact('products', 'categories'));
     }
+    public function show(\App\Models\Product $product)
+    {
+        return view('services.procurement.show', compact('product'));
+    }
 }
