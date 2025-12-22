@@ -70,11 +70,11 @@
                                 </button>
                                 <div x-show="open" class="space-y-3">
                                     @foreach($categories as $cat)
-                                        <label class="flex items-center gap-3 cursor-pointer group select-none relative">
+                                        <label wire:key="category-{{ $loop->index }}" class="flex items-center gap-3 cursor-pointer group select-none relative">
                                             <input type="checkbox" wire:model.live="category" value="{{ $cat }}" class="peer sr-only">
                                             
-                                            <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white peer-checked:bg-indigo-600 peer-checked:neu-flat transition-all duration-200 border border-transparent">
-                                                <svg class="w-3.5 h-3.5 transform scale-0 peer-checked:scale-100 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                            <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ in_array($cat, $category) ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent group-hover:border-indigo-600' }}">
+                                                <svg class="w-3.5 h-3.5 transform {{ in_array($cat, $category) ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                             </div>
                                             
                                             <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">{{ $cat }}</span>
@@ -93,11 +93,11 @@
                                 </button>
                                 <div x-show="open" class="space-y-3">
                                     @foreach(['SIPLah', 'E-Katalog', 'PadiUMKM'] as $plat)
-                                        <label class="flex items-center gap-3 cursor-pointer group select-none relative">
+                                        <label wire:key="platform-{{ $loop->index }}" class="flex items-center gap-3 cursor-pointer group select-none relative">
                                             <input type="checkbox" wire:model.live="platform" value="{{ $plat }}" class="peer sr-only">
                                             
-                                            <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white peer-checked:bg-indigo-600 peer-checked:neu-flat transition-all duration-200 border border-transparent">
-                                                <svg class="w-3.5 h-3.5 transform scale-0 peer-checked:scale-100 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                            <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ in_array($plat, $platform) ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent group-hover:border-indigo-600' }}">
+                                                <svg class="w-3.5 h-3.5 transform {{ in_array($plat, $platform) ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                             </div>
 
                                             <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">{{ $plat }}</span>
