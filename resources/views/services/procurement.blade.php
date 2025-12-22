@@ -86,7 +86,7 @@
                                                 <input type="checkbox" name="category[]" value="{{ $category }}" 
                                                     class="peer sr-only"
                                                     {{ in_array($category, (array)request('category', [])) ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
+                                                    onchange="setTimeout(() => this.form.submit(), 300)">
                                                 
                                                 <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white peer-checked:bg-indigo-600 peer-checked:neu-flat transition-all duration-200 border border-transparent">
                                                     <svg class="w-3.5 h-3.5 transform scale-0 peer-checked:scale-100 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
@@ -112,7 +112,7 @@
                                                 <input type="checkbox" name="platform[]" value="{{ $platform }}" 
                                                     class="peer sr-only" 
                                                     {{ in_array($platform, (array)request('platform', [])) ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
+                                                    onchange="setTimeout(() => this.form.submit(), 300)">
                                                 
                                                 <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white peer-checked:bg-indigo-600 peer-checked:neu-flat transition-all duration-200 border border-transparent">
                                                     <svg class="w-3.5 h-3.5 transform scale-0 peer-checked:scale-100 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>

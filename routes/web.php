@@ -48,7 +48,7 @@ Route::prefix('services')->name('services.')->group(function () {
     Route::get('/network', function () {
         return view('services.network');
     })->name('network');
-    Route::get('/procurement', [App\Http\Controllers\ProductController::class, 'index'])->name('procurement');
+    Route::get('/procurement', App\Livewire\ProcurementSearch::class)->name('procurement');
     Route::get('/procurement/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('procurement.show');
     Route::get('/server', function () {
         return view('services.server');
