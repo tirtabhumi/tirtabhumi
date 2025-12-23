@@ -90,13 +90,10 @@
                                     </li>
                                     @endif
                                 </ul>
-
-                                <div class="mt-10 pt-6 border-t border-slate-200/50">
-                                <a href="https://wa.me/6282229046099?text=Halo,%20saya%20ingin%20bertanya%20tentang%20produk%20{{ urlencode($product->name) }}"
-                                    target="_blank"
-                                    class="block w-full py-4 bg-gradient-to-r from-indigo-500 to-indigo-600 hover:from-indigo-600 hover:to-indigo-700 text-white rounded-xl font-bold text-center transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 focus:outline-none focus:ring-4 focus:ring-indigo-300">
-                                    Hubungi Kami via WhatsApp
-                                </a>
+                                <div class="mt-8 pt-6 border-t border-slate-200/50">
+                                    <a href="https://wa.me/6282229046099?text=Halo,%20saya%20ingin%20bertanya%20tentang%20produk%20{{ urlencode($product->name) }}" target="_blank" class="block w-full py-4 neu-btn text-indigo-600 hover:text-indigo-700 rounded-xl font-bold text-center transition-all hover:-translate-y-0.5">
+                                        Hubungi Kami via WhatsApp
+                                    </a>
                                 </div>
                             </div>
                         </div>
