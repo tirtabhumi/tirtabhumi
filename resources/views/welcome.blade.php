@@ -55,7 +55,7 @@
                                 <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" class="h-14 w-auto object-contain transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
                                 <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
@@ -74,7 +74,7 @@
                                 <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" class="h-14 w-auto object-contain transition-all duration-300">
                             </div>
                             <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
                                 <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
