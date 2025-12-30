@@ -321,6 +321,45 @@ return [
     'infrastructure_sub_3_list_2' => 'CCTV & IP Cam Integration',
     'infrastructure_sub_3_list_3' => 'System Maintenance',
 
+
+    // Section
+    'security_packages_title' => 'Package Options',
+    'security_packages_desc'  => 'Integrated security & communication solutions for offices, retail spaces, and enterprises.',
+
+    'security_pkg_note'       => '*tax not included',
+    'security_pkg_badge_best' => 'BEST SELLER 🔥',
+
+    // Package 1
+    'security_pkg_1_title'  => 'Basic CCTV Package',
+    'security_pkg_1_desc'   => 'Ideal for essential coverage of key areas.',
+    'security_pkg_1_feat_1' => 'Installation of 4 cameras + NVR',
+    'security_pkg_1_feat_2' => 'Remote monitoring via mobile & laptop',
+    'security_pkg_1_feat_3' => 'Hardware warranty + basic support',
+    'security_pkg_1_price'  => '2.5M',
+    'security_pkg_1_unit'   => '/ site',
+    'security_pkg_1_cta'    => 'Choose This Package',
+
+    // Package 2
+    'security_pkg_2_title'  => 'Smart Integration Package',
+    'security_pkg_2_desc'   => 'CCTV, access control, and PABX — all connected in one system.',
+    'security_pkg_2_feat_1' => '6–8 CCTV points + 24/7 recording',
+    'security_pkg_2_feat_2' => 'Access control with door activity logs',
+    'security_pkg_2_feat_3' => 'IP PABX for internal communication',
+    'security_pkg_2_feat_4' => 'Dashboard & real-time incident alerts',
+    'security_pkg_2_price'  => '4.9M',
+    'security_pkg_2_unit'   => '/ site',
+    'security_pkg_2_cta'    => 'Choose This Package',
+
+    // Package 3
+    'security_pkg_3_title'  => 'Corporate Custom Package',
+    'security_pkg_3_desc'   => 'Tailored solutions for buildings, factories, hotels, and campuses.',
+    'security_pkg_3_feat_1' => 'End-to-end security system design',
+    'security_pkg_3_feat_2' => 'Integration with your existing network & servers',
+    'security_pkg_3_feat_3' => 'SLA support & scheduled maintenance',
+    'security_pkg_3_price'  => 'Contact Us',
+    'security_pkg_3_cta'    => 'Book a Consultation',
+
+
     // Network Page
     'network_title' => 'Time to connect your entire office room with Internet',
     'network_subtitle' => 'Wide & Stable Coverage',
@@ -347,6 +386,48 @@ return [
 
     'network_sol_title' => 'Our Comprehensive Solutions',
     'network_sol_desc' => 'We design and deploy robust network infrastructure customized to your environment.',
+    
+    // =======================
+    // Network Packages (EN)
+    // =======================
+
+    'network_packages_title' => 'Network Packages',
+    'network_packages_desc'  => 'Professional access point, switch, and structured cabling packages tailored to your workspace needs.',
+
+    'network_pkg_note'       => '*tax not included',
+    'network_pkg_badge_best' => 'MOST POPULAR 🔥',
+
+    // Package 1 — Basic
+    'network_pkg_1_title'  => 'Basic Network Package',
+    'network_pkg_1_desc'   => 'Ideal for small offices or shops with essential coverage.',
+    'network_pkg_1_feat_1' => 'Installation of 1–2 access points + basic configuration',
+    'network_pkg_1_feat_2' => 'Cable routing and tidy setup for main working areas',
+    'network_pkg_1_feat_3' => 'Wi-Fi optimization for workstations & meeting rooms',
+    'network_pkg_1_price'  => 'Rp2.9M',         // ganti sesuai kurs atau tulis "2.9M IDR"
+    'network_pkg_1_unit'   => '/ site',
+    'network_pkg_1_cta'    => 'Choose This Package',
+
+    // Package 2 — Enterprise (Highlighted)
+    'network_pkg_2_title'  => 'Enterprise Network Package',
+    'network_pkg_2_desc'   => 'For multi-room offices requiring stable high-speed connectivity.',
+    'network_pkg_2_feat_1' => 'Site survey & coverage planning (mini heatmap layout)',
+    'network_pkg_2_feat_2' => 'Installation of 3–6 access points + gigabit switch',
+    'network_pkg_2_feat_3' => 'Network segmentation (staff/guest/device) for security',
+    'network_pkg_2_feat_4' => 'Router/Mikrotik tuning for traffic stability',
+    'network_pkg_2_price'  => 'Rp5.9M',         // atau "5.9M IDR"
+    'network_pkg_2_unit'   => '/ site',
+    'network_pkg_2_cta'    => 'Choose This Package',
+
+    // Package 3 — Custom
+    'network_pkg_3_title'  => 'Corporate Network Package (Custom)',
+    'network_pkg_3_desc'   => 'Designed for warehouses, buildings, campuses, and hotels.',
+    'network_pkg_3_feat_1' => 'Detailed site survey & user/device capacity planning',
+    'network_pkg_3_feat_2' => 'Topology design, VLAN, and backbone arranged to building layout',
+    'network_pkg_3_feat_3' => 'Step-by-step implementation support + optional SLA maintenance',
+    'network_pkg_3_price'  => 'Contact Us',
+    'network_pkg_3_cta'    => 'Request Consultation',
+
+    
     // Server Page
     'server_title' => 'Server Maintenance & Optimization',
     'server_stat_1' => '99.9% Uptime Guaranteed',
