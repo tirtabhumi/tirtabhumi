@@ -280,6 +280,133 @@
         </div>
     </section>
 
+    <!-- Pricing Section - Network -->
+    <section id="network-pricing" class="relative overflow-hidden py-24 bg-[#eef2f6]">
+    <!-- Background Glow -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+
+    <div class="container mx-auto px-6 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
+                {{ __('messages.network_packages_title') }}
+            </h2>
+            <p class="text-slate-500 text-lg">
+                {{ __('messages.network_packages_desc') }}
+            </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+
+            <!-- Package 1: Network Basic -->
+            <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
+                <h3 class="text-xl font-bold text-slate-800 mb-2">
+                    {{ __('messages.network_pkg_1_title') }}
+                </h3>
+                <p class="text-slate-500 text-sm mb-6">
+                    {{ __('messages.network_pkg_1_desc') }}
+                </p>
+
+                <ul class="space-y-4 mb-6 text-slate-700 text-sm">
+                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_1_feat_1') }}</li>
+                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_1_feat_2') }}</li>
+                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_1_feat_3') }}</li>
+                </ul>
+
+                <div class="mb-6">
+                    <p class="text-2xl font-extrabold text-slate-900">
+                        {{ __('messages.network_pkg_1_price') }}
+                        <span class="text-base font-semibold text-slate-600">
+                            {{ __('messages.network_pkg_1_unit') }}
+                        </span>
+                    </p>
+                    <p class="mt-1 text-[10px] italic text-slate-400">
+                        {{ __('messages.network_pkg_note') }}
+                    </p>
+                </div>
+
+                <a href="https://wa.me/6282229046099?text={{ urlencode('Halo, saya ingin info Paket Network Basic.') }}"
+                   class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">
+                    {{ __('messages.network_pkg_1_cta') }}
+                </a>
+            </div>
+
+
+            <!-- Package 2: Network Enterprise (Highlighted) -->
+            <div class="neu-flat rounded-3xl p-8 relative transform md:scale-110 shadow-2xl z-10 border-2 border-indigo-500">
+
+                <div class="absolute top-0 right-0 bg-indigo-100 text-indigo-700 px-6 py-2 rounded-bl-3xl rounded-tr-3xl text-xs font-bold shadow-sm whitespace-nowrap border-b border-l border-indigo-200">
+                    {{ __('messages.network_pkg_badge_best') }}
+                </div>
+                <!-- Judul & Deskripsi -->
+                <h3 class="text-2xl font-bold text-slate-800 mt-10  mb-2 leading-tight">
+                    {{ __('messages.network_pkg_2_title') }}
+                </h3>
+                <p class="text-slate-500 text-sm font-medium mb-6 leading-relaxed">
+                    {{ __('messages.network_pkg_2_desc') }}
+                </p>
+
+                <!-- Fitur -->
+                <ul class="space-y-3 mb-6 text-slate-700 text-sm font-medium leading-relaxed">
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_1') }}
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_2') }}
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_3') }}
+                    </li>
+                    <li class="flex items-start gap-3">
+                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_4') }}
+                    </li>
+                </ul>
+
+                <!-- Harga -->
+                <div class="mb-6">
+                    <p class="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight">
+                        {{ __('messages.network_pkg_2_price') }}
+                        <span class="text-base font-semibold text-slate-600">
+                            {{ __('messages.network_pkg_2_unit') }}
+                        </span>
+                    </p>
+                    <p class="text-[11px] italic text-slate-400 leading-snug mt-2">
+                        {{ __('messages.network_pkg_note') }}
+                    </p>
+                </div>
+
+                <!-- Tombol -->
+                <a href="https://wa.me/6282229046099?text={{ urlencode('Halo, saya ingin info Paket Network Enterprise.') }}"
+                   class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-indigo-700 font-bold text-center transition-all leading-none">
+                    {{ __('messages.network_pkg_2_cta') }}
+                </a>
+            </div>
+
+
+            <!-- Package 3: Custom -->
+            <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
+                <h3 class="text-xl font-bold text-slate-800 mb-2">
+                    {{ __('messages.network_pkg_3_title') }}
+                </h3>
+                <p class="text-slate-500 text-sm mb-6">
+                    {{ __('messages.network_pkg_3_desc') }}
+                </p>
+
+                <ul class="space-y-4 mb-8 text-slate-700 text-sm">
+                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_3_feat_1') }}</li>
+                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_3_feat_2') }}</li>
+                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_3_feat_3') }}</li>
+                </ul>
+
+                <a href="https://wa.me/6282229046099?text={{ urlencode('Halo, saya mau konsultasi Paket Network Custom.') }}"
+                   class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">
+                    {{ __('messages.network_pkg_3_cta') }}
+                </a>
+            </div>
+        </div>
+    </div>
+    </section>
+
+
     <!-- CTS Section -->
     <section id="contact" class="py-24 bg-[#eef2f6] text-center">
         <div class="container mx-auto px-6 relative z-10">

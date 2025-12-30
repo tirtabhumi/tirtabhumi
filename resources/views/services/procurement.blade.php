@@ -4,6 +4,29 @@
             .sidebar-width { width: 20% !important; flex: 0 0 20% !important; }
             .content-width { width: 80% !important; flex: 0 0 80% !important; }
         }
+
+        /* Active state: input checked -> ubah bulatan + centang + teks */
+        label input[type="checkbox"]:checked + .checkbox-ui{
+        background: #3b82f6 !important;  /* biru terang */
+        border-color: #3b82f6 !important;
+        box-shadow: 0 0 0 3px rgba(59,130,246,.30) !important;
+        }
+
+        /* munculkan icon centang saat checked */
+        label input[type="checkbox"]:checked + .checkbox-ui .check-icon{
+        transform: scale(1) !important;
+        }
+
+        /* kalau tidak checked, icon disembunyikan */
+        label .check-icon{
+        transform: scale(0);
+        }
+
+        /* teks ikut aktif */
+        label input[type="checkbox"]:checked + .checkbox-ui + .checkbox-text{
+        color: #1d4ed8 !important;
+        font-weight: 700 !important;
+        }
     </style>
     <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
         <!-- Animated Background -->
@@ -50,7 +73,7 @@
                                 <!-- Sort -->
                                 <div class="mb-6 relative" id="sort-dropdown">
                                     <h4 class="font-bold text-slate-800 mb-3">Urutkan</h4>
-                                    <input type="hidden" name="sort" value="{{ request('sort', 'latest') }}">
+                                    <input type="hidden" id="sort-input" name="sort" value="{{ request('sort', 'latest') }}">
                                     <button type="button" class="w-full flex items-center justify-between rounded-xl neu-pressed bg-[#eef2f6] px-4 py-3 text-sm text-slate-600 focus:outline-none hover:text-indigo-600 transition-colors" onclick="toggleSortDropdown()">
                                         <span id="sort-label" class="font-medium">
                                             @switch(request('sort'))
@@ -83,16 +106,22 @@
                                     <div id="category-list" class="space-y-3">
                                         @foreach($categories as $category)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="checkbox" name="category[]" value="{{ $category }}" 
+                                               <input type="checkbox" name="category[]" value="{{ $category }}"
                                                     class="peer sr-only"
                                                     {{ in_array($category, (array)request('category', [])) ? 'checked' : '' }}
                                                     onchange="setTimeout(() => this.form.submit(), 300)">
-                                                
-                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white peer-checked:bg-indigo-600 peer-checked:neu-flat transition-all duration-200 border border-transparent">
-                                                    <svg class="w-3.5 h-3.5 transform scale-0 peer-checked:scale-100 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+
+                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
+                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
                                                 </div>
-                                                
-                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">{{ $category }}</span>
+
+
+                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
+                                                    {{ $category }}
+                                                </span>
                                             </label>
                                         @endforeach
                                     </div>
@@ -109,16 +138,22 @@
                                     <div id="platform-list" class="space-y-3">
                                         @foreach(['SIPLah', 'E-Katalog', 'PadiUMKM'] as $platform)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="checkbox" name="platform[]" value="{{ $platform }}" 
-                                                    class="peer sr-only" 
+                                                <input type="checkbox" name="platform[]" value="{{ $platform }}"
+                                                    class="peer sr-only"
                                                     {{ in_array($platform, (array)request('platform', [])) ? 'checked' : '' }}
                                                     onchange="setTimeout(() => this.form.submit(), 300)">
-                                                
-                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white peer-checked:bg-indigo-600 peer-checked:neu-flat transition-all duration-200 border border-transparent">
-                                                    <svg class="w-3.5 h-3.5 transform scale-0 peer-checked:scale-100 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+
+                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
+                                                    <svg class="check-icon w-3.5 h-3.5 transform scale-0 transition-transform duration-200"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
                                                 </div>
 
-                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">{{ $platform }}</span>
+
+                                                  <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
+                                                    {{ $platform }}
+                                                </span>
                                             </label>
                                         @endforeach
                                     </div>
@@ -271,17 +306,13 @@
 
         function selectSort(value, label) {
             // Update hidden input
-            const input = document.querySelector('input[name="sort"]');
+            const input = document.getElementById('sort-input'); // pastikan sidebar punya id ini
             input.value = value;
-            
-            // Update Label
+
             document.getElementById('sort-label').innerText = label;
-            
-            // Close dropdown
             document.getElementById('sort-menu').classList.add('hidden');
-            
-            // Submit form
-            input.form.submit();
+
+            input.form.submit(); // submit form sidebar
         }
 
         // Close dropdown when clicking outside
