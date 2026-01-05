@@ -32,4 +32,9 @@ class Training extends Model
     {
         return $this->hasMany(Registration::class);
     }
+
+    public function modules()
+    {
+        return $this->hasMany(TrainingModule::class)->orderBy('order');
+    }
 }

@@ -7,12 +7,57 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $registrations = \App\Models\Registration::with('training')
-            ->where('email', auth()->user()->email)
-            ->latest()
-            ->get();
+        $query = Registration::with('training')
+            ->where('email', auth()->user()->email);
+
+        // Filter by payment status
+        if ($request->filled('payment_status')) {
+            $query->where('payment_status', $request->payment_status);
+        }
+
+        // Filter by status
+        if ($request->filled('status')) {
+            $query->where('status', $request->status);
+        }
+
+        // Filter by category (class/webinar)
+        if ($request->filled('category')) {
+            $query->whereHas('training', function ($q) use ($request) {
+                $q->where('category', $request->category);
+            });
+        }
+
+        // Search by training title or transaction ID
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('transaction_id', 'like', "%{$search}%")
+                    ->orWhereHas('training', function ($subQ) use ($search) {
+                        $subQ->where('title', 'like', "%{$search}%");
+                    });
+            });
+        }
+
+        // Sorting
+        $sort = $request->get('sort', 'latest');
+        switch ($sort) {
+            case 'oldest':
+                $query->oldest();
+                break;
+            case 'amount_asc':
+                $query->orderBy('total_amount', 'asc');
+                break;
+            case 'amount_desc':
+                $query->orderBy('total_amount', 'desc');
+                break;
+            default: // latest
+                $query->latest();
+                break;
+        }
+
+        $registrations = $query->paginate(15);
 
         return view('payment.index', compact('registrations'));
     }
@@ -80,5 +125,23 @@ class PaymentController extends Controller
         $registration->load('training');
 
         return view('payment.confirmation', compact('registration'));
+    }
+
+    public function cancel(Request $request, Registration $registration)
+    {
+        if ($registration->email !== auth()->user()->email) {
+            return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
+        }
+
+        if ($registration->payment_status === 'paid') {
+            return response()->json(['success' => false, 'message' => 'Cannot cancel paid transaction'], 400);
+        }
+
+        $registration->update([
+            'payment_status' => 'cancelled',
+            'status' => 'cancelled',
+        ]);
+
+        return response()->json(['success' => true, 'message' => 'Payment cancelled successfully']);
     }
 }

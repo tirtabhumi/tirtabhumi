@@ -5,10 +5,22 @@
             <div class="max-w-6xl mx-auto">
                 <!-- Breadcrumb -->
                 <div class="mb-12">
-                    <a href="{{ route('trainings.index') }}" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                        {{ __('messages.back_to_list') }}
-                    </a>
+                    @if($training->category === 'webinar')
+                        <a href="{{ route('trainings.webinars') }}" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            Back to Webinar & Workshop List
+                        </a>
+                    @elseif($training->category === 'class')
+                        <a href="{{ route('trainings.classes') }}" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            Back to Digital Class List
+                        </a>
+                    @else
+                        <a href="{{ route('trainings.index') }}" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            {{ __('messages.back_to_list') }}
+                        </a>
+                    @endif
                 </div>
 
                 <div class="grid md:grid-cols-3 gap-16 lg:gap-24">

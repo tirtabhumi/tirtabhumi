@@ -177,7 +177,7 @@
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
     <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
-        <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center relative">
             <div class="flex items-center gap-3">
                 <a href="/" class="flex items-center gap-3 group">
                     <x-logo class="h-10 w-auto transition-opacity hover:opacity-80" />
@@ -190,7 +190,7 @@
                     </a>
                 </div>
             </div>
-            <nav class="hidden md:flex space-x-8 items-center">
+            <nav class="hidden md:flex space-x-8 items-center absolute left-1/2 -translate-x-1/2">
                 <a href="/"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
 
@@ -234,6 +234,10 @@
                 <a href="{{ route('contacts.index') }}"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
 
+
+            </nav>
+            <!-- Right Side (Lang + Auth) -->
+            <div class="hidden md:flex items-center gap-6">
                 <!-- Language Switcher -->
                 <div class="relative group">
                     <button
@@ -258,7 +262,37 @@
                         </div>
                     </div>
                 </div>
-            </nav>
+
+                @auth
+                    <div class="relative">
+                        <button id="user-menu-btn"
+                            class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
+                            <span>{{ Auth::user()->name }}</span>
+                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
+                            </svg>
+                        </button>
+                        <div id="user-menu-dropdown"
+                            class="absolute right-0 mt-0 w-48 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                            <a href="/dashboard"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
+                                    out</button>
+                            </form>
+                        </div>
+                    </div>
+                @else
+                    <div class="flex items-center gap-4">
+                        <a href="{{ route('login') }}"
+                            class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.login') }}</a>
+                        <a href="{{ route('register') }}" class="neu-btn px-6 py-2 text-sm font-bold">Sign Up</a>
+                    </div>
+                @endauth
+            </div>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn"
                 class="md:hidden text-slate-600 focus:outline-none p-2 relative z-50 active:scale-90 transition-transform duration-200">
@@ -599,6 +633,23 @@
 
         // Mobile Menu Logic
         document.addEventListener('DOMContentLoaded', () => {
+            // User Menu Logic
+            const userMenuBtn = document.getElementById('user-menu-btn');
+            const userMenuDropdown = document.getElementById('user-menu-dropdown');
+
+            if (userMenuBtn && userMenuDropdown) {
+                userMenuBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    userMenuDropdown.classList.toggle('hidden');
+                });
+
+                document.addEventListener('click', (e) => {
+                    if (!userMenuBtn.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+                        userMenuDropdown.classList.add('hidden');
+                    }
+                });
+            }
+
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const closeMenuBtn = document.getElementById('close-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');

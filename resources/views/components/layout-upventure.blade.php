@@ -108,7 +108,7 @@
                     </a>
                 </div>
             </div>
-            <nav class="hidden md:flex space-x-8 items-center">
+            <nav class="hidden md:flex space-x-8 items-center flex-1 justify-center">
                 <a href="/"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
 
@@ -151,6 +151,8 @@
                 <a href="{{ route('contacts.index') }}"
                     class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
 
+            </nav>
+            <div class="hidden md:flex items-center gap-6">
                 <!-- Language Switcher -->
                 <div class="relative group">
                     <button
@@ -206,7 +208,7 @@
                         <a href="{{ route('register') }}" class="neu-btn px-6 py-2 text-sm font-bold">Sign Up</a>
                     </div>
                 @endauth
-            </nav>
+            </div>
             <!-- Mobile Menu Button -->
             <button id="mobile-menu-btn"
                 class="md:hidden text-slate-600 focus:outline-none p-2 relative z-50 active:scale-90 transition-transform duration-200">

@@ -46,21 +46,69 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/{registration}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/{registration}', [PaymentController::class, 'process'])->name('payment.process');
     Route::get('/payment/{registration}/confirmation', [PaymentController::class, 'confirmation'])->name('payment.confirmation');
+    Route::post('/payment/{registration}/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
+
+    // My Classes Routes
+    Route::get('/my-classes', [\App\Http\Controllers\MyClassController::class, 'index'])->name('my-classes.index');
+    Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class, 'show'])->name('my-classes.show');
+    Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class, 'markComplete'])->name('my-classes.module.complete');
+
+    // My Webinars Routes
+    Route::get('/my-webinars', [\App\Http\Controllers\MyWebinarController::class, 'index'])->name('my-webinars.index');
+    Route::get('/my-webinars/{training}', [\App\Http\Controllers\MyWebinarController::class, 'show'])->name('my-webinars.show');
+    Route::post('/my-webinars/module/{module}/complete', [\App\Http\Controllers\MyWebinarController::class, 'markComplete'])->name('my-webinars.module.complete');
+
+    // Debug route
+    Route::get('/debug-classes', function () {
+        $user = auth()->user();
+        $registrations = \App\Models\Registration::where('email', $user->email)->get();
+        $completed = \App\Models\Registration::where('email', $user->email)->where('status', 'completed')->get();
+
+        return response()->json([
+            'user_email' => $user->email,
+            'total_registrations' => $registrations->count(),
+            'completed_count' => $completed->count(),
+            'registrations' => $registrations->map(fn($r) => [
+                'id' => $r->id,
+                'training_id' => $r->training_id,
+                'status' => $r->status,
+                'training_title' => $r->training->title ?? 'N/A',
+                'training_category' => $r->training->category ?? 'N/A',
+            ]),
+        ]);
+    });
 });
 
 
 // Services Routes
 Route::prefix('services')->name('services.')->group(function () {
-    Route::get('/digital-marketing', function () {
-        return view('services.digital');
-    })->name('digital');
 
-    Route::get('/it-infrastructure', function () {
+
+    Route::get('/infrastructure', function () {
         return view('services.infrastructure');
     })->name('infrastructure');
 
+    Route::get('/network', function () {
+        return view('services.network');
+    })->name('network');
+
+    Route::get('/server', function () {
+        return view('services.server');
+    })->name('server');
+
+    Route::get('/securityservices', function () {
+        return view('services.security');
+    })->name('security');
+
+    Route::get('/people', function () {
+        return view('services.people');
+    })->name('people');
+
     Route::get('/procurement', [ProcurementController::class, 'index'])->name('procurement');
+
     Route::get('/procurement/{product}', [ProcurementController::class, 'show'])->name('procurement.show');
+
+
 });
 
 // Training/UpVenture Routes
@@ -74,16 +122,49 @@ Route::prefix('upventure')->group(function () {
 
 
 Route::get('/blog', function () {
-    return view('blog.index');
+    $posts = \App\Models\Post::with('category')
+        ->whereNotNull('published_at')
+        ->latest()
+        ->paginate(9);
+    return view('blog.index', compact('posts'));
 })->name('blog.index');
 
 Route::get('/blog/{post:slug}', function (\App\Models\Post $post) {
     return view('blog.show', compact('post'));
 })->name('blog.show');
 
-Route::get('/contacts', function () {
-    return view('contacts.index');
+Route::get('/contact', function () {
+    return view('contact');
 })->name('contacts.index');
+
+Route::post('/contact', function () {
+    $data = request()->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|max:255',
+        'subject' => 'required|string|max:255',
+        'message' => 'required|string',
+    ]);
+
+    \Illuminate\Support\Facades\Mail::to('hello@tirtabhumi.com')->send(new \App\Mail\ContactFormMail($data));
+
+    return back()->with('success', 'Thank you for your message. We will get back to you soon!');
+})->name('contacts.store');
+
+Route::post('/ai-chat', function (Illuminate\Http\Request $request) {
+    return response()->json(['reply' => 'Halo! Terima kasih telah mencoba demo AI kami. Untuk diskusi lebih mendalam mengenai kebutuhan ' . ($request->industry ?? 'bisnis') . ' Anda, silakan hubungi tim kami via WhatsApp.']);
+})->name('ai.chat');
+
+Route::get('/webbundling', function () {
+    return view('landing-page');
+})->name('webbundling');
+
+Route::get('/digitalmarketing', function () {
+    return view('services.digital-marketing');
+})->name('digitalmarketing');
+
+Route::get('/digital-services', function () {
+    return view('services.digital');
+})->name('services.digital');
 
 // Locale Switcher
 Route::get('lang/{locale}', function ($locale) {
