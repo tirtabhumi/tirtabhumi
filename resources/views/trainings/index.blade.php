@@ -124,21 +124,25 @@
         </div>
     </section>
 
-    <!-- Training List Section -->
-    <section id="trainings" class="py-24 bg-white">
+     <!-- Webinar Section -->
+     <section id="trainings" class="py-24 bg-white">
         <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.training_schedule_title') }}</h2>
-                <p class="text-slate-500 max-w-2xl mx-auto">
-                    {{ __('messages.training_schedule_desc') }}
-                </p>
+            <div class="flex items-center justify-between mb-12">
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.training_schedule_title') }}</h2>
+                    <p class="text-slate-600 max-w-2xl text-lg">{{ __('messages.training_schedule_desc') }}</p>
+                </div>
+                <a href="{{ route('trainings.webinars') }}" class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+                    {{ __('messages.see_all') }}
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
             </div>
 
-            @if($trainings->count() > 0)
+            @if($webinars->count() > 0)
                 <div class="grid md:grid-cols-3 gap-8">
-                    @foreach($trainings as $training)
-                        <a href="{{ route('trainings.show', $training) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100">
-                            <div class="aspect-video bg-slate-200 relative overflow-hidden">
+                    @foreach($webinars->take(3) as $training)
+                        <a href="{{ route('trainings.show', $training->slug) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 h-full flex flex-col">
+                            <div class="aspect-video bg-slate-200 relative overflow-hidden flex-shrink-0">
                                 @if($training->image)
                                     <img src="{{ Storage::url($training->image) }}" alt="{{ $training->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
                                 @else
@@ -156,21 +160,41 @@
                                     </div>
                                 @endif
                             </div>
-                            <div class="p-6">
+                            <div class="p-6 flex flex-col flex-grow">
                                 <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    {{ $training->event_date->format('d M Y, H:i') }} WIB
+                                    {{ \Carbon\Carbon::parse($training->event_date)->format('d M Y, H:i') }} WIB
                                 </div>
-                                <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors">{{ $training->title }}</h3>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">{{ $training->title }}</h3>
                                 <p class="text-slate-600 text-sm line-clamp-2 mb-4">{{ strip_tags($training->description) }}</p>
-                                <div class="flex items-center text-indigo-600 font-semibold text-sm">
-                                    {{ __('messages.training_view_detail') }}
-                                    <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                
+                                <div class="mt-auto flex items-center justify-between">
+                                    <span class="text-lg font-bold text-slate-800">
+                                        @if($training->price == 0)
+                                            Gratis
+                                        @else
+                                            Rp {{ number_format($training->price, 0, ',', '.') }}
+                                        @endif
+                                    </span>
+                                    <span class="flex items-center text-indigo-600 font-semibold text-sm">
+                                        {{ __('messages.training_view_detail') }}
+                                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </span>
                                 </div>
                             </div>
                         </a>
                     @endforeach
                 </div>
+                 <!-- Mobile See All Button -->
+                 @if($webinars->count() > 3)
+                 <div class="mt-8 text-center md:hidden">
+                     <a href="{{ route('trainings.webinars') }}" class="neu-btn px-6 py-3 rounded-xl inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+                         {{ __('messages.see_all') }}
+                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                     </a>
+                 </div>
+                 @endif
+
             @else
                 <div class="text-center py-24 bg-slate-50 rounded-3xl border border-slate-100">
                     <div class="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-6 text-slate-400">
@@ -178,6 +202,89 @@
                     </div>
                     <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.training_empty_title') }}</h3>
                     <p class="text-slate-500">{{ __('messages.training_empty_desc') }}</p>
+                </div>
+            @endif
+        </div>
+    </section>
+
+    <!-- Class Section -->
+    <section id="classes" class="py-24 bg-[#eef2f6]">
+        <div class="container mx-auto px-6">
+            <div class="flex items-center justify-between mb-12">
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.class_title') }}</h2>
+                    <p class="text-slate-500 max-w-2xl text-lg">{{ __('messages.class_desc') }}</p>
+                </div>
+                <a href="{{ route('trainings.classes') }}" class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+                    {{ __('messages.see_all') }}
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                </a>
+            </div>
+
+            @if($classes->count() > 0)
+                <div class="grid md:grid-cols-3 gap-8">
+                    @foreach($classes->take(3) as $training)
+                        <a href="{{ route('trainings.show', $training->slug) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 h-full flex flex-col">
+                            <div class="aspect-video bg-slate-200 relative overflow-hidden flex-shrink-0">
+                                @if($training->image)
+                                    <img src="{{ Storage::url($training->image) }}" alt="{{ $training->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center text-slate-400">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                @endif
+                                @if($training->event_date->isPast())
+                                    <div class="absolute top-4 right-4 bg-red-100/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-red-600">
+                                        {{ __('messages.finished') }}
+                                    </div>
+                                @else
+                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
+                                        {{ __('messages.training_type_' . $training->type) }}
+                                    </div>
+                                @endif
+                            </div>
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    {{ \Carbon\Carbon::parse($training->event_date)->format('d M Y, H:i') }} WIB
+                                </div>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">{{ $training->title }}</h3>
+                                <p class="text-slate-600 text-sm line-clamp-2 mb-4">{{ strip_tags($training->description) }}</p>
+                                
+                                <div class="mt-auto flex items-center justify-between">
+                                    <span class="text-lg font-bold text-slate-800">
+                                        @if($training->price == 0)
+                                            Gratis
+                                        @else
+                                            Rp {{ number_format($training->price, 0, ',', '.') }}
+                                        @endif
+                                    </span>
+                                    <span class="flex items-center text-indigo-600 font-semibold text-sm">
+                                        {{ __('messages.training_view_detail') }}
+                                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </a>
+                    @endforeach
+                </div>
+                 <!-- Mobile See All Button -->
+                 @if($classes->count() > 3)
+                 <div class="mt-8 text-center md:hidden">
+                     <a href="{{ route('trainings.classes') }}" class="neu-btn px-6 py-3 rounded-xl inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+                         {{ __('messages.see_all') }}
+                         <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                     </a>
+                 </div>
+                 @endif
+
+            @else
+                <div class="text-center py-24 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                    <div class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6 text-indigo-400">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.class_empty_title') }}</h3>
+                    <p class="text-slate-500">{{ __('messages.class_empty_desc') }}</p>
                 </div>
             @endif
         </div>

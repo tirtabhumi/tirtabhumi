@@ -11,6 +11,10 @@ Route::middleware('guest')->group(function () {
     Route::post('/login', [App\Http\Controllers\AuthController::class, 'loginStore'])->name('login.store');
     Route::get('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
     Route::post('/register', [App\Http\Controllers\AuthController::class, 'registerStore'])->name('register.store');
+    
+    // Google SSO
+    Route::get('/auth/google', [App\Http\Controllers\AuthController::class, 'redirectToGoogle'])->name('auth.google');
+    Route::get('/auth/google/callback', [App\Http\Controllers\AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
 });
 
 Route::middleware('auth')->group(function () {
@@ -121,5 +125,7 @@ Route::post('/contact', function () {
 })->name('contacts.store');
 
 Route::get('/upventure', [App\Http\Controllers\TrainingController::class, 'index'])->name('trainings.index');
-Route::get('/trainings/{training:slug}', [App\Http\Controllers\TrainingController::class, 'show'])->name('trainings.show');
-Route::post('/trainings/{training:slug}/register', [App\Http\Controllers\TrainingController::class, 'register'])->name('trainings.register');
+Route::get('/upventure/webinars', App\Livewire\TrainingSearch::class)->defaults('category', 'webinar')->name('trainings.webinars');
+Route::get('/upventure/classes', App\Livewire\TrainingSearch::class)->defaults('category', 'class')->name('trainings.classes');
+Route::get('/upventure/{training:slug}', [App\Http\Controllers\TrainingController::class, 'show'])->name('trainings.show');
+Route::post('/upventure/{training:slug}/register', [App\Http\Controllers\TrainingController::class, 'register'])->name('trainings.register');

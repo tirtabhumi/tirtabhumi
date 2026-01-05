@@ -10,12 +10,19 @@ class TrainingController extends Controller
 {
     public function index()
     {
-        $trainings = Training::where('is_active', true)
-            // ->where('event_date', '>=', now())
+        $webinars = Training::where('is_active', true)
+            ->where('category', 'webinar')
             ->orderBy('event_date', 'asc')
+            ->take(6) // Get 6 to check if there are more than 3
             ->get();
 
-        return view('trainings.index', compact('trainings'));
+        $classes = Training::where('is_active', true)
+            ->where('category', 'class')
+            ->orderBy('event_date', 'asc')
+            ->take(6) // Get 6 to check if there are more than 3
+            ->get();
+
+        return view('trainings.index', compact('webinars', 'classes'));
     }
 
     public function show(Training $training)

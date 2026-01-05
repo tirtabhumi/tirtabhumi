@@ -54,23 +54,34 @@
                                     </li>
                                     <li class="flex items-start gap-4">
                                         <div class="neu-pressed p-3 rounded-full text-indigo-600">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            @if($training->category === 'class')
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 002 2h2a2 2 0 002-2z"></path></svg>
+                                            @else
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            @endif
                                         </div>
                                         <div>
-                                            <span class="block text-slate-500 text-xs mb-1">{{ __('messages.location') }}</span>
-                                            <span class="font-bold text-slate-800 block">{{ __('messages.training_type_' . $training->type) }}</span>
-                                            @if($training->type === 'online' || $training->type === 'hybrid')
-                                                @if($training->location_online)
-                                                    <span class="block text-slate-600 text-xs mt-1">
-                                                        <span class="font-semibold">Online:</span> {{ $training->location_online }}
-                                                    </span>
+                                            @if($training->category === 'class')
+                                                <span class="block text-slate-500 text-xs mb-1">{{ __('messages.difficulty_level') }}</span>
+                                                <span class="font-bold text-slate-800 block">
+                                                    {{ $training->level ? __('messages.level_' . $training->level) : '-' }}
+                                                </span>
+                                            @else
+                                                <span class="block text-slate-500 text-xs mb-1">{{ __('messages.location') }}</span>
+                                                <span class="font-bold text-slate-800 block">{{ __('messages.training_type_' . $training->type) }}</span>
+                                                @if($training->type === 'online' || $training->type === 'hybrid')
+                                                    @if($training->location_online)
+                                                        <span class="block text-slate-600 text-xs mt-1">
+                                                            <span class="font-semibold">Online:</span> {{ $training->location_online }}
+                                                        </span>
+                                                    @endif
                                                 @endif
-                                            @endif
-                                            @if($training->type === 'offline' || $training->type === 'hybrid')
-                                                @if($training->location_offline)
-                                                    <span class="block text-slate-600 text-xs mt-1">
-                                                        <span class="font-semibold">Offline:</span> {{ $training->location_offline }}
-                                                    </span>
+                                                @if($training->type === 'offline' || $training->type === 'hybrid')
+                                                    @if($training->location_offline)
+                                                        <span class="block text-slate-600 text-xs mt-1">
+                                                            <span class="font-semibold">Offline:</span> {{ $training->location_offline }}
+                                                        </span>
+                                                    @endif
                                                 @endif
                                             @endif
                                         </div>

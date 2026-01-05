@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Training extends Model
 {
+    use HasFactory;
     protected $fillable = [
         'title',
         'slug',
@@ -13,6 +15,8 @@ class Training extends Model
         'image',
         'event_date',
         'type',
+        'category',
+        'level',
         'price',
         'location_offline',
         'location_online',

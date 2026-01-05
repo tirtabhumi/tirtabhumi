@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -73,5 +75,54 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
 
         return redirect('/');
+    }
+
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->user();
+
+            $user = User::where('google_id', $googleUser->id)
+                ->orWhere('email', $googleUser->email)
+                ->first();
+
+            if ($user) {
+                // Update google_id if not present
+                if (!$user->google_id) {
+                    $user->update([
+                        'google_id' => $googleUser->id,
+                        'avatar' => $googleUser->avatar
+                    ]);
+                }
+                
+                Auth::login($user);
+                
+                return redirect()->intended('/dashboard');
+            } else {
+                // Create new user
+                $newUser = User::create([
+                    'name' => $googleUser->name,
+                    'email' => $googleUser->email,
+                    'google_id' => $googleUser->id,
+                    'avatar' => $googleUser->avatar,
+                    'password' => Hash::make(Str::random(16)), // Random password for SSO users
+                    'role' => 'user', 
+                ]);
+                
+                event(new \Illuminate\Auth\Events\Registered($newUser));
+
+                Auth::login($newUser);
+                
+                return redirect('/dashboard');
+            }
+        
+        } catch (\Exception $e) {
+            return redirect('/login')->withErrors(['email' => 'Unable to login with Google. Please try again.']);
+        }
     }
 }
