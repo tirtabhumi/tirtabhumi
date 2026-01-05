@@ -30,7 +30,7 @@ return [
     'service_infra_title' => 'Infrastructure',
     'service_infra_desc' => 'Fully managed network services (Access Point/Interconnection) and security systems (CCTV).',
 
-    'service_people_title' => 'Training Center',
+    'service_people_title' => 'UpVenture',
     'service_people_desc' => 'We provide professional Event Organizer services and Integrated Training (Coding, AI, IoT, Design) to enhance your team\'s competencies.',
 
     'service_procurement_title' => 'Procurement',
@@ -221,10 +221,12 @@ return [
     'wb_sticky_cta' => 'Contact Us',
 
     // Training Index Page
-    'training_title' => 'Academy & Training',
+    'training_title' => 'UpVenture',
     'training_subtitle' => 'Upgrade your digital competence with the best practitioners.',
     'training_subtitle_highlight' => 'The Best Investment is Training Yourself with Knowledge alongside the Best Mentors.',
     'training_btn_schedule' => 'View Training Schedule',
+    'join_affiliate' => 'Join Affiliate',
+    'login_affiliate' => 'Login Affiliate',
     'why_training_title' => 'Why Train Here?',
     'why_training_desc' => 'We don\'t just teach theory, but also real experience from the industry.',
     'why_reason_1_title' => 'Industry Curriculum',
@@ -257,6 +259,10 @@ return [
     'training_contact_title' => 'Need a Training for Your Team?',
     'training_contact_desc' => 'We can tailor the materials and schedule to your needs (Online / Offline).',
     'training_contact_btn' => 'Contact Us',
+    
+    'partnership_title' => 'Partnership',
+    'partnership_desc' => 'Want to add your class to UpVenture? Collaborate with us now.',
+    'partnership_btn' => 'Join as Partner',
 
     // Training Detail Page
     'back_to_list' => 'Back to Training List',
@@ -280,7 +286,7 @@ return [
     'news_blog_subtitle' => 'Our Commitment to Public Excellence',
     'news_blog_desc' => 'Digital Transformation as the Key to Corporate Success',
     'filter_blog' => 'Blog',
-    'filter_training' => 'Academy & Training',
+    'filter_training' => 'UpVenture',
 
     // Digital Marketing Page
     'dm_title' => 'Digital Marketing Services',

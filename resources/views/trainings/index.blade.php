@@ -1,4 +1,4 @@
-<x-layout title="{{ __('messages.training_title') }} - {{ config('app.name') }}" description="{{ __('messages.training_subtitle') }}">
+<x-layout-upventure title="{{ __('messages.training_title') }} - {{ config('app.name') }}">
     <!-- Hero Section -->
     <section class="relative pt-20 pb-20 md:pt-32 md:pb-32 overflow-hidden">
         <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
@@ -16,11 +16,7 @@
                 <br>
                 <span class="text-indigo-600 font-semibold">{{ __('messages.training_subtitle_highlight') }}</span>
             </p>
-            <div class="flex flex-col md:flex-row gap-6 justify-center">
-                <a href="#trainings" class="px-8 py-4 neu-btn font-bold text-indigo-600">
-                    {{ __('messages.training_btn_schedule') }}
-                </a>
-            </div>
+
         </div>
     </section>
 
@@ -187,6 +183,19 @@
         </div>
     </section>
 
+    <!-- Partnership Section -->
+    <section class="py-24 bg-white relative">
+        <div class="container mx-auto px-6 text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-slate-800">{{ __('messages.partnership_title') }}</h2>
+            <p class="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">
+                {{ __('messages.partnership_desc') }}
+            </p>
+            <a href="{{ route('contacts.index') }}" class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-flex items-center">
+                {{ __('messages.partnership_btn') }}
+            </a>
+        </div>
+    </section>
+
      <!-- Contact Section -->
     <section id="contact" class="py-24 bg-[#eef2f6]">
         <div class="container mx-auto px-6 text-center">
@@ -204,4 +213,4 @@
             </div>
         </div>
     </section>
-</x-layout>
+</x-layout-upventure>

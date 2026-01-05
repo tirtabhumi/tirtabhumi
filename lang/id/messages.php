@@ -30,7 +30,7 @@ return [
     'service_infra_title' => 'Infrastruktur',
     'service_infra_desc' => 'Layanan pengelolaan jaringan (Access Point/Interconnection) dan sistem keamanan (CCTV) yang terkelola penuh.',
 
-    'service_people_title' => 'Training Center',
+    'service_people_title' => 'UpVenture',
     'service_people_desc' => 'Kami menyediakan Event Organizer profesional dan Pelatihan Terpadu (Coding, AI, IoT, Design) untuk meningkatkan kompetensi tim Anda.',
 
     'service_procurement_title' => 'Pengadaan',
@@ -221,10 +221,12 @@ return [
     'wb_sticky_cta' => 'Hubungi Kami',
 
     // Training Index Page
-    'training_title' => 'Akademi & Pelatihan',
+    'training_title' => 'UpVenture',
     'training_subtitle' => 'Tingkatkan kompetensi digital Anda bersama praktisi terbaik.',
     'training_subtitle_highlight' => 'Investasi Terbaik Adalah Melatih diri dengan Ilmu bersama Mentor Terbaik.',
     'training_btn_schedule' => 'Lihat Jadwal Pelatihan',
+    'join_affiliate' => 'Gabung Affiliate',
+    'login_affiliate' => 'Masuk Affiliate',
     'why_training_title' => 'Kenapa Harus Training di Sini?',
     'why_training_desc' => 'Kami tidak hanya mengajarkan teori, tapi juga pengalaman nyata dari industri.',
     'why_reason_1_title' => 'Kurikulum Industri',
@@ -258,6 +260,10 @@ return [
     'training_contact_desc' => 'Kami siap bantu susun materi dan jadwal training sesuai kebutuhan (Online / Offline).',
     'training_contact_btn' => 'Hubungi Kami',
 
+    'partnership_title' => 'Partnership',
+    'partnership_desc' => 'Ingin menambahkan kelas Anda di UpVenture? Mari berkolaborasi sekarang.',
+    'partnership_btn' => 'Hubungi Partnership',
+
     // Training Detail Page
     'back_to_list' => 'Kembali ke Daftar Pelatihan',
     'training_info' => 'Informasi Pelatihan',
@@ -280,7 +286,7 @@ return [
     'news_blog_subtitle' => 'Komitmen Kami untuk Keunggulan di Publik',
     'news_blog_desc' => 'Transformasi Digital sebagai Kunci Sukses Perusahaan',
     'filter_blog' => 'Blog',
-    'filter_training' => 'Academy & Training',
+    'filter_training' => 'UpVenture',
 
     // Digital Marketing Page
     'dm_title' => 'Digital Marketing Services',
