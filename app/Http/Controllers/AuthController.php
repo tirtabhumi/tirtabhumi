@@ -50,13 +50,18 @@ class AuthController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', 'min:8'],
+            'country_code' => ['required', 'string'],
+            'phone_number' => ['required', 'string', 'max:20'],
         ]);
+
+        $phone = $validated['country_code'] . $validated['phone_number'];
 
         $user = User::create([
             'name' => $validated['name'],
             'email' => $validated['email'],
             'password' => Hash::make($validated['password']),
             'role' => 'user',
+            'phone' => $phone,
         ]);
 
         event(new \Illuminate\Auth\Events\Registered($user));
@@ -99,9 +104,9 @@ class AuthController extends Controller
                         'avatar' => $googleUser->avatar
                     ]);
                 }
-                
+
                 Auth::login($user);
-                
+
                 return redirect()->intended('/dashboard');
             } else {
                 // Create new user
@@ -111,18 +116,71 @@ class AuthController extends Controller
                     'google_id' => $googleUser->id,
                     'avatar' => $googleUser->avatar,
                     'password' => Hash::make(Str::random(16)), // Random password for SSO users
-                    'role' => 'user', 
+                    'role' => 'user',
                 ]);
-                
+
                 event(new \Illuminate\Auth\Events\Registered($newUser));
 
                 Auth::login($newUser);
-                
+
                 return redirect('/dashboard');
             }
-        
+
         } catch (\Exception $e) {
             return redirect('/login')->withErrors(['email' => 'Unable to login with Google. Please try again.']);
         }
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.forgot-password');
+    }
+
+    public function sendResetLink(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = \Illuminate\Support\Facades\Password::sendResetLink(
+            $request->only('email')
+        );
+
+        if ($status === \Illuminate\Support\Facades\Password::RESET_LINK_SENT) {
+            return back()->with(['status' => __($status)]);
+        }
+
+        return back()->withErrors(['email' => __($status)]);
+    }
+
+    public function resetPassword($token)
+    {
+        return view('auth.reset-password', ['token' => $token]);
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $status = \Illuminate\Support\Facades\Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new \Illuminate\Auth\Events\PasswordReset($user));
+            }
+        );
+
+        if ($status === \Illuminate\Support\Facades\Password::PASSWORD_RESET) {
+            return redirect()->route('login')->with('status', __($status));
+        }
+
+        return back()->withErrors(['email' => __($status)]);
     }
 }

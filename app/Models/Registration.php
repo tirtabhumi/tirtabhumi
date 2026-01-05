@@ -12,6 +12,18 @@ class Registration extends Model
         'email',
         'phone',
         'institution',
+        'payment_method',
+        'payment_status',
+        'transaction_id',
+        'admin_fee',
+        'total_amount',
+        'payment_expiry_time',
+    ];
+
+    protected $casts = [
+        'payment_expiry_time' => 'datetime',
+        'admin_fee' => 'decimal:0',
+        'total_amount' => 'decimal:0',
     ];
 
     public function training()

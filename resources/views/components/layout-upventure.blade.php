@@ -60,13 +60,13 @@
             box-shadow: inset 5px 5px 10px #d1d9e6,
                 inset -5px -5px 10px #ffffff;
         }
-        
+
         /* Make logo dark/black for light theme */
         .logo-dark {
             filter: brightness(0) saturate(100%);
         }
 
-         /* Hover Underline Animation */
+        /* Hover Underline Animation */
         .hover-underline-animation {
             position: relative;
         }
@@ -126,7 +126,7 @@
                     <div
                         class="absolute left-0 mt-0 w-64 neu-flat rounded-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 transform origin-top-left z-50 overflow-hidden border border-white/50">
                         <div class="py-2">
-                             <a href="{{ route('services.digital') }}"
+                            <a href="{{ route('services.digital') }}"
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
                                 {{ __('messages.service_digital_title') }}
                             </a>
@@ -179,25 +179,32 @@
                 <!-- Auth (UpVenture Specific) -->
                 @auth
                     <div class="relative ml-3">
-                        <button id="user-menu-btn" class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
+                        <button id="user-menu-btn"
+                            class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
                             <span>{{ Auth::user()->name }}</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                                </path>
                             </svg>
                         </button>
-                        <div id="user-menu-dropdown" class="absolute right-0 mt-0 w-48 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
-                            <a href="/dashboard" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                        <div id="user-menu-dropdown"
+                            class="absolute right-0 mt-0 w-48 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                            <a href="/dashboard"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
-                                <button type="submit" class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign out</button>
+                                <button type="submit"
+                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
+                                    out</button>
                             </form>
                         </div>
                     </div>
                 @else
-                   <div class="flex items-center gap-4">
-                       <a href="{{ route('login') }}" class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.login') }}</a>
-                       <a href="{{ route('register') }}" class="neu-btn px-6 py-2 text-sm font-bold">Sign Up</a>
-                   </div>
+                    <div class="flex items-center gap-4">
+                        <a href="{{ route('login') }}"
+                            class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.login') }}</a>
+                        <a href="{{ route('register') }}" class="neu-btn px-6 py-2 text-sm font-bold">Sign Up</a>
+                    </div>
                 @endauth
             </nav>
             <!-- Mobile Menu Button -->
@@ -215,37 +222,93 @@
         {{ $slot }}
     </main>
 
-    <footer class="bg-white border-t border-slate-200 mt-auto py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <p class="text-slate-500 text-sm">
-                    &copy; {{ date('Y') }} UpVenture. All rights reserved.
-                </p>
+    <footer class="bg-[#eef2f6] py-12 border-t border-slate-200/50 neu-pressed mt-12">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <x-logo class="h-10 w-auto" />
+                    </div>
+                    <p class="mt-4 text-slate-500 text-sm leading-relaxed max-w-sm">
+                        {!! __('messages.footer_desc_full') !!}
+                    </p>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-800 mb-4">{{ __('messages.quick_links') }}</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="/"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.home') }}</a>
+                        </li>
+                        <li><a href="/#about"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.about') }}</a>
+                        </li>
+                        <li><a href="/#services"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.services') }}</a>
+                        </li>
+                        <li><a href="{{ route('blog.index') }}"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.blog') }}</a>
+                        </li>
+                        <li><a href="{{ route('contacts.index') }}"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.contact') }}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-bold text-slate-800 mb-4">{{ __('messages.connect') }}</h4>
+                    <ul class="space-y-2 text-sm text-slate-500">
+                        <li><a href="https://linkedin.com/company/pt-tirta-bhumi-indonesia" target="_blank"
+                                rel="noopener noreferrer"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">LinkedIn</a>
+                        </li>
+                        <li><a href="https://www.instagram.com/tirtabhumi.id/" target="_blank" rel="noopener noreferrer"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Instagram</a>
+                        </li>
+                        <li><a href="https://www.facebook.com/tirtabhumiid/" target="_blank" rel="noopener noreferrer"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">Facebook</a>
+                        </li>
+                        <li><a href="https://wa.me/6282229046099" target="_blank" rel="noopener noreferrer"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">WhatsApp</a>
+                        </li>
+                        <li><a href="mailto:hello@tirtabhumi.com"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">hello@tirtabhumi.com</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-slate-200/50 text-center text-slate-400 text-sm">
+                &copy; {{ date('Y') }} PT Tirta Bhumi Indonesia. All rights reserved.
             </div>
         </div>
     </footer>
     <!-- Mobile Menu Backdrop -->
-    <div id="mobile-menu-backdrop" class="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 md:hidden"></div>
+    <div id="mobile-menu-backdrop"
+        class="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-sm hidden transition-opacity duration-300 opacity-0 md:hidden">
+    </div>
 
     <!-- Mobile Menu Drawer -->
-    <div id="mobile-menu" class="fixed inset-0 z-[10000] bg-white transform translate-x-full transition-transform duration-300 md:hidden flex flex-col h-full" style="background-color: #ffffff !important;">
+    <div id="mobile-menu"
+        class="fixed inset-0 z-[10000] bg-white transform translate-x-full transition-transform duration-300 md:hidden flex flex-col h-full"
+        style="background-color: #ffffff !important;">
         <div class="flex flex-col h-full">
             <!-- Drawer Header -->
             <div class="flex items-center justify-between px-6 py-4 border-b border-slate-100 flex-shrink-0">
                 <div class="flex items-center gap-2">
                     <x-logo class="h-8 w-auto" />
                 </div>
-                <button id="close-menu-btn" class="text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none p-2 active:scale-90 transition-transform duration-200">
+                <button id="close-menu-btn"
+                    class="text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none p-2 active:scale-90 transition-transform duration-200">
                     <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
                     </svg>
                 </button>
             </div>
-            
-             <!-- Navigation -->
+
+            <!-- Navigation -->
             <nav class="flex-1 overflow-y-auto px-6 py-4">
                 <div class="flex flex-col text-center">
-                    <a href="/" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.home') }}</a>
+                    <a href="/"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.home') }}</a>
 
                     <!-- Services Dropdown -->
                     <div class="border-b border-slate-100">
@@ -271,9 +334,12 @@
                         </div>
                     </div>
 
-                    <a href="/#about" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
-                    <a href="{{ route('blog.index') }}" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.blog') }}</a>
-                    <a href="{{ route('contacts.index') }}" class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.contact') }}</a>
+                    <a href="/#about"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
+                    <a href="{{ route('blog.index') }}"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.blog') }}</a>
+                    <a href="{{ route('contacts.index') }}"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.contact') }}</a>
                 </div>
             </nav>
         </div>
@@ -289,22 +355,22 @@
                 navbar.classList.remove('glass');
             }
         });
-        
+
         // Mobile Menu Logic
         document.addEventListener('DOMContentLoaded', () => {
-             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-             const closeMenuBtn = document.getElementById('close-menu-btn');
-             const mobileMenu = document.getElementById('mobile-menu');
-             const backdrop = document.getElementById('mobile-menu-backdrop');
-             const mobileServicesBtn = document.getElementById('mobile-services-btn');
-             const mobileServicesMenu = document.getElementById('mobile-services-menu');
-             const mobileServicesIcon = document.getElementById('mobile-services-icon');
-             
-             // User Menu Toggle (Desktop)
-             const userMenuBtn = document.getElementById('user-menu-btn');
-             const userMenuDropdown = document.getElementById('user-menu-dropdown');
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const closeMenuBtn = document.getElementById('close-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            const backdrop = document.getElementById('mobile-menu-backdrop');
+            const mobileServicesBtn = document.getElementById('mobile-services-btn');
+            const mobileServicesMenu = document.getElementById('mobile-services-menu');
+            const mobileServicesIcon = document.getElementById('mobile-services-icon');
 
-             if (userMenuBtn && userMenuDropdown) {
+            // User Menu Toggle (Desktop)
+            const userMenuBtn = document.getElementById('user-menu-btn');
+            const userMenuDropdown = document.getElementById('user-menu-dropdown');
+
+            if (userMenuBtn && userMenuDropdown) {
                 userMenuBtn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     userMenuDropdown.classList.toggle('hidden');
@@ -315,32 +381,32 @@
                         userMenuDropdown.classList.add('hidden');
                     }
                 });
-             }
+            }
 
-             
-             function openMenu() {
-                 if (mobileMenu && backdrop) {
+
+            function openMenu() {
+                if (mobileMenu && backdrop) {
                     mobileMenu.classList.remove('translate-x-full');
                     backdrop.classList.remove('hidden');
                     setTimeout(() => backdrop.classList.remove('opacity-0'), 10);
                     document.body.style.overflow = 'hidden';
-                 }
-             }
-             
-             function closeMenu() {
-                 if (mobileMenu && backdrop) {
+                }
+            }
+
+            function closeMenu() {
+                if (mobileMenu && backdrop) {
                     mobileMenu.classList.add('translate-x-full');
                     backdrop.classList.add('opacity-0');
                     setTimeout(() => backdrop.classList.add('hidden'), 300);
                     document.body.style.overflow = '';
-                 }
-             }
+                }
+            }
 
-             if(mobileMenuBtn) mobileMenuBtn.addEventListener('click', (e) => { e.preventDefault(); openMenu(); });
-             if(closeMenuBtn) closeMenuBtn.addEventListener('click', (e) => { e.preventDefault(); closeMenu(); });
-             if(backdrop) backdrop.addEventListener('click', closeMenu);
+            if (mobileMenuBtn) mobileMenuBtn.addEventListener('click', (e) => { e.preventDefault(); openMenu(); });
+            if (closeMenuBtn) closeMenuBtn.addEventListener('click', (e) => { e.preventDefault(); closeMenu(); });
+            if (backdrop) backdrop.addEventListener('click', closeMenu);
 
-             // Services Dropdown Toggle
+            // Services Dropdown Toggle
             if (mobileServicesBtn && mobileServicesMenu && mobileServicesIcon) {
                 mobileServicesBtn.addEventListener('click', (e) => {
                     e.preventDefault();
@@ -365,4 +431,5 @@
         });
     </script>
 </body>
+
 </html>

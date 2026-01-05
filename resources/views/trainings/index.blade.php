@@ -238,8 +238,8 @@
                                         {{ __('messages.finished') }}
                                     </div>
                                 @else
-                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
-                                        {{ __('messages.training_type_' . $training->type) }}
+                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-indigo-600">
+                                        {{ __('messages.level_' . $training->level) }}
                                     </div>
                                 @endif
                             </div>
@@ -271,7 +271,7 @@
                  <!-- Mobile See All Button -->
                  @if($classes->count() > 3)
                  <div class="mt-8 text-center md:hidden">
-                     <a href="{{ route('trainings.classes') }}" class="neu-btn px-6 py-3 rounded-xl inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+                    <a href="{{ route('trainings.classes') }}" class="neu-btn px-6 py-3 rounded-xl inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
                          {{ __('messages.see_all') }}
                          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                      </a>

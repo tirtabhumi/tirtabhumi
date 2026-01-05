@@ -1,4 +1,4 @@
-<x-layout title="{{ $training->title }} - Tirtabhumi Training" description="{{ Str::limit(strip_tags($training->description), 150) }}">
+<x-layout-upventure title="{{ $training->title }} - Tirtabhumi Training" description="{{ Str::limit(strip_tags($training->description), 150) }}">
 
     <section class="pt-32 pb-24 bg-[#eef2f6]">
         <div class="container mx-auto px-6">
@@ -123,29 +123,38 @@
                                         <p class="text-sm">{{ __('messages.registration_closed_msg') }}</p>
                                     </div>
                                 @else
-                                    <form action="{{ route('trainings.register', $training) }}" method="POST" class="space-y-5">
-                                        @csrf
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.full_name') }}</label>
-                                            <input type="text" name="name" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="{{ __('messages.name_placeholder') }}">
+                                    @guest
+                                        <div class="text-center">
+                                            <p class="text-slate-500 mb-4">{{ __('messages.login_to_register') }}</p>
+                                            <a href="{{ route('login') }}" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 inline-block">
+                                                Buy This Class
+                                            </a>
                                         </div>
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.contact_email_label') }}</label>
-                                            <input type="email" name="email" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="{{ __('messages.email_placeholder') }}">
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.whatsapp') }}</label>
-                                            <input type="tel" name="phone" required class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="08123456789">
-                                        </div>
-                                        <div>
-                                            <label class="block text-xs font-bold text-slate-700 mb-2">{{ __('messages.institution') }}</label>
-                                            <input type="text" name="institution" class="w-full rounded-xl border-none bg-[#eef2f6] neu-pressed text-sm py-3 px-4 focus:ring-0 text-slate-600 placeholder-slate-400" placeholder="{{ __('messages.institution_placeholder') }}">
-                                        </div>
-                                        
-                                        <button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 mt-2">
-                                            {{ __('messages.submit_registration') }}
-                                        </button>
-                                    </form>
+                                    @endguest
+
+                                    @auth
+                                        <form action="{{ route('trainings.register', $training) }}" method="POST" class="space-y-5">
+                                            @csrf
+                                            <!-- Hidden or Read-only User Data for visual confirmation if needed, but requirements say 'without filling form' so we hide standard inputs -->
+                                            
+                                            <div class="bg-indigo-50 p-4 rounded-xl border border-indigo-100 mb-4">
+                                                <div class="flex items-center gap-3 mb-2">
+                                                    <div class="w-8 h-8 rounded-full bg-indigo-200 flex items-center justify-center text-indigo-700 font-bold text-xs">
+                                                        {{ substr(Auth::user()->name, 0, 1) }}
+                                                    </div>
+                                                    <div>
+                                                        <p class="text-sm font-bold text-indigo-900">{{ Auth::user()->name }}</p>
+                                                        <p class="text-xs text-indigo-600">{{ Auth::user()->email }}</p>
+                                                    </div>
+                                                </div>
+                                                <p class="text-xs text-indigo-500 italic">Buying as logged in user</p>
+                                            </div>
+
+                                            <button type="submit" class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-sm transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5 mt-2">
+                                                Buy This Class [Rp {{ number_format($training->price, 0, ',', '.') }}]
+                                            </button>
+                                        </form>
+                                    @endauth
                                 @endif
                             </div>
                         </div>
@@ -154,4 +163,4 @@
             </div>
         </div>
     </section>
-</x-layout>
+</x-layout-upventure>

@@ -1,33 +1,60 @@
 <x-layout-upventure title="Verify Email">
-    <div class="min-h-screen flex flex-col justify-center items-center py-12 sm:px-6 lg:px-8">
-        <div class="sm:mx-auto sm:w-full sm:max-w-md">
-            <h2 class="mt-6 text-center text-3xl font-extrabold text-slate-800">
-                Verify your email
-            </h2>
-            <p class="mt-2 text-center text-sm text-slate-500">
-                Please check your email inbox to verify your account.
-            </p>
+    <!-- Contact-style Background -->
+    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen flex items-center">
+        <!-- Background Blobs -->
+        <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
+             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+             <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+             <div class="absolute top-1/2 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
         </div>
 
-        <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-            <div class="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
-                @if (session('message'))
-                    <div class="mb-4 text-sm font-medium text-green-600">
-                        {{ session('message') }}
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Unified Container -->
+            <div class="neu-flat p-8 md:p-12 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                    
+                    <!-- Left Column: Illustration/Text -->
+                    <div class="space-y-6 animate-fade-in-up">
+                        <div class="w-20 h-20 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 mb-6 mx-auto md:mx-0">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <h1 class="text-3xl md:text-4xl font-bold text-slate-800 text-center md:text-left">Check Your Inbox!</h1>
+                        <p class="text-slate-500 leading-relaxed text-center md:text-left">
+                            We've sent a verification link to the email address you provided. Please click the link to verify your account.
+                        </p>
                     </div>
-                @endif
 
-                <div class="text-sm text-slate-600">
-                    Before proceeding, please check your email for a verification link.
-                    If you did not receive the email,
-                    <form class="inline" method="POST" action="{{ route('verification.send') }}">
-                        @csrf
-                        <button type="submit" class="text-indigo-600 hover:text-indigo-500 font-medium focus:outline-none focus:underline transition duration-150 ease-in-out">
-                            click here to request another
-                        </button>.
-                    </form>
+                    <!-- Right Column: Actions -->
+                    <div class="space-y-8 animate-fade-in-up animation-delay-200">
+                        <div class="bg-white/50 rounded-3xl p-8 neu-pressed text-center">
+                            
+                            @if (session('message'))
+                                <div class="mb-6 text-sm font-medium text-green-600 bg-green-100 border border-green-400 rounded-xl p-4">
+                                    {{ session('message') }}
+                                </div>
+                            @endif
+
+                            <p class="text-slate-600 mb-6 font-medium">Didn't receive the email?</p>
+
+                            <form method="POST" action="{{ route('verification.send') }}">
+                                @csrf
+                                <button type="submit" class="w-full px-8 py-4 neu-btn font-bold text-indigo-600 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                    Resend Verification Email
+                                </button>
+                            </form>
+                            
+                            <form method="POST" action="{{ route('logout') }}" class="mt-6">
+                                @csrf
+                                <button type="submit" class="text-sm font-bold text-slate-500 hover:text-red-500 transition-colors">
+                                    Log Out
+                                </button>
+                            </form>
+
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 </x-layout-upventure>

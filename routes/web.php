@@ -1,131 +1,94 @@
 <?php
 
-use App\Models\Post;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\ContactFormMail;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProcurementController;
 
-
-Route::middleware('guest')->group(function () {
-    Route::get('/login', [App\Http\Controllers\AuthController::class, 'login'])->name('login');
-    Route::post('/login', [App\Http\Controllers\AuthController::class, 'loginStore'])->name('login.store');
-    Route::get('/register', [App\Http\Controllers\AuthController::class, 'register'])->name('register');
-    Route::post('/register', [App\Http\Controllers\AuthController::class, 'registerStore'])->name('register.store');
-    
-    // Google SSO
-    Route::get('/auth/google', [App\Http\Controllers\AuthController::class, 'redirectToGoogle'])->name('auth.google');
-    Route::get('/auth/google/callback', [App\Http\Controllers\AuthController::class, 'handleGoogleCallback'])->name('auth.google.callback');
-});
-
-Route::middleware('auth')->group(function () {
-    Route::get('/email/verify', [App\Http\Controllers\VerificationController::class, 'notice'])->name('verification.notice');
-    Route::get('/email/verify/{id}/{hash}', [App\Http\Controllers\VerificationController::class, 'verify'])->middleware(['signed'])->name('verification.verify');
-    Route::post('/email/verification-notification', [App\Http\Controllers\VerificationController::class, 'resend'])->middleware(['throttle:6,1'])->name('verification.send');
-});
-
-Route::post('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout')->middleware('auth');
-
-Route::middleware('auth')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
-
-    // Affiliate Routes
-    Route::get('/affiliate', [App\Http\Controllers\AffiliateController::class, 'index'])->name('affiliate.index');
-    Route::post('/affiliate/join', [App\Http\Controllers\AffiliateController::class, 'join'])->name('affiliate.join');
-    Route::post('/affiliate/url', [App\Http\Controllers\AffiliateController::class, 'generateLink'])->name('affiliate.url');
-});
-
-// Webinars
-Route::get('/webinars', [App\Http\Controllers\WebinarController::class, 'index'])->name('webinars.index');
-Route::get('/webinars/{webinar:slug}', [App\Http\Controllers\WebinarController::class, 'show'])->name('webinars.show');
-Route::post('/webinars/{webinar:slug}/register', [App\Http\Controllers\WebinarController::class, 'register'])->name('webinars.register');
-
-// Route::get('/', function () {
-//    return view('welcome');
-// });
+// Public Routes
 Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/upventure', function () {
+    return view('upventure');
+});
+
+// Auth Routes
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
+Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
+
+// Google SSO
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
+
+// Forgot Password Flow
+Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('password.request');
+Route::post('forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+Route::get('reset-password/{token}', [AuthController::class, 'resetPassword'])->name('password.reset');
+Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('password.update');
+
+// Protected Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/dashboard', function () {
+        $registrations = \App\Models\Registration::with('training')
+            ->where('email', auth()->user()->email)
+            ->latest()
+            ->get();
+        return view('dashboard', compact('registrations'));
+    });
+
+    Route::get('/payment/history', [PaymentController::class, 'index'])->name('payments.index');
+    Route::get('/payment/{registration}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{registration}', [PaymentController::class, 'process'])->name('payment.process');
+    Route::get('/payment/{registration}/confirmation', [PaymentController::class, 'confirmation'])->name('payment.confirmation');
+});
+
+
+// Services Routes
+Route::prefix('services')->name('services.')->group(function () {
+    Route::get('/digital-marketing', function () {
+        return view('services.digital');
+    })->name('digital');
+
+    Route::get('/it-infrastructure', function () {
+        return view('services.infrastructure');
+    })->name('infrastructure');
+
+    Route::get('/procurement', [ProcurementController::class, 'index'])->name('procurement');
+    Route::get('/procurement/{product}', [ProcurementController::class, 'show'])->name('procurement.show');
+});
+
+// Training/UpVenture Routes
+Route::prefix('upventure')->group(function () {
+    Route::get('/', [TrainingController::class, 'index'])->name('trainings.index');
+    Route::get('/webinars', [TrainingController::class, 'webinars'])->name('trainings.webinars');
+    Route::get('/classes', [TrainingController::class, 'classes'])->name('trainings.classes');
+    Route::get('/{training:slug}', [TrainingController::class, 'show'])->name('trainings.show');
+    Route::post('/{training:slug}/register', [TrainingController::class, 'register'])->name('trainings.register');
+});
+
+
 Route::get('/blog', function () {
-    $query = Post::with('category')->whereNotNull('published_at');
-
-    if (request('search')) {
-        $query->where(function ($q) {
-            $q->where('title', 'like', '%' . request('search') . '%')
-                ->orWhere('content', 'like', '%' . request('search') . '%');
-        });
-    }
-
-    $posts = $query->latest()->paginate(6)->withQueryString();
-
-    return view('blog.index', compact('posts'));
+    return view('blog.index');
 })->name('blog.index');
 
-Route::get('/blog/{post:slug}', function (Post $post) {
-    if (!$post->published_at) {
-        abort(404);
-    }
+Route::get('/blog/{post:slug}', function (\App\Models\Post $post) {
     return view('blog.show', compact('post'));
 })->name('blog.show');
 
-Route::get('/locale/{locale}', function ($locale) {
+Route::get('/contacts', function () {
+    return view('contacts.index');
+})->name('contacts.index');
+
+// Locale Switcher
+Route::get('lang/{locale}', function ($locale) {
     if (in_array($locale, ['en', 'id'])) {
         session(['locale' => $locale]);
     }
     return back();
 })->name('locale.switch');
-
-Route::prefix('services')->name('services.')->group(function () {
-    Route::get('/digital', function () {
-        return view('services.digital');
-    })->name('digital');
-    Route::get('/infrastructure', function () {
-        return view('services.infrastructure');
-    })->name('infrastructure');
-    Route::get('/network', function () {
-        return view('services.network');
-    })->name('network');
-    Route::get('/procurement', App\Livewire\ProcurementSearch::class)->name('procurement');
-    Route::get('/procurement/{product}', [App\Http\Controllers\ProductController::class, 'show'])->name('procurement.show');
-    Route::get('/server', function () {
-        return view('services.server');
-    })->name('server');
-    Route::get('/securityservices', function () {
-        return view('services.security');
-    })->name('security');
-});
-
-Route::get('/webbundling', function () {
-    return view('landing-page');
-})->name('webbundling');
-
-Route::get('/digitalmarketing', function () {
-    return view('services.digital-marketing');
-})->name('digitalmarketing');
-
-Route::post('/ai-chat', [App\Http\Controllers\AiChatController::class, 'chat'])->name('ai.chat');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contacts.index');
-
-Route::post('/contact', function () {
-    $data = request()->validate([
-        'name' => 'required|string|max:255',
-        'email' => 'required|email|max:255',
-        'subject' => 'required|string|max:255',
-        'message' => 'required|string',
-    ]);
-
-    Mail::to('hello@tirtabhumi.com')->send(new ContactFormMail($data));
-
-    return back()->with('success', 'Thank you for your message. We will get back to you soon!');
-})->name('contacts.store');
-
-Route::get('/upventure', [App\Http\Controllers\TrainingController::class, 'index'])->name('trainings.index');
-Route::get('/upventure/webinars', App\Livewire\TrainingSearch::class)->defaults('category', 'webinar')->name('trainings.webinars');
-Route::get('/upventure/classes', App\Livewire\TrainingSearch::class)->defaults('category', 'class')->name('trainings.classes');
-Route::get('/upventure/{training:slug}', [App\Http\Controllers\TrainingController::class, 'show'])->name('trainings.show');
-Route::post('/upventure/{training:slug}/register', [App\Http\Controllers\TrainingController::class, 'register'])->name('trainings.register');
