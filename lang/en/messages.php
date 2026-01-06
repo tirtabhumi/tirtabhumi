@@ -19,6 +19,25 @@ return [
     'our_services' => 'View Service Catalog',
 
     'why_us_title' => 'Why PT Tirta Bhumi Indonesia?',
+    'why_us_subtitle' => 'Why Choose Us',
+    'why_us_main_heading' => 'Why Partner with <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">PT Tirta Bhumi Indonesia</span>?',
+    'why_us_main_desc' => 'We are more than just a service provider; we are your strategic growth partner. Combining technical expertise with deep industry insights, we deliver results that drive real progress for your organization.',
+    'why_us_stat_1_val' => '150+',
+    'why_us_stat_1_label' => 'Happy Clients',
+    'why_us_stat_2_val' => '500+',
+    'why_us_stat_2_label' => 'Projects Done',
+    'why_us_feat_1_title' => 'Unparalleled Support',
+    'why_us_feat_1_desc' => '24/7 expert technical assistance whenever your business needs it most.',
+    'why_us_feat_2_title' => 'Innovative Solutions',
+    'why_us_feat_2_desc' => 'Tailored digital strategies that push boundaries and drive transformation.',
+    'why_us_feat_3_title' => 'Expert Team',
+    'why_us_feat_3_desc' => 'A specialized team of certified professionals dedicated to your success.',
+    'why_us_feat_4_title' => 'Security First',
+    'why_us_feat_4_desc' => 'Enterprise-grade integrity and data protection in every implementation.',
+    'why_us_feat_5_title' => 'Agile & Fast',
+    'why_us_feat_5_desc' => 'Optimized methodologies for rapid, flexible, and reliable project delivery.',
+    'why_us_feat_6_title' => 'Proven Quality',
+    'why_us_feat_6_desc' => 'Certified results and strict quality assurance for every single solution.',
     'why_us_desc' => 'PT Tirta Bhumi Indonesia is an end-to-end solution provider that connects your technology and operational business needs. We understand that every sector—from Government (B2G), Education, Hospitality, to SMEs—has unique challenges. With the support of an extensive partnership network, we deliver services that are not only digitally advanced but also reliable in physical procurement and facility management. One-stop solution for all your needs.',
 
     'services_title' => 'Our Solutions for Your Needs',
@@ -263,10 +282,9 @@ return [
     'training_type_hybrid' => 'Hybrid',
     'training_contact_title' => 'Need a Training for Your Team?',
     'training_contact_desc' => 'We can tailor the materials and schedule to your needs (Online / Offline).',
-    'training_contact_btn' => 'Contact Us',
-    
+    'service_people_title' => 'Upventur',
     'partnership_title' => 'Partnership',
-    'partnership_desc' => 'Want to add your class to UpVenture? Collaborate with us now.',
+    'partnership_desc' => 'Want to add your class to Upventur? Collaborate with us now.',
     'partnership_btn' => 'Join as Partner',
 
     // Training Detail Page

@@ -19,6 +19,25 @@ return [
     'our_services' => 'Lihat Katalog Layanan',
 
     'why_us_title' => 'Mengapa PT Tirta Bhumi Indonesia?',
+    'why_us_subtitle' => 'Mengapa Memilih Kami',
+    'why_us_main_heading' => 'Kenapa Memilih <span class="bg-clip-text text-transparent bg-gradient-to-r from-indigo-600 to-purple-600">PT Tirta Bhumi Indonesia</span>?',
+    'why_us_main_desc' => 'Kami bukan sekadar penyedia layanan, melainkan mitra strategis pertumbuhan bisnis Anda. Dengan keahlian teknis dan pemahaman mendalam, kami menghadirkan solusi yang memberikan dampak nyata bagi institusi dan perusahaan.',
+    'why_us_stat_1_val' => '150+',
+    'why_us_stat_1_label' => 'Klien Puas',
+    'why_us_stat_2_val' => '500+',
+    'why_us_stat_2_label' => 'Proyek Selesai',
+    'why_us_feat_1_title' => 'Dukungan Tak Tertandingi',
+    'why_us_feat_1_desc' => 'Bantuan teknis ahli 24/7 kapan pun bisnis Anda sangat membutuhkannya.',
+    'why_us_feat_2_title' => 'Solusi Inovatif',
+    'why_us_feat_2_desc' => 'Strategi digital khusus yang melampaui batas dan mendorong transformasi.',
+    'why_us_feat_3_title' => 'Tim Ahli',
+    'why_us_feat_3_desc' => 'Tim khusus profesional bersertifikat yang berdedikasi untuk kesuksesan Anda.',
+    'why_us_feat_4_title' => 'Keamanan Utama',
+    'why_us_feat_4_desc' => 'Integritas tingkat perusahaan dan perlindungan data dalam setiap implementasi.',
+    'why_us_feat_5_title' => 'Pengiriman Cepat & Agile',
+    'why_us_feat_5_desc' => 'Metodologi yang dioptimalkan untuk pengiriman proyek yang cepat, fleksibel, dan andal.',
+    'why_us_feat_6_title' => 'Kualitas Terbukti',
+    'why_us_feat_6_desc' => 'Hasil bersertifikat dan jaminan kualitas yang ketat untuk setiap solusi.',
     'why_us_desc' => 'PT Tirta Bhumi Indonesia adalah perusahaan penyedia solusi end-to-end yang menghubungkan kebutuhan teknologi dan operasional bisnis Anda. Kami memahami bahwa setiap sektor—mulai dari Pemerintah (B2G), Pendidikan, Perhotelan, hingga UMKM—memiliki tantangan unik. Dengan dukungan jejaring kemitraan yang luas, kami menghadirkan layanan yang tidak hanya canggih secara digital, namun juga handal dalam pengadaan fisik dan manajemen fasilitas. Satu pintu untuk beragam kebutuhan Anda.',
 
     'services_title' => 'Solusi Kami untuk Kebutuhan Anda',
@@ -266,7 +285,7 @@ return [
     'training_contact_btn' => 'Hubungi Kami',
 
     'partnership_title' => 'Partnership',
-    'partnership_desc' => 'Ingin menambahkan kelas Anda di UpVenture? Mari berkolaborasi sekarang.',
+    'partnership_desc' => 'Ingin menambahkan kelas Anda di Upventur? Mari berkolaborasi sekarang.',
     'partnership_btn' => 'Hubungi Partnership',
 
     // Training Detail Page

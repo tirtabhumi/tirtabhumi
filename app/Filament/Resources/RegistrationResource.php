@@ -47,7 +47,6 @@ class RegistrationResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('training.title')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
