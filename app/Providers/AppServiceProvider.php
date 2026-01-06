@@ -39,15 +39,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
 
-    if (!app()->runningInConsole() && Route::currentRouteName() && Str::contains(Route::currentRouteName(), 'admin')) {
-        Blade::component('components.admin.navbar', 'admin-navbar');
-        Blade::component('components.admin.sidebar', 'admin-sidebar');
-        Blade::component('components.admin.footer', 'admin-footer');
-        Blade::component('components.admin.sidebar', 'admin-sidebar');
-        URL::forceScheme('https');
-    }
-
-    Schema::defaultStringLength(191);
+        Schema::defaultStringLength(191);
         //
     }
 }

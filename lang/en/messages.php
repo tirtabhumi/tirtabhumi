@@ -282,9 +282,9 @@ return [
     'training_type_hybrid' => 'Hybrid',
     'training_contact_title' => 'Need a Training for Your Team?',
     'training_contact_desc' => 'We can tailor the materials and schedule to your needs (Online / Offline).',
-    'service_people_title' => 'Upventur',
+    'service_people_title' => 'UpVenture',
     'partnership_title' => 'Partnership',
-    'partnership_desc' => 'Want to add your class to Upventur? Collaborate with us now.',
+    'partnership_desc' => 'Want to add your class to UpVenture? Collaborate with us now.',
     'partnership_btn' => 'Join as Partner',
 
     // Training Detail Page
@@ -592,4 +592,56 @@ return [
     'contact_follow_us' => 'Follow Us',
     'contact_cta_whatsapp' => 'Chat on WhatsApp',
     'contact_cta_email' => 'Send Email',
+
+    'home_testimonials' => [
+        [
+            'text' => 'UpVenture\'s training programs have significantly boosted our team\'s productivity. The mentors are top-notch!',
+            'author' => 'Budi Santoso',
+            'role' => 'CTO, TechCorp',
+            'avatar' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'The procurement services were streamlined and efficient. Saved us time and resources significantly.',
+            'author' => 'Siti Aminah',
+            'role' => 'Ops Manager, RetailIndo',
+            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Highly recommended for any infrastructure consultancy. Professional, reliable, and solution-oriented.',
+            'author' => 'Andi Wijaya',
+            'role' => 'Director, BuildCo',
+            'avatar' => 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Our digital transformation was smooth thanks to the Tirta Bhumi team. Their automation systems are outstanding!',
+            'author' => 'Dewi Lestari',
+            'role' => 'Founder, GreenModa',
+            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Responsive technical support that is truly helpful. They are always there when we need urgent IT solutions.',
+            'author' => 'Rizky Pratama',
+            'role' => 'IT Head, GlobalEdu',
+            'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'The CCTV and network implementation at our office is very neat and stable. Excellent work!',
+            'author' => 'Maya Sari',
+            'role' => 'Adm Director, HotelIndah',
+            'avatar' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'UpVenture\'s Event Organizer made our workshop a huge success. Small details were perfectly handled.',
+            'author' => 'Hendra Kusuma',
+            'role' => 'Marketing Manager, BankKita',
+            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+    ],
 ];

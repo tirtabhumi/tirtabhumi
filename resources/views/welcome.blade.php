@@ -1,15 +1,16 @@
 <x-layout title="Home - PT Tirta Bhumi Indonesia" description="Mitra Strategis Transformasi Digital, Infrastruktur IT, Pengembangan SDM, dan Pengadaan Barang & Jasa Terpadu.">
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
+    <section class="relative min-h-screen flex flex-col overflow-hidden pt-20">
         <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
             <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
         </div>
 
-        <div class="relative container mx-auto px-6 text-center z-10">
+        <!-- Main Hero Content (Shifted Down) -->
+        <div class="relative container mx-auto px-6 text-center z-20 flex-grow flex flex-col justify-center pt-24">
             <!-- Rotating Badge -->
-            <div class="inline-flex items-center gap-3 px-8 py-2.5 rounded-full bg-white/60 border border-white/60 backdrop-blur-md shadow-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default animate-fade-in-up">
+            <div class="inline-flex items-center gap-3 px-8 py-2.5 rounded-full bg-white/60 border border-white/60 backdrop-blur-md shadow-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default animate-fade-in-up mx-auto">
                 <span class="relative flex h-3 w-3">
                   <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
                   <span class="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
@@ -35,125 +36,128 @@
                     {{ __('messages.our_services') }}
                 </a>
             </div>
+            
             <div class="h-8 md:h-8"></div>
-            <div class="mt-32 animate-fade-in-up animation-delay-400">
-                <p class="text-sm font-bold text-black uppercase tracking-wider mb-8">Trusted by Global Leaders</p>
-                
-                <div class="relative flex w-full flex-col items-center justify-center overflow-hidden">
-                    <!-- Marquee Container -->
-                    <div class="group relative flex overflow-hidden py-10 px-4 gap-8 flex-row w-full max-w-6xl mx-auto">
-                        
-                        <!-- First Row (Original) -->
-                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" class="h-14 w-auto object-contain transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                        </div>
+        </div>
 
-                        <!-- Second Row (Duplicate for seamless loop) -->
-                        <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" class="h-14 w-auto object-contain transition-all duration-300">
-                            </div>
-                            <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
-                                <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
-                            </div>
+        <!-- Partners Section (Anchored to Bottom) -->
+        <div class="relative container mx-auto px-6 text-center z-20 pb-12 animate-fade-in-up animation-delay-400">
+            <p class="text-sm font-bold text-black uppercase tracking-wider mb-8">Trusted by Global Leaders</p>
+            
+            <div class="relative flex w-full flex-col items-center justify-center overflow-hidden">
+                <!-- Marquee Container -->
+                <div class="group relative flex overflow-hidden py-10 px-4 gap-8 flex-row w-full max-w-6xl mx-auto">
+                    
+                    <!-- First Row (Original) -->
+                    <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
                         </div>
-
-                        <!-- Gradient Masks -->
-                        <div class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#eef2f6] to-transparent z-10"></div>
-                        <div class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#eef2f6] to-transparent z-10"></div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" class="h-14 w-auto object-contain transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
                     </div>
+
+                    <!-- Second Row (Duplicate for seamless loop) -->
+                    <div class="flex shrink-0 justify-start gap-8 animate-marquee-scroll flex-row group-hover:[animation-play-state:paused] py-4">
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-1.png') }}" alt="Partner 1" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-2.png') }}" alt="Partner 2" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-3.png') }}" alt="Partner 3" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-4.png') }}" alt="Partner 4" loading="lazy" class="h-14 w-auto object-contain transition-all duration-300">
+                        </div>
+                        <div class="w-32 h-20 neu-flat rounded-xl flex items-center justify-center p-3 border border-white/50 hover:-translate-y-1 transition-transform duration-300">
+                            <img src="{{ asset('images/partners/partner-5.png') }}" alt="Partner 5" loading="lazy" width="128" height="80" class="max-w-full max-h-full transition-all duration-300">
+                        </div>
+                    </div>
+
+                    <!-- Gradient Masks -->
+                    <div class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-[#eef2f6] to-transparent z-10"></div>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-[#eef2f6] to-transparent z-10"></div>
                 </div>
-
-                <style>
-                    .animate-marquee-scroll {
-                        animation: marquee-scroll 25s linear infinite;
-                    }
-                    @keyframes marquee-scroll {
-                        from { transform: translateX(0); }
-                        to { transform: translateX(calc(-100% - 2rem)); }
-                    }
-                    @keyframes wiggle {
-                        0%, 100% { transform: rotate(-3deg); }
-                        50% { transform: rotate(3deg); }
-                    }
-                    .animate-wiggle {
-                        animation: wiggle 1s ease-in-out infinite;
-                    }
-                    @keyframes float {
-                        0%, 100% { transform: translateY(0); }
-                        50% { transform: translateY(-10px); }
-                    }
-                    .animate-float {
-                        animation: float 3s ease-in-out infinite;
-                    }
-                </style>
-                
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        // Rotating Text Logic
-                        const texts = @json(__('messages.hero_rotating_text'));
-                        const textElement = document.getElementById('rotating-text');
-                        let currentIndex = 0;
-
-                        if (texts.length > 1) {
-                            setInterval(() => {
-                                // Fade out
-                                textElement.style.opacity = '0';
-                                
-                                setTimeout(() => {
-                                    currentIndex = (currentIndex + 1) % texts.length;
-                                    textElement.textContent = texts[currentIndex];
-                                    // Fade in
-                                    textElement.style.opacity = '1';
-                                }, 500); // Wait for fade out
-                            }, 2500); // Change every 2.5s (2s visible + 0.5s transition)
-                        }
-
-                        // Spotlight Effect Logic - Desktop Only
-                        if (window.matchMedia('(pointer: fine)').matches) {
-                            const cards = document.querySelectorAll('.spotlight-card');
-                            cards.forEach(card => {
-                                card.addEventListener('mousemove', (e) => {
-                                    const rect = card.getBoundingClientRect();
-                                    const x = e.clientX - rect.left;
-                                    const y = e.clientY - rect.top;
-                                    
-                                    card.style.setProperty('--mouse-x', `${x}px`);
-                                    card.style.setProperty('--mouse-y', `${y}px`);
-                                });
-                            });
-                        }
-                    });
-                </script>
             </div>
+
+            <style>
+                .animate-marquee-scroll {
+                    animation: marquee-scroll 25s linear infinite;
+                }
+                @keyframes marquee-scroll {
+                    from { transform: translateX(0); }
+                    to { transform: translateX(calc(-100% - 2rem)); }
+                }
+                @keyframes wiggle {
+                    0%, 100% { transform: rotate(-3deg); }
+                    50% { transform: rotate(3deg); }
+                }
+                .animate-wiggle {
+                    animation: wiggle 1s ease-in-out infinite;
+                }
+                @keyframes float {
+                    0%, 100% { transform: translateY(0); }
+                    50% { transform: translateY(-10px); }
+                }
+                .animate-float {
+                    animation: float 3s ease-in-out infinite;
+                }
+            </style>
+            
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Rotating Text Logic
+                    const texts = @json(__('messages.hero_rotating_text'));
+                    const textElement = document.getElementById('rotating-text');
+                    let currentIndex = 0;
+
+                    if (texts.length > 1) {
+                        setInterval(() => {
+                            // Fade out
+                            textElement.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                currentIndex = (currentIndex + 1) % texts.length;
+                                textElement.textContent = texts[currentIndex];
+                                // Fade in
+                                textElement.style.opacity = '1';
+                            }, 500); // Wait for fade out
+                        }, 2500); // Change every 2.5s (2s visible + 0.5s transition)
+                    }
+
+                    // Spotlight Effect Logic - Desktop Only
+                    if (window.matchMedia('(pointer: fine)').matches) {
+                        const cards = document.querySelectorAll('.spotlight-card');
+                        cards.forEach(card => {
+                            card.addEventListener('mousemove', (e) => {
+                                const rect = card.getBoundingClientRect();
+                                const x = e.clientX - rect.left;
+                                const y = e.clientY - rect.top;
+                                
+                                card.style.setProperty('--mouse-x', `${x}px`);
+                                card.style.setProperty('--mouse-y', `${y}px`);
+                            });
+                        });
+                    }
+                });
+            </script>
         </div>
     </section>
 
-    <!-- Upventur Section -->
-    <section id="upventur" class="py-24 bg-slate-50 relative">
+    <!-- Upventure Section -->
+    <section id="upventure" class="py-24 bg-slate-50 relative">
         <div class="container mx-auto px-6">
             <div class="mb-12 reveal-bottom">
                  <h2 class="text-xl font-bold text-slate-500 mb-2">UpVenture</h2>
@@ -164,16 +168,16 @@
 
                   <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
                       <div class="neu-pressed p-2 rounded-full flex items-center gap-2">
-                          <button onclick="switchUpventurTab('class')" id="btn-class" class="px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 neu-flat text-indigo-600 transform hover:-translate-y-0.5">
+                          <button onclick="switchUpventureTab('class')" id="btn-class" class="px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 neu-flat text-indigo-600 transform hover:-translate-y-0.5">
                               Class Digital
                           </button>
-                          <button onclick="switchUpventurTab('webinar')" id="btn-webinar" class="px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-slate-700 hover:bg-slate-200/50">
+                          <button onclick="switchUpventureTab('webinar')" id="btn-webinar" class="px-8 py-3 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-slate-700 hover:bg-slate-200/50">
                               Webinar & Workshop
                           </button>
                       </div>
 
                      <!-- See All Button -->
-                     <a id="see-all-upventur-btn" href="{{ route('trainings.classes') }}" class="neu-flat px-6 py-2 rounded-full text-sm font-bold text-slate-700 hover:text-indigo-600 transition-colors flex items-center uppercase tracking-wider">
+                     <a id="see-all-upventure-btn" href="{{ route('trainings.classes') }}" class="neu-flat px-6 py-2 rounded-full text-sm font-bold text-slate-700 hover:text-indigo-600 transition-colors flex items-center uppercase tracking-wider">
                          {{ __('messages.see_all') }}
                          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                      </a>
@@ -263,12 +267,12 @@
         </div>
 
         <script>
-            function switchUpventurTab(tab) {
+            function switchUpventureTab(tab) {
                 const btnClass = document.getElementById('btn-class');
                 const btnWebinar = document.getElementById('btn-webinar');
                 const contentClass = document.getElementById('content-class');
                 const contentWebinar = document.getElementById('content-webinar');
-                const seeAllBtn = document.getElementById('see-all-upventur-btn');
+                const seeAllBtn = document.getElementById('see-all-upventure-btn');
 
                 if (tab === 'webinar') {
                     // Update Buttons
@@ -726,71 +730,81 @@
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 bg-white relative">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16 reveal-bottom">
+    <section id="testimonials" class="py-24 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6 mb-16">
+            <div class="text-center reveal-bottom">
                 <span class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block">Testimonials</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900">What Our Clients Say</h2>
             </div>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Testimonial 1 -->
-                <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-100">
-                    <div class="flex items-center gap-1 text-amber-400 mb-6">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    </div>
-                    <p class="text-slate-600 mb-6 flex-grow leading-relaxed">"UpVenture's training programs have significantly boosted our team's productivity. The mentors are top-notch!"</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Client 1" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Budi Santoso</h4>
-                            <span class="text-xs text-slate-500">CTO, TechCorp</span>
+        </div>
+
+        <div class="relative flex flex-col items-center justify-center overflow-hidden">
+            <!-- Testimonials Marquee -->
+            <div class="group relative flex overflow-hidden py-10 gap-8 w-full">
+                @php
+                    $testimonials = __('messages.home_testimonials');
+                @endphp
+                
+                @if(is_array($testimonials))
+                <!-- First Row (Original) -->
+                <div class="flex shrink-0 justify-around gap-8 animate-marquee-slow hover:[animation-play-state:paused] py-4">
+                    @foreach($testimonials as $testi)
+                    <div class="w-[350px] md:w-[450px] bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex items-center gap-1 text-amber-400 mb-6">
+                            @for($i = 0; $i < ($testi['rating'] ?? 5); $i++)
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            @endfor
+                        </div>
+                        <p class="text-slate-600 mb-8 flex-grow leading-relaxed italic text-lg">"{{ $testi['text'] }}"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="{{ $testi['avatar'] }}" alt="{{ $testi['author'] }}" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-50">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">{{ $testi['author'] }}</h4>
+                                <span class="text-sm text-slate-500">{{ $testi['role'] }}</span>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
 
-                <!-- Testimonial 2 -->
-                <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-200">
-                    <div class="flex items-center gap-1 text-amber-400 mb-6">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    </div>
-                    <p class="text-slate-600 mb-6 flex-grow leading-relaxed">"The procurement services were streamlined and efficient. Saved us time and resources."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Client 2" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Siti Aminah</h4>
-                            <span class="text-xs text-slate-500">Ops Manager, RetailIndo</span>
+                <!-- Second Row (Duplicate for seamless loop) -->
+                <div class="flex shrink-0 justify-around gap-8 animate-marquee-slow hover:[animation-play-state:paused] py-4" aria-hidden="true">
+                    @foreach($testimonials as $testi)
+                    <div class="w-[350px] md:w-[450px] bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col">
+                        <div class="flex items-center gap-1 text-amber-400 mb-6">
+                            @for($i = 0; $i < ($testi['rating'] ?? 5); $i++)
+                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+                            @endfor
+                        </div>
+                        <p class="text-slate-600 mb-8 flex-grow leading-relaxed italic text-lg">"{{ $testi['text'] }}"</p>
+                        <div class="flex items-center gap-4 mt-auto">
+                            <img src="{{ $testi['avatar'] }}" alt="{{ $testi['author'] }}" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-50">
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-base">{{ $testi['author'] }}</h4>
+                                <span class="text-sm text-slate-500">{{ $testi['role'] }}</span>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
                 </div>
+                @endif
 
-                <!-- Testimonial 3 -->
-                <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-300">
-                    <div class="flex items-center gap-1 text-amber-400 mb-6">
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                        <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                    </div>
-                    <p class="text-slate-600 mb-6 flex-grow leading-relaxed">"Highly recommended for any infrastructure consultancy. Professional and reliable."</p>
-                    <div class="flex items-center gap-4 mt-auto">
-                        <img src="https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Client 3" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-bold text-slate-900 text-sm">Andi Wijaya</h4>
-                            <span class="text-xs text-slate-500">Director, BuildCo</span>
-                        </div>
-                    </div>
-                </div>
+
+                <!-- Gradient Masks -->
+                <div class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+                <div class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
             </div>
         </div>
+
+        <style>
+            .animate-marquee-slow {
+                animation: marquee-slow 40s linear infinite;
+            }
+            @keyframes marquee-slow {
+                from { transform: translateX(0); }
+                to { transform: translateX(calc(-100% - 2rem)); }
+            }
+        </style>
     </section>
 
         <style>

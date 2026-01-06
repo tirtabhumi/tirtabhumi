@@ -26,7 +26,8 @@
                     </div>
 
                     <!-- Login Form -->
-                    <div class="bg-white/50 rounded-3xl p-6 neu-pressed animate-fade-in-up animation-delay-200">
+                    <div class="bg-white/70 rounded-3xl p-6 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
+
                         <form action="{{ route('login.store') }}" method="POST" class="space-y-4">
                             @csrf
                             <!-- Email -->
@@ -34,7 +35,7 @@
                                 <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm"
+                                    class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all text-sm"
                                     placeholder="name@company.com">
                                 @error('email')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
@@ -46,7 +47,7 @@
                                 <label for="password"
                                     class="block text-xs font-bold text-slate-700 mb-1.5">Password</label>
                                 <input type="password" id="password" name="password" required
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm"
+                                    class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all text-sm"
                                     placeholder="••••••••">
                             </div>
 

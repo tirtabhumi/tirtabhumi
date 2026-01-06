@@ -90,7 +90,7 @@ class TrainingSearch extends Component
         return view('livewire.training-search', [
             'trainings' => $trainings,
         ])->layout('components.layout-upventure', [
-            'title' => ($this->forcedCategory === 'class' ? __('messages.class_title') : __('messages.training_schedule_title')) . ' - ' . config('app.name'),
+            'title' => ($this->forcedCategory === 'class' ? __('messages.class_title') : __('messages.training_schedule_title')) . ' - UpVenture',
         ]);
     }
 }

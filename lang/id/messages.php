@@ -285,7 +285,7 @@ return [
     'training_contact_btn' => 'Hubungi Kami',
 
     'partnership_title' => 'Partnership',
-    'partnership_desc' => 'Ingin menambahkan kelas Anda di Upventur? Mari berkolaborasi sekarang.',
+    'partnership_desc' => 'Ingin menambahkan kelas Anda di UpVenture? Mari berkolaborasi sekarang.',
     'partnership_btn' => 'Hubungi Partnership',
 
     // Training Detail Page
@@ -595,4 +595,56 @@ return [
     'contact_follow_us' => 'Ikuti Kami',
     'contact_cta_whatsapp' => 'Chat WhatsApp',
     'contact_cta_email' => 'Kirim Email',
+
+    'home_testimonials' => [
+        [
+            'text' => 'Program pelatihan UpVenture sangat membantu tim kami meningkatkan produktivitas. Mentor-mentornya sangat berpengalaman!',
+            'author' => 'Budi Santoso',
+            'role' => 'CTO, TechCorp',
+            'avatar' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Layanan pengadaan barang yang sangat efisien dan transparan. Membantu kami menghemat waktu dan sumber daya secara signifikan.',
+            'author' => 'Siti Aminah',
+            'role' => 'Ops Manager, RetailIndo',
+            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Sangat merekomendasikan layanan konsultasi infrastruktur mereka. Sangat profesional, handal, dan solutif untuk kebutuhan kami.',
+            'author' => 'Andi Wijaya',
+            'role' => 'Director, BuildCo',
+            'avatar' => 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Transformasi digital kami berjalan lancar berkat bantuan tim Tirta Bhumi. Website dan sistem otomasi mereka luar biasa!',
+            'author' => 'Dewi Lestari',
+            'role' => 'Founder, GreenModa',
+            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Dukungan teknis yang responsif dan sangat membantu. Mereka selalu ada saat kami membutuhkan solusi IT yang mendesak.',
+            'author' => 'Rizky Pratama',
+            'role' => 'IT Head, GlobalEdu',
+            'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Implementasi sistem keamanan CCTV dan jaringan internet di kantor kami sangat rapi dan stabil. Kerja yang sangat bagus!',
+            'author' => 'Maya Sari',
+            'role' => 'Adm Director, HotelIndah',
+            'avatar' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+        [
+            'text' => 'Event Organizer dari UpVenture membuat workshop kami sukses besar. Detail-detail kecil sangat diperhatikan dengan baik.',
+            'author' => 'Hendra Kusuma',
+            'role' => 'Marketing Manager, BankKita',
+            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'rating' => 5
+        ],
+    ],
 ];
