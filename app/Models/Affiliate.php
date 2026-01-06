@@ -13,17 +13,39 @@ class Affiliate extends Model
 
     protected $fillable = [
         'user_id',
-        'balance',
+        'affiliate_code',
+        'ktp_name',
+        'ktp_photo',
+        'bank_account_name',
+        'bank_name',
+        'bank_account_number',
+        'bank_book_photo',
         'status',
+        'rejection_reason',
+        'total_earnings',
+        'withdrawn_earnings',
+        'pending_earnings',
     ];
 
     protected $casts = [
-        'balance' => 'decimal:2',
+        'total_earnings' => 'decimal:2',
+        'withdrawn_earnings' => 'decimal:2',
+        'pending_earnings' => 'decimal:2',
     ];
 
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function sales(): HasMany
+    {
+        return $this->hasMany(AffiliateSale::class);
+    }
+
+    public function withdrawals(): HasMany
+    {
+        return $this->hasMany(AffiliateWithdrawal::class);
     }
 
     public function links(): HasMany

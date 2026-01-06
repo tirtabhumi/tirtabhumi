@@ -100,7 +100,7 @@
                 </div>
 
                 <!-- Affiliate / Join -->
-                @if(Auth::user()->isAffiliate())
+                @if(Auth::user()->affiliate && Auth::user()->affiliate->status === 'approved')
                     <div
                         class="neu-flat p-6 rounded-2xl border border-white/50 hover:scale-[1.02] transition-transform duration-300 group">
                         <div class="flex items-center justify-between mb-4">
@@ -113,10 +113,10 @@
                                 </svg>
                             </div>
                             <span class="text-xl font-bold text-slate-800">Rp
-                                {{ number_format(Auth::user()->affiliate->balance ?? 0, 0, ',', '.') }}</span>
+                                {{ number_format(Auth::user()->affiliate->total_earnings ?? 0, 0, ',', '.') }}</span>
                         </div>
                         <h3 class="font-bold text-slate-700 mb-1">Affiliate Balance</h3>
-                        <a href="/affiliate"
+                        <a href="{{ route('affiliates.index') }}"
                             class="text-sm text-green-600 font-medium hover:underline flex items-center gap-1">
                             Go to Dashboard <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -138,7 +138,7 @@
                         </div>
                         <h3 class="font-bold text-slate-700 mb-1">Join Affiliates</h3>
                         <p class="text-xs text-slate-500 mb-3">Earn commissions.</p>
-                        <a href="/affiliate"
+                        <a href="{{ route('affiliates.index') }}"
                             class="text-xs font-bold text-indigo-600 hover:text-indigo-800 hover:underline">
                             Join Program &rarr;
                         </a>

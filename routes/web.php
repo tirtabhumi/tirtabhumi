@@ -32,6 +32,21 @@ Route::post('forgot-password', [AuthController::class, 'sendResetLink'])->name('
 Route::get('reset-password/{token}', [AuthController::class, 'resetPassword'])->name('password.reset');
 Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('password.update');
 
+// Email Verification Routes
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (Illuminate\Foundation\Auth\EmailVerificationRequest $request) {
+    $request->fulfill();
+    return redirect('/dashboard');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Illuminate\Http\Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+    return back()->with('message', 'Verification link sent!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
@@ -40,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
             ->latest()
             ->get();
         return view('dashboard', compact('registrations'));
-    });
+    })->name('dashboard');
 
     Route::get('/payment/history', [PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payment/{registration}', [PaymentController::class, 'show'])->name('payment.show');
@@ -57,6 +72,11 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-webinars', [\App\Http\Controllers\MyWebinarController::class, 'index'])->name('my-webinars.index');
     Route::get('/my-webinars/{training}', [\App\Http\Controllers\MyWebinarController::class, 'show'])->name('my-webinars.show');
     Route::post('/my-webinars/module/{module}/complete', [\App\Http\Controllers\MyWebinarController::class, 'markComplete'])->name('my-webinars.module.complete');
+
+    // Affiliate Routes
+    Route::get('/affiliate', [\App\Http\Controllers\AffiliateController::class, 'index'])->name('affiliates.index');
+    Route::post('/affiliate/register', [\App\Http\Controllers\AffiliateController::class, 'register'])->name('affiliates.register');
+    Route::post('/affiliate/withdrawal', [\App\Http\Controllers\AffiliateController::class, 'requestWithdrawal'])->name('affiliates.withdrawal');
 
     // Debug route
     Route::get('/debug-classes', function () {
