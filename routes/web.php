@@ -75,6 +75,8 @@ Route::middleware(['auth'])->group(function () {
 
     // Affiliate Routes
     Route::get('/affiliate', [\App\Http\Controllers\AffiliateController::class, 'index'])->name('affiliates.index');
+    Route::get('/affiliate/sales', [\App\Http\Controllers\AffiliateController::class, 'sales'])->name('affiliates.sales');
+    Route::get('/affiliate/points', [\App\Http\Controllers\AffiliateController::class, 'points'])->name('affiliates.points'); // New Route
     Route::post('/affiliate/register', [\App\Http\Controllers\AffiliateController::class, 'register'])->name('affiliates.register');
     Route::post('/affiliate/withdrawal', [\App\Http\Controllers\AffiliateController::class, 'requestWithdrawal'])->name('affiliates.withdrawal');
 

@@ -108,10 +108,23 @@ class TrainingController extends Controller
         return view('trainings.list', compact('trainings', 'title', 'filters'));
     }
 
-    public function show(Training $training)
+    public function show(Training $training, Request $request)
     {
         if (!$training->is_active) {
             abort(404);
+        }
+
+        // Capture referral code from URL and store in session
+        if ($request->has('ref')) {
+            $referralCode = strtoupper($request->get('ref'));
+            // Verify the referral code exists and is approved
+            $affiliate = \App\Models\Affiliate::where('referral_code', $referralCode)
+                ->where('status', 'approved')
+                ->first();
+
+            if ($affiliate) {
+                session(['referral_code' => $referralCode]);
+            }
         }
 
         return view('trainings.show', compact('training'));
@@ -140,7 +153,15 @@ class TrainingController extends Controller
             ]);
         }
 
+        // Add referral code if exists in session
+        if (session()->has('referral_code')) {
+            $validated['referred_by'] = session('referral_code');
+        }
+
         $registration = $training->registrations()->create($validated);
+
+        // Clear referral code from session after use
+        session()->forget('referral_code');
 
         return redirect()->route('payment.show', $registration);
     }

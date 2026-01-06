@@ -13,7 +13,7 @@ class Affiliate extends Model
 
     protected $fillable = [
         'user_id',
-        'affiliate_code',
+        'referral_code',
         'ktp_name',
         'ktp_photo',
         'bank_account_name',
@@ -25,13 +25,44 @@ class Affiliate extends Model
         'total_earnings',
         'withdrawn_earnings',
         'pending_earnings',
+        'total_points',
+        'withdrawn_points',
+        'pending_points',
     ];
 
     protected $casts = [
         'total_earnings' => 'decimal:2',
         'withdrawn_earnings' => 'decimal:2',
         'pending_earnings' => 'decimal:2',
+        'total_points' => 'decimal:2',
+        'withdrawn_points' => 'decimal:2',
+        'pending_points' => 'decimal:2',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        // Auto-generate referral code when creating new affiliate
+        static::creating(function ($affiliate) {
+            if (!$affiliate->referral_code) {
+                $affiliate->referral_code = static::generateUniqueReferralCode();
+            }
+        });
+    }
+
+    /**
+     * Generate a unique 5-character referral code
+     */
+    protected static function generateUniqueReferralCode(): string
+    {
+        do {
+            // Generate 5 random uppercase alphanumeric characters
+            $code = strtoupper(substr(str_shuffle('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'), 0, 5));
+        } while (static::where('referral_code', $code)->exists());
+
+        return $code;
+    }
 
     public function user(): BelongsTo
     {
