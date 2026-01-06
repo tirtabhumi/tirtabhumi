@@ -11,8 +11,9 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::table('registrations', function (Blueprint $table) {
-            $table->string('status')->default('pending')->after('phone'); // pending, completed, cancelled
-            $table->string('payment_status')->default('unpaid')->after('status'); // unpaid, paid
+            if (!Schema::hasColumn('registrations', 'status')) {
+                $table->string('status')->default('pending')->after('phone'); // pending, completed, cancelled
+            }
         });
     }
 
@@ -22,7 +23,7 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('registrations', function (Blueprint $table) {
-            $table->dropColumn(['status', 'payment_status']);
+            $table->dropColumn(['status']);
         });
     }
 };
