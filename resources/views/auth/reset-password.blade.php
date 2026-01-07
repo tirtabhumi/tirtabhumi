@@ -33,10 +33,10 @@
 
                             <!-- Email -->
                             <div>
-                                <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">Email
+                                <label for="email" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="name@company.com" value="{{ old('email', request()->email) }}">
                                 @error('email')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
@@ -45,11 +45,10 @@
 
                             <!-- Password -->
                             <div>
-                                <label for="password" class="block text-xs font-bold text-slate-700 mb-1.5">New
+                                <label for="password" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">New
                                     Password</label>
                                 <input type="password" id="password" name="password" required
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm"
-                                    placeholder="Min. 8 chars">
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                 @error('password')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                                 @enderror
@@ -58,9 +57,9 @@
                             <!-- Confirm Password -->
                             <div>
                                 <label for="password_confirmation"
-                                    class="block text-xs font-bold text-slate-700 mb-1.5">Confirm Password</label>
+                                    class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Confirm Password</label>
                                 <input type="password" id="password_confirmation" name="password_confirmation" required
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="Re-enter password">
                             </div>
 
