@@ -25,4 +25,16 @@ class Webinar extends Model
         'price' => 'decimal:2',
         'is_active' => 'boolean',
     ];
+    public function partner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeOwnedByPartner($query)
+    {
+        if (auth()->user() && auth()->user()->hasRole('partner')) {
+            return $query->where('user_id', auth()->id());
+        }
+        return $query;
+    }
 }

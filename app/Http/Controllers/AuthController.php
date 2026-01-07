@@ -27,7 +27,13 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
 
-            if (Auth::user()->isAffiliate()) {
+            $user = Auth::user();
+
+            if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
+                return redirect()->intended('/admin');
+            }
+
+            if ($user->isAffiliate()) {
                 return redirect()->intended('/affiliate');
             }
 
@@ -106,6 +112,10 @@ class AuthController extends Controller
                 }
 
                 Auth::login($user);
+
+                if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
+                    return redirect()->intended('/admin');
+                }
 
                 return redirect()->intended('/dashboard');
             } else {

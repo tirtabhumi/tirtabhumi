@@ -54,7 +54,27 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
 
     public function canAccessPanel(\Filament\Panel $panel): bool
     {
-        return true;
+        return $this->hasRole(['super_admin', 'admin', 'partner']);
+    }
+
+    public function wallet(): \Illuminate\Database\Eloquent\Relations\HasOne
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function withdrawalRequests(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(WithdrawalRequest::class);
+    }
+
+    public function trainings(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Training::class);
+    }
+
+    public function webinars(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Webinar::class);
     }
 
     public function affiliate(): \Illuminate\Database\Eloquent\Relations\HasOne

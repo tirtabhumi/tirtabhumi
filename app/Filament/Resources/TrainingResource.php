@@ -29,7 +29,7 @@ class TrainingResource extends Resource
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', \Illuminate\Support\Str::slug($state)) : null),
+                            ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', \Illuminate\Support\Str::slug($state)) : null),
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->maxLength(255)
@@ -40,11 +40,11 @@ class TrainingResource extends Resource
                         Forms\Components\DateTimePicker::make('event_date')
                             ->required(),
                         Forms\Components\TextInput::make('price')
-                        ->numeric()
-                        ->prefix('Rp')
-                        ->default(0)
-                        ->required(),
-                    Forms\Components\Select::make('type')
+                            ->numeric()
+                            ->prefix('Rp')
+                            ->default(0)
+                            ->required(),
+                        Forms\Components\Select::make('type')
                             ->options([
                                 'online' => 'Online',
                                 'offline' => 'Offline',
@@ -55,11 +55,11 @@ class TrainingResource extends Resource
                         Forms\Components\TextInput::make('location_offline')
                             ->label('Location Offline')
                             ->maxLength(255)
-                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['offline', 'hybrid'])),
+                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['offline', 'hybrid'])),
                         Forms\Components\TextInput::make('location_online')
                             ->label('Location Online')
                             ->maxLength(255)
-                            ->visible(fn (Forms\Get $get) => in_array($get('type'), ['online', 'hybrid'])),
+                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid'])),
                         Forms\Components\Toggle::make('is_active')
                             ->required()
                             ->default(true),
@@ -81,7 +81,7 @@ class TrainingResource extends Resource
                     ->sortable(),
                 Tables\Columns\TextColumn::make('type')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'online' => 'success',
                         'offline' => 'warning',
                         'hybrid' => 'info',
@@ -104,6 +104,15 @@ class TrainingResource extends Resource
                     Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        return parent::getEloquentQuery()
+            ->withoutGlobalScopes([
+                SoftDeletingScope::class,
+            ])
+            ->ownedByPartner();
     }
 
     public static function getRelations(): array

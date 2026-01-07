@@ -38,4 +38,17 @@ class Training extends Model
     {
         return $this->hasMany(TrainingModule::class)->orderBy('order');
     }
+
+    public function partner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function scopeOwnedByPartner($query)
+    {
+        if (auth()->user() && auth()->user()->hasRole('partner')) {
+            return $query->where('user_id', auth()->id());
+        }
+        return $query;
+    }
 }

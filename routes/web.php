@@ -50,8 +50,14 @@ Route::post('/email/verification-notification', function (Illuminate\Http\Reques
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', function () {
+        $user = auth()->user();
+
+        if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
+            return redirect('/admin');
+        }
+
         $registrations = \App\Models\Registration::with('training')
-            ->where('email', auth()->user()->email)
+            ->where('email', $user->email)
             ->latest()
             ->get();
         return view('dashboard', compact('registrations'));
