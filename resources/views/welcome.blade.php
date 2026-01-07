@@ -1,6 +1,6 @@
 <x-layout title="Home - PT Tirta Bhumi Indonesia" description="Mitra Strategis Transformasi Digital, Infrastruktur IT, Pengembangan SDM, dan Pengadaan Barang & Jasa Terpadu.">
     <!-- Hero Section -->
-    <section class="relative min-h-screen flex flex-col overflow-hidden pt-20">
+    <section class="relative min-h-screen flex flex-col overflow-hidden pt-32">
         <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
@@ -8,7 +8,7 @@
         </div>
 
         <!-- Main Hero Content (Shifted Down) -->
-        <div class="relative container mx-auto px-6 text-center z-20 flex-grow flex flex-col justify-center pt-24">
+        <div class="relative container mx-auto px-6 text-center z-20 flex-grow flex flex-col justify-center pt-40">
             <!-- Rotating Badge -->
             <div class="inline-flex items-center gap-3 px-8 py-2.5 rounded-full bg-white/60 border border-white/60 backdrop-blur-md shadow-sm mb-8 hover:scale-105 transition-transform duration-300 cursor-default animate-fade-in-up mx-auto">
                 <span class="relative flex h-3 w-3">
@@ -37,7 +37,7 @@
                 </a>
             </div>
             
-            <div class="h-8 md:h-8"></div>
+            <div class="h-12 md:h-12"></div>
         </div>
 
         <!-- Partners Section (Anchored to Bottom) -->
@@ -159,11 +159,17 @@
     <!-- Upventure Section -->
     <section id="upventure" class="py-24 bg-slate-50 relative">
         <div class="container mx-auto px-6">
-            <div class="mb-12 reveal-bottom">
+             <div class="mb-12 reveal-bottom">
                  <h2 class="text-xl font-bold text-slate-500 mb-2">UpVenture</h2>
-                 <h3 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">Learn & Grow</h3>
+                 <h3 class="text-3xl md:text-5xl font-bold text-slate-900 mb-4 leading-tight">
+                    {{ __('messages.hero_rotating_text.0') }}
+                 </h3>
                  <p class="text-slate-500 text-lg mb-8">
-                     Upgrade your skills with our expert-led <strong>Class Digital</strong> and interactive <strong>Webinar & Workshop</strong>.
+                     @if(app()->getLocale() == 'id')
+                        Tingkatkan keahlian Anda dengan <strong>Kelas Digital</strong> yang dipandu ahli dan <strong>Webinar & Workshop</strong> yang interaktif.
+                     @else
+                        Upgrade your skills with our expert-led <strong>Class Digital</strong> and interactive <strong>Webinar & Workshop</strong>.
+                     @endif
                  </p>
 
                   <div class="flex flex-col md:flex-row justify-between items-center gap-6 mb-8">
@@ -177,7 +183,7 @@
                       </div>
 
                      <!-- See All Button -->
-                     <a id="see-all-upventure-btn" href="{{ route('trainings.classes') }}" class="neu-flat px-6 py-2 rounded-full text-sm font-bold text-slate-700 hover:text-indigo-600 transition-colors flex items-center uppercase tracking-wider">
+                     <a id="see-all-upventure-btn" href="{{ route('trainings.classes') }}" class="neu-flat px-6 py-2 rounded-full text-sm font-bold text-slate-700 hover:text-indigo-600 transition-colors flex items-center tracking-wider">
                          {{ __('messages.see_all') }}
                          <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                      </a>
@@ -190,33 +196,47 @@
                 <div id="content-class" class="transition-opacity duration-300">
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @php
-                            $classes = \App\Models\Training::where('category', 'class')->latest()->take(4)->get();
+                            $classes = \App\Models\Training::where('category', 'class')->where('is_active', true)->latest()->take(4)->get();
                         @endphp
-                        @foreach($classes as $class)
-                        <a href="{{ route('trainings.show', $class) }}" class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-none transition-all hover:-translate-y-1">
-                            <div class="relative aspect-video overflow-hidden bg-slate-100">
-                                <img src="{{ $class->image ? (Str::startsWith($class->image, 'http') ? $class->image : Storage::url($class->image)) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $class->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
-                                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-indigo-600 shadow-sm">
-                                    {{ $class->type === 'offline' ? 'Offline' : 'Hybrid' }}
-                                </span>
+                        @foreach($classes as $training)
+                        <a href="{{ route('trainings.show', $training->slug) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 h-full flex flex-col">
+                            <div class="aspect-video bg-slate-200 relative overflow-hidden flex-shrink-0">
+                                @if($training->image)
+                                    <img src="{{ Str::startsWith($training->image, 'http') ? $training->image : Storage::url($training->image) }}" alt="{{ $training->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center text-slate-400">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                @endif
+                                @if($training->event_date->isPast())
+                                    <div class="absolute top-4 right-4 bg-red-100/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-red-600">
+                                        {{ __('messages.finished') }}
+                                    </div>
+                                @else
+                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
+                                        {{ __('messages.training_type_' . $training->type) }}
+                                    </div>
+                                @endif
                             </div>
-                            <div class="p-6">
-                                <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
-                                    {{ $class->event_date->format('d M, Y') }}
+                                    {{ $training->event_date->format('d M Y, H:i') }} WIB
                                 </div>
-                                <h3 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2">
-                                    {{ $class->title }}
-                                </h3>
-                                <p class="text-slate-500 text-sm line-clamp-2 mb-4">
-                                    {{ Str::limit($class->description, 80) }}
-                                </p>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">{{ $training->title }}</h3>
+                                <p class="text-slate-600 text-sm line-clamp-2 mb-4">{{ strip_tags($training->description) }}</p>
+                                
                                 <div class="mt-auto flex items-center justify-between">
-                                    <span class="text-sm font-bold text-indigo-600">
-                                        Rp {{ number_format($class->price, 0, ',', '.') }}
+                                    <span class="text-lg font-bold text-slate-800">
+                                        @if($training->price == 0)
+                                            {{ __('messages.free') }}
+                                        @else
+                                            Rp {{ number_format($training->price, 0, ',', '.') }}
+                                        @endif
                                     </span>
-                                    <span class="text-xs font-bold text-slate-400 group-hover:text-indigo-600 transition-colors flex items-center">
-                                        Detail <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    <span class="flex items-center text-indigo-600 font-semibold text-sm">
+                                        {{ __('messages.training_view_detail') }}
+                                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                     </span>
                                 </div>
                             </div>
@@ -225,37 +245,50 @@
                     </div>
                 </div>
 
-                <!-- Webinar Content (Hidden) -->
                 <div id="content-webinar" class="hidden transition-opacity duration-300">
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @php
-                            $webinars = \App\Models\Training::where('category', 'webinar')->latest()->take(4)->get();
+                            $webinars = \App\Models\Training::where('category', 'webinar')->where('is_active', true)->latest()->take(4)->get();
                         @endphp
-                        @foreach($webinars as $webinar)
-                        <a href="{{ route('trainings.show', $webinar) }}" class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-none transition-all hover:-translate-y-1">
-                            <div class="relative aspect-video overflow-hidden bg-slate-100">
-                                <img src="{{ $webinar->image ? (Str::startsWith($webinar->image, 'http') ? $webinar->image : Storage::url($webinar->image)) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $webinar->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
-                                <span class="absolute top-3 right-3 bg-red-100/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-red-600 shadow-sm flex items-center gap-1">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span> Live
-                                </span>
+                        @foreach($webinars as $training)
+                        <a href="{{ route('trainings.show', $training->slug) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 h-full flex flex-col">
+                            <div class="aspect-video bg-slate-200 relative overflow-hidden flex-shrink-0">
+                                @if($training->image)
+                                    <img src="{{ Str::startsWith($training->image, 'http') ? $training->image : Storage::url($training->image) }}" alt="{{ $training->title }}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                @else
+                                    <div class="w-full h-full flex items-center justify-center text-slate-400">
+                                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                @endif
+                                @if($training->event_date->isPast())
+                                    <div class="absolute top-4 right-4 bg-red-100/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-red-600">
+                                        {{ __('messages.finished') }}
+                                    </div>
+                                @else
+                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
+                                        {{ __('messages.training_type_' . $training->type) }}
+                                    </div>
+                                @endif
                             </div>
-                            <div class="p-6">
-                                <div class="flex items-center gap-2 text-sm text-slate-500 mb-3">
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                                    Webinar
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-2 text-xs text-slate-500 mb-3">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    {{ $training->event_date->format('d M Y, H:i') }} WIB
                                 </div>
-                                <h3 class="text-lg font-bold mb-2 text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2">
-                                    {{ $webinar->title }}
-                                </h3>
-                                <p class="text-slate-500 text-sm line-clamp-2 mb-4">
-                                    {{ Str::limit($webinar->description, 80) }}
-                                </p>
+                                <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">{{ $training->title }}</h3>
+                                <p class="text-slate-600 text-sm line-clamp-2 mb-4">{{ strip_tags($training->description) }}</p>
+                                
                                 <div class="mt-auto flex items-center justify-between">
-                                    <span class="text-sm font-bold text-green-600">
-                                        {{ $webinar->price == 0 ? 'Free' : 'Rp ' . number_format($webinar->price, 0, ',', '.') }}
+                                    <span class="text-lg font-bold text-slate-800">
+                                        @if($training->price == 0)
+                                            {{ __('messages.free') }}
+                                        @else
+                                            Rp {{ number_format($training->price, 0, ',', '.') }}
+                                        @endif
                                     </span>
-                                    <span class="text-xs font-bold text-slate-400 group-hover:text-indigo-600 transition-colors flex items-center">
-                                        Join <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                                    <span class="flex items-center text-indigo-600 font-semibold text-sm">
+                                        {{ __('messages.training_view_detail') }}
+                                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                                     </span>
                                 </div>
                             </div>
@@ -368,117 +401,145 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-24 relative overflow-hidden bg-slate-50">
+    <section id="services" class="py-24 relative overflow-hidden bg-[#eef2f6] scroll-mt-24">
         <div class="container mx-auto px-6 relative z-10">
             <div class="text-center mb-16 reveal-bottom">
-                <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 font-bold tracking-wider uppercase text-xs mb-4 border border-indigo-100">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-white/60 text-indigo-600 font-bold tracking-wider uppercase text-xs mb-4 border border-white/60 shadow-sm">
                     Our Expertise
                 </span>
-                <h2 class="text-4xl md:text-6xl font-bold text-slate-900 mb-6 tracking-tight">
+                <h2 class="text-4xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight leading-snug">
                     {{ __('messages.services_title') }}
                 </h2>
-                <p class="text-slate-500 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                <p class="text-slate-500 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
                     {{ __('messages.services_desc') }}
                 </p>
             </div>
             
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 <!-- Service 1: Digital Services -->
-                <a href="{{ route('services.digital') }}" class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                @php
+                    $s1_icon = 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z';
+                @endphp
+                <a href="{{ route('services.digital') }}" class="group neu-flat overflow-hidden p-4 hover:scale-[1.02] transition-all duration-500 flex flex-col relative">
+                    <!-- Decorative background icon -->
+                    <div class="absolute -right-6 -bottom-6 text-indigo-600 opacity-[0.1] group-hover:scale-110 transition-transform duration-500 pointer-events-none z-0">
+                        <svg class="w-32 h-32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="{{ $s1_icon }}"></path></svg>
+                    </div>
+
                     <!-- Image Header -->
-                    <div class="relative h-52 overflow-hidden">
+                    <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
                         <img src="{{ asset('images/service-digital.png') }}" alt="Digital Services" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <!-- Subtle Gradient for Icon -->
                         <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
-                        <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-lg">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-sm z-20">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $s1_icon }}"></path></svg>
                         </div>
                     </div>
                     
                     <!-- Content Area -->
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors">{{ __('messages.service_digital_title') }}</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
+                    <div class="px-2 flex-grow flex flex-col z-20">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors relative z-20">{{ __('messages.service_digital_title') }}</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-grow relative z-20">
                             {{ __('messages.service_digital_desc') }}
                         </p>
-                        <span class="inline-flex items-center text-sm font-bold text-indigo-600 group-hover:translate-x-2 transition-transform duration-300">
-                            Learn More <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <span class="inline-flex items-center text-xs font-bold text-indigo-600 group-hover:translate-x-1 transition-transform duration-300 relative z-20">
+                            Learn More <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </span>
                     </div>
                 </a>
 
                 <!-- Service 2: Infrastructure -->
-                <a href="{{ route('services.infrastructure') }}" class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                @php
+                    $s2_icon = 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4';
+                @endphp
+                <a href="{{ route('services.infrastructure') }}" class="group neu-flat overflow-hidden p-4 hover:scale-[1.02] transition-all duration-500 flex flex-col relative">
+                    <!-- Decorative background icon -->
+                    <div class="absolute -right-6 -bottom-6 text-purple-600 opacity-[0.1] group-hover:scale-110 transition-transform duration-500 pointer-events-none z-0">
+                        <svg class="w-32 h-32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="{{ $s2_icon }}"></path></svg>
+                    </div>
+
                     <!-- Image Header -->
-                    <div class="relative h-52 overflow-hidden">
+                    <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
                         <img src="{{ asset('images/service-infrastructure.png') }}" alt="Infrastructure" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <!-- Subtle Gradient for Icon -->
                         <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
-                        <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-lg">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-sm z-20">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $s2_icon }}"></path></svg>
                         </div>
                     </div>
                     
                     <!-- Content Area -->
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-purple-600 transition-colors">{{ __('messages.service_infra_title') }}</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
+                    <div class="px-2 flex-grow flex flex-col z-20">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors relative z-20">{{ __('messages.service_infra_title') }}</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-grow relative z-20">
                             {{ __('messages.service_infra_desc') }}
                         </p>
-                        <span class="inline-flex items-center text-sm font-bold text-purple-600 group-hover:translate-x-2 transition-transform duration-300">
-                            Learn More <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <span class="inline-flex items-center text-xs font-bold text-purple-600 group-hover:translate-x-1 transition-transform duration-300 relative z-20">
+                            Learn More <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </span>
                     </div>
                 </a>
 
                 <!-- Service 3: UpVenture -->
-                <a href="{{ route('trainings.index') }}" class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                @php
+                    $s3_icon = 'M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253';
+                @endphp
+                <a href="{{ route('trainings.index') }}" class="group neu-flat overflow-hidden p-4 hover:scale-[1.02] transition-all duration-500 flex flex-col relative">
+                    <!-- Decorative background icon -->
+                    <div class="absolute -right-6 -bottom-6 text-cyan-600 opacity-[0.1] group-hover:scale-110 transition-transform duration-500 pointer-events-none z-0">
+                        <svg class="w-32 h-32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="{{ $s3_icon }}"></path></svg>
+                    </div>
+
                     <!-- Image Header -->
-                    <div class="relative h-52 overflow-hidden">
+                    <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
                         <img src="{{ asset('images/service-upventure.png') }}" alt="UpVenture" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <!-- Subtle Gradient for Icon -->
                         <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
-                        <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-cyan-600 shadow-lg">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
+                        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-cyan-600 shadow-sm z-20">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $s3_icon }}"></path></svg>
                         </div>
                     </div>
                     
                     <!-- Content Area -->
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-cyan-600 transition-colors">{{ __('messages.service_people_title') }}</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
+                    <div class="px-2 flex-grow flex flex-col z-20">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors relative z-20">{{ __('messages.service_people_title') }}</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-grow relative z-20">
                             {{ __('messages.service_people_desc') }}
                         </p>
-                        <span class="inline-flex items-center text-sm font-bold text-cyan-600 group-hover:translate-x-2 transition-transform duration-300">
-                            Learn More <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <span class="inline-flex items-center text-xs font-bold text-cyan-600 group-hover:translate-x-1 transition-transform duration-300 relative z-20">
+                            Learn More <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </span>
                     </div>
                 </a>
 
                 <!-- Service 4: Procurement -->
-                <a href="{{ route('services.procurement') }}" class="group bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 flex flex-col">
+                @php
+                    $s4_icon = 'M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z';
+                @endphp
+                <a href="{{ route('services.procurement') }}" class="group neu-flat overflow-hidden p-4 hover:scale-[1.02] transition-all duration-500 flex flex-col relative">
+                    <!-- Decorative background icon -->
+                    <div class="absolute -right-6 -bottom-6 text-emerald-600 opacity-[0.1] group-hover:scale-110 transition-transform duration-500 pointer-events-none z-0">
+                        <svg class="w-32 h-32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="{{ $s4_icon }}"></path></svg>
+                    </div>
+
                     <!-- Image Header -->
-                    <div class="relative h-52 overflow-hidden">
+                    <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
                         <img src="{{ asset('images/service-procurement.png') }}" alt="Procurement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <!-- Subtle Gradient for Icon -->
                         <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
-                        <div class="absolute top-4 left-4 w-12 h-12 rounded-xl bg-white/95 backdrop-blur-sm flex items-center justify-center text-emerald-600 shadow-lg">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg>
+                        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-emerald-600 shadow-sm z-20">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $s4_icon }}"></path></svg>
                         </div>
                     </div>
                     
                     <!-- Content Area -->
-                    <div class="p-6 flex-grow flex flex-col">
-                        <h3 class="text-xl font-bold text-slate-900 mb-3 group-hover:text-emerald-600 transition-colors">{{ __('messages.service_procurement_title') }}</h3>
-                        <p class="text-slate-600 text-sm leading-relaxed mb-6 flex-grow">
+                    <div class="px-2 flex-grow flex flex-col z-20">
+                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors relative z-20">{{ __('messages.service_procurement_title') }}</h3>
+                        <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-grow relative z-20">
                             {{ __('messages.service_procurement_desc') }}
                         </p>
-                        <span class="inline-flex items-center text-sm font-bold text-emerald-600 group-hover:translate-x-2 transition-transform duration-300">
-                            Learn More <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                        <span class="inline-flex items-center text-xs font-bold text-emerald-600 group-hover:translate-x-1 transition-transform duration-300 relative z-20">
+                            Learn More <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
                         </span>
                     </div>
                 </a>
@@ -502,309 +563,109 @@
                     <p class="text-slate-500 text-lg leading-relaxed mb-8">
                         {{ __('messages.why_us_main_desc') }}
                     </p>
-                    <div class="flex gap-4">
-                        <div class="px-6 py-3 rounded-2xl bg-indigo-50 border border-indigo-100 flex items-center gap-3">
-                            <div class="w-2 h-2 rounded-full bg-indigo-600 animate-pulse"></div>
-                            <span class="text-sm font-bold text-indigo-900">Trusted Experts</span>
+                    <div class="flex flex-wrap gap-4 mt-10">
+                        <div class="neu-flat px-6 py-3 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
+                            <div class="text-2xl font-black text-indigo-600">15+</div>
+                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider leading-none">Years<br>Exp.</div>
                         </div>
-                        <div class="px-6 py-3 rounded-2xl bg-emerald-50 border border-emerald-100 flex items-center gap-3">
-                            <div class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></div>
-                            <span class="text-sm font-bold text-emerald-900">Proven Results</span>
+                        <div class="neu-flat px-6 py-3 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
+                            <div class="text-2xl font-black text-emerald-600">500+</div>
+                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider leading-none">Projects<br>Done</div>
                         </div>
                     </div>
                 </div>
                 <div class="lg:w-6/12">
-                    <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50 group-hover:border-white transition-colors duration-500">
-                        <img src="{{ asset('images/why-us-team-javanese.png') }}" alt="Our Professional Team" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 to-transparent"></div>
+                    <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50 group-hover:border-white transition-all duration-500 hover:scale-[1.02]">
+                        <img src="{{ asset('images/why-us-team-javanese.png') }}" alt="Our Professional Team" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <div class="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 to-transparent z-10"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Us Part 2: Feature Grid (Distinct Background) -->
-    <section id="why-choose-us" class="py-24 bg-slate-50 relative overflow-hidden">
+    <!-- Why Us Part 2: Feature Grid -->
+    <section id="why-choose-us" class="py-24 bg-[#eef2f6] relative overflow-hidden scroll-mt-24">
         <!-- Background Texture -->
-        <div class="absolute inset-0 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:24px_24px] opacity-40 -z-0"></div>
+        <div class="absolute inset-0 bg-[radial-gradient(#d1d9e6_1px,transparent_1px)] [background-size:32px_32px] opacity-20 -z-10"></div>
         
         <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center max-w-2xl mx-auto mb-20 reveal-bottom">
+            <div class="text-center max-w-2xl mx-auto mb-16 reveal-bottom">
                 <span class="text-xs font-black text-indigo-600 uppercase tracking-[0.3em] block mb-4">Our Core Excellence</span>
-                <h3 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-tight">{{ __('messages.why_us_subtitle') }}</h3>
+                <h3 class="text-3xl md:text-5xl font-extrabold text-slate-900 mb-6 leading-snug">{{ __('messages.why_us_subtitle') }}</h3>
             </div>
 
-            <div class="relative max-w-7xl mx-auto">
-                <!-- Decorative Background Elements (Inside Grid Area) -->
-                <div class="absolute top-1/2 left-0 w-64 h-64 bg-indigo-100 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2 opacity-30 select-none"></div>
-                <div class="absolute top-1/2 right-0 w-64 h-64 bg-purple-100 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-30 select-none"></div>
+            <!-- Main Feature Grid: 4 Columns on Desktop -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
+                @php
+                    $features = [
+                        ['id' => 1, 'color' => 'indigo', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z'], 
+                        ['id' => 2, 'color' => 'purple', 'icon' => 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z'], 
+                        ['id' => 3, 'color' => 'emerald', 'icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z'], 
+                        ['id' => 4, 'color' => 'amber', 'icon' => 'M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00.806 1.946 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-.806-.806 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 014.438 0'], // Changed icon for #4
+                        ['id' => 5, 'color' => 'cyan', 'icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z'], 
+                        ['id' => 6, 'color' => 'rose', 'icon' => 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'], 
+                        ['id' => 7, 'color' => 'blue', 'icon' => 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z'], 
+                        ['id' => 8, 'color' => 'teal', 'icon' => 'M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z'], 
+                    ];
+                @endphp
 
-                <!-- Floating Stat Left (Desktop) -->
-                <div class="hidden xl:flex absolute -left-20 top-1/2 -translate-y-1/2 flex-col items-center gap-4 reveal-left">
-                    <div class="p-6 bg-white/70 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white text-center transform -rotate-12 hover:rotate-0 transition-transform duration-700 group">
-                        <div class="text-4xl font-black text-indigo-600 mb-1">{{ __('messages.why_us_stat_1_val') }}</div>
-                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('messages.why_us_stat_1_label') }}</div>
-                        <div class="absolute -bottom-2 -right-2 w-10 h-10 bg-indigo-600 rounded-2xl flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h5m-3.414-1.414l3.414 3.414m-4.828 0l4.828 4.828M7 14H2m3.414 1.414L2 12l4.828-4.828"></path></svg>
+                @foreach ($features as $f)
+                    <div class="group neu-flat p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col reveal-bottom relative overflow-hidden" style="transition-delay: {{ ($loop->index * 50) }}ms">
+                        <!-- Decorative background icon -->
+                        <div class="absolute -right-4 -bottom-4 text-{{ $f['color'] }}-600 opacity-[0.08] group-hover:scale-110 transition-transform duration-500 pointer-events-none -z-10">
+                            <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24"><path d="{{ $f['icon'] }}"></path></svg>
                         </div>
-                    </div>
-                </div>
 
-                <!-- Floating Stat Right (Desktop) -->
-                <div class="hidden xl:flex absolute -right-20 top-1/2 -translate-y-1/2 flex-col items-center gap-4 reveal-right">
-                    <div class="p-6 bg-white/70 backdrop-blur-xl rounded-[2.5rem] shadow-2xl border border-white text-center transform rotate-12 hover:rotate-0 transition-transform duration-700 group">
-                        <div class="text-4xl font-black text-purple-600 mb-1">{{ __('messages.why_us_stat_2_val') }}</div>
-                        <div class="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">{{ __('messages.why_us_stat_2_label') }}</div>
-                        <div class="absolute -bottom-2 -left-2 w-10 h-10 bg-purple-600 rounded-2xl flex items-center justify-center text-white shadow-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                        <div class="w-12 h-12 rounded-2xl bg-{{ $f['color'] }}-50 flex items-center justify-center text-{{ $f['color'] }}-600 mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300 relative z-10">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $f['icon'] }}"></path></svg>
                         </div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-3 group-hover:text-indigo-600 transition-colors relative z-20">
+                            {{ __('messages.why_us_feat_'.$f['id'].'_title') }}
+                        </h4>
+                        <p class="text-slate-500 text-xs leading-relaxed flex-grow relative z-20">
+                            {{ __('messages.why_us_feat_'.$f['id'].'_desc') }}
+                        </p>
                     </div>
-                </div>
-
-                <!-- Main Feature Grid -->
-                <div class="grid md:grid-cols-3 gap-8 relative z-10">
-                    <!-- Feature 1: Innovation -->
-                    <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&q=80&w=600" alt="Innovation" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-x-4 top-4">
-                                <span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-indigo-600 shadow-sm">Innovation</span>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                                {{ __('messages.why_us_feat_1_title') }}
-                            </h4>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
-                                {{ __('messages.why_us_feat_1_desc') }}
-                            </p>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-indigo-500"></div>
-                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Modern</span>
-                                </div>
-                                <div class="text-indigo-600/50 group-hover:text-indigo-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feature 2: Client-Centric -->
-                    <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-100">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" alt="Client-Centric" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-x-4 top-4">
-                                <span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-purple-600 shadow-sm">Client-Centric</span>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                                {{ __('messages.why_us_feat_2_title') }}
-                            </h4>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
-                                {{ __('messages.why_us_feat_2_desc') }}
-                            </p>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-purple-500"></div>
-                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Focused</span>
-                                </div>
-                                <div class="text-indigo-600/50 group-hover:text-indigo-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feature 3: Expertise -->
-                    <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-200">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1552581234-26160f608093?auto=format&fit=crop&q=80&w=600" alt="Expertise" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-x-4 top-4">
-                                <span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-emerald-600 shadow-sm">Expertise</span>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                                {{ __('messages.why_us_feat_3_title') }}
-                            </h4>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
-                                {{ __('messages.why_us_feat_3_desc') }}
-                            </p>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
-                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Skilled</span>
-                                </div>
-                                <div class="text-indigo-600/50 group-hover:text-indigo-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feature 4: Security -->
-                    <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-300">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=600" alt="Security" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-x-4 top-4">
-                                <span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-amber-600 shadow-sm">Security</span>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                                {{ __('messages.why_us_feat_4_title') }}
-                            </h4>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
-                                {{ __('messages.why_us_feat_4_desc') }}
-                            </p>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-amber-500"></div>
-                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Trusted</span>
-                                </div>
-                                <div class="text-indigo-600/50 group-hover:text-indigo-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feature 5: Agile -->
-                    <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-400">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&q=80&w=600" alt="Agile" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-x-4 top-4">
-                                <span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-indigo-600 shadow-sm">Agile</span>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                                {{ __('messages.why_us_feat_5_title') }}
-                            </h4>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
-                                {{ __('messages.why_us_feat_5_desc') }}
-                            </p>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-indigo-500"></div>
-                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Fast</span>
-                                </div>
-                                <div class="text-indigo-600/50 group-hover:text-indigo-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Feature 6: Quality -->
-                    <div class="group bg-white rounded-[2rem] overflow-hidden border border-slate-100 shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom delay-500">
-                        <div class="relative h-48 overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1560177112-fbfd5fde9566?auto=format&fit=crop&q=80&w=600" alt="Quality" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
-                            <div class="absolute inset-x-4 top-4">
-                                <span class="px-3 py-1 bg-white/90 backdrop-blur-md rounded-full text-[10px] font-bold text-cyan-600 shadow-sm">Quality</span>
-                            </div>
-                        </div>
-                        <div class="p-8 flex flex-col flex-grow">
-                            <h4 class="text-xl font-bold text-slate-900 mb-4 group-hover:text-indigo-600 transition-colors">
-                                {{ __('messages.why_us_feat_6_title') }}
-                            </h4>
-                            <p class="text-slate-500 text-sm leading-relaxed mb-8 flex-grow">
-                                {{ __('messages.why_us_feat_6_desc') }}
-                            </p>
-                            <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
-                                <div class="flex items-center gap-2">
-                                    <div class="w-2 h-2 rounded-full bg-cyan-500"></div>
-                                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Proven</span>
-                                </div>
-                                <div class="text-indigo-600/50 group-hover:text-indigo-600 transition-colors">
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section id="testimonials" class="py-24 bg-white relative overflow-hidden">
-        <div class="container mx-auto px-6 mb-16">
-            <div class="text-center reveal-bottom">
+    <section id="testimonials" class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 reveal-bottom">
                 <span class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block">Testimonials</span>
                 <h2 class="text-3xl md:text-5xl font-bold text-slate-900">What Our Clients Say</h2>
             </div>
-        </div>
 
-        <div class="relative flex flex-col items-center justify-center overflow-hidden">
-            <!-- Testimonials Marquee -->
-            <div class="group relative flex overflow-hidden py-10 gap-8 w-full">
+            <div class="grid md:grid-cols-3 gap-8">
                 @php
                     $testimonials = __('messages.home_testimonials');
                 @endphp
                 
                 @if(is_array($testimonials))
-                <!-- First Row (Original) -->
-                <div class="flex shrink-0 justify-around gap-8 animate-marquee-slow hover:[animation-play-state:paused] py-4">
-                    @foreach($testimonials as $testi)
-                    <div class="w-[350px] md:w-[450px] bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col">
+                    @foreach(collect($testimonials)->take(3) as $testi)
+                    <div class="bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col reveal-bottom" style="transition-delay: {{ $loop->index * 100 }}ms">
                         <div class="flex items-center gap-1 text-amber-400 mb-6">
                             @for($i = 0; $i < ($testi['rating'] ?? 5); $i++)
                             <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
                             @endfor
                         </div>
-                        <p class="text-slate-600 mb-8 flex-grow leading-relaxed italic text-lg">"{{ $testi['text'] }}"</p>
+                        <p class="text-slate-600 mb-8 flex-grow leading-relaxed italic">"{{ $testi['text'] }}"</p>
                         <div class="flex items-center gap-4 mt-auto">
-                            <img src="{{ $testi['avatar'] }}" alt="{{ $testi['author'] }}" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-50">
+                            <img src="{{ $testi['avatar'] }}" alt="{{ $testi['author'] }}" class="w-12 h-12 rounded-full object-cover border-2 border-indigo-50">
                             <div>
-                                <h4 class="font-bold text-slate-900 text-base">{{ $testi['author'] }}</h4>
-                                <span class="text-sm text-slate-500">{{ $testi['role'] }}</span>
+                                <h4 class="font-bold text-slate-900 text-sm">{{ $testi['author'] }}</h4>
+                                <span class="text-xs text-slate-500">{{ $testi['role'] }}</span>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                </div>
-
-                <!-- Second Row (Duplicate for seamless loop) -->
-                <div class="flex shrink-0 justify-around gap-8 animate-marquee-slow hover:[animation-play-state:paused] py-4" aria-hidden="true">
-                    @foreach($testimonials as $testi)
-                    <div class="w-[350px] md:w-[450px] bg-white p-8 rounded-[2rem] shadow-lg border border-slate-100 hover:shadow-xl transition-all duration-300 flex flex-col">
-                        <div class="flex items-center gap-1 text-amber-400 mb-6">
-                            @for($i = 0; $i < ($testi['rating'] ?? 5); $i++)
-                            <svg class="w-5 h-5 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
-                            @endfor
-                        </div>
-                        <p class="text-slate-600 mb-8 flex-grow leading-relaxed italic text-lg">"{{ $testi['text'] }}"</p>
-                        <div class="flex items-center gap-4 mt-auto">
-                            <img src="{{ $testi['avatar'] }}" alt="{{ $testi['author'] }}" class="w-14 h-14 rounded-full object-cover border-2 border-indigo-50">
-                            <div>
-                                <h4 class="font-bold text-slate-900 text-base">{{ $testi['author'] }}</h4>
-                                <span class="text-sm text-slate-500">{{ $testi['role'] }}</span>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
                 @endif
-
-
-                <!-- Gradient Masks -->
-                <div class="pointer-events-none absolute inset-y-0 left-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
-                <div class="pointer-events-none absolute inset-y-0 right-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
             </div>
         </div>
-
-        <style>
-            .animate-marquee-slow {
-                animation: marquee-slow 40s linear infinite;
-            }
-            @keyframes marquee-slow {
-                from { transform: translateX(0); }
-                to { transform: translateX(calc(-100% - 2rem)); }
-            }
-        </style>
     </section>
 
         <style>

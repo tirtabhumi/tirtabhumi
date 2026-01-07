@@ -156,7 +156,7 @@
                                                 </div>
 
                                                   <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ ucfirst($type) }}
+                                                    {{ __('messages.training_type_' . $type) }}
                                                 </span>
                                             </label>
                                         @endforeach
@@ -234,7 +234,7 @@
                                     @else
                                         <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-indigo-600">
                                             @if($training->category == 'webinar')
-                                                {{ ucfirst($training->type) }}
+                                                {{ __('messages.training_type_' . $training->type) }}
                                             @else
                                                 {{ ucfirst($training->level) }}
                                             @endif

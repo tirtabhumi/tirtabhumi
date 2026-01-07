@@ -26,37 +26,37 @@
                     </div>
 
                     <!-- Register Form -->
-                    <div class="bg-white/70 rounded-3xl p-6 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
+                    <div class="bg-white/70 rounded-3xl p-8 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
                         <form action="{{ route('register.store') }}" method="POST" class="space-y-4">
                             @csrf
                             <!-- Name -->
                             <div>
-                                <label for="name" class="block text-xs font-bold text-slate-700 mb-1.5">Full
+                                <label for="name" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Full
                                     Name</label>
                                 <input type="text" id="name" name="name" required
-                                    class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all text-sm"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="John Doe" value="{{ old('name') }}">
                                 @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <!-- Email -->
                             <div>
-                                <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">Email
+                                <label for="email" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all text-sm"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="name@company.com" value="{{ old('email') }}">
                                 @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <!-- Phone Number -->
                             <div>
-                                <label for="phone_number" class="block text-xs font-bold text-slate-700 mb-1.5">Phone
+                                <label for="phone_number" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Phone
                                     Number</label>
                                 <div class="flex gap-2">
                                     <div class="w-32">
                                         <select id="country_code" name="country_code" required
-                                            class="w-full px-2 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all appearance-none text-sm text-center">
+                                            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                                             <option value="+62">🇮🇩 +62</option>
                                             <option value="+1">🇺🇸 +1</option>
                                             <option value="+44">🇬🇧 +44</option>
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="flex-1">
                                         <input type="tel" id="phone_number" name="phone_number" required
-                                            class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all text-sm"
+                                           class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                             placeholder="812345678" value="{{ old('phone_number') }}">
                                     </div>
                                 </div>
@@ -77,9 +77,9 @@
                             <!-- Password -->
                             <div>
                                 <label for="password"
-                                    class="block text-xs font-bold text-slate-700 mb-1.5">Password</label>
+                                    class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Password</label>
                                 <input type="password" id="password" name="password" required
-                                    class="w-full px-4 py-2.5 rounded-xl bg-white border border-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-indigo-500/30 focus:border-indigo-400 transition-all text-sm"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="Min. 8 chars">
                                 @error('password') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -87,11 +87,11 @@
                             <!-- Confirm Password -->
                             <div>
                                 <label for="password_confirmation"
-                                    class="block text-xs font-bold text-slate-700 mb-1.5">Confirm Password</label>
+                                    class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Confirm Password</label>
                                 <input type="password" id="password_confirmation" name="password_confirmation" required
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm"
-                                    placeholder="Re-enter password">
-                            </div>
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                                                placeholder="name@company.com" value="{{ old('email') }}">
+                       </div>     
 
                             <!-- Submit Button -->
                             <button type="submit"

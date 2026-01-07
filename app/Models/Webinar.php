@@ -15,6 +15,7 @@ class Webinar extends Model
         'description',
         'date',
         'price',
+        'type',
         'link',
         'is_active',
     ];

@@ -92,7 +92,7 @@
                                                     <svg class="w-3.5 h-3.5 transform {{ in_array($t, $type) ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                                 </div>
                                                 
-                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium capitalize">{{ $t }}</span>
+                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium capitalize">{{ __('messages.training_type_' . $t) }}</span>
                                             </label>
                                         @endforeach
                                     @endif

@@ -16,12 +16,17 @@
                 @foreach($webinars as $webinar)
                     <div class="bg-white rounded-lg shadow-lg overflow-hidden border border-slate-200">
                         <div class="p-6">
-                            <div class="flex items-center justify-between mb-4">
-                                <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs font-semibold rounded-full">
-                                    {{ $webinar->date->format('M d, Y') }}
-                                </span>
+                            <div class="flex items-center justify-between mb-2">
+                                <div class="flex gap-2">
+                                    <span class="px-3 py-1 bg-indigo-100 text-indigo-800 text-xs font-semibold rounded-full">
+                                        {{ $webinar->date->format('M d, Y') }}
+                                    </span>
+                                    <span class="px-3 py-1 bg-slate-100 text-slate-700 text-xs font-semibold rounded-full capitalize">
+                                        {{ __('messages.training_type_' . ($webinar->type ?? 'online')) }}
+                                    </span>
+                                </div>
                                 <span class="text-slate-500 text-sm">
-                                    {{ $webinar->price == 0 ? 'FREE' : 'Rp ' . number_format($webinar->price, 0, ',', '.') }}
+                                    {{ $webinar->price == 0 ? __('messages.free') : 'Rp ' . number_format($webinar->price, 0, ',', '.') }}
                                 </span>
                             </div>
                             <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $webinar->title }}</h3>

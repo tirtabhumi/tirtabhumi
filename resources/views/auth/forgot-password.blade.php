@@ -19,7 +19,7 @@
                     </div>
 
                     <!-- Form -->
-                    <div class="bg-white/50 rounded-3xl p-6 neu-pressed animate-fade-in-up animation-delay-200">
+                    <div class="bg-white/70 rounded-3xl p-8 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
                         
                         @if (session('status'))
                             <div class="mb-6 text-sm font-medium text-green-600 bg-green-100 border border-green-400 rounded-xl p-4">
@@ -31,9 +31,9 @@
                             @csrf
                             <!-- Email -->
                             <div>
-                                <label for="email" class="block text-xs font-bold text-slate-700 mb-1.5">Email Address</label>
+                                <label for="email" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email Address</label>
                                 <input type="email" id="email" name="email" required 
-                                    class="w-full px-4 py-2.5 rounded-xl neu-pressed border-none focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all bg-[#eef2f6] text-sm" 
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="name@company.com" value="{{ old('email') }}">
                                 @error('email')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>

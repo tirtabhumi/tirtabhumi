@@ -38,6 +38,10 @@ return [
     'why_us_feat_5_desc' => 'Metodologi yang dioptimalkan untuk pengiriman proyek yang cepat, fleksibel, dan andal.',
     'why_us_feat_6_title' => 'Kualitas Terbukti',
     'why_us_feat_6_desc' => 'Hasil bersertifikat dan jaminan kualitas yang ketat untuk setiap solusi.',
+    'why_us_feat_7_title' => 'Kemitraan Strategis',
+    'why_us_feat_7_desc' => 'Kami bukan sekadar vendor, melainkan mitra yang tumbuh bersama kesuksesan bisnis Anda.',
+    'why_us_feat_8_title' => 'Nilai Terbaik',
+    'why_us_feat_8_desc' => 'Menghadirkan keseimbangan sempurna antara inovasi teknologi dan efisiensi biaya investasi.',
     'why_us_desc' => 'PT Tirta Bhumi Indonesia adalah perusahaan penyedia solusi end-to-end yang menghubungkan kebutuhan teknologi dan operasional bisnis Anda. Kami memahami bahwa setiap sektor—mulai dari Pemerintah (B2G), Pendidikan, Perhotelan, hingga UMKM—memiliki tantangan unik. Dengan dukungan jejaring kemitraan yang luas, kami menghadirkan layanan yang tidak hanya canggih secara digital, namun juga handal dalam pengadaan fisik dan manajemen fasilitas. Satu pintu untuk beragam kebutuhan Anda.',
 
     'services_title' => 'Solusi Kami untuk Kebutuhan Anda',
@@ -241,8 +245,32 @@ return [
 
     // Training Index Page
     'training_title' => 'UpVenture',
-    'training_subtitle' => 'Tingkatkan kompetensi digital Anda bersama praktisi terbaik.',
-    'training_subtitle_highlight' => 'Investasi Terbaik Adalah Melatih diri dengan Ilmu bersama Mentor Terbaik.',
+    'training_subtitle' => 'Upgrade skill digitalmu bersama UpVenture. Belajar langsung dari praktisi industri dengan kurikulum yang dirancang untuk kebutuhan kerja nyata.',
+    'training_subtitle_highlight' => 'Mulai Karir Digital Terpilihmu Bersama Mentor Terbaik.',
+    'training_about_title' => 'Apa itu UpVenture?',
+    'training_about_desc' => 'UpVenture adalah platform edukasi digital dari PT Tirta Bhumi Indonesia yang berfokus pada pengembangan skill siap kerja. Kami menghadirkan program pelatihan intensif di bidang teknologi, desain, dan pemasaran digital untuk membantu Anda mencapai potensi maksimal di era ekonomi digital.',
+    'category_title' => 'Materi',
+    'category_desc' => 'Temukan pelatihan yang sesuai dengan minat dan tujuan karir Anda.',
+    'topic_uiux' => 'UI/UX Design',
+    'topic_web' => 'Web Development',
+    'topic_marketing' => 'Digital Marketing',
+    'topic_ai' => 'Artificial Intelligence',
+    'topic_office' => 'Office Productivity',
+    'topic_coding' => 'Coding & Back-End',
+    'topic_iot' => 'Internet of Things',
+    'topic_data' => 'Data Science',
+    'topic_design' => 'Graphic Design',
+    'topic_security' => 'Cyber Security',
+    'privilege_title' => 'Benefit Belajar di UpVenture',
+    'privilege_desc' => 'Kami memastikan setiap alumni mendapatkan nilai lebih untuk menunjang karir mereka.',
+    'privilege_1_title' => 'Mentor Praktisi',
+    'privilege_1_desc' => 'Belajar langsung dari mereka yang sudah berpengalaman bertahun-tahun di industri.',
+    'privilege_2_title' => 'Akses Selamanya',
+    'privilege_2_desc' => 'Materi kelas dapat diakses kapan saja tanpa batasan waktu untuk belajar ulang.',
+    'privilege_3_title' => 'Sertifikat Resmi',
+    'privilege_3_desc' => 'Dapatkan sertifikat resmi dari PT Tirta Bhumi Indonesia untuk portofolio Anda.',
+    'privilege_4_title' => 'Komunitas Eksklusif',
+    'privilege_4_desc' => 'Networking dengan sesama alumni dan mentor untuk berbagi peluang kerja dan ilmu.',
     'training_btn_schedule' => 'Lihat Jadwal Pelatihan',
     'join_affiliate' => 'Gabung Affiliate',
     'login_affiliate' => 'Masuk Affiliate',
@@ -284,9 +312,16 @@ return [
     'training_contact_desc' => 'Kami siap bantu susun materi dan jadwal training sesuai kebutuhan (Online / Offline).',
     'training_contact_btn' => 'Hubungi Kami',
 
-    'partnership_title' => 'Partnership',
-    'partnership_desc' => 'Ingin menambahkan kelas Anda di UpVenture? Mari berkolaborasi sekarang.',
-    'partnership_btn' => 'Hubungi Partnership',
+    'partnership_title' => 'Program Partnership',
+    'partnership_subtitle' => 'Wujudkan Ide Edukasi Anda Bersama Kami',
+    'partnership_desc' => 'Kami membuka peluang kolaborasi bagi para mentor dan instruktur ahli untuk tumbuh bersama di platform UpVenture.',
+    'partnership_feature_1' => 'Jangkauan Luas',
+    'partnership_feature_1_desc' => 'Akses ke ribuan siswa yang siap belajar di seluruh Indonesia.',
+    'partnership_feature_2' => 'Sistem Terpadu',
+    'partnership_feature_2_desc' => 'Kelola materi dan siswa Anda dengan platform LMS yang handal.',
+    'partnership_feature_3' => 'Support Pemasaran',
+    'partnership_feature_3_desc' => 'Bantuan promosi digital untuk meningkatkan pendaftaran kelas Anda.',
+    'partnership_btn' => 'Mulai Kolaborasi Sekarang',
 
     // Training Detail Page
     'back_to_list' => 'Kembali ke Daftar Pelatihan',
@@ -601,49 +636,21 @@ return [
             'text' => 'Program pelatihan UpVenture sangat membantu tim kami meningkatkan produktivitas. Mentor-mentornya sangat berpengalaman!',
             'author' => 'Budi Santoso',
             'role' => 'CTO, TechCorp',
-            'avatar' => 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
             'rating' => 5
         ],
         [
             'text' => 'Layanan pengadaan barang yang sangat efisien dan transparan. Membantu kami menghemat waktu dan sumber daya secara signifikan.',
             'author' => 'Siti Aminah',
             'role' => 'Ops Manager, RetailIndo',
-            'avatar' => 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
             'rating' => 5
         ],
         [
             'text' => 'Sangat merekomendasikan layanan konsultasi infrastruktur mereka. Sangat profesional, handal, dan solutif untuk kebutuhan kami.',
             'author' => 'Andi Wijaya',
             'role' => 'Director, BuildCo',
-            'avatar' => 'https://images.unsplash.com/photo-1545167622-3a6ac756afa4?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            'rating' => 5
-        ],
-        [
-            'text' => 'Transformasi digital kami berjalan lancar berkat bantuan tim Tirta Bhumi. Website dan sistem otomasi mereka luar biasa!',
-            'author' => 'Dewi Lestari',
-            'role' => 'Founder, GreenModa',
-            'avatar' => 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            'rating' => 5
-        ],
-        [
-            'text' => 'Dukungan teknis yang responsif dan sangat membantu. Mereka selalu ada saat kami membutuhkan solusi IT yang mendesak.',
-            'author' => 'Rizky Pratama',
-            'role' => 'IT Head, GlobalEdu',
-            'avatar' => 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            'rating' => 5
-        ],
-        [
-            'text' => 'Implementasi sistem keamanan CCTV dan jaringan internet di kantor kami sangat rapi dan stabil. Kerja yang sangat bagus!',
-            'author' => 'Maya Sari',
-            'role' => 'Adm Director, HotelIndah',
-            'avatar' => 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
-            'rating' => 5
-        ],
-        [
-            'text' => 'Event Organizer dari UpVenture membuat workshop kami sukses besar. Detail-detail kecil sangat diperhatikan dengan baik.',
-            'author' => 'Hendra Kusuma',
-            'role' => 'Marketing Manager, BankKita',
-            'avatar' => 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
             'rating' => 5
         ],
     ],

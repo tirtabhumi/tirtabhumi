@@ -17,6 +17,7 @@ class Training extends Model
         'type',
         'category',
         'level',
+        'topic',
         'price',
         'location_offline',
         'location_online',
