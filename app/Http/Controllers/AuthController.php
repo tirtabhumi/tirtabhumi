@@ -29,6 +29,16 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
+            if ($user->is_blocked) {
+                Auth::logout();
+                $request->session()->invalidate();
+                $request->session()->regenerateToken();
+
+                return back()->withErrors([
+                    'email' => 'Your account has been blocked. Please contact support.',
+                ])->onlyInput('email');
+            }
+
             if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
                 return redirect()->intended('/admin');
             }

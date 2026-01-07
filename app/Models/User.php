@@ -27,6 +27,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'google_id',
         'avatar',
         'phone',
+        'is_blocked',
     ];
 
     /**
@@ -49,11 +50,15 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         return [
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
+            'is_blocked' => 'boolean',
         ];
     }
 
     public function canAccessPanel(\Filament\Panel $panel): bool
     {
+        if ($this->is_blocked) {
+            return false;
+        }
         return $this->hasRole(['super_admin', 'admin', 'partner']);
     }
 

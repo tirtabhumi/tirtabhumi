@@ -25,6 +25,11 @@ class Webinar extends Model
         'price' => 'decimal:2',
         'is_active' => 'boolean',
     ];
+    public function modules(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(WebinarModule::class)->orderBy('order');
+    }
+
     public function partner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');

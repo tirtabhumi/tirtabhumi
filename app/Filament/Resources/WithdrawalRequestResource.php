@@ -46,6 +46,11 @@ class WithdrawalRequestResource extends Resource
                 Forms\Components\Textarea::make('bank_details')
                     ->columnSpanFull()
                     ->required(),
+                Forms\Components\FileUpload::make('proof_of_transfer')
+                    ->image()
+                    ->directory('withdrawals')
+                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin']))
+                    ->columnSpanFull(),
                 Forms\Components\Textarea::make('admin_note')
                     ->columnSpanFull()
                     ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin'])),

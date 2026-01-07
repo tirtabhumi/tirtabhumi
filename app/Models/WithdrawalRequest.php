@@ -16,6 +16,7 @@ class WithdrawalRequest extends Model
         'status',
         'bank_details',
         'admin_note',
+        'proof_of_transfer',
     ];
 
     protected $casts = [

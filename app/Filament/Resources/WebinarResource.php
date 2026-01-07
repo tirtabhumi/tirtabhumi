@@ -3,6 +3,7 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\WebinarResource\Pages;
+use App\Filament\Resources\WebinarResource\RelationManagers;
 use App\Models\Webinar;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -109,7 +110,7 @@ class WebinarResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            RelationManagers\ModulesRelationManager::class,
         ];
     }
 

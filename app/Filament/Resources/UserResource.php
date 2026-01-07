@@ -42,6 +42,11 @@ class UserResource extends Resource
                     ->searchable(),
                 Forms\Components\TextInput::make('phone')
                     ->tel(),
+                Forms\Components\Toggle::make('is_blocked')
+                    ->label('Block User')
+                    ->onColor('danger')
+                    ->offColor('success')
+                    ->default(false),
             ]);
     }
 
@@ -72,9 +77,14 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
+                Tables\Columns\IconColumn::make('is_blocked')
+                    ->boolean()
+                    ->label('Blocked')
+                    ->sortable(),
             ])
             ->filters([
-                //
+                Tables\Filters\TernaryFilter::make('is_blocked')
+                    ->label('Blocked Status'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
