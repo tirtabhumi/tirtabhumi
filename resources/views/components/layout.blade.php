@@ -286,10 +286,15 @@
                         </div>
                     </div>
                 @else
-                    <div class="flex items-center gap-4">
+                    <div class="flex items-center gap-1">
                         <a href="{{ route('login') }}"
-                            class="text-sm font-bold text-slate-600 hover:text-indigo-600 transition-colors">{{ __('messages.login') }}</a>
-                        <a href="{{ route('register') }}" class="neu-btn px-6 py-2 text-sm font-bold">Sign Up</a>
+                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">
+                            {{ __('messages.login') }}
+                        </a>
+                        <a href="{{ route('register') }}"
+                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">
+                            Sign Up
+                        </a>
                     </div>
                 @endauth
             </div>
@@ -431,6 +436,33 @@
                         class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.blog') }}</a>
                     <a href="{{ route('contacts.index') }}"
                         class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.contact') }}</a>
+
+                    <!-- Mobile Auth Switcher -->
+                    @auth
+                        <div class="pt-4 pb-2 border-b border-slate-100">
+                            <p class="text-sm text-slate-400 mb-2">Signed in as <span class="font-bold text-slate-600">{{ Auth::user()->name }}</span></p>
+                            <a href="/dashboard"
+                                class="block text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-2">Dashboard</a>
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit"
+                                    class="w-full text-left text-lg font-medium text-red-500 hover:text-red-700 transition-colors py-2">
+                                    Sign Out
+                                </button>
+                            </form>
+                        </div>
+                    @else
+                        <div class="flex flex-col gap-3 mt-6">
+                            <a href="{{ route('login') }}"
+                                class="w-full py-3 rounded-xl text-center font-bold border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors">
+                                {{ __('messages.login') }}
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="w-full py-3 rounded-xl text-center font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors">
+                                Sign Up
+                            </a>
+                        </div>
+                    @endauth
 
                     <div class="mt-auto pt-8 pb-8">
                         <div class="flex gap-4 justify-center">

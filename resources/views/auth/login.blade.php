@@ -1,6 +1,6 @@
-<x-layout-upventure title="Login">
+<x-layout-auth title="Login">
     <!-- Contact-style Background -->
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen flex items-center">
+    <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -17,7 +17,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <!-- Unified Container (Expanded Version to match Register) -->
             <div
-                class="neu-flat p-8 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-2xl mx-auto">
+                class="neu-flat p-8 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-xl mx-auto mt-20 md:mt-0">
                 <div class="relative z-10">
                     <!-- Header -->
                     <div class="text-center mb-6 animate-fade-in-up">
@@ -35,11 +35,9 @@
                                 <label for="email" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
-                                    placeholder="name@company.com">
-                                @error('email')
-                                    <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
-                                @enderror
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    placeholder="name@company.com" value="{{ old('email') }}">
+                                @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
 
                             <!-- Password -->
@@ -47,7 +45,7 @@
                                 <label for="password"
                                     class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Password</label>
                                 <input type="password" id="password" name="password" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="••••••••">
                             </div>
 
@@ -68,14 +66,8 @@
                                 Sign In
                             </button>
 
-                            <div class="text-center font-medium text-slate-600 text-xs mt-4">
-                                Don't have an account?
-                                <a href="{{ route('register') }}"
-                                    class="text-indigo-600 hover:text-indigo-700 font-bold ml-1">Register here</a>
-                            </div>
-
                             <!-- Divider -->
-                            <div class="flex items-center gap-4 my-4">
+                            <div class="flex items-center gap-4 my-6">
                                 <div class="h-px bg-slate-300/50 flex-1"></div>
                                 <span
                                     class="text-slate-400 text-[10px] font-medium whitespace-nowrap uppercase tracking-wider">Or
@@ -110,4 +102,4 @@
             </div>
         </div>
     </section>
-</x-layout-upventure>
+</x-layout-auth>

@@ -1,6 +1,6 @@
-<x-layout-upventure title="Reset Password">
+<x-layout-auth title="Reset Password">
     <!-- Contact-style Background -->
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen flex items-center">
+    <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -17,7 +17,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <!-- Unified Container (Compact Version) -->
             <div
-                class="neu-flat p-8 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-2xl mx-auto">
+                class="neu-flat p-8 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-xl mx-auto mt-20 md:mt-0">
                 <div class="relative z-10">
                     <!-- Header -->
                     <div class="text-center mb-6 animate-fade-in-up">
@@ -26,7 +26,7 @@
                     </div>
 
                     <!-- Form -->
-                    <div class="bg-white/50 rounded-3xl p-6 neu-pressed animate-fade-in-up animation-delay-200">
+                    <div class="bg-white/70 rounded-3xl p-6 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
                         <form action="{{ route('password.update') }}" method="POST" class="space-y-4">
                             @csrf
                             <input type="hidden" name="token" value="{{ $token }}">
@@ -36,7 +36,7 @@
                                 <label for="email" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="name@company.com" value="{{ old('email', request()->email) }}">
                                 @error('email')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
@@ -48,7 +48,8 @@
                                 <label for="password" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">New
                                     Password</label>
                                 <input type="password" id="password" name="password" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    placeholder="Min. 8 chars">
                                 @error('password')
                                     <p class="mt-1 text-xs text-red-600">{{ $message }}</p>
                                 @enderror
@@ -59,7 +60,7 @@
                                 <label for="password_confirmation"
                                     class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Confirm Password</label>
                                 <input type="password" id="password_confirmation" name="password_confirmation" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="Re-enter password">
                             </div>
 
@@ -76,4 +77,4 @@
             </div>
         </div>
     </section>
-</x-layout-upventure>
+</x-layout-auth>

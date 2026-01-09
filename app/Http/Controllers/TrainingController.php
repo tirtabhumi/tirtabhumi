@@ -12,14 +12,16 @@ class TrainingController extends Controller
     {
         $webinars = Training::where('is_active', true)
             ->where('category', 'webinar')
+            ->where('event_date', '>=', now())
             ->orderBy('event_date', 'asc')
-            ->take(6) // Get 6 to check if there are more than 3
+            ->take(6) 
             ->get();
 
         $classes = Training::where('is_active', true)
             ->where('category', 'class')
+            ->where('event_date', '>=', now())
             ->orderBy('event_date', 'asc')
-            ->take(6) // Get 6 to check if there are more than 3
+            ->take(6) 
             ->get();
 
         return view('trainings.index', compact('webinars', 'classes'));
@@ -28,7 +30,8 @@ class TrainingController extends Controller
     public function webinars(Request $request)
     {
         $query = Training::where('is_active', true)
-            ->where('category', 'webinar');
+            ->where('category', 'webinar')
+            ->where('event_date', '>=', now());
 
         // Search
         if ($request->filled('search')) {
@@ -61,7 +64,7 @@ class TrainingController extends Controller
 
         // Dynamic filters for sidebar
         $filters = [
-            'type' => ['online', 'offline'],
+            'type' => ['online', 'offline', 'hybrid'],
         ];
 
         return view('trainings.list', compact('trainings', 'title', 'filters'));
@@ -70,14 +73,13 @@ class TrainingController extends Controller
     public function classes(Request $request)
     {
         $query = Training::where('is_active', true)
-            ->where('category', 'class');
+            ->where('category', 'class')
+            ->where('event_date', '>=', now());
 
         // Search
         if ($request->filled('search')) {
             $query->where('title', 'like', '%' . $request->search . '%');
         }
-
-
 
         // Filter Level
         if ($request->filled('level')) {

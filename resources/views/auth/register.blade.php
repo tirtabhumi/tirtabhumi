@@ -1,6 +1,6 @@
-<x-layout-upventure title="Register">
+<x-layout-auth title="Register">
     <!-- Contact-style Background -->
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen flex items-center">
+    <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -17,7 +17,7 @@
         <div class="container mx-auto px-6 relative z-10">
             <!-- Unified Container (Expanded Version) -->
             <div
-                class="neu-flat p-8 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-2xl mx-auto">
+                class="neu-flat p-8 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-2xl mx-auto mt-20 md:mt-0">
                 <div class="relative z-10">
                     <!-- Header -->
                     <div class="text-center mb-6 animate-fade-in-up">
@@ -34,7 +34,7 @@
                                 <label for="name" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Full
                                     Name</label>
                                 <input type="text" id="name" name="name" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="John Doe" value="{{ old('name') }}">
                                 @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -44,7 +44,7 @@
                                 <label for="email" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                     Address</label>
                                 <input type="email" id="email" name="email" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="name@company.com" value="{{ old('email') }}">
                                 @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -56,7 +56,7 @@
                                 <div class="flex gap-2">
                                     <div class="w-32">
                                         <select id="country_code" name="country_code" required
-                                            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                            class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                                             <option value="+62">🇮🇩 +62</option>
                                             <option value="+1">🇺🇸 +1</option>
                                             <option value="+44">🇬🇧 +44</option>
@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="flex-1">
                                         <input type="tel" id="phone_number" name="phone_number" required
-                                           class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                           class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                             placeholder="812345678" value="{{ old('phone_number') }}">
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                 <label for="password"
                                     class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Password</label>
                                 <input type="password" id="password" name="password" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                     placeholder="Min. 8 chars">
                                 @error('password') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                             </div>
@@ -89,23 +89,27 @@
                                 <label for="password_confirmation"
                                     class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Confirm Password</label>
                                 <input type="password" id="password_confirmation" name="password_confirmation" required
-                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
-                                                                placeholder="name@company.com" value="{{ old('email') }}">
-                       </div>     
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat" placeholder="Re-enter password">
+                                    @error('password_confirmation')
+                                    <p class="mt-1 text-xs text-red-600">
+                                        Konfirmasi password tidak sesuai dengan password baru.
+                                    </p>
+                                @enderror
+                            </div>
 
                             <!-- Submit Button -->
                             <button type="submit"
-                                class="w-full px-8 py-3.5 mt-2 neu-btn font-bold text-indigo-600 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm">
+                                class="w-full px-10 py-4 mt-2 neu-btn font-bold text-indigo-600 hover:scale-[1.02] active:scale-[0.98] transition-all text-sm">
                                 Create Account
                             </button>
 
-                            <div class="text-center font-medium text-slate-600 text-xs mt-4">
+                            <div class="text-center font-medium text-slate-600 text-xs mt-5">
                                 Already have an account? <a href="{{ route('login') }}"
-                                    class="text-indigo-600 hover:text-indigo-700 font-bold ml-1">Sign in</a>
+                                    class="text-indigo-600 hover:text-indigo-700 font-bold ml-2">Sign in</a>
                             </div>
 
                             <!-- Divider -->
-                            <div class="flex items-center gap-4 my-4">
+                            <div class="flex items-center gap-4 my-6">
                                 <div class="h-px bg-slate-300/50 flex-1"></div>
                                 <span
                                     class="text-slate-400 text-[10px] font-medium whitespace-nowrap uppercase tracking-wider">Or
@@ -138,4 +142,4 @@
             </div>
         </div>
     </section>
-</x-layout-upventure>
+</x-layout-auth>

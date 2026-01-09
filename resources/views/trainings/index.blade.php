@@ -274,12 +274,12 @@
                     </p>
                     <div class="grid grid-cols-2 gap-8">
                         <div>
-                            <div class="text-3xl font-bold text-indigo-600 mb-1">5000+</div>
-                            <div class="text-slate-500 text-sm italic">Alumni Aktif</div>
+                            <div class="text-3xl font-bold text-indigo-600 mb-1">100%</div>
+                            <div class="text-slate-500 text-sm italic">Kurikulum Berbasis Proyek</div>
                         </div>
                         <div>
-                            <div class="text-3xl font-bold text-indigo-600 mb-1">50+</div>
-                            <div class="text-slate-500 text-sm italic">Mentor Profesional</div>
+                            <div class="text-3xl font-bold text-indigo-600 mb-1">Resmi</div>
+                            <div class="text-slate-500 text-sm italic">Sertifikat Kompetensi</div>
                         </div>
                     </div>
                 </div>

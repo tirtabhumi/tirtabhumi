@@ -37,12 +37,12 @@
                 </a>
             </div>
             
-            <div class="h-12 md:h-12"></div>
+            <div class="h-32 md:h-40"></div>
         </div>
 
         <!-- Partners Section (Anchored to Bottom) -->
         <div class="relative container mx-auto px-6 text-center z-20 pb-12 animate-fade-in-up animation-delay-400">
-            <p class="text-sm font-bold text-black uppercase tracking-wider mb-8">Trusted by Global Leaders</p>
+            <p class="text-sm font-bold text-black uppercase tracking-wider mb-4">Trusted by Global Leaders</p>
             
             <div class="relative flex w-full flex-col items-center justify-center overflow-hidden">
                 <!-- Marquee Container -->
@@ -196,7 +196,12 @@
                 <div id="content-class" class="transition-opacity duration-300">
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @php
-                            $classes = \App\Models\Training::where('category', 'class')->where('is_active', true)->latest()->take(4)->get();
+                            $classes = \App\Models\Training::where('category', 'class')
+                                ->where('is_active', true)
+                                ->where('event_date', '>=', now())
+                                ->orderBy('event_date', 'asc')
+                                ->take(4)
+                                ->get();
                         @endphp
                         @foreach($classes as $training)
                         <a href="{{ route('trainings.show', $training->slug) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 h-full flex flex-col">
@@ -213,8 +218,8 @@
                                         {{ __('messages.finished') }}
                                     </div>
                                 @else
-                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold {{ $training->type === 'online' ? 'text-green-600' : 'text-indigo-600' }}">
-                                        {{ __('messages.training_type_' . $training->type) }}
+                                    <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-indigo-600">
+                                        {{ ucfirst($training->level) }}
                                     </div>
                                 @endif
                             </div>
@@ -248,7 +253,12 @@
                 <div id="content-webinar" class="hidden transition-opacity duration-300">
                     <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                         @php
-                            $webinars = \App\Models\Training::where('category', 'webinar')->where('is_active', true)->latest()->take(4)->get();
+                            $webinars = \App\Models\Training::where('category', 'webinar')
+                                ->where('is_active', true)
+                                ->where('event_date', '>=', now())
+                                ->orderBy('event_date', 'asc')
+                                ->take(4)
+                                ->get();
                         @endphp
                         @foreach($webinars as $training)
                         <a href="{{ route('trainings.show', $training->slug) }}" class="group block bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-slate-100 h-full flex flex-col">
@@ -428,7 +438,7 @@
 
                     <!-- Image Header -->
                     <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
-                        <img src="{{ asset('images/service-digital.png') }}" alt="Digital Services" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Digital Services" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-br from-indigo-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
                         <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-indigo-600 shadow-sm z-20">
@@ -447,38 +457,53 @@
                         </span>
                     </div>
                 </a>
+<!-- Service 2: Infrastructure -->
+@php
+    $s2_icon = 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4';
+@endphp
 
-                <!-- Service 2: Infrastructure -->
-                @php
-                    $s2_icon = 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4';
-                @endphp
-                <a href="{{ route('services.infrastructure') }}" class="group neu-flat overflow-hidden p-4 hover:scale-[1.02] transition-all duration-500 flex flex-col relative">
-                    <!-- Decorative background icon -->
-                    <div class="absolute -right-6 -bottom-6 text-purple-600 opacity-[0.1] group-hover:scale-110 transition-transform duration-500 pointer-events-none z-0">
-                        <svg class="w-32 h-32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24"><path d="{{ $s2_icon }}"></path></svg>
-                    </div>
+<a href="{{ route('services.infrastructure') }}" class="group neu-flat overflow-hidden p-4 hover:scale-[1.02] transition-all duration-500 flex flex-col relative">
+    <!-- Decorative background icon -->
+    <div class="absolute -right-6 -bottom-6 text-purple-600 opacity-[0.1] group-hover:scale-110 transition-transform duration-500 pointer-events-none z-0">
+        <svg class="w-32 h-32" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path d="{{ $s2_icon }}"></path>
+        </svg>
+    </div>
 
-                    <!-- Image Header -->
-                    <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
-                        <img src="{{ asset('images/service-infrastructure.png') }}" alt="Infrastructure" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent"></div>
-                        <!-- Icon Badge -->
-                        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-sm z-20">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $s2_icon }}"></path></svg>
-                        </div>
-                    </div>
-                    
-                    <!-- Content Area -->
-                    <div class="px-2 flex-grow flex flex-col z-20">
-                        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors relative z-20">{{ __('messages.service_infra_title') }}</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-grow relative z-20">
-                            {{ __('messages.service_infra_desc') }}
-                        </p>
-                        <span class="inline-flex items-center text-xs font-bold text-purple-600 group-hover:translate-x-1 transition-transform duration-300 relative z-20">
-                            Learn More <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                        </span>
-                    </div>
-                </a>
+    <!-- Image Header -->
+    <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10 bg-slate-200">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+             alt="Infrastructure"
+             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+        <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-transparent"></div>
+
+        <!-- Icon Badge -->
+        <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-purple-600 shadow-sm z-20">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $s2_icon }}"></path>
+            </svg>
+        </div>
+    </div>
+
+    <!-- Content Area -->
+    <div class="px-2 flex-grow flex flex-col z-20">
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors relative z-20">
+            {{ __('messages.service_infra_title') }}
+        </h3>
+
+        <p class="text-slate-500 text-xs leading-relaxed mb-4 flex-grow relative z-20">
+            {{ __('messages.service_infra_desc') }}
+        </p>
+
+        <span class="inline-flex items-center text-xs font-bold text-purple-600 group-hover:translate-x-1 transition-transform duration-300 relative z-20">
+            {{ __('messages.learn_more') }}
+            <svg class="w-3.5 h-3.5 ml-1.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+        </span>
+    </div>
+</a>
+
 
                 <!-- Service 3: UpVenture -->
                 @php
@@ -492,7 +517,7 @@
 
                     <!-- Image Header -->
                     <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
-                        <img src="{{ asset('images/service-upventure.png') }}" alt="UpVenture" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="UpVenture" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-br from-cyan-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
                         <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-cyan-600 shadow-sm z-20">
@@ -524,7 +549,7 @@
 
                     <!-- Image Header -->
                     <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
-                        <img src="{{ asset('images/service-procurement.png') }}" alt="Procurement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Procurement" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent"></div>
                         <!-- Icon Badge -->
                         <div class="absolute top-3 left-3 w-10 h-10 rounded-xl bg-white/90 backdrop-blur-sm flex items-center justify-center text-emerald-600 shadow-sm z-20">
@@ -564,19 +589,23 @@
                         {{ __('messages.why_us_main_desc') }}
                     </p>
                     <div class="flex flex-wrap gap-4 mt-10">
-                        <div class="neu-flat px-6 py-3 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
-                            <div class="text-2xl font-black text-indigo-600">15+</div>
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider leading-none">Years<br>Exp.</div>
+                        <div class="neu-flat px-6 py-3 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-indigo-50 flex items-center justify-center text-indigo-600 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                            </div>
+                            <div class="text-[11px] font-black text-slate-700 uppercase tracking-wider leading-tight">Expert<br>Professional Team</div>
                         </div>
-                        <div class="neu-flat px-6 py-3 flex items-center gap-3 hover:-translate-y-1 transition-transform duration-300">
-                            <div class="text-2xl font-black text-emerald-600">500+</div>
-                            <div class="text-[10px] font-black text-slate-400 uppercase tracking-wider leading-none">Projects<br>Done</div>
+                        <div class="neu-flat px-6 py-3 flex items-center gap-4 hover:-translate-y-1 transition-transform duration-300">
+                            <div class="w-10 h-10 rounded-full bg-emerald-50 flex items-center justify-center text-emerald-600 shadow-sm">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                            </div>
+                            <div class="text-[11px] font-black text-slate-700 uppercase tracking-wider leading-tight">Integrated<br>Quality Solutions</div>
                         </div>
                     </div>
                 </div>
                 <div class="lg:w-6/12">
                     <div class="relative rounded-[3rem] overflow-hidden shadow-2xl border-8 border-slate-50 group-hover:border-white transition-all duration-500 hover:scale-[1.02]">
-                        <img src="{{ asset('images/why-us-team-javanese.png') }}" alt="Our Professional Team" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1200&q=80" alt="Our Professional Team" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-tr from-indigo-900/10 to-transparent z-10"></div>
                     </div>
                 </div>
@@ -737,12 +766,12 @@
         </script>
     </section>
 
-    <!-- Contact Section (Premium Light Theme CTA) -->
-    <section id="contact" class="py-24 bg-gradient-to-b from-white via-slate-50 to-white relative overflow-hidden">
-        <!-- Decorative Background -->
-        <div class="absolute inset-0 opacity-40">
-            <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-gradient-to-br from-indigo-200 to-purple-200 rounded-full blur-3xl"></div>
-            <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-gradient-to-br from-purple-200 to-pink-200 rounded-full blur-3xl"></div>
+    <!-- Contact Section (Neumorphic CTA) -->
+    <section id="contact" class="py-24 bg-[#eef2f6] relative overflow-hidden">
+        <!-- Decorative Background Blobs -->
+        <div class="absolute inset-0 opacity-30 pointer-events-none">
+            <div class="absolute top-0 left-1/4 w-[500px] h-[500px] bg-indigo-300/40 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+            <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-purple-300/40 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
         </div>
         
         <div class="container mx-auto px-6 text-center relative z-10 reveal-bottom">
@@ -756,10 +785,10 @@
             
             <!-- CTA Buttons -->
             <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-                               
-                <!-- WhatsApp Button -->
+                           
+                <!-- WhatsApp Button (Neumorphic) -->
                 <a href="https://wa.me/6282229046099" target="_blank"
-                    class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-flex items-center">
+                    class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-flex items-center hover:scale-[1.02] active:scale-[0.98] transition-all duration-300">
                     <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
@@ -768,25 +797,25 @@
                 </a>
             </div>
             
-            <!-- Trust Indicators -->
-            <div class="flex flex-wrap justify-center items-center gap-8 text-slate-500 text-sm">
+            <!-- Trust Indicators (Honest & Value-Focused) -->
+            <div class="flex flex-wrap justify-center items-center gap-8 text-slate-600 text-sm">
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                    <div class="w-10 h-10 rounded-full neu-flat flex items-center justify-center">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
                     </div>
-                    <span class="font-medium">500+ Companies</span>
+                    <span class="font-medium">Trusted Partner</span>
                 </div>
                 <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-yellow-600" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                    </div>
-                    <span class="font-medium">4.9/5 Rating</span>
-                </div>
-                <div class="flex items-center gap-2">
-                    <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">
-                        <svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    <div class="w-10 h-10 rounded-full neu-flat flex items-center justify-center">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                     </div>
                     <span class="font-medium">Fast Response</span>
+                </div>
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 rounded-full neu-flat flex items-center justify-center">
+                        <svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                    </div>
+                    <span class="font-medium">Quality Guaranteed</span>
                 </div>
             </div>
         </div>
