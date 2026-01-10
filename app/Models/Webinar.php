@@ -13,6 +13,7 @@ class Webinar extends Model
         'title',
         'slug',
         'description',
+        'image',
         'date',
         'price',
         'type',

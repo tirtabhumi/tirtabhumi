@@ -32,6 +32,10 @@ class WebinarResource extends Resource
                     ->required()
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
+                Forms\Components\FileUpload::make('image')
+                    ->image()
+                    ->directory('webinars')
+                    ->columnSpanFull(),
                 Forms\Components\Textarea::make('description')
                     ->columnSpanFull(),
                 Forms\Components\DateTimePicker::make('date')
@@ -46,8 +50,9 @@ class WebinarResource extends Resource
                     ->required(),
                 Forms\Components\Select::make('type')
                     ->options([
-                        'live' => 'Live',
-                        'recorded' => 'Recorded',
+                        'online' => 'Online',
+                        'offline' => 'Offline',
+                        'hybrid' => 'Hybrid',
                     ])
                     ->required(),
                 Forms\Components\Select::make('user_id')

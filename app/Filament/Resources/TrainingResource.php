@@ -119,6 +119,7 @@ class TrainingResource extends Resource
     {
         return [
             RelationManagers\ModulesRelationManager::class,
+            RelationManagers\RegistrationsRelationManager::class,
         ];
     }
 

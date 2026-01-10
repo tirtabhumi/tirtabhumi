@@ -20,6 +20,11 @@ class WithdrawalRequestResource extends Resource
 
     protected static ?string $navigationLabel = 'Withdrawals';
 
+    public static function canCreate(): bool
+    {
+        return auth()->user()->hasRole('partner');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
