@@ -18,7 +18,8 @@ class MyClassController extends Controller
             ->where('email', $user->email)
             ->where('status', 'completed')
             ->whereHas('training', function ($q) {
-                $q->where('category', 'class');
+                // Fetch all categories (class, webinar, workshop, digital_class, etc.)
+                $q->where('is_active', true);
             });
 
         // Search

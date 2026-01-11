@@ -74,10 +74,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class, 'show'])->name('my-classes.show');
     Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class, 'markComplete'])->name('my-classes.module.complete');
 
-    // My Webinars Routes
-    Route::get('/my-webinars', [\App\Http\Controllers\MyWebinarController::class, 'index'])->name('my-webinars.index');
-    Route::get('/my-webinars/{training}', [\App\Http\Controllers\MyWebinarController::class, 'show'])->name('my-webinars.show');
-    Route::post('/my-webinars/module/{module}/complete', [\App\Http\Controllers\MyWebinarController::class, 'markComplete'])->name('my-webinars.module.complete');
+
 
     // Affiliate Routes
     Route::get('/affiliate', [\App\Http\Controllers\AffiliateController::class, 'index'])->name('affiliates.index');
@@ -142,8 +139,7 @@ Route::prefix('services')->name('services.')->group(function () {
 // Training/UpVenture Routes
 Route::prefix('upventure')->group(function () {
     Route::get('/', [TrainingController::class, 'index'])->name('trainings.index');
-    Route::get('/webinars', [TrainingController::class, 'webinars'])->name('trainings.webinars');
-    Route::get('/classes', [TrainingController::class, 'classes'])->name('trainings.classes');
+    Route::get('/list', [TrainingController::class, 'list'])->name('trainings.list');
     Route::get('/{training:slug}', [TrainingController::class, 'show'])->name('trainings.show');
     Route::post('/{training:slug}/register', [TrainingController::class, 'register'])->name('trainings.register');
 });

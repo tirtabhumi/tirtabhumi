@@ -10,27 +10,33 @@ class TrainingController extends Controller
 {
     public function index()
     {
-        $webinars = Training::where('is_active', true)
-            ->where('category', 'webinar')
+        $trainings = Training::where('is_active', true)
             ->where('event_date', '>=', now())
             ->orderBy('event_date', 'asc')
-            ->take(6) 
+            ->take(9)
             ->get();
 
-        $classes = Training::where('is_active', true)
-            ->where('category', 'class')
-            ->where('event_date', '>=', now())
-            ->orderBy('event_date', 'asc')
-            ->take(6) 
-            ->get();
-
-        return view('trainings.index', compact('webinars', 'classes'));
+        return view('trainings.index', compact('trainings'));
     }
 
-    public function webinars(Request $request)
+
+
+    public function list(Request $request)
     {
+        // Capture referral code from URL and store in session
+        if ($request->has('ref')) {
+            $referralCode = strtoupper($request->get('ref'));
+            // Verify the referral code exists and is approved
+            $affiliate = \App\Models\Affiliate::where('referral_code', $referralCode)
+                ->where('status', 'approved')
+                ->first();
+
+            if ($affiliate) {
+                session(['referral_code' => $referralCode]);
+            }
+        }
+
         $query = Training::where('is_active', true)
-            ->where('category', 'webinar')
             ->where('event_date', '>=', now());
 
         // Search
@@ -38,47 +44,9 @@ class TrainingController extends Controller
             $query->where('title', 'like', '%' . $request->search . '%');
         }
 
-        // Filter Type
-        if ($request->filled('type')) {
-            $query->whereIn('type', (array) $request->type);
-        }
-
-
-
-        // Sort
-        switch ($request->sort) {
-            case 'price_asc':
-                $query->orderBy('price', 'asc');
-                break;
-            case 'price_desc':
-                $query->orderBy('price', 'desc');
-                break;
-            default: // latest/upcoming
-                $query->orderBy('event_date', 'asc');
-                break;
-        }
-
-        $trainings = $query->paginate(9)->withQueryString();
-
-        $title = 'Webinar & Workshop';
-
-        // Dynamic filters for sidebar
-        $filters = [
-            'type' => ['online', 'offline', 'hybrid'],
-        ];
-
-        return view('trainings.list', compact('trainings', 'title', 'filters'));
-    }
-
-    public function classes(Request $request)
-    {
-        $query = Training::where('is_active', true)
-            ->where('category', 'class')
-            ->where('event_date', '>=', now());
-
-        // Search
-        if ($request->filled('search')) {
-            $query->where('title', 'like', '%' . $request->search . '%');
+        // Filter Category
+        if ($request->filled('category')) {
+            $query->whereIn('category', (array) $request->category);
         }
 
         // Filter Level
@@ -101,9 +69,10 @@ class TrainingController extends Controller
 
         $trainings = $query->paginate(9)->withQueryString();
 
-        $title = 'Class Digital';
+        $title = 'UpVenture Learnings';
 
         $filters = [
+            'category' => ['class', 'webinar', 'workshop'],
             'level' => ['beginner', 'intermediate', 'advanced']
         ];
 

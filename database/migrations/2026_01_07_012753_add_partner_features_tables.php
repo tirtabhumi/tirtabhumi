@@ -14,9 +14,7 @@ return new class extends Migration {
             $table->foreignId('user_id')->nullable()->after('id')->constrained()->cascadeOnDelete();
         });
 
-        Schema::table('webinars', function (Blueprint $table) {
-            $table->foreignId('user_id')->nullable()->after('id')->constrained()->cascadeOnDelete();
-        });
+
 
         Schema::create('wallets', function (Blueprint $table) {
             $table->id();
@@ -44,10 +42,7 @@ return new class extends Migration {
         Schema::dropIfExists('withdrawal_requests');
         Schema::dropIfExists('wallets');
 
-        Schema::table('webinars', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
-            $table->dropColumn('user_id');
-        });
+
 
         Schema::table('trainings', function (Blueprint $table) {
             $table->dropForeign(['user_id']);

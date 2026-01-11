@@ -17,7 +17,10 @@ class TrainingResource extends Resource
 {
     protected static ?string $model = Training::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
+    protected static ?string $navigationLabel = 'UpVenture Learnings';
+    protected static ?string $modelLabel = 'UpVenture Learning';
+    protected static ?string $pluralModelLabel = 'UpVenture Learnings';
 
     public static function form(Form $form): Form
     {
@@ -44,6 +47,14 @@ class TrainingResource extends Resource
                             ->prefix('Rp')
                             ->default(0)
                             ->required(),
+                        Forms\Components\Select::make('category')
+                            ->options([
+                                'class' => 'Class',
+                                'webinar' => 'Webinar',
+                                'workshop' => 'Workshop',
+                            ])
+                            ->required()
+                            ->default('class'),
                         Forms\Components\Select::make('type')
                             ->options([
                                 'online' => 'Online',
@@ -76,6 +87,18 @@ class TrainingResource extends Resource
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('category')
+                    ->badge()
+                    ->color(fn(string $state): string => match ($state) {
+                        'class', 'digital_class' => 'primary',
+                        'webinar' => 'success',
+                        'workshop' => 'warning',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'digital_class' => 'Class',
+                        default => ucfirst($state),
+                    }),
                 Tables\Columns\TextColumn::make('event_date')
                     ->dateTime()
                     ->sortable(),

@@ -40,11 +40,11 @@ class AffiliateController extends Controller
     {
         $validated = $request->validate([
             'ktp_name' => 'required|string|max:255',
-            'ktp_photo' => 'required|image|max:2048',
+            'ktp_photo' => 'required|image|max:200',
             'bank_account_name' => 'required|string|max:255',
             'bank_name' => 'required|string|max:255',
             'bank_account_number' => 'required|string|max:50',
-            'bank_book_photo' => 'required|image|max:2048',
+            'bank_book_photo' => 'required|image|max:200',
         ]);
 
         // Validate that KTP name and bank account name match

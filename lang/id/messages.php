@@ -296,7 +296,7 @@ return [
     'training_schedule_title' => 'Webinar & Workshop',
     'training_schedule_desc' => 'Pilih pelatihan yang sesuai dengan minat dan kebutuhan karir Anda.',
 
-    'class_title' => 'Class Digital',
+    'class_title' => 'UpVenture Learnings',
     'class_desc' => 'Program intensif jangka panjang untuk menguasai skill digital secara mendalam.',
     'class_empty_title' => 'Belum Ada Kelas',
     'class_empty_desc' => 'Saat ini belum ada jadwal kelas yang tersedia. Silakan cek kembali nanti.',
@@ -430,78 +430,78 @@ return [
     // =======================
 
     'network_packages_title' => 'Pilihan Paket Jaringan',
-    'network_packages_desc'  => 'Paket pemasangan access point, switch, dan kabel jaringan yang bisa disesuaikan dengan skala bisnis Anda.',
+    'network_packages_desc' => 'Paket pemasangan access point, switch, dan kabel jaringan yang bisa disesuaikan dengan skala bisnis Anda.',
 
-    'network_pkg_note'       => '*harga belum termasuk PPN',
+    'network_pkg_note' => '*harga belum termasuk PPN',
     'network_pkg_badge_best' => 'PALING DIREKOMENDASIKAN 🔥',
 
     // Paket 1
-    'network_pkg_1_title'  => 'Paket Network Basic',
-    'network_pkg_1_desc'   => 'Cocok untuk kantor kecil atau outlet dengan 1–2 ruangan utama.',
+    'network_pkg_1_title' => 'Paket Network Basic',
+    'network_pkg_1_desc' => 'Cocok untuk kantor kecil atau outlet dengan 1–2 ruangan utama.',
     'network_pkg_1_feat_1' => 'Instalasi 1–2 access point + konfigurasi dasar',
     'network_pkg_1_feat_2' => 'Penataan dan perapihan kabel jaringan utama',
     'network_pkg_1_feat_3' => 'Optimasi Wi-Fi untuk area kerja & meeting room',
-    'network_pkg_1_price'  => '2,9jt',
-    'network_pkg_1_unit'   => '/ lokasi',
-    'network_pkg_1_cta'    => 'Pilih Paket Ini',
+    'network_pkg_1_price' => '2,9jt',
+    'network_pkg_1_unit' => '/ lokasi',
+    'network_pkg_1_cta' => 'Pilih Paket Ini',
 
     // Paket 2 (highlight)
-    'network_pkg_2_title'  => 'Paket Network Enterprise',
-    'network_pkg_2_desc'   => 'Untuk kantor bertingkat atau area kerja dengan banyak ruangan.',
+    'network_pkg_2_title' => 'Paket Network Enterprise',
+    'network_pkg_2_desc' => 'Untuk kantor bertingkat atau area kerja dengan banyak ruangan.',
     'network_pkg_2_feat_1' => 'Survey & desain coverage (mini heatmap layout)',
     'network_pkg_2_feat_2' => 'Instalasi 3–6 access point + switch gigabit',
     'network_pkg_2_feat_3' => 'Segmentasi jaringan (staff, tamu, perangkat) untuk keamanan',
     'network_pkg_2_feat_4' => 'Tuning router/Mikrotik untuk kestabilan trafik',
-    'network_pkg_2_price'  => '5,9jt',
-    'network_pkg_2_unit'   => '/ lokasi',
-    'network_pkg_2_cta'    => 'Pilih Paket Ini',
+    'network_pkg_2_price' => '5,9jt',
+    'network_pkg_2_unit' => '/ lokasi',
+    'network_pkg_2_cta' => 'Pilih Paket Ini',
 
     // Paket 3
-    'network_pkg_3_title'  => 'Paket Network Custom Korporasi',
-    'network_pkg_3_desc'   => 'Untuk gedung, gudang, hotel, atau kampus dengan kebutuhan kompleks.',
+    'network_pkg_3_title' => 'Paket Network Custom Korporasi',
+    'network_pkg_3_desc' => 'Untuk gedung, gudang, hotel, atau kampus dengan kebutuhan kompleks.',
     'network_pkg_3_feat_1' => 'Site survey detail & perhitungan kapasitas user/perangkat',
     'network_pkg_3_feat_2' => 'Desain topologi, VLAN, dan backbone sesuai arsitektur gedung',
     'network_pkg_3_feat_3' => 'Pendampingan implementasi bertahap + opsi SLA maintenance',
-    'network_pkg_3_price'  => 'Hubungi Kami',
-    'network_pkg_3_cta'    => 'Konsultasi Dulu',
+    'network_pkg_3_price' => 'Hubungi Kami',
+    'network_pkg_3_cta' => 'Konsultasi Dulu',
 
 
 
     'security_packages_title' => 'Pilihan Paket',
-    'security_packages_desc'  => 'Solusi keamanan & komunikasi terintegrasi untuk kantor, toko, hingga perusahaan Anda.',
+    'security_packages_desc' => 'Solusi keamanan & komunikasi terintegrasi untuk kantor, toko, hingga perusahaan Anda.',
 
-    'security_pkg_note'       => '*belum termasuk ppn / tax',
+    'security_pkg_note' => '*belum termasuk ppn / tax',
     'security_pkg_badge_best' => 'PALING LARIS 🔥',
 
     // Paket 1
-    'security_pkg_1_title'  => 'Paket CCTV Basic',
-    'security_pkg_1_desc'   => 'Cocok untuk pemantauan area utama dengan kebutuhan standar.',
+    'security_pkg_1_title' => 'Paket CCTV Basic',
+    'security_pkg_1_desc' => 'Cocok untuk pemantauan area utama dengan kebutuhan standar.',
     'security_pkg_1_feat_1' => 'Instalasi 4 kamera + NVR',
     'security_pkg_1_feat_2' => 'Monitoring dari HP & laptop',
     'security_pkg_1_feat_3' => 'Garansi perangkat + support dasar',
-    'security_pkg_1_price'  => '2,5jt',
-    'security_pkg_1_unit'   => '/ titik lokasi',
-    'security_pkg_1_cta'    => 'Pilih Paket Ini',
+    'security_pkg_1_price' => '2,5jt',
+    'security_pkg_1_unit' => '/ titik lokasi',
+    'security_pkg_1_cta' => 'Pilih Paket Ini',
 
     // Paket 2
-    'security_pkg_2_title'  => 'Paket Integrasi Pintar',
-    'security_pkg_2_desc'   => 'CCTV + pintu akses + PABX, semuanya terhubung & mudah diawasi.',
+    'security_pkg_2_title' => 'Paket Integrasi Pintar',
+    'security_pkg_2_desc' => 'CCTV + pintu akses + PABX, semuanya terhubung & mudah diawasi.',
     'security_pkg_2_feat_1' => 'CCTV 6–8 titik + rekaman 24/7',
     'security_pkg_2_feat_2' => 'Access Control + log aktivitas pintu',
     'security_pkg_2_feat_3' => 'IP PABX untuk komunikasi internal',
     'security_pkg_2_feat_4' => 'Dashboard & notifikasi insiden realtime',
-    'security_pkg_2_price'  => '4,9jt',
-    'security_pkg_2_unit'   => '/ lokasi',
-    'security_pkg_2_cta'    => 'Pilih Paket Ini',
+    'security_pkg_2_price' => '4,9jt',
+    'security_pkg_2_unit' => '/ lokasi',
+    'security_pkg_2_cta' => 'Pilih Paket Ini',
 
     // Paket 3
-    'security_pkg_3_title'  => 'Paket Custom Korporasi',
-    'security_pkg_3_desc'   => 'Solusi dirancang khusus untuk kebutuhan gedung & perusahaan.',
+    'security_pkg_3_title' => 'Paket Custom Korporasi',
+    'security_pkg_3_desc' => 'Solusi dirancang khusus untuk kebutuhan gedung & perusahaan.',
     'security_pkg_3_feat_1' => 'Desain sistem keamanan end-to-end',
     'security_pkg_3_feat_2' => 'Integrasi ke jaringan & server bawaan',
     'security_pkg_3_feat_3' => 'SLA support & maintenance berkala',
-    'security_pkg_3_price'  => 'Hubungi Kami',
-    'security_pkg_3_cta'    => 'Konsultasi Dulu',
+    'security_pkg_3_price' => 'Hubungi Kami',
+    'security_pkg_3_cta' => 'Konsultasi Dulu',
 
 
 
@@ -574,7 +574,7 @@ return [
     'security_service_4_desc' => 'Hubungkan kamera dan sensor ke satu dashboard terpusat.',
 
 
-    
+
 
     'security_cta_title' => 'Tingkatkan Keamanan Sekarang',
     'security_cta_desc' => 'Jangan tunggu insiden terjadi. Hubungi kami untuk rencana keamanan Anda.',

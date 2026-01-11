@@ -25,7 +25,7 @@
             <!-- Stats Grid -->
             <div
                 class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12 animate-fade-in-up animation-delay-200">
-                <!-- My Classes -->
+                <!-- My Learnings -->
                 <a href="{{ route('my-classes.index') }}"
                     class="neu-flat p-6 rounded-2xl border border-white/50 hover:scale-[1.02] transition-transform duration-300 group block">
                     <div class="flex items-center justify-between mb-4">
@@ -38,34 +38,10 @@
                             </svg>
                         </div>
                         <span
-                            class="text-3xl font-bold text-slate-800">{{ $registrations->where('status', 'completed')->filter(fn($r) => $r->training->category === 'class')->count() }}</span>
+                            class="text-3xl font-bold text-slate-800">{{ $registrations->where('status', 'completed')->count() }}</span>
                     </div>
-                    <h3 class="font-bold text-slate-700 mb-1">My Classes</h3>
+                    <h3 class="font-bold text-slate-700 mb-1">My Learnings</h3>
                     <p class="text-sm text-indigo-600 font-medium flex items-center gap-1">
-                        View All <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                    </p>
-                </a>
-
-                <!-- My Webinars -->
-                <a href="{{ route('my-webinars.index') }}"
-                    class="neu-flat p-6 rounded-2xl border border-white/50 hover:scale-[1.02] transition-transform duration-300 group block">
-                    <div class="flex items-center justify-between mb-4">
-                        <div
-                            class="p-3 bg-purple-100 rounded-xl text-purple-600 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                        </div>
-                        <span
-                            class="text-3xl font-bold text-slate-800">{{ $registrations->where('status', 'completed')->filter(fn($r) => $r->training->category === 'webinar')->count() }}</span>
-                    </div>
-                    <h3 class="font-bold text-slate-700 mb-1">My Webinars</h3>
-                    <p class="text-sm text-purple-600 font-medium flex items-center gap-1">
                         View All <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>

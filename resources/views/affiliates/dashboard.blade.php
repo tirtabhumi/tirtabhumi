@@ -33,7 +33,7 @@
                     <p class="text-sm text-slate-600 mb-2">Bagikan link ini untuk mendapatkan komisi 5%:</p>
                     <div class="flex gap-2">
                         <input type="text" id="referralLink" readonly
-                            value="{{ url('/upventure?ref=' . $affiliate->referral_code) }}"
+                            value="{{ url('/upventure/list?ref=' . $affiliate->referral_code) }}"
                             class="flex-1 px-4 py-2 rounded-lg border border-indigo-300 bg-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
                         <button type="button" onclick="copyReferralLink()"
                             class="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all">
@@ -49,14 +49,15 @@
 
             <!-- Main Grid: Stats & Withdrawal -->
             <div class="grid md:grid-cols-3 gap-6 mb-8 animate-fade-in-up animation-delay-200">
-                
+
                 <!-- Total Sales Card -->
                 <div class="neu-flat p-6 rounded-2xl border border-white/50 h-full flex flex-col justify-between">
                     <div>
                         <div class="flex items-center justify-between mb-4">
                             <div class="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl">
                                 <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
                                 </svg>
                             </div>
                             <span class="text-2xl font-bold text-slate-800">{{ $totalSales }}</span>
@@ -69,7 +70,8 @@
                         class="w-full px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2">
                         <span>Lihat Detail Order</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
                         </svg>
                     </a>
                 </div>
@@ -78,26 +80,35 @@
                 <div class="md:col-span-2 neu-flat p-6 rounded-2xl border border-white/50">
                     <div class="flex flex-col md:flex-row gap-8 h-full">
                         <!-- Left: Points Info -->
-                        <div class="flex-1 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-100 pb-6 md:pb-0 md:pr-6">
+                        <div
+                            class="flex-1 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-100 pb-6 md:pb-0 md:pr-6">
                             <div>
                                 <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                        </path>
                                     </svg>
                                     Dompet Poin
                                 </h3>
-                                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100 mb-4">
+                                <div
+                                    class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100 mb-4">
                                     <p class="text-xs text-slate-500 mb-1">Poin Tersedia</p>
-                                    <p class="text-3xl font-bold text-slate-800">{{ number_format($affiliate->total_points - $affiliate->withdrawn_points - $affiliate->pending_points, 0, ',', '.') }}</p>
+                                    <p class="text-3xl font-bold text-slate-800">
+                                        {{ number_format($affiliate->total_points - $affiliate->withdrawn_points - $affiliate->pending_points, 0, ',', '.') }}
+                                    </p>
                                     <p class="text-xs text-emerald-600 font-medium mt-1">1000 poin = Rp 1.000</p>
                                 </div>
                             </div>
-                            
+
                             <a href="{{ route('affiliates.points') }}"
                                 class="w-full px-3 py-2 bg-green-50 hover:bg-green-100 text-green-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group">
                                 <span>Lihat Riwayat Poin</span>
-                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                 </svg>
                             </a>
                         </div>
@@ -105,18 +116,24 @@
                         <!-- Right: Withdrawal Form -->
                         <div class="flex-1 flex flex-col justify-center">
                             <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
+                                    </path>
                                 </svg>
                                 Cairkan Poin
                             </h3>
 
-                            <form id="withdrawalForm" action="{{ route('affiliates.withdrawal') }}" method="POST" class="space-y-4">
+                            <form id="withdrawalForm" action="{{ route('affiliates.withdrawal') }}" method="POST"
+                                class="space-y-4">
                                 @csrf
                                 <div>
-                                    <label for="amount" class="text-xs font-semibold text-slate-500 mb-1 block">Jumlah Pencairan</label>
+                                    <label for="amount" class="text-xs font-semibold text-slate-500 mb-1 block">Jumlah
+                                        Pencairan</label>
                                     <div class="relative">
-                                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">Rp</span>
+                                        <span
+                                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">Rp</span>
                                         <input type="number" id="amount" name="amount" min="100000" step="1000" required
                                             placeholder="Min 100.000"
                                             class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all neu-flat text-sm font-semibold text-slate-700">
@@ -130,7 +147,8 @@
                                     class="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all text-sm flex items-center justify-center gap-2">
                                     <span>Ajukan Pencairan</span>
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                                     </svg>
                                 </button>
                                 <div class="text-center space-y-1">
@@ -151,23 +169,30 @@
             </div>
 
             <!-- Confirmation Modal -->
-            <div id="confirmationModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div id="confirmationModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog"
+                aria-modal="true">
                 <!-- Background backdrop -->
-                <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity opacity-0" id="modalBackdrop"></div>
+                <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm transition-opacity opacity-0"
+                    id="modalBackdrop"></div>
 
                 <div class="fixed inset-0 z-10 w-screen overflow-y-auto">
                     <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
                         <!-- Modal panel -->
-                        <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg scale-95 opacity-0" id="modalPanel">
+                        <div class="relative transform overflow-hidden rounded-2xl bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg scale-95 opacity-0"
+                            id="modalPanel">
                             <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                 <div class="sm:flex sm:items-start">
-                                    <div class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 sm:mx-0 sm:h-10 sm:w-10">
-                                        <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
-                                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                                    <div
+                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 sm:mx-0 sm:h-10 sm:w-10">
+                                        <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24"
+                                            stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                                            <path stroke-linecap="round" stroke-linejoin="round"
+                                                d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
                                         </svg>
                                     </div>
                                     <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
-                                        <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">Konfirmasi Pencairan</h3>
+                                        <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">
+                                            Konfirmasi Pencairan</h3>
                                         <div class="mt-4 space-y-3">
                                             <div class="flex justify-between text-sm">
                                                 <span class="text-slate-500">Jumlah Penarikan:</span>
@@ -181,29 +206,39 @@
                                                 <span>Biaya Platform (5%):</span>
                                                 <span id="modalFee">- Rp 0</span>
                                             </div>
-                                            <div class="border-t border-dashed border-slate-300 pt-3 flex justify-between font-bold text-lg">
+                                            <div
+                                                class="border-t border-dashed border-slate-300 pt-3 flex justify-between font-bold text-lg">
                                                 <span class="text-purple-700">Total Diterima:</span>
                                                 <span class="text-purple-700" id="modalNet">Rp 0</span>
                                             </div>
                                             <div class="bg-blue-50 p-3 rounded-lg mt-3">
                                                 <p class="text-[11px] text-blue-700 flex gap-2">
-                                                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                    Dana akan ditransfer ke rekening {{ $affiliate->bank_name }} - {{ $affiliate->bank_account_number }} a.n {{ $affiliate->bank_account_holder }} yang terdaftar.
+                                                    <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
+                                                        </path>
+                                                    </svg>
+                                                    Dana akan ditransfer ke rekening {{ $affiliate->bank_name }} -
+                                                    {{ $affiliate->bank_account_number }} a.n
+                                                    {{ $affiliate->bank_account_holder }} yang terdaftar.
                                                 </p>
                                             </div>
                                             <p class="text-xs text-slate-400 mt-2">
-                                                Dengan mengklik "Ya, Cairkan", Anda setuju dengan pemotongan biaya di atas.
+                                                Dengan mengklik "Ya, Cairkan", Anda setuju dengan pemotongan biaya di
+                                                atas.
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="bg-slate-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
-                                <button type="button" onclick="submitWithdrawal()" 
+                                <button type="button" onclick="submitWithdrawal()"
                                     class="inline-flex w-full justify-center rounded-lg bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
                                     Ya, Cairkan
                                 </button>
-                                <button type="button" onclick="closeConfirmationModal()" 
+                                <button type="button" onclick="closeConfirmationModal()"
                                     class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
                                     Batal
                                 </button>
@@ -268,7 +303,7 @@
             const modal = document.getElementById('confirmationModal');
             const backdrop = document.getElementById('modalBackdrop');
             const panel = document.getElementById('modalPanel');
-            
+
             modal.classList.remove('hidden');
             // Small delay for animation
             setTimeout(() => {

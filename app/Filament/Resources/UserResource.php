@@ -23,30 +23,94 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('email')
-                    ->email()
-                    ->required(),
-                Forms\Components\DateTimePicker::make('email_verified_at'),
-                Forms\Components\TextInput::make('password')
-                    ->password(),
-                Forms\Components\TextInput::make('role')
-                    ->required(),
-                Forms\Components\TextInput::make('google_id'),
-                Forms\Components\TextInput::make('avatar'),
-                Forms\Components\Select::make('roles')
-                    ->relationship('roles', 'name')
-                    ->multiple()
-                    ->preload()
-                    ->searchable(),
-                Forms\Components\TextInput::make('phone')
-                    ->tel(),
-                Forms\Components\Toggle::make('is_blocked')
-                    ->label('Block User')
-                    ->onColor('danger')
-                    ->offColor('success')
-                    ->default(false),
+                Forms\Components\Section::make('User Details')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required(),
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->required(),
+                        Forms\Components\DateTimePicker::make('email_verified_at'),
+                        Forms\Components\TextInput::make('password')
+                            ->password(),
+                        Forms\Components\TextInput::make('role')
+                            ->required(),
+                        Forms\Components\TextInput::make('google_id'),
+                        Forms\Components\TextInput::make('avatar'),
+                        Forms\Components\Select::make('roles')
+                            ->relationship('roles', 'name')
+                            ->multiple()
+                            ->preload()
+                            ->searchable(),
+                        Forms\Components\TextInput::make('phone')
+                            ->tel(),
+                        Forms\Components\Toggle::make('is_blocked')
+                            ->label('Block User')
+                            ->onColor('danger')
+                            ->offColor('success')
+                            ->default(false),
+                    ]),
+
+                Forms\Components\Section::make('Affiliate Application')
+                    ->description('Review and manage affiliate application details.')
+                    ->relationship('affiliate')
+                    ->schema([
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('affiliate_code')
+                                    ->label('Affiliate Code')
+                                    ->disabled(),
+                                Forms\Components\Select::make('status')
+                                    ->label('Application Status')
+                                    ->options([
+                                        'pending' => 'Pending',
+                                        'approved' => 'Approved',
+                                        'rejected' => 'Rejected',
+                                    ])
+                                    ->required()
+                                    ->live(),
+                            ]),
+
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('ktp_name')
+                                    ->label('KTP Name'),
+                                Forms\Components\FileUpload::make('ktp_photo')
+                                    ->label('KTP Photo')
+                                    ->image()
+                                    ->maxSize(200)
+                                    ->disk('public')
+                                    ->directory('affiliates/ktp')
+                                    ->visibility('public')
+                                    ->openable(),
+                            ]),
+
+                        Forms\Components\Grid::make(3)
+                            ->schema([
+                                Forms\Components\TextInput::make('bank_name')
+                                    ->label('Bank Name'),
+                                Forms\Components\TextInput::make('bank_account_number')
+                                    ->label('Account Number'),
+                                Forms\Components\TextInput::make('bank_account_name')
+                                    ->label('Account Name'),
+                            ]),
+
+                        Forms\Components\FileUpload::make('bank_book_photo')
+                            ->label('Bank Book Photo')
+                            ->image()
+                            ->maxSize(200)
+                            ->disk('public')
+                            ->directory('affiliates/bank')
+                            ->visibility('public')
+                            ->openable(),
+
+                        Forms\Components\Textarea::make('rejection_reason')
+                            ->label('Reason for Rejection')
+                            ->visible(fn(Forms\Get $get) => $get('status') === 'rejected')
+                            ->required(fn(Forms\Get $get) => $get('status') === 'rejected')
+                            ->columnSpanFull(),
+                    ])
+                    ->visible(fn($record) => $record && $record->affiliate()->exists()),
             ]);
     }
 
@@ -58,6 +122,16 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('affiliate.status')
+                    ->label('Affiliate Status')
+                    ->badge()
+                    ->color(fn($state): string => match ($state) {
+                        'approved' => 'success',
+                        'rejected' => 'danger',
+                        'pending' => 'warning',
+                        default => 'gray',
+                    })
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),

@@ -98,6 +98,38 @@
 
                                 <div class="border-t border-slate-200/50 my-4"></div>
 
+                                <!-- Category Filter -->
+                                @if(isset($filters['category']) && !empty($filters['category']))
+                                <div class="mb-6">
+                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('category-list').classList.toggle('hidden')">
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Category</h4>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                                    </button>
+                                    <div id="category-list" class="space-y-3">
+                                        @foreach($filters['category'] as $category)
+                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
+                                               <input type="checkbox" name="category[]" value="{{ $category }}"
+                                                    class="peer sr-only"
+                                                    {{ in_array($category, (array)request('category', [])) ? 'checked' : '' }}
+                                                    onchange="setTimeout(() => this.form.submit(), 300)">
+
+                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
+                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+
+                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
+                                                    {{ ucfirst($category) }}
+                                                </span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="border-t border-slate-200/50 my-4"></div>
+                                @endif
+
                                 <!-- Level Filter -->
                                 @if(isset($filters['level']) && !empty($filters['level']))
                                 <div class="mb-6">
@@ -179,6 +211,11 @@
                         <div class="w-full">
                              <form action="{{ request()->url() }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">
                                 <!-- Hidden inputs to preserve filters -->
+                                @if(request('category'))
+                                    @foreach((array)request('category') as $cat)
+                                        <input type="hidden" name="category[]" value="{{ $cat }}">
+                                    @endforeach
+                                @endif
                                 @if(request('level')) 
                                     @foreach((array)request('level') as $lvl)
                                         <input type="hidden" name="level[]" value="{{ $lvl }}">
