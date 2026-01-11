@@ -390,6 +390,22 @@ return [
     'infrastructure_sub_3_list_2' => 'Integrasi CCTV & IP Cam',
     'infrastructure_sub_3_list_3' => 'Maintenance Sistem',
 
+    // Infrastructure Why Choose Us
+    'infrastructure_why_title' => 'Mengapa Memilih Layanan Infrastruktur Kami?',
+    'infrastructure_why_subtitle' => 'Kami memberikan solusi terbaik dengan standar internasional dan komitmen penuh terhadap kepuasan klien',
+    'infrastructure_why_1_title' => 'Tim Bersertifikat',
+    'infrastructure_why_1_desc' => 'Tim teknisi bersertifikat internasional dengan pengalaman lebih dari 10 tahun',
+    'infrastructure_why_2_title' => 'Respon Cepat',
+    'infrastructure_why_2_desc' => 'Respon cepat maksimal 2 jam untuk setiap kebutuhan dan keluhan Anda',
+    'infrastructure_why_3_title' => 'Harga Terbaik',
+    'infrastructure_why_3_desc' => 'Harga kompetitif dengan kualitas terbaik dan tanpa biaya tersembunyi',
+    'infrastructure_why_4_title' => 'Garansi',
+    'infrastructure_why_4_desc' => 'Garansi layanan hingga 2 tahun dengan dukungan maintenance berkala',
+    'infrastructure_services_title' => 'Layanan Infrastruktur Kami',
+    'infrastructure_services_subtitle' => 'Solusi infrastruktur IT terpadu untuk mendukung operasional bisnis Anda dengan teknologi terkini dan tim profesional berpengalaman',
+
+
+
     // Network Page
     'network_title' => 'Saatnya hubungkan seluruh ruangan kantormu dengan Internet',
     'network_subtitle' => 'Jangkauan Luas & Stabil', // Fallback or unused
@@ -636,22 +652,63 @@ return [
             'text' => 'Program pelatihan UpVenture sangat membantu tim kami meningkatkan produktivitas. Mentor-mentornya sangat berpengalaman!',
             'author' => 'Budi Santoso',
             'role' => 'CTO, TechCorp',
-            'avatar' => 'https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5
         ],
         [
             'text' => 'Layanan pengadaan barang yang sangat efisien dan transparan. Membantu kami menghemat waktu dan sumber daya secara signifikan.',
             'author' => 'Siti Aminah',
             'role' => 'Ops Manager, RetailIndo',
-            'avatar' => 'https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5
         ],
         [
             'text' => 'Sangat merekomendasikan layanan konsultasi infrastruktur mereka. Sangat profesional, handal, dan solutif untuk kebutuhan kami.',
             'author' => 'Andi Wijaya',
             'role' => 'Director, BuildCo',
-            'avatar' => 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5
         ],
     ],
+    // Network Managed Services
+    'network_managed_label' => 'Managed Wi-Fi Packages',
+    'network_managed_title' => 'Solusi Wi-Fi Handal untuk Bisnis Anda',
+    'network_managed_desc' => 'Pilih paket managed service yang sesuai dengan kebutuhan coverage dan kapasitas pengguna Anda.',
+    'network_managed_scheme_basic' => 'Basic Scheme',
+    'network_managed_scheme_premium' => 'Premium Scheme',
+    'network_managed_basic_note' => 'Biaya setup rendah, perangkat milik Anda setelah kontrak.',
+    'network_managed_premium_note' => 'Tanpa investasi awal (OPEX), full maintenance & replacement.',
+
+    'network_managed_concurrent' => 'Maks :count pengguna bersamaan',
+    'network_managed_per_month' => '/ bln',
+    'network_managed_total_contract' => 'Total 36 bulan:',
+    'network_managed_vat_excluded' => '(belum termasuk PPN 11%)',
+    'network_managed_btn_choose' => 'Pilih Paket',
+
+    'network_managed_terms_btn' => 'Syarat & Ketentuan',
+    'network_managed_terms_title' => 'Syarat & Ketentuan',
+    'network_managed_terms_understand' => 'Mengerti',
+    'network_managed_term_1' => 'Kontrak minimum 36 bulan',
+    'network_managed_term_2' => 'Harga belum termasuk PPN 11%',
+    'network_managed_term_3' => 'Termasuk instalasi, konfigurasi',
+    'network_managed_term_4' => 'Maintenance aktif selama masa sewa',
+    'network_managed_term_5' => 'Pembayaran mengikuti BAST',
+
+    'network_feat_router_ruijie_1' => 'Router Ruijie RG-EG105G-V3',
+    'network_feat_router_ruijie_2' => 'Router RG-EG310GH-P-E',
+    'network_feat_gateway_ruijie' => 'Gateway Ruijie RG-EG105G-V3',
+    'network_feat_switch_es209' => 'Switch RG-ES209GC-P',
+    'network_feat_switch_es209_poe' => 'Switch RG-ES209GC-P (PoE)',
+    'network_feat_switch_es220' => 'Switch RG-ES220GS-LP',
+    'network_feat_wallmount' => 'Wallmount Rack 4U',
+    'network_feat_cable' => 'Kabel UTP Cat 6 + aksesoris',
+    'network_feat_backup' => '1 unit backup AP',
+    'network_feat_backup_2' => '2 unit backup AP',
+    'network_feat_monitoring' => 'Monitoring & maintenance',
+
+    'network_ap_wifi5_3' => '3 AP Wi-Fi 5',
+    'network_ap_wifi6_3' => '3 AP Wi-Fi 6 AX1800',
+    'network_ap_wifi6_7' => '7 AP Wi-Fi 6 AX1800',
+    'network_ap_wifi6_10' => '10 AP Wi-Fi 6 AX1800',
+    'network_ap_wifi6_15' => '15 AP Wi-Fi 6 AX1800',
 ];

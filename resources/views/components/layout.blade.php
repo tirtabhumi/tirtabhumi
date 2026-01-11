@@ -176,7 +176,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9GZ5CT" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-[#eef2f6]" id="navbar">
         <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center relative">
             <div class="flex items-center gap-3">
                 <a href="/" class="flex items-center gap-3 group">
@@ -192,13 +192,13 @@
             </div>
             <nav class="hidden md:flex space-x-8 items-center absolute left-1/2 -translate-x-1/2">
                 <a href="/"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
 
 
                 <!-- Services Dropdown -->
                 <div class="relative group">
                     <button
-                        class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors focus:outline-none py-4 hover-underline-animation">
+                        class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none py-4 hover-underline-animation">
                         {{ __('messages.services') }}
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -230,9 +230,9 @@
                 </div>
 
                 <a href="{{ route('blog.index') }}"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
                 <a href="{{ route('contacts.index') }}"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
 
 
             </nav>
@@ -241,7 +241,7 @@
                 <!-- Language Switcher -->
                 <div class="relative group">
                     <button
-                        class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors focus:outline-none py-4">
+                        class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none py-4">
                         <span class="uppercase">{{ app()->getLocale() }}</span>
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -266,7 +266,7 @@
                 @auth
                     <div class="relative">
                         <button id="user-menu-btn"
-                            class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
+                            class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 focus:outline-none transition-colors">
                             <span>{{ Auth::user()->name }}</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -288,11 +288,11 @@
                 @else
                     <div class="flex items-center gap-1">
                         <a href="{{ route('login') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">
+                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-800 hover:text-indigo-600' }}">
                             {{ __('messages.login') }}
                         </a>
                         <a href="{{ route('register') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">
+                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-800 hover:text-indigo-600' }}">
                             Sign Up
                         </a>
                     </div>
@@ -811,6 +811,7 @@
             e.preventDefault();
         });
     </script>
+    @stack('modals')
 </body>
 
 </html>

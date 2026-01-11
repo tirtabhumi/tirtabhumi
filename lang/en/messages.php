@@ -389,6 +389,21 @@ return [
     'infrastructure_sub_3_list_2' => 'CCTV & IP Cam Integration',
     'infrastructure_sub_3_list_3' => 'System Maintenance',
 
+    // Infrastructure Why Choose Us
+    'infrastructure_why_title' => 'Why Choose Our Infrastructure Services?',
+    'infrastructure_why_subtitle' => 'We deliver the best solutions with international standards and full commitment to client satisfaction',
+    'infrastructure_why_1_title' => 'Certified Team',
+    'infrastructure_why_1_desc' => 'Internationally certified technicians with over 10 years of experience',
+    'infrastructure_why_2_title' => 'Fast Response',
+    'infrastructure_why_2_desc' => 'Quick response within 2 hours for all your needs and concerns',
+    'infrastructure_why_3_title' => 'Best Price',
+    'infrastructure_why_3_desc' => 'Competitive pricing with top quality and no hidden fees',
+    'infrastructure_why_4_title' => 'Warranty',
+    'infrastructure_why_4_desc' => 'Up to 2 years service warranty with regular maintenance support',
+    'infrastructure_services_title' => 'Our Infrastructure Services',
+    'infrastructure_services_subtitle' => 'Integrated IT infrastructure solutions to support your business operations with cutting-edge technology and experienced professional team',
+
+
 
     // Section
     'security_packages_title' => 'Package Options',
@@ -633,22 +648,63 @@ return [
             'text' => 'UpVenture\'s training programs have significantly boosted our team\'s productivity. The mentors are top-notch!',
             'author' => 'Budi Santoso',
             'role' => 'CTO, TechCorp',
-            'avatar' => 'https://images.unsplash.com/photo-1628157588553-5eeea00af15c?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1540569014015-19a7be504e3a?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5
         ],
         [
             'text' => 'The procurement services were streamlined and efficient. Saved us time and resources significantly.',
             'author' => 'Siti Aminah',
             'role' => 'Ops Manager, RetailIndo',
-            'avatar' => 'https://images.unsplash.com/photo-1567532939604-b6c5b0ad2e01?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5
         ],
         [
             'text' => 'Highly recommended for any infrastructure consultancy. Professional, reliable, and solution-oriented.',
             'author' => 'Andi Wijaya',
             'role' => 'Director, BuildCo',
-            'avatar' => 'https://images.unsplash.com/photo-1614289371518-722f2615943d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            'avatar' => 'https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5
         ],
     ],
+    // Network Managed Services
+    'network_managed_label' => 'Managed Wi-Fi Packages',
+    'network_managed_title' => 'Reliable Wi-Fi Solutions for Your Business',
+    'network_managed_desc' => 'Choose the managed service package that suits your coverage and user capacity needs.',
+    'network_managed_scheme_basic' => 'Basic Scheme',
+    'network_managed_scheme_premium' => 'Premium Scheme',
+    'network_managed_basic_note' => 'Low setup cost, device belongs to you after contract.',
+    'network_managed_premium_note' => 'No initial investment (OPEX), full maintenance & replacement.',
+
+    'network_managed_concurrent' => 'Max :count concurrent users',
+    'network_managed_per_month' => '/ month',
+    'network_managed_total_contract' => 'Total 36 months:',
+    'network_managed_vat_excluded' => '(excludes 11% VAT)',
+    'network_managed_btn_choose' => 'Select Package',
+
+    'network_managed_terms_btn' => 'Terms & Conditions',
+    'network_managed_terms_title' => 'Terms & Conditions',
+    'network_managed_terms_understand' => 'I Understand',
+    'network_managed_term_1' => 'Minimum contract 36 months',
+    'network_managed_term_2' => 'Price excludes 11% VAT',
+    'network_managed_term_3' => 'Includes installation, configuration',
+    'network_managed_term_4' => 'Active maintenance during lease period',
+    'network_managed_term_5' => 'Payment follows BAST',
+
+    'network_feat_router_ruijie_1' => 'Router Ruijie RG-EG105G-V3',
+    'network_feat_router_ruijie_2' => 'Router RG-EG310GH-P-E',
+    'network_feat_gateway_ruijie' => 'Gateway Ruijie RG-EG105G-V3',
+    'network_feat_switch_es209' => 'Switch RG-ES209GC-P',
+    'network_feat_switch_es209_poe' => 'Switch RG-ES209GC-P (PoE)',
+    'network_feat_switch_es220' => 'Switch RG-ES220GS-LP',
+    'network_feat_wallmount' => 'Wallmount Rack 4U',
+    'network_feat_cable' => 'UTP Cat 6 Cable + accessories',
+    'network_feat_backup' => '1 backup AP unit',
+    'network_feat_backup_2' => '2 backup AP units',
+    'network_feat_monitoring' => 'Monitoring & maintenance',
+
+    'network_ap_wifi5_3' => '3 AP Wi-Fi 5',
+    'network_ap_wifi6_3' => '3 AP Wi-Fi 6 AX1800',
+    'network_ap_wifi6_7' => '7 AP Wi-Fi 6 AX1800',
+    'network_ap_wifi6_10' => '10 AP Wi-Fi 6 AX1800',
+    'network_ap_wifi6_15' => '15 AP Wi-Fi 6 AX1800',
 ];

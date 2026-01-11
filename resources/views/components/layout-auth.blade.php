@@ -81,30 +81,34 @@
             <div class="flex items-center justify-between gap-4">
                 
                 <!-- Left Side: Back Button -->
-                <a href="/" class="group flex items-center gap-3 text-slate-600 hover:text-indigo-600 transition-colors">
+                <a href="/" class="group text-slate-600 hover:text-indigo-600 transition-colors">
                     <div class="neu-icon-btn">
                         <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                         </svg>
                     </div>
-                    <span class="font-bold text-sm">Back to Website</span>
                 </a>
 
-                <!-- Right Side: Logo & Switcher -->
-                <div class="flex items-center gap-4 md:gap-8">
-                    <!-- Logo -->
-                     <a href="/" class="flex items-center gap-3 group">
+                <!-- Center: Logo -->
+                <div class="absolute left-1/2 transform -translate-x-1/2">
+                    <a href="/" class="flex items-center gap-3">
                         <x-logo class="h-10 w-auto text-indigo-600" />
                         <div class="h-8 w-[1px] bg-slate-300"></div>
                         <span class="text-xl font-bold text-indigo-600 tracking-tighter">UpVenture</span>
                     </a>
-
-                    <!-- Auth Switcher -->
-                    <div class="neu-pressed p-1 rounded-full flex items-center w-[220px]">
-                        <a href="{{ route('login') }}" class="flex-1 text-center py-2 px-4 rounded-full text-sm font-bold whitespace-nowrap transition-all {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">Log In</a>
-                        <a href="{{ route('register') }}" class="flex-1 text-center py-2 px-4 rounded-full text-sm font-bold whitespace-nowrap transition-all {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">Sign Up</a>
-                    </div>
                 </div>
+
+                <!-- Right Side: Auth Switcher -->
+                    <div class="flex items-center gap-3">
+                        <a href="{{ route('login') }}"
+                            class="px-4 py-2 rounded-full text-sm font-bold text-slate-800 hover:text-indigo-600 transition-all duration-300">
+                            {{ __('messages.login') }}
+                        </a>
+                        <a href="{{ route('register') }}"
+                            class="px-4 py-2 rounded-full text-sm font-bold text-slate-800 hover:text-indigo-600 transition-all duration-300">
+                            Sign Up
+                        </a>
+                    </div>
             </div>
         </div>
     </header>

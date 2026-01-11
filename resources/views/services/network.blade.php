@@ -1,10 +1,12 @@
-<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
+﻿<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
     <!-- Custom Styles -->
     <!-- Custom Styles -->
     <style>
         html {
             scroll-behavior: smooth;
         }
+        [x-cloak] { display: none !important; }
+
         .bg-grid-pattern {
             background-image: linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
                               linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
@@ -170,50 +172,6 @@
         </div>
     </section>
 
-    <!-- Why Choose Us / Benefits Section -->
-    <section class="py-24 bg-[#eef2f6]">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 text-slate-800">{{ __('messages.network_benefit_title') }}</h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Speed -->
-                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-2 transition-transform duration-300 reveal-up delay-100">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-cyan-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-slate-800">{{ __('messages.network_benefit_1_title') }}</h3>
-                    <p class="text-slate-500 text-lg leading-relaxed">
-                        {{ __('messages.network_benefit_1_desc') }}
-                    </p>
-                </div>
-
-                <!-- Secure -->
-                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-2 transition-transform duration-300 reveal-up delay-200">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-indigo-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-slate-800">{{ __('messages.network_benefit_2_title') }}</h3>
-                    <p class="text-slate-500 text-lg leading-relaxed">
-                        {{ __('messages.network_benefit_2_desc') }}
-                    </p>
-                </div>
-                
-                <!-- Scalable -->
-                <div class="neu-flat p-8 rounded-3xl border border-white/50 hover:-translate-y-2 transition-transform duration-300 reveal-up delay-300">
-                    <div class="w-16 h-16 neu-pressed rounded-2xl flex items-center justify-center mb-6 text-rose-600">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4 text-slate-800">{{ __('messages.network_benefit_3_title') }}</h3>
-                    <p class="text-slate-500 text-lg leading-relaxed">
-                        {{ __('messages.network_benefit_3_desc') }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Solution Section -->
     <section class="py-24 bg-[#eef2f6]">
          <div class="container mx-auto px-6">
@@ -280,141 +238,202 @@
         </div>
     </section>
 
-    <!-- Pricing Section - Network -->
-    <section id="network-pricing" class="relative overflow-hidden py-24 bg-[#eef2f6]">
-    <!-- Background Glow -->
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
-
-    <div class="container mx-auto px-6 relative z-10">
-        <div class="text-center mb-16">
-            <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">
-                {{ __('messages.network_packages_title') }}
-            </h2>
-            <p class="text-slate-500 text-lg">
-                {{ __('messages.network_packages_desc') }}
-            </p>
+    <!-- Managed Service Access Point Section -->
+    <section id="managed-wifi-pricing" class="relative overflow-hidden py-24 bg-[#eef2f6]">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-indigo-600 font-bold tracking-wider uppercase text-sm mb-2 block">{{ __('messages.network_managed_label') }}</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">{{ __('messages.network_managed_title') }}</h2>
+                <p class="text-slate-500 text-lg mb-8">{{ __('messages.network_managed_desc') }}</p>
+                <div class="inline-flex bg-slate-200/50 p-1.5 rounded-full relative">
+                    <button id="btn-basic" onclick="switchScheme('basic')" class="relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-cyan-600">{{ __('messages.network_managed_scheme_basic') }}</button>
+                    <button id="btn-premium" onclick="switchScheme('premium')" class="relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600">{{ __('messages.network_managed_scheme_premium') }}</button>
+                </div>
+                <div class="mt-4 text-xs text-slate-400">
+                    <span id="label-basic" class="">{{ __('messages.network_managed_basic_note') }}</span>
+                    <span id="label-premium" class="hidden">{{ __('messages.network_managed_premium_note') }}</span>
+                </div>
+            </div>
+            
+            <!-- BASIC SCHEME GRID -->
+            <div id="grid-basic" class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Small -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-cyan-600 border border-cyan-200 bg-cyan-50 px-3 py-1 rounded-full">BASIC SMALL</span></div><h3 class="text-xl font-bold text-slate-800">3 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 100]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.269.907 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 45.716.666</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi5_3') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_router_ruijie_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_cable') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Small%20(3%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                <!-- Medium -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-cyan-600 border border-cyan-200 bg-cyan-50 px-3 py-1 rounded-full">BASIC MEDIUM</span></div><h3 class="text-xl font-bold text-slate-800">7 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 300]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 2.000.705 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 72.025.370</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_7') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_router_ruijie_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_switch_es209') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Medium%20(7%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                <!-- Large -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-cyan-600 border border-cyan-200 bg-cyan-50 px-3 py-1 rounded-full">BASIC LARGE</span></div><h3 class="text-xl font-bold text-slate-800">10 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 300]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 2.348.625 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 84.550.484</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_10') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_router_ruijie_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_switch_es209') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Large%20(10%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                <!-- Enterprise -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-cyan-600 border border-cyan-200 bg-cyan-50 px-3 py-1 rounded-full">BASIC ENTERPRISE</span></div><h3 class="text-xl font-bold text-slate-800">15 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 300]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 3.048.606 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 109.749.820</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_15') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_router_ruijie_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_switch_es220') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup_2') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Enterprise%20(15%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+            </div>
+            
+            <!-- PREMIUM SCHEME GRID -->
+            <div id="grid-premium" class="hidden grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Small -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-indigo-500 px-3 py-1 rounded-full shadow-sm">PREMIUM SMALL</span><span class="text-indigo-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">3 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 100]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.375.112 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 49.504.022</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_3') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_gateway_ruijie') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_cable') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_monitoring') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Small%20(3%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                <!-- Medium -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 bg-gradient-to-l from-indigo-500 to-purple-500 w-16 h-16 rounded-bl-full -mr-8 -mt-8 opacity-20"></div>
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-indigo-500 px-3 py-1 rounded-full shadow-sm">PREMIUM MEDIUM</span><span class="text-indigo-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">7 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 100]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.946.694 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 70.080.995</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_7') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_gateway_ruijie') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_switch_es209_poe') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_cable') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Medium%20(7%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                <!-- Large -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-indigo-500 px-3 py-1 rounded-full shadow-sm">PREMIUM LARGE</span><span class="text-indigo-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">10 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 200]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 2.294.614 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 82.606.109</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_10') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_gateway_ruijie') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_switch_es209_poe') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_cable') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Large%20(10%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                <!-- Enterprise -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 transform md:scale-105 shadow-xl border-indigo-200">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-indigo-600 px-3 py-1 rounded-full shadow-sm">PREMIUM ENTERPRISE</span><span class="text-indigo-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">15 Access Point</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_managed_concurrent', ['count' => 200]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 2.994.596 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_managed_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_managed_total_contract') }} Rp 107.805.445</div><div class="text-xs text-slate-400">{{ __('messages.network_managed_vat_excluded') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_ap_wifi6_15') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_gateway_ruijie') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_switch_es220') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_wallmount') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_cable') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_feat_backup_2') }}</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative"><div class="mb-4"><button type="button" onclick="openModal('{{ __('messages.network_managed_terms_title') }}', ['{{ __('messages.network_managed_term_1') }}', '{{ __('messages.network_managed_term_2') }}', '{{ __('messages.network_managed_term_3') }}', '{{ __('messages.network_managed_term_4') }}', '{{ __('messages.network_managed_term_5') }}'])" class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors z-20 relative">{{ __('messages.network_managed_terms_btn') }}<svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg></button></div><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Enterprise%20(15%20AP)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+            </div>
+            
         </div>
+        
 
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-
-            <!-- Package 1: Network Basic -->
-            <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
-                <h3 class="text-xl font-bold text-slate-800 mb-2">
-                    {{ __('messages.network_pkg_1_title') }}
-                </h3>
-                <p class="text-slate-500 text-sm mb-6">
-                    {{ __('messages.network_pkg_1_desc') }}
-                </p>
-
-                <ul class="space-y-4 mb-6 text-slate-700 text-sm">
-                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_1_feat_1') }}</li>
-                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_1_feat_2') }}</li>
-                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_1_feat_3') }}</li>
-                </ul>
-
-                <div class="mb-6">
-                    <p class="text-2xl font-extrabold text-slate-900">
-                        {{ __('messages.network_pkg_1_price') }}
-                        <span class="text-base font-semibold text-slate-600">
-                            {{ __('messages.network_pkg_1_unit') }}
-                        </span>
-                    </p>
-                    <p class="mt-1 text-[10px] italic text-slate-400">
-                        {{ __('messages.network_pkg_note') }}
-                    </p>
-                </div>
-
-                <a href="https://wa.me/6282229046099?text={{ urlencode('Halo, saya ingin info Paket Network Basic.') }}"
-                   class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">
-                    {{ __('messages.network_pkg_1_cta') }}
-                </a>
-            </div>
-
-
-            <!-- Package 2: Network Enterprise (Highlighted) -->
-            <div class="neu-flat rounded-3xl p-8 relative transform md:scale-110 shadow-2xl z-10 border-2 border-indigo-500">
-
-                <div class="absolute top-0 right-0 bg-indigo-100 text-indigo-700 px-6 py-2 rounded-bl-3xl rounded-tr-3xl text-xs font-bold shadow-sm whitespace-nowrap border-b border-l border-indigo-200">
-                    {{ __('messages.network_pkg_badge_best') }}
-                </div>
-                <!-- Judul & Deskripsi -->
-                <h3 class="text-2xl font-bold text-slate-800 mt-10  mb-2 leading-tight">
-                    {{ __('messages.network_pkg_2_title') }}
-                </h3>
-                <p class="text-slate-500 text-sm font-medium mb-6 leading-relaxed">
-                    {{ __('messages.network_pkg_2_desc') }}
-                </p>
-
-                <!-- Fitur -->
-                <ul class="space-y-3 mb-6 text-slate-700 text-sm font-medium leading-relaxed">
-                    <li class="flex items-start gap-3">
-                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_1') }}
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_2') }}
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_3') }}
-                    </li>
-                    <li class="flex items-start gap-3">
-                        <span class="text-indigo-600 font-bold">✓</span>{{ __('messages.network_pkg_2_feat_4') }}
-                    </li>
-                </ul>
-
-                <!-- Harga -->
-                <div class="mb-6">
-                    <p class="text-2xl md:text-3xl font-extrabold text-slate-900 leading-tight">
-                        {{ __('messages.network_pkg_2_price') }}
-                        <span class="text-base font-semibold text-slate-600">
-                            {{ __('messages.network_pkg_2_unit') }}
-                        </span>
-                    </p>
-                    <p class="text-[11px] italic text-slate-400 leading-snug mt-2">
-                        {{ __('messages.network_pkg_note') }}
-                    </p>
-                </div>
-
-                <!-- Tombol -->
-                <a href="https://wa.me/6282229046099?text={{ urlencode('Halo, saya ingin info Paket Network Enterprise.') }}"
-                   class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-indigo-700 font-bold text-center transition-all leading-none">
-                    {{ __('messages.network_pkg_2_cta') }}
-                </a>
-            </div>
-
-
-            <!-- Package 3: Custom -->
-            <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
-                <h3 class="text-xl font-bold text-slate-800 mb-2">
-                    {{ __('messages.network_pkg_3_title') }}
-                </h3>
-                <p class="text-slate-500 text-sm mb-6">
-                    {{ __('messages.network_pkg_3_desc') }}
-                </p>
-
-                <ul class="space-y-4 mb-8 text-slate-700 text-sm">
-                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_3_feat_1') }}</li>
-                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_3_feat_2') }}</li>
-                    <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span>{{ __('messages.network_pkg_3_feat_3') }}</li>
-                </ul>
-
-                <a href="https://wa.me/6282229046099?text={{ urlencode('Halo, saya mau konsultasi Paket Network Custom.') }}"
-                   class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">
-                    {{ __('messages.network_pkg_3_cta') }}
-                </a>
-            </div>
-        </div>
-    </div>
     </section>
 
+    <!-- SCRIPT_PLACEHOLDER -->
+    <script>
+        function switchScheme(scheme) {
+            const gridBasic = document.getElementById('grid-basic');
+            const gridPremium = document.getElementById('grid-premium');
+            const btnBasic = document.getElementById('btn-basic');
+            const btnPremium = document.getElementById('btn-premium');
+            const labelBasic = document.getElementById('label-basic');
+            const labelPremium = document.getElementById('label-premium');
+
+            if(scheme === 'basic') {
+                gridBasic.classList.remove('hidden');
+                gridPremium.classList.add('hidden');
+                btnBasic.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-cyan-600';
+                btnPremium.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600';
+                labelBasic.classList.remove('hidden');
+                labelPremium.classList.add('hidden');
+            } else {
+                gridBasic.classList.add('hidden');
+                gridPremium.classList.remove('hidden');
+                btnBasic.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-cyan-600';
+                btnPremium.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-indigo-600';
+                labelBasic.classList.add('hidden');
+                labelPremium.classList.remove('hidden');
+            }
+        }
+
+        function openModal(title, items) {
+            // FIX: Ensure modal is at root of body to solve z-index issues
+            const modal = document.getElementById('snk-modal');
+            if (modal && modal.parentNode !== document.body) {
+                document.body.appendChild(modal);
+            }
+
+            document.getElementById('modal-title').textContent = title;
+            const list = document.getElementById('modal-list');
+            list.innerHTML = '';
+            items.forEach(item => {
+                const li = document.createElement('li');
+                li.className = 'flex items-start gap-3 text-slate-600 text-sm';
+                li.innerHTML = `<span class="text-indigo-500 font-bold mt-0.5">&bull;</span><span>${item}</span>`;
+                list.appendChild(li);
+            });
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('snk-modal').classList.add('hidden');
+        }
+    </script>
 
     <!-- CTS Section -->
     <section id="contact" class="py-24 bg-[#eef2f6] text-center">
         <div class="container mx-auto px-6 relative z-10">
             <h2 class="text-3xl md:text-5xl font-bold mb-8 leading-tight text-slate-800">{{ __('messages.network_cta_title') }}</h2>
-            <p class="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">
-                {{ __('messages.network_cta_desc') }}
-            </p>
-            
+            <p class="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">{{ __('messages.network_cta_desc') }}</p>
             <div>
                 <a href="https://wa.me/6282229046099" target="_blank" class="px-8 py-4 neu-btn font-bold text-indigo-600 inline-flex items-center justify-center">
                     <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
@@ -423,7 +442,6 @@
             </div>
         </div>
     </section>
-
     <!-- Sticky Mobile CTA -->
     <div class="sticky-cta md:hidden bg-white border-t border-slate-200 shadow-2xl p-4">
         <a href="https://wa.me/6282229046099?text=Halo,%20saya%20mau%20konsultasi%20tentang%20Network%20Solutions." class="flex items-center justify-center w-full px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold shadow-lg shadow-indigo-200 transition-all active:scale-95">
@@ -470,4 +488,24 @@
             revealElements.forEach(el => observer.observe(el));
         });
     </script>
+@push('modals')
+    <!-- S&K Modal (Moved for Z-Index) -->
+    <div id="snk-modal" style="z-index: 99999;" class="hidden fixed inset-0 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl neu-flat relative transform transition-all duration-300">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center gap-3">
+                <span class="p-2 rounded-xl bg-indigo-50 text-indigo-600">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                </span>
+                <span id="modal-title">{{ __('messages.network_managed_terms_title') }}</span>
+            </h3>
+            <ul id="modal-list" class="space-y-3"></ul>
+            <div class="mt-8 pt-6 border-t border-slate-100">
+                <button onclick="closeModal()" class="w-full py-3 rounded-xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-colors shadow-lg shadow-indigo-200">{{ __('messages.network_managed_terms_understand') }}</button>
+            </div>
+        </div>
+    </div>
+@endpush
 </x-layout>
