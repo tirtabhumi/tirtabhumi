@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Facades\Gate;
 
 
 class AppServiceProvider extends ServiceProvider
@@ -42,5 +43,9 @@ class AppServiceProvider extends ServiceProvider
 
         // Register observers
         \App\Models\Registration::observe(\App\Observers\RegistrationObserver::class);
+
+        Gate::before(function ($user, $ability) {
+            return $user->hasRole('super_admin') ? true : null;
+        });
     }
 }
