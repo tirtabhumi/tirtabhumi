@@ -4,7 +4,7 @@
         <header class="container mx-auto px-6 mb-12 text-center max-w-4xl">
             <!-- Breadcrumb -->
             <!-- Breadcrumb -->
-            <x-breadcrumb :paths="[__('messages.blog') => route('blog.index')]" :current="Str::limit($post->title, 30)" />
+            <x-breadcrumb :paths="[__('messages.blog') => route('blog.index')]" :current="Str::limit($post->title, 30)" class="justify-center" />
             <div class="flex items-center justify-center gap-3 mb-6">
                 <span class="text-sm font-bold px-3 py-1 rounded-full neu-pressed text-indigo-600">
                     {{ $post->category->name }}

@@ -1,6 +1,6 @@
-<x-layout-upventure title="Verify Email">
+<x-layout-auth title="Verify Email" :hideAuthSwitcher="true">
     <!-- Contact-style Background -->
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen flex items-center">
+    <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
              <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -10,7 +10,7 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Unified Container -->
-            <div class="neu-flat p-8 md:p-12 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-4xl mx-auto">
+            <div class="neu-flat p-8 md:p-12 rounded-[2.5rem] border border-white/50 relative overflow-hidden max-w-4xl mx-auto mt-20 md:mt-0">
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     
                     <!-- Left Column: Illustration/Text -->
@@ -26,7 +26,7 @@
 
                     <!-- Right Column: Actions -->
                     <div class="space-y-8 animate-fade-in-up animation-delay-200">
-                        <div class="bg-white/50 rounded-3xl p-8 neu-pressed text-center">
+                        <div class="bg-white/70 rounded-3xl p-8 border border-white/60 shadow-lg backdrop-blur-md text-center">
                             
                             @if (session('message'))
                                 <div class="mb-6 text-sm font-medium text-green-600 bg-green-100 border border-green-400 rounded-xl p-4">
@@ -57,4 +57,4 @@
             </div>
         </div>
     </section>
-</x-layout-upventure>
+</x-layout-auth>

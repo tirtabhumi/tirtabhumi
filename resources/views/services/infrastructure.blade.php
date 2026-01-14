@@ -1,8 +1,7 @@
 <x-layout title="{{ __('messages.service_infrastructure_title') }} - {{ config('app.name') }}" description="{{ __('messages.service_infrastructure_desc') }}">
     <!-- Hero Section -->
-    <!-- Hero Section -->
-    <section class="relative pt-40 pb-20 md:pt-56 md:pb-32 overflow-hidden bg-[#eef2f6]">
-        <div class="absolute inset-0 w-full h-full">
+     <section class="relative pt-32 pb-4 md:pt-40 md:pb-6 overflow-hidden">
+        <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
             <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
@@ -11,41 +10,35 @@
         <div class="relative container mx-auto px-6 z-10">
             <!-- Breadcrumb (Modern) -->
             <div class="mb-10 animate-fade-in-up">
-                <nav class="flex items-center gap-2 text-xs font-semibold text-slate-400">
-                    <a href="{{ url('/') }}" class="hover:text-indigo-600 transition-colors uppercase tracking-wider">{{ __('messages.home') }}</a>
-                    <svg class="w-3 h-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                    <a href="/#services" class="hover:text-indigo-600 transition-colors uppercase tracking-wider">{{ __('messages.services') }}</a>
-                    <svg class="w-3 h-3 text-slate-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M9 5l7 7-7 7"></path></svg>
-                    <span class="text-indigo-600 uppercase tracking-wider">{{ __('messages.service_infrastructure_title') }}</span>
-                </nav>
+                <x-breadcrumb :paths="[__('messages.services') => '/#services']" :current="__('messages.service_infrastructure_title')" class="mb-0" />
             </div>
 
             <div class="flex flex-col lg:flex-row items-center gap-16">
                 <!-- Text Column -->
-                <div class="lg:w-1/2 text-left">
+                <div class="lg:w-7/12 text-left">
                     <div class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 mb-8 animate-fade-in-up">
                         <span class="flex h-2 w-2 rounded-full bg-indigo-600 mr-3 animate-pulse"></span>
                         <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Network & IT Support</span>
                     </div>
-                    <h1 class="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-8 text-slate-900 leading-[1.1] animate-fade-in-up">
+                    <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-slate-900 leading-[1.1] animate-fade-in-up">
                         {{ __('messages.service_infrastructure_title') }}
                     </h1>
-                    <p class="text-lg md:text-xl text-slate-500 mb-12 max-w-xl leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
-                        {{ __('messages.service_infrastructure_desc') }}
+                    <p class="text-base md:text-lg text-slate-500 mb-10 max-w-xl leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
+                        {!! nl2br(e(__('messages.service_infrastructure_desc'))) !!}
                     </p>
                     <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
-                        <a href="https://wa.me/6282229046099" target="_blank" class="neu-btn px-8 py-4 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all">
+                        <a href="https://wa.me/6282229046099" target="_blank" class="neu-btn px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all text-sm">
                             {{ __('messages.get_started') }}
                         </a>
-                        <a href="#services-grid" class="neu-btn px-8 py-4 rounded-2xl bg-white text-indigo-600 font-bold hover:bg-slate-50 transition-all">
+                        <a href="#services-grid" class="neu-btn px-8 py-3.5 rounded-2xl bg-white text-indigo-600 font-bold hover:bg-slate-50 transition-all text-sm">
                              {{ __('messages.our_services') }}
                         </a>
                     </div>
                 </div>
                 <!-- Image Column -->
-                <div class="lg:w-1/2 relative animate-fade-in-up" style="animation-delay: 0.6s">
-                    <div class="neu-flat p-4 rounded-[2.5rem] relative z-10 transition-transform duration-500 hover:scale-[1.02]">
-                        <img src="{{ asset('images/service-infrastructure.png') }}" alt="IT Infrastructure Indonesia" class="w-full h-[300px] md:h-[400px] object-cover rounded-[2rem] shadow-sm">
+                <div class="lg:w-5/12 relative animate-fade-in-up" style="animation-delay: 0.6s">
+                    <div class="neu-flat p-4 rounded-[2.5rem] relative z-10">
+                        <img src="{{ asset('images/service-infrastructure-v2.jpg') }}" alt="IT Infrastructure Indonesia" class="w-full h-full object-cover rounded-[2rem] shadow-sm">
                     </div>
                     <!-- Decorative Elements -->
                     <div class="absolute -top-8 -right-8 w-32 h-32 bg-cyan-400/20 rounded-full blur-2xl z-0"></div>

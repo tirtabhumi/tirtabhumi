@@ -9,7 +9,7 @@ return [
     'login' => 'Login',
     'hero_title_1' => 'Integrated Digital &',
     'hero_title_2' => 'Procurement Solutions',
-    'hero_subtitle' => 'Empowering Government & Enterprise with AI, Infrastructure, and Smart Procurement.',
+    'hero_subtitle' => 'PT Tirta Bhumi Indonesia is a company engaged in the procurement of goods and services as well as website creation and development, focusing on providing efficient, appropriate, and sustainable business solutions.',
     'hero_rotating_text' => [
         'Trusted by 50+ Government Agencies',
         '9,000+ AI & CCTV Implementations',
@@ -49,6 +49,7 @@ return [
 
     'service_digital_title' => 'Digital Services',
     'service_digital_desc' => 'Increase efficiency with Website/SaaS, Business Automation, and AI Response Bot. We also help manage Digital Marketing and Social Media.',
+    'service_digital_desc_full' => "Transform your business into the future with integrated digital solutions. We provide a technology ecosystem designed to improve your efficiency, reach, and operational performance comprehensively.\n\nFrom a stunning web presence to AI-based automation, we are the technical partner ready to turn your digital vision into real results that impact the dynamic Indonesian market.",
 
     'service_infra_title' => 'Infrastructure',
     'service_infra_desc' => 'Fully managed network services (Access Point/Interconnection) and security systems (CCTV).',
@@ -87,23 +88,47 @@ return [
     'blog_desc' => 'Insights, tutorials, and news from the Tirtabhumi team.',
 
     // Digital
-    'digital_sub_1_title' => 'Web Ads Bundling',
-    'digital_sub_1_desc' => 'Complete package of professional website creation and Google/Meta Ads management to maximize your business sales.',
-    'digital_sub_1_list_1' => 'Professional Website',
-    'digital_sub_1_list_2' => 'Google & Meta Ads',
-    'digital_sub_1_list_3' => 'Conversion Optimization',
+    'digital_sub_1_title' => 'Web & Apps Development',
+    'digital_sub_1_desc' => 'Build a strong digital presence with high-performance custom websites and applications designed for the best user experience.',
+    'digital_sub_1_list_1' => 'Profile & E-Commerce Websites',
+    'digital_sub_1_list_2' => 'Custom Web Apps & SaaS',
+    'digital_sub_1_list_3' => 'UI/UX Optimization & SEO',
 
-    'digital_sub_2_title' => 'Automation & AI',
-    'digital_sub_2_desc' => 'Business process automation and artificial intelligence (AI) integration to improve operational efficiency. Including Chatbots and AI Response.',
-    'digital_sub_2_list_1' => 'Business Automation',
-    'digital_sub_2_list_2' => 'AI Chatbots',
-    'digital_sub_2_list_3' => 'Data Analysis',
+    'digital_sub_2_title' => 'Automation & Artificial Intelligence (AI)',
+    'digital_sub_2_desc' => 'Automate workflows and integrate AI technology to cut operational time and provide smart customer responses 24/7.',
+    'digital_sub_2_list_1' => 'Smart AI Chatbot Integration',
+    'digital_sub_2_list_2' => 'Business Process Automation (RPA)',
+    'digital_sub_2_list_3' => 'Predictive Analytics Dashboards',
 
     'digital_sub_3_title' => 'Digital Marketing',
     'digital_sub_3_desc' => 'Comprehensive digital marketing strategies to enhance online presence and reach the right audience.',
     'digital_sub_3_list_1' => 'Social Media Management',
     'digital_sub_3_list_2' => 'SEO & SEM',
     'digital_sub_3_list_3' => 'Content Strategy',
+
+    // Digital Why Choose Us
+    'digital_why_title' => 'Why Our Digital Solutions?',
+    'digital_why_subtitle' => 'Combining Creativity with Cutting-Edge Technology',
+    'digital_why_1_title' => 'Result Oriented',
+    'digital_why_1_desc' => 'Every line of code and campaign is designed to deliver maximum ROI for your business.',
+    'digital_why_2_title' => 'Modern Tech Stack',
+    'digital_why_2_desc' => 'Using the latest technology to ensure speed, security, and scalability.',
+    'digital_why_3_title' => 'Ongoing Support',
+    'digital_why_3_desc' => 'We don\'t just build and leave. We provide regular maintenance and updates.',
+    'digital_why_4_title' => 'Total Customization',
+    'digital_why_4_desc' => 'No "one size fits all" solutions. All services are tailored to your unique needs.',
+
+    // Digital Process
+    'digital_process_title' => 'Our Workflow',
+    'digital_process_subtitle' => 'Transparent, Measurable, and Efficient',
+    'digital_process_1_title' => 'Consultation & Research',
+    'digital_process_1_desc' => 'Understanding your vision and conducting deep market research.',
+    'digital_process_2_title' => 'Design (UI/UX)',
+    'digital_process_2_desc' => 'Creating visual prototypes focused on user experience.',
+    'digital_process_3_title' => 'Development (Coding)',
+    'digital_process_3_desc' => 'High-precision technical execution by our expert developers.',
+    'digital_process_4_title' => 'Launch & Optimization',
+    'digital_process_4_desc' => 'Go-live and continuous optimization based on real performance data.',
 
     // Infrastructure
     'infra_sub_1_title' => 'Network Solutions',
@@ -296,6 +321,7 @@ return [
     'training_schedule_title' => 'Webinar & Workshop',
     'training_schedule_desc' => 'Choose training that suits your interests and career needs.',
 
+    'login_to_register' => 'Please log in to continue registration.',
     'class_title' => 'UpVenture Learnings',
     'class_desc' => 'Intensive long-term programs to master digital skills in depth.',
     'class_empty_title' => 'No Class Yet',
@@ -371,7 +397,7 @@ return [
 
     // Infrastructure Page
     'service_infrastructure_title' => 'Infrastructure',
-    'service_infrastructure_desc' => 'Reliable IT infrastructure solutions to support your business operations.',
+    'service_infrastructure_desc' => "Reliable IT infrastructure solutions to support your business operations. We understand that a strong technological foundation is the key to modern corporate efficiency.\n\nWith experience handling various sectors in Indonesia, our team of experts is ready to design, build, and maintain your entire IT ecosystem—from stable network systems to secure and integrated data centers.",
     'infrastructure_sub_1_title' => 'Network Installation',
     'infrastructure_sub_1_desc' => 'Stable and secure LAN/WAN network installation.',
     'infrastructure_sub_1_list_1' => 'Network Topology Design',
@@ -653,7 +679,7 @@ return [
         ],
         [
             'text' => 'The procurement services were streamlined and efficient. Saved us time and resources significantly.',
-            'author' => 'Siti Aminah',
+            'author' => 'Keysa Anata',
             'role' => 'Ops Manager, RetailIndo',
             'avatar' => 'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5

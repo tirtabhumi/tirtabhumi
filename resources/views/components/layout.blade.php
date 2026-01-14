@@ -176,7 +176,7 @@
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9GZ5CT" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
-    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-[#eef2f6]" id="navbar">
+    <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent" id="navbar">
         <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center relative">
             <div class="flex items-center gap-3">
                 <a href="/" class="flex items-center gap-3 group">
@@ -217,10 +217,7 @@
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
                                 {{ __('messages.service_infra_title') }}
                             </a>
-                            <a href="{{ route('trainings.index') }}"
-                                class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
-                                {{ __('messages.service_people_title') }}
-                            </a>
+                            
                             <a href="{{ route('services.procurement') }}"
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50">
                                 {{ __('messages.service_procurement_title') }}
@@ -229,6 +226,8 @@
                     </div>
                 </div>
 
+                <a href="{{ route('trainings.index') }}"
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.service_people_title') }}</a>
                 <a href="{{ route('blog.index') }}"
                     class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
                 <a href="{{ route('contacts.index') }}"
@@ -335,6 +334,9 @@
                                     class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.about') }}</a>
                             </li>
                             <li><a href="/#services"
+                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_people_title') }}</a>
+                            </li>
+                            <li><a href="{{ route('trainings.index') }}"
                                     class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.services') }}</a>
                             </li>
                             <li><a href="{{ route('blog.index') }}"
@@ -423,13 +425,14 @@
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_digital_title') }}</a>
                             <a href="{{ route('services.infrastructure') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_infra_title') }}</a>
-                            <a href="{{ route('trainings.index') }}"
-                                class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_people_title') }}</a>
+                           
                             <a href="{{ route('services.procurement') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_procurement_title') }}</a>
                         </div>
                     </div>
 
+                    <a href="{{ route('trainings.index') }}"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.service_people_title') }}</a>
                     <a href="/#about"
                         class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
                     <a href="{{ route('blog.index') }}"
@@ -446,7 +449,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="w-full text-left text-lg font-medium text-red-500 hover:text-red-700 transition-colors py-2">
+                                    class="w-full text-center text-lg font-medium text-red-500 hover:text-red-700 transition-colors py-2">
                                     Sign Out
                                 </button>
                             </form>
@@ -666,6 +669,22 @@
         // Mobile Menu Logic
         document.addEventListener('DOMContentLoaded', () => {
             // User Menu Logic
+            // Navbar Scroll Effect
+            const navbar = document.getElementById('navbar');
+            
+            function handleScroll() {
+                if (window.scrollY > 20) {
+                    navbar.classList.remove('bg-transparent');
+                    navbar.classList.add('bg-[#eef2f6]/90', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/20');
+                } else {
+                    navbar.classList.add('bg-transparent');
+                    navbar.classList.remove('bg-[#eef2f6]/90', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/20');
+                }
+            }
+
+            window.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial check
+
             const userMenuBtn = document.getElementById('user-menu-btn');
             const userMenuDropdown = document.getElementById('user-menu-dropdown');
 

@@ -701,13 +701,6 @@
                 @foreach ($features as $f)
                     <div class="group neu-flat p-6 transition-all duration-300 hover:scale-[1.02] flex flex-col reveal-bottom relative overflow-hidden"
                         style="transition-delay: {{ ($loop->index * 50) }}ms">
-                        <!-- Decorative background icon -->
-                        <div
-                            class="absolute -right-4 -bottom-4 text-{{ $f['color'] }}-600 opacity-[0.08] group-hover:scale-110 transition-transform duration-500 pointer-events-none -z-10">
-                            <svg class="w-24 h-24" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="{{ $f['icon'] }}"></path>
-                            </svg>
-                        </div>
 
                         <div
                             class="w-12 h-12 rounded-2xl bg-{{ $f['color'] }}-50 flex items-center justify-center text-{{ $f['color'] }}-600 mb-6 shadow-sm group-hover:scale-110 transition-transform duration-300 relative z-10">

@@ -110,12 +110,12 @@
             </div>
             <nav class="hidden md:flex space-x-8 items-center flex-1 justify-center">
                 <a href="/"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.home') }}</a>
 
                 <!-- Services Dropdown -->
                 <div class="relative group">
                     <button
-                        class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors focus:outline-none py-4 hover-underline-animation">
+                        class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none py-4 hover-underline-animation">
                         {{ __('messages.services') }}
                         <svg class="w-4 h-4 ml-1 transition-transform group-hover:rotate-180" fill="none"
                             stroke="currentColor" viewBox="0 0 24 24">
@@ -134,10 +134,6 @@
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
                                 {{ __('messages.service_infra_title') }}
                             </a>
-                            <a href="{{ route('trainings.index') }}"
-                                class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
-                                {{ __('messages.service_people_title') }}
-                            </a>
                             <a href="{{ route('services.procurement') }}"
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50">
                                 {{ __('messages.service_procurement_title') }}
@@ -146,17 +142,19 @@
                     </div>
                 </div>
 
+                <a href="{{ route('trainings.index') }}"
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.service_people_title') }}</a>
                 <a href="{{ route('blog.index') }}"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
                 <a href="{{ route('contacts.index') }}"
-                    class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.contact') }}</a>
 
             </nav>
             <div class="hidden md:flex items-center gap-6">
                 <!-- Language Switcher -->
                 <div class="relative group">
                     <button
-                        class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors focus:outline-none py-4">
+                        class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors focus:outline-none py-4">
                         <span class="uppercase">{{ app()->getLocale() }}</span>
                         <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -182,7 +180,7 @@
                 @auth
                     <div class="relative ml-3">
                         <button id="user-menu-btn"
-                            class="flex items-center text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
+                            class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 focus:outline-none transition-colors">
                             <span>{{ Auth::user()->name }}</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -204,11 +202,11 @@
                 @else
                     <div class="flex items-center gap-1">
                         <a href="{{ route('login') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">
+                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-800 hover:text-indigo-600' }}">
                             {{ __('messages.login') }}
                         </a>
                         <a href="{{ route('register') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-500 hover:text-indigo-600' }}">
+                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-800 hover:text-indigo-600' }}">
                             Sign Up
                         </a>
                     </div>
@@ -251,6 +249,9 @@
                         </li>
                         <li><a href="/#services"
                                 class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.services') }}</a>
+                        </li>
+                        <li><a href="{{ route('trainings.index') }}"
+                                class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_people_title') }}</a>
                         </li>
                         <li><a href="{{ route('blog.index') }}"
                                 class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.blog') }}</a>
@@ -334,13 +335,13 @@
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_digital_title') }}</a>
                             <a href="{{ route('services.infrastructure') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_infra_title') }}</a>
-                            <a href="{{ route('trainings.index') }}"
-                                class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_people_title') }}</a>
                             <a href="{{ route('services.procurement') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_procurement_title') }}</a>
                         </div>
                     </div>
 
+                    <a href="{{ route('trainings.index') }}"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.service_people_title') }}</a>
                     <a href="/#about"
                         class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
                     <a href="{{ route('blog.index') }}"
@@ -357,7 +358,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="w-full text-left text-lg font-medium text-red-500 hover:text-red-700 transition-colors py-2">
+                                    class="w-full text-center text-lg font-medium text-red-500 hover:text-red-700 transition-colors py-2">
                                     Sign Out
                                 </button>
                             </form>

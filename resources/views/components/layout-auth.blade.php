@@ -99,6 +99,7 @@
                 </div>
 
                 <!-- Right Side: Auth Switcher -->
+                @unless($hideAuthSwitcher ?? false)
                     <div class="flex items-center gap-3">
                         <a href="{{ route('login') }}"
                             class="px-4 py-2 rounded-full text-sm font-bold text-slate-800 hover:text-indigo-600 transition-all duration-300">
@@ -109,6 +110,7 @@
                             Sign Up
                         </a>
                     </div>
+                @endunless
             </div>
         </div>
     </header>

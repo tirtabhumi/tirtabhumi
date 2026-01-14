@@ -9,7 +9,7 @@ return [
     'login' => 'Masuk',
     'hero_title_1' => 'Solusi Digital &',
     'hero_title_2' => 'Pengadaan Terpadu',
-    'hero_subtitle' => 'Memberdayakan Pemerintah & Korporasi dengan AI, Infrastruktur, dan Pengadaan Cerdas.',
+    'hero_subtitle' => 'PT Tirta Bhumi Indonesia adalah perusahaan yang bergerak di bidang pengadaan barang dan jasa serta pembuatan dan pengembangan website, yang berfokus pada penyediaan solusi bisnis yang efisien, tepat guna, dan berkelanjutan.',
     'hero_rotating_text' => [
         'Dipercaya oleh 50+ Instansi Pemerintah',
         '9.000+ Implementasi AI & CCTV',
@@ -49,6 +49,7 @@ return [
 
     'service_digital_title' => 'Layanan Digital',
     'service_digital_desc' => 'Tingkatkan efisiensi dengan Website/SaaS, Otomasi Bisnis, dan AI Response Bot. Kami juga membantu pengelolaan Digital Marketing dan Social Media.',
+    'service_digital_desc_full' => "Transformasi bisnis Anda menuju masa depan dengan solusi digital terintegrasi. Kami menghadirkan ekosistem teknologi yang dirancang untuk meningkatkan efisiensi, jangkauan, dan performa operasional Anda secara menyeluruh.\n\nDari kehadiran web yang memukau hingga otomasi berbasis kecerdasan buatan, kami adalah mitra teknis yang siap mewujudkan visi digital Anda menjadi hasil nyata yang berdampak di pasar Indonesia yang dinamis.",
 
     'service_infra_title' => 'Infrastruktur',
     'service_infra_desc' => 'Layanan pengelolaan jaringan (Access Point/Interconnection) dan sistem keamanan (CCTV) yang terkelola penuh.',
@@ -87,23 +88,47 @@ return [
     'blog_desc' => 'Wawasan, tutorial, dan berita dari tim Tirtabhumi.',
 
     // Digital
-    'digital_sub_1_title' => 'Web Ads Bundling',
-    'digital_sub_1_desc' => 'Paket lengkap pembuatan website profesional dan pengelolaan iklan Google/Meta Ads untuk memaksimalkan penjualan bisnis Anda.',
-    'digital_sub_1_list_1' => 'Website Profesional',
-    'digital_sub_1_list_2' => 'Google & Meta Ads',
-    'digital_sub_1_list_3' => 'Optimasi Konversi',
+    'digital_sub_1_title' => 'Web & Apps Development',
+    'digital_sub_1_desc' => 'Membangun kehadiran digital yang kuat dengan website dan aplikasi kustom yang dirancang untuk performa tinggi dan pengalaman pengguna terbaik.',
+    'digital_sub_1_list_1' => 'Website Profil & E-Commerce',
+    'digital_sub_1_list_2' => 'Aplikasi Web & SaaS Kustom',
+    'digital_sub_1_list_3' => 'Optimasi UI/UX & SEO Vendor',
 
-    'digital_sub_2_title' => 'Otomasi & AI',
-    'digital_sub_2_desc' => 'Otomatisasi proses bisnis dan integrasi kecerdasan buatan (AI) untuk meningkatkan efisiensi operasional. Termasuk Chatbot dan AI Response.',
-    'digital_sub_2_list_1' => 'Otomasi Bisnis',
-    'digital_sub_2_list_2' => 'Chatbot AI',
-    'digital_sub_2_list_3' => 'Analisis Data',
+    'digital_sub_2_title' => 'Otomasi & Kecerdasan Buatan (AI)',
+    'digital_sub_2_desc' => 'Otomatisasi alur kerja dan integrasi teknologi AI untuk memangkas waktu operasional dan memberikan respon pelanggan yang cerdas 24/7.',
+    'digital_sub_2_list_1' => 'Integrasi AI Chatbot Pintar',
+    'digital_sub_2_list_2' => 'Otomasi Proses Bisnis (RPA)',
+    'digital_sub_2_list_3' => 'Dashboard Analisis Prediktif',
 
     'digital_sub_3_title' => 'Digital Marketing',
     'digital_sub_3_desc' => 'Strategi pemasaran digital komprehensif untuk meningkatkan kehadiran online dan menjangkau audiens yang tepat.',
     'digital_sub_3_list_1' => 'Manajemen Media Sosial',
     'digital_sub_3_list_2' => 'SEO & SEM',
     'digital_sub_3_list_3' => 'Strategi Konten',
+
+    // Digital Why Choose Us
+    'digital_why_title' => 'Mengapa Solusi Digital Kami?',
+    'digital_why_subtitle' => 'Kami Menggabungkan Kreativitas dengan Teknologi Terdepan',
+    'digital_why_1_title' => 'Berorientasi Hasil',
+    'digital_why_1_desc' => 'Setiap baris kode dan kampanye dirancang untuk memberikan ROI maksimal bagi bisnis Anda.',
+    'digital_why_2_title' => 'Teknologi Modern',
+    'digital_why_2_desc' => 'Menggunakan stack teknologi terbaru untuk memastikan kecepatan, keamanan, dan skalabilitas.',
+    'digital_why_3_title' => 'Dukungan Berlanjut',
+    'digital_why_3_desc' => 'Kami tidak hanya membangun lalu pergi. Kami memberikan maintenance dan update berkala.',
+    'digital_why_4_title' => 'Kustomisasi Total',
+    'digital_why_4_desc' => 'Tidak ada solusi "one size fits all". Semua layanan disesuaikan dengan kebutuhan unik Anda.',
+
+    // Digital Process
+    'digital_process_title' => 'Alur Kerja Kami',
+    'digital_process_subtitle' => 'Transparan, Terukur, dan Efisien',
+    'digital_process_1_title' => 'Konsultasi & Riset',
+    'digital_process_1_desc' => 'Memahami visi Anda dan melakukan riset pasar yang mendalam.',
+    'digital_process_2_title' => 'Perancangan (UI/UX)',
+    'digital_process_2_desc' => 'Membuat prototype visual yang fokus pada kenyamanan pengguna.',
+    'digital_process_3_title' => 'Pengembangan (Coding)',
+    'digital_process_3_desc' => 'Eksekusi teknis presisi tinggi oleh tim pengembang ahli kami.',
+    'digital_process_4_title' => 'Peluncuran & Optimasi',
+    'digital_process_4_desc' => 'Go-live dan optimasi berkelanjutan berdasarkan data performa nyata.',
 
     // Infrastructure
     'infra_sub_1_title' => 'Solusi Jaringan',
@@ -295,6 +320,8 @@ return [
     'training_testi_3_role' => 'Alumni Coding Bootcamp',
     'training_schedule_title' => 'Webinar & Workshop',
     'training_schedule_desc' => 'Pilih pelatihan yang sesuai dengan minat dan kebutuhan karir Anda.',
+    'login_to_register' => 'Silakan login untuk melanjutkan pendaftaran',
+  
 
     'class_title' => 'UpVenture Learnings',
     'class_desc' => 'Program intensif jangka panjang untuk menguasai skill digital secara mendalam.',
@@ -372,7 +399,7 @@ return [
 
     // Infrastructure Page
     'service_infrastructure_title' => 'Infrastruktur',
-    'service_infrastructure_desc' => 'Solusi infrastruktur IT yang handal untuk mendukung operasional bisnis Anda.',
+    'service_infrastructure_desc' => "Solusi infrastruktur IT yang handal untuk mendukung operasional bisnis Anda. Kami memahami bahwa fondasi teknologi yang kuat adalah kunci efisiensi perusahaan modern.\n\nDengan pengalaman menangani berbagai sektor di Indonesia, tim ahli kami siap merancang, membangun, serta memelihara ekosistem IT Anda secara menyeluruh—mulai dari sistem jaringan yang stabil hingga pusat data yang aman dan terintegrasi.",
     'infrastructure_sub_1_title' => 'Network Installation',
     'infrastructure_sub_1_desc' => 'Instalasi jaringan LAN/WAN yang stabil dan aman.',
     'infrastructure_sub_1_list_1' => 'Desain Topologi Jaringan',
@@ -657,7 +684,7 @@ return [
         ],
         [
             'text' => 'Layanan pengadaan barang yang sangat efisien dan transparan. Membantu kami menghemat waktu dan sumber daya secara signifikan.',
-            'author' => 'Siti Aminah',
+            'author' => 'Keysa Anata',
             'role' => 'Ops Manager, RetailIndo',
             'avatar' => 'https://images.unsplash.com/photo-1589156229687-496a31ad1d1f?q=80&w=256&h=256&auto=format&fit=crop',
             'rating' => 5

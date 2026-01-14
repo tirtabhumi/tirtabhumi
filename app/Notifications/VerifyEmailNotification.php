@@ -16,12 +16,13 @@ class VerifyEmailNotification extends VerifyEmail
         $verificationUrl = $this->verificationUrl($notifiable);
 
         return (new MailMessage)
-            ->from('noreply@tirtabhumi.com', 'UpVenture')
-            ->subject('Verify Your Email Address - UpVenture')
-            ->greeting('Hello ' . $notifiable->name . '!')
-            ->line('Please click the button below to verify your email address.')
-            ->action('Verify Email Address', $verificationUrl)
-            ->line('If you did not create an account, no further action is required.')
-            ->salutation('Regards, UpVenture Team');
+            ->from(config('mail.from.address'), config('mail.from.name'))
+            ->subject('Konfirmasi Alamat Email Anda - ' . config('app.name'))
+            ->greeting('Halo ' . $notifiable->name . '!')
+            ->line('Terima kasih telah bergabung dengan ' . config('app.name') . '.')
+            ->line('Silakan klik tombol di bawah ini untuk memverifikasi alamat email Anda dan mengaktifkan akun Anda sepenuhnya.')
+            ->action('Verifikasi Email', $verificationUrl)
+            ->line('Jika Anda tidak merasa mendaftar di layanan kami, Anda dapat mengabaikan email ini.')
+            ->salutation('Salam hangat,' . PHP_EOL . 'Tim ' . config('app.name'));
     }
 }

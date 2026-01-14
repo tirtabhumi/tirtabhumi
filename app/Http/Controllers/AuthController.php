@@ -29,16 +29,6 @@ class AuthController extends Controller
 
             $user = Auth::user();
 
-            if ($user->is_blocked) {
-                Auth::logout();
-                $request->session()->invalidate();
-                $request->session()->regenerateToken();
-
-                return back()->withErrors([
-                    'email' => 'Your account has been blocked. Please contact support.',
-                ])->onlyInput('email');
-            }
-
             if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
                 return redirect()->intended('/admin');
             }
@@ -112,33 +102,33 @@ class AuthController extends Controller
                 ->orWhere('email', $googleUser->email)
                 ->first();
 
-            if ($user) {
-                // Update google_id if not present
-                if (!$user->google_id) {
-                    $user->update([
-                        'google_id' => $googleUser->id,
+                if ($user) {
+                    // Update google_id if not present
+                    if (!$user->google_id) {
+                        $user->update([
+                            'google_id' => $googleUser->id,
                             'avatar' => $googleUser->avatar,
-                            'email_verified_at' => now(), // Mark as verified on login
+                        ]);
+                    }
+
+                    Auth::login($user);
+
+                    if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
+                        return redirect()->intended('/admin');
+                    }
+
+                    return redirect()->intended('/dashboard');
+                } else {
+                    // Create new user
+                    $newUser = User::create([
+                        'name' => $googleUser->name,
+                        'email' => $googleUser->email,
+                        'google_id' => $googleUser->id,
+                        'avatar' => $googleUser->avatar,
+                        'password' => Hash::make(Str::random(16)), // Random password for SSO users
+                        'role' => 'user',
+                        'email_verified_at' => now(), // New Google users are verified
                     ]);
-                }
-
-                Auth::login($user);
-
-                if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
-                    return redirect()->intended('/admin');
-                }
-
-                return redirect()->intended('/dashboard');
-            } else {
-                // Create new user
-                $newUser = User::create([
-                    'name' => $googleUser->name,
-                    'email' => $googleUser->email,
-                    'google_id' => $googleUser->id,
-                    'avatar' => $googleUser->avatar,
-                    'password' => Hash::make(Str::random(16)), // Random password for SSO users
-                    'role' => 'user',
-                ]);
 
                 event(new \Illuminate\Auth\Events\Registered($newUser));
 

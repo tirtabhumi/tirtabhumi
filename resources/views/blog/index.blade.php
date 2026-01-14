@@ -9,7 +9,7 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Breadcrumb -->
-            <x-breadcrumb :current="__('messages.blog')" />
+            <x-breadcrumb :current="__('messages.blog')" class="justify-center" />
 
             <div class="text-center mb-16 animate-fade-in-up">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
