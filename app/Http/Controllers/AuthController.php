@@ -117,7 +117,8 @@ class AuthController extends Controller
                 if (!$user->google_id) {
                     $user->update([
                         'google_id' => $googleUser->id,
-                        'avatar' => $googleUser->avatar
+                            'avatar' => $googleUser->avatar,
+                            'email_verified_at' => now(), // Mark as verified on login
                     ]);
                 }
 
