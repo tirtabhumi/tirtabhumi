@@ -90,7 +90,7 @@
                 </a>
 
                 <!-- Center: Logo -->
-                <div class="absolute left-1/2 transform -translate-x-1/2">
+                <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
                     <a href="/" class="flex items-center gap-3">
                         <x-logo class="h-10 w-auto text-indigo-600" />
                         <div class="h-8 w-[1px] bg-slate-300"></div>
@@ -100,13 +100,13 @@
 
                 <!-- Right Side: Auth Switcher -->
                 @unless($hideAuthSwitcher ?? false)
-                    <div class="flex items-center gap-3">
+                    <div class="flex items-center gap-4 md:gap-6">
                         <a href="{{ route('login') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold text-slate-800 hover:text-indigo-600 transition-all duration-300">
+                            class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
                             {{ __('messages.login') }}
                         </a>
                         <a href="{{ route('register') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold text-slate-800 hover:text-indigo-600 transition-all duration-300">
+                            class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
                             Sign Up
                         </a>
                     </div>

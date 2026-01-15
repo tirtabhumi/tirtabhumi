@@ -81,7 +81,7 @@ class PaymentController extends Controller
         }
 
         // Initialize Xendit
-        \Xendit\Configuration::setXenditKey(env('XENDIT_SECRET_KEY'));
+        \Xendit\Configuration::setXenditKey(config('services.xendit.key'));
 
         // Generate Transaction ID if not exists
         if (!$registration->transaction_id) {

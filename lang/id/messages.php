@@ -6,7 +6,7 @@ return [
     'services' => 'Layanan',
     'blog' => 'Blog',
     'contact' => 'Kontak',
-    'login' => 'Masuk',
+    'login' => 'Sign In',
     'hero_title_1' => 'Solusi Digital &',
     'hero_title_2' => 'Pengadaan Terpadu',
     'hero_subtitle' => 'PT Tirta Bhumi Indonesia adalah perusahaan yang bergerak di bidang pengadaan barang dan jasa serta pembuatan dan pengembangan website, yang berfokus pada penyediaan solusi bisnis yang efisien, tepat guna, dan berkelanjutan.',
@@ -48,17 +48,17 @@ return [
     'services_desc' => 'Layanan terintegrasi untuk mendukung operasional dan pertumbuhan bisnis Anda.',
 
     'service_digital_title' => 'Layanan Digital',
-    'service_digital_desc' => 'Tingkatkan efisiensi dengan Website/SaaS, Otomasi Bisnis, dan AI Response Bot. Kami juga membantu pengelolaan Digital Marketing dan Social Media.',
+    'service_digital_desc' => 'Transformasi bisnis dengan solusi Website & Aplikasi, Otomasi AI, dan strategi Digital Marketing yang terukur untuk pertumbuhan maksimal.',
     'service_digital_desc_full' => "Transformasi bisnis Anda menuju masa depan dengan solusi digital terintegrasi. Kami menghadirkan ekosistem teknologi yang dirancang untuk meningkatkan efisiensi, jangkauan, dan performa operasional Anda secara menyeluruh.\n\nDari kehadiran web yang memukau hingga otomasi berbasis kecerdasan buatan, kami adalah mitra teknis yang siap mewujudkan visi digital Anda menjadi hasil nyata yang berdampak di pasar Indonesia yang dinamis.",
 
     'service_infra_title' => 'Infrastruktur',
-    'service_infra_desc' => 'Layanan pengelolaan jaringan (Access Point/Interconnection) dan sistem keamanan (CCTV) yang terkelola penuh.',
+    'service_infra_desc' => 'Solusi jaringan terkelola penuh (Managed Service), infrastruktur Fiber Optic, dan sistem keamanan CCTV untuk konektivitas bisnis yang andal.',
 
     'service_people_title' => 'UpVenture',
-    'service_people_desc' => 'Kami menyediakan Event Organizer profesional dan Pelatihan Terpadu (Coding, AI, IoT, Design) untuk meningkatkan kompetensi tim Anda.',
+    'service_people_desc' => 'Tingkatkan kompetensi tim melalui pelatihan teknologi (Coding, AI, IoT) dan layanan Event Organizer profesional untuk pengembangan talenta.',
 
     'service_procurement_title' => 'Pengadaan',
-    'service_procurement_desc' => 'Solusi pengadaan fleksibel (Sewa & Beli) untuk kebutuhan umum, mulai dari Goods, Items, hingga perawatan taman (Gardening).',
+    'service_procurement_desc' => 'Layanan pengadaan fleksibel (Sewa & Beli) untuk kebutuhan kantor, mulai dari perangkat IT hingga perawatan fasilitas (Gardening) yang terpercaya.',
 
     'target_market_title' => 'Siapa yang Kami Layani?',
     'tm_gov' => 'Government (B2G)',
@@ -270,8 +270,8 @@ return [
 
     // Training Index Page
     'training_title' => 'UpVenture',
-    'training_subtitle' => 'Upgrade skill digitalmu bersama UpVenture. Belajar langsung dari praktisi industri dengan kurikulum yang dirancang untuk kebutuhan kerja nyata.',
-    'training_subtitle_highlight' => 'Mulai Karir Digital Terpilihmu Bersama Mentor Terbaik.',
+    'training_subtitle' => "Aselerasi karir digitalmu dengan kurikulum berbasis proyek nyata yang dirancang khusus untuk era teknologi modern. Kami mencetak talenta digital siap kerja versi terbaik dari diri Anda.\n\nDengan bimbingan langsung dari mentor praktisi terkemuka, Anda akan diajak menyelami pengalaman kerja sesungguhnya melalui studi kasus riil. Dapatkan akses ke komunitas eksklusif dan peluang karir yang lebih luas.",
+    'training_subtitle_highlight' => 'Bukan Sekadar Kursus, Ini Langkah Awal Karir Impianmu.',
     'training_about_title' => 'Apa itu UpVenture?',
     'training_about_desc' => 'UpVenture adalah platform edukasi digital dari PT Tirta Bhumi Indonesia yang berfokus pada pengembangan skill siap kerja. Kami menghadirkan program pelatihan intensif di bidang teknologi, desain, dan pemasaran digital untuk membantu Anda mencapai potensi maksimal di era ekonomi digital.',
     'category_title' => 'Materi',
@@ -296,7 +296,7 @@ return [
     'privilege_3_desc' => 'Dapatkan sertifikat resmi dari PT Tirta Bhumi Indonesia untuk portofolio Anda.',
     'privilege_4_title' => 'Komunitas Eksklusif',
     'privilege_4_desc' => 'Networking dengan sesama alumni dan mentor untuk berbagi peluang kerja dan ilmu.',
-    'training_btn_schedule' => 'Lihat Jadwal Pelatihan',
+    'training_btn_schedule' => 'Lihat UpVenture Learnings',
     'join_affiliate' => 'Gabung Affiliate',
     'login_affiliate' => 'Masuk Affiliate',
     'why_training_title' => 'Kenapa Harus Training di Sini?',
@@ -320,7 +320,7 @@ return [
     'training_testi_3_role' => 'Alumni Coding Bootcamp',
     'training_schedule_title' => 'Webinar & Workshop',
     'training_schedule_desc' => 'Pilih pelatihan yang sesuai dengan minat dan kebutuhan karir Anda.',
-    'login_to_register' => 'Silakan login untuk melanjutkan pendaftaran',
+    'login_to_register' => 'Silakan Sign In untuk melanjutkan pendaftaran',
   
 
     'class_title' => 'UpVenture Learnings',
@@ -351,7 +351,7 @@ return [
     'partnership_btn' => 'Mulai Kolaborasi Sekarang',
 
     // Training Detail Page
-    'back_to_list' => 'Kembali ke Daftar Pelatihan',
+    'back_to_list' => 'Kembali ke UpVenture Learnings',
     'training_info' => 'Informasi Pelatihan',
     'date_time' => 'Tanggal & Waktu',
     'location' => 'Lokasi',
@@ -721,7 +721,7 @@ return [
     'network_managed_term_4' => 'Maintenance aktif selama masa sewa',
     'network_managed_term_5' => 'Pembayaran mengikuti BAST',
 
-    'network_feat_router_ruijie_1' => 'Router Ruijie RG-EG105G-V3',
+    'network_feat_router_ruijie_1' => 'Router:RG-EG105G-P-V3',
     'network_feat_router_ruijie_2' => 'Router RG-EG310GH-P-E',
     'network_feat_gateway_ruijie' => 'Gateway Ruijie RG-EG105G-V3',
     'network_feat_switch_es209' => 'Switch RG-ES209GC-P',
@@ -738,4 +738,76 @@ return [
     'network_ap_wifi6_7' => '7 AP Wi-Fi 6 AX1800',
     'network_ap_wifi6_10' => '10 AP Wi-Fi 6 AX1800',
     'network_ap_wifi6_15' => '15 AP Wi-Fi 6 AX1800',
+
+    // Premium Infrastructure Packages
+    'network_premium_infra_label' => 'Wi-Fi Infrastructure Packages',
+    'network_premium_infra_title' => 'Paket Infrastruktur Wi-Fi Premium',
+    'network_premium_infra_desc' => 'Solusi infrastruktur jaringan Wi-Fi lengkap dengan perangkat kelas enterprise untuk performa maksimal.',
+
+    'network_premium_small_title' => 'Premium Small',
+    'network_premium_small_sessions' => 'Max 100 concurrent session',
+    'network_premium_small_router' => 'Router: RG-EG105G-P-V3',
+    'network_premium_small_ap' => 'RG-RAP2200(F) Reyee Wi-Fi5 Ceiling Access Point',
+    'network_premium_small_rack' => 'Wallmount Rack 4U',
+    'network_premium_small_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    'network_premium_medium_title' => 'Premium Medium',
+    'network_premium_medium_sessions' => 'Max 300 concurrent session',
+    'network_premium_medium_router' => 'Router: RG-EG310GH-P-E',
+    'network_premium_medium_ap' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_premium_medium_switch' => 'Switch: RG-ES209GC-P',
+    'network_premium_medium_rack' => 'Wallmount Rack 4U',
+    'network_premium_medium_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    'network_premium_leader_title' => 'Premium Leader',
+    'network_premium_leader_sessions' => 'Max 300 concurrent session',
+    'network_premium_leader_router' => 'Router: RG-EG310GH-P-E',
+    'network_premium_leader_ap' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_premium_leader_switch' => 'Switch: RG-ES209GC-P',
+    'network_premium_leader_rack' => 'Wallmount Rack 4U',
+    'network_premium_leader_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    'network_premium_enterprise_title' => 'Premium Enterprise',
+    'network_premium_enterprise_sessions' => 'Max 300 concurrent session',
+    'network_premium_enterprise_router' => 'Router: RG-EG310GH-P-E',
+    'network_premium_enterprise_ap' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_premium_enterprise_switch' => 'Switch: RG-ES220GS-LP',
+    'network_premium_enterprise_rack' => 'Wallmount Rack 4U',
+    'network_premium_enterprise_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    // Basic Infrastructure Packages
+    'network_basic_infra_label' => 'Basic Wi-Fi Infrastructure Packages',
+    'network_basic_infra_title' => 'Paket Infrastruktur Wi-Fi Basic',
+    'network_basic_infra_desc' => 'Solusi infrastruktur jaringan Wi-Fi dengan harga terjangkau untuk kebutuhan bisnis skala kecil hingga menengah.',
+
+    'network_basic_small_title' => 'Basic Small',
+    'network_basic_small_sessions' => 'Max 100 concurrent session',
+    'network_basic_small_router' => 'Router: RG-EG105G-P-V3',
+    'network_basic_small_ap' => 'RG-RAP2200(F) Reyee Wi-Fi5 Ceiling Access Point',
+    'network_basic_small_rack' => 'Wallmount Rack 4U',
+    'network_basic_small_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    'network_basic_medium_title' => 'Basic Medium',
+    'network_basic_medium_sessions' => 'Max 100 concurrent session',
+    'network_basic_medium_router' => 'Router: RG-EG105G-V3',
+    'network_basic_medium_ap' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_basic_medium_switch' => 'Switch: RG-ES209GC-P',
+    'network_basic_medium_rack' => 'Wallmount Rack 4U',
+    'network_basic_medium_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    'network_basic_leader_title' => 'Basic Leader',
+    'network_basic_leader_sessions' => 'Max 200 concurrent session',
+    'network_basic_leader_router' => 'Router: RG-EG210G-P-V3',
+    'network_basic_leader_ap' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_basic_leader_switch' => 'Switch: RG-ES209GC-P',
+    'network_basic_leader_rack' => 'Wallmount Rack 4U',
+    'network_basic_leader_cable' => 'Cabling UTP Cat 6 included accessories',
+
+    'network_basic_enterprise_title' => 'Basic Enterprise',
+    'network_basic_enterprise_sessions' => 'Max 200 concurrent session',
+    'network_basic_enterprise_router' => 'Router: RG-EG210G-P-V3',
+    'network_basic_enterprise_ap' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_basic_enterprise_switch' => 'Switch: RG-ES220GS-LP',
+    'network_basic_enterprise_rack' => 'Wallmount Rack 4U',
+    'network_basic_enterprise_cable' => 'Cabling UTP Cat 6 included accessories',
 ];

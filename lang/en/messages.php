@@ -6,7 +6,7 @@ return [
     'services' => 'Services',
     'blog' => 'Blog',
     'contact' => 'Contact',
-    'login' => 'Login',
+    'login' => 'Sign In',
     'hero_title_1' => 'Integrated Digital &',
     'hero_title_2' => 'Procurement Solutions',
     'hero_subtitle' => 'PT Tirta Bhumi Indonesia is a company engaged in the procurement of goods and services as well as website creation and development, focusing on providing efficient, appropriate, and sustainable business solutions.',
@@ -48,17 +48,17 @@ return [
     'services_desc' => 'Integrated services to support your business operations and growth.',
 
     'service_digital_title' => 'Digital Services',
-    'service_digital_desc' => 'Increase efficiency with Website/SaaS, Business Automation, and AI Response Bot. We also help manage Digital Marketing and Social Media.',
+    'service_digital_desc' => 'Transform business with Website & App solutions, AI Automation, and measurable Digital Marketing strategies for maximum growth.',
     'service_digital_desc_full' => "Transform your business into the future with integrated digital solutions. We provide a technology ecosystem designed to improve your efficiency, reach, and operational performance comprehensively.\n\nFrom a stunning web presence to AI-based automation, we are the technical partner ready to turn your digital vision into real results that impact the dynamic Indonesian market.",
 
     'service_infra_title' => 'Infrastructure',
-    'service_infra_desc' => 'Fully managed network services (Access Point/Interconnection) and security systems (CCTV).',
+    'service_infra_desc' => 'Fully managed network solutions (Managed Service), Fiber Optic infrastructure, and CCTV security systems for reliable business connectivity.',
 
     'service_people_title' => 'UpVenture',
-    'service_people_desc' => 'We provide professional Event Organizer services and Integrated Training (Coding, AI, IoT, Design) to enhance your team\'s competencies.',
+    'service_people_desc' => 'Elevate team competencies through tech training (Coding, AI, IoT) and professional Event Organizer services for talent development.',
 
     'service_procurement_title' => 'Procurement',
-    'service_procurement_desc' => 'Flexible procurement solutions (Rental & Purchase) for general needs, from Goods, Items, to garden maintenance (Gardening).',
+    'service_procurement_desc' => 'Flexible procurement services (Rental & Purchase) for office needs, from IT equipment to facility maintenance (Gardening) you can trust.',
 
     'target_market_title' => 'Who Do We Serve?',
     'tm_gov' => 'Government (B2G)',
@@ -270,8 +270,8 @@ return [
 
     // Training Index Page
     'training_title' => 'UpVenture',
-    'training_subtitle' => 'Upgrade your digital skills with UpVenture. Learn directly from industry practitioners with a curriculum designed for real-world job needs.',
-    'training_subtitle_highlight' => 'Start Your Chosen Digital Career with the Best Mentors.',
+    'training_subtitle' => "Accelerate your digital career with a real-world project-based curriculum designed specifically for the modern tech era. We shape job-ready digital talents to be the best version of yourself.\n\nWith direct guidance from leading practitioner mentors, you will be immersed in real work experiences through actual case studies. Gain access to an exclusive community and broader career opportunities.",
+    'training_subtitle_highlight' => 'Not Just a Course, It\'s the First Step to Your Dream Career.',
     'training_about_title' => 'What is UpVenture?',
     'training_about_desc' => 'UpVenture is a digital education platform by PT Tirta Bhumi Indonesia focusing on job-ready skill development. We present intensive training programs in technology, design, and digital marketing to help you reach your maximum potential in the digital economy era.',
     'category_title' => 'Subjects',
@@ -296,7 +296,7 @@ return [
     'privilege_3_desc' => 'Get an official certificate from PT Tirta Bhumi Indonesia for your portfolio.',
     'privilege_4_title' => 'Exclusive Community',
     'privilege_4_desc' => 'Networking with fellow alumni and mentors to share job opportunities and knowledge.',
-    'training_btn_schedule' => 'View Training Schedule',
+    'training_btn_schedule' => 'View UpVenture Learnings',
     'join_affiliate' => 'Join Affiliate',
     'login_affiliate' => 'Login Affiliate',
     'why_training_title' => 'Why Train Here?',
@@ -321,7 +321,7 @@ return [
     'training_schedule_title' => 'Webinar & Workshop',
     'training_schedule_desc' => 'Choose training that suits your interests and career needs.',
 
-    'login_to_register' => 'Please log in to continue registration.',
+    'login_to_register' => 'Please Sign In to continue registration.',
     'class_title' => 'UpVenture Learnings',
     'class_desc' => 'Intensive long-term programs to master digital skills in depth.',
     'class_empty_title' => 'No Class Yet',
@@ -349,7 +349,7 @@ return [
     'partnership_btn' => 'Start Collaboration Now',
 
     // Training Detail Page
-    'back_to_list' => 'Back to Training List',
+    'back_to_list' => 'Back to UpVenture Learnings',
     'training_info' => 'Training Information',
     'date_time' => 'Date & Time',
     'location' => 'Location',

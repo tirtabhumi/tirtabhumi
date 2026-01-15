@@ -1,4 +1,4 @@
-<x-layout-auth title="Login">
+<x-layout-auth title="Sign In">
     <!-- Contact-style Background -->
     <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
         <!-- Background Blobs -->
@@ -22,7 +22,7 @@
                     <!-- Header -->
                     <div class="text-center mb-6 animate-fade-in-up">
                         <h1 class="text-3xl font-bold text-slate-800 mb-2">Welcome Back!</h1>
-                        <p class="text-slate-500">Login to access your account.</p>
+                        <p class="text-slate-500">Sign In to access your account.</p>
                     </div>
 
                     <!-- Login Form -->
