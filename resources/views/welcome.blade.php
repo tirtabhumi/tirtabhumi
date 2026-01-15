@@ -579,7 +579,7 @@
 
                     <!-- Image Header -->
                     <div class="relative h-44 rounded-2xl overflow-hidden mb-5 z-10">
-                        <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
                             alt="Procurement"
                             class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-transparent"></div>

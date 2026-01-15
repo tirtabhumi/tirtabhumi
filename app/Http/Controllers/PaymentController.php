@@ -139,7 +139,7 @@ class PaymentController extends Controller
         // Optimistically check Xendit status if not yet completed
         if ($registration->status !== 'completed' && $registration->transaction_id) {
             try {
-                \Xendit\Configuration::setXenditKey(env('XENDIT_SECRET_KEY'));
+                \Xendit\Configuration::setXenditKey(config('services.xendit.key'));
                 $apiInstance = new \Xendit\Invoice\InvoiceApi();
                 
                 // Get invoices by external_id (transaction_id)

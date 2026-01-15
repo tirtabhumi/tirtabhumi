@@ -29,7 +29,7 @@
                         {{ __('messages.service_procurement_title') }}
                     </h1>
                     <p class="text-base md:text-lg text-slate-500 mb-10 max-w-xl leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
-                        {!! nl2br(e(__('messages.service_procurement_desc'))) !!}
+                        {!! nl2br(e(__('messages.service_procurement_desc_full'))) !!}
                     </p>
                     <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
                         <a href="https://wa.me/6282229046099" target="_blank" class="neu-btn px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all text-sm">
