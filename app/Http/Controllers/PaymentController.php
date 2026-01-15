@@ -109,7 +109,7 @@ class PaymentController extends Controller
                     'email' => $registration->email,
                     'mobile_number' => $registration->phone,
                 ],
-                'success_redirect_url' => route('payment.confirmation', $registration),
+                'success_redirect_url' => route('payment.finish', $registration),
                 'failure_redirect_url' => route('payment.show', $registration),
             ]);
 
@@ -128,15 +128,51 @@ class PaymentController extends Controller
         }
     }
 
-    public function confirmation(Registration $registration)
+
+
+    public function finish(Registration $registration)
     {
         if ($registration->email !== auth()->user()->email) {
             abort(403);
         }
 
+        // Optimistically check Xendit status if not yet completed
+        if ($registration->status !== 'completed' && $registration->transaction_id) {
+            try {
+                \Xendit\Configuration::setXenditKey(env('XENDIT_SECRET_KEY'));
+                $apiInstance = new \Xendit\Invoice\InvoiceApi();
+                
+                // Get invoices by external_id (transaction_id)
+                $invoices = $apiInstance->getInvoices(null, $registration->transaction_id);
+                
+                if (!empty($invoices) && count($invoices) > 0) {
+                    // Start checking the first match (usually correct due to unique external_id)
+                    $invoice = $invoices[0];
+                    $status = $invoice['status'];
+
+                    if ($status === 'PAID' || $status === 'SETTLED') {
+                        $registration->update([
+                            'status' => 'completed',
+                            'payment_status' => 'paid',
+                            'payment_method' => $invoice['payment_method'] ?? 'xendit',
+                        ]);
+                    } elseif ($status === 'EXPIRED') {
+                        $registration->update([
+                            'status' => 'cancelled',
+                            'payment_status' => 'expired',
+                        ]);
+                    }
+                }
+
+            } catch (\Exception $e) {
+                \Illuminate\Support\Facades\Log::error('Failed to sync Xendit status in finish: ' . $e->getMessage());
+            }
+        }
+
+        // Reload to get fresh data
         $registration->load('training');
 
-        return view('payment.confirmation', compact('registration'));
+        return view('payment.finish', compact('registration'));
     }
 
     public function cancel(Request $request, Registration $registration)

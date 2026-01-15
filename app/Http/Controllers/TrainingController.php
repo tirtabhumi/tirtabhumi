@@ -11,13 +11,17 @@ class TrainingController extends Controller
     public function index()
     {
         $trainings = Training::where('is_active', true)
-            ->where('event_date', '>=', now())
-            ->orderBy('event_date', 'asc')
+            ->where(function ($q) {
+                $q->where('event_date', '>=', now())
+                  ->orWhereNull('event_date');
+            })
+            ->orderByRaw('event_date IS NULL DESC, event_date ASC')
             ->take(9)
             ->get();
 
         return view('trainings.index', compact('trainings'));
     }
+
 
 
 
@@ -37,7 +41,10 @@ class TrainingController extends Controller
         }
 
         $query = Training::where('is_active', true)
-            ->where('event_date', '>=', now());
+            ->where(function ($q) {
+                $q->where('event_date', '>=', now())
+                  ->orWhereNull('event_date');
+            });
 
         // Search
         if ($request->filled('search')) {
@@ -103,7 +110,7 @@ class TrainingController extends Controller
 
     public function register(Request $request, Training $training)
     {
-        if ($training->event_date->isPast()) {
+        if ($training->event_date && $training->event_date->isPast()) {
             return back()->with('error', 'Pendaftaran sudah ditutup karena waktu pelatihan sudah berlalu.');
         }
 

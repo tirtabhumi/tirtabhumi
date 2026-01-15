@@ -66,13 +66,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/payment/history', [PaymentController::class, 'index'])->name('payments.index');
     Route::get('/payment/{registration}', [PaymentController::class, 'show'])->name('payment.show');
     Route::post('/payment/{registration}', [PaymentController::class, 'process'])->name('payment.process');
-    Route::get('/payment/{registration}/confirmation', [PaymentController::class, 'confirmation'])->name('payment.confirmation');
+    Route::get('/payment/{registration}/finish', [PaymentController::class, 'finish'])->name('payment.finish');
     Route::post('/payment/{registration}/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
     // My Classes Routes
     Route::get('/my-classes', [\App\Http\Controllers\MyClassController::class, 'index'])->name('my-classes.index');
     Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class, 'show'])->name('my-classes.show');
+    Route::get('/my-classes/{training}/certificate', [\App\Http\Controllers\MyClassController::class, 'certificate'])->name('my-classes.certificate');
     Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class, 'markComplete'])->name('my-classes.module.complete');
+    
+    // Certificates Route
+    Route::get('/my-certificates', [\App\Http\Controllers\CertificateController::class, 'index'])->name('certificates.index');
 
 
 

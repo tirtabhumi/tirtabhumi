@@ -19,6 +19,11 @@ class PostResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Post';
+    }
+
     public static function form(Form $form): Form
     {
         return $form
@@ -30,6 +35,8 @@ class PostResource extends Resource
                             ->maxLength(255)
                             ->live(onBlur: true)
                             ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', \Illuminate\Support\Str::slug($state)) : null),
+                        Forms\Components\Hidden::make('user_id')
+                            ->default(auth()->id()),
                         Forms\Components\TextInput::make('slug')
                             ->required()
                             ->maxLength(255)
@@ -59,6 +66,10 @@ class PostResource extends Resource
                 Tables\Columns\TextColumn::make('category.name')
                     ->numeric()
                     ->sortable(),
+                Tables\Columns\TextColumn::make('user.name')
+                    ->label('Author')
+                    ->sortable()
+                    ->searchable(),
                 Tables\Columns\TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),

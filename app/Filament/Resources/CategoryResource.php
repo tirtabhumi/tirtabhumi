@@ -17,7 +17,17 @@ class CategoryResource extends Resource
 {
     protected static ?string $model = Category::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-tag';
+    
+    public static function getNavigationGroup(): ?string
+    {
+        return 'General';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasRole(['super_admin', 'admin']);
+    }
 
     public static function form(Form $form): Form
     {

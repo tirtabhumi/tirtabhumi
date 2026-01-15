@@ -17,7 +17,17 @@ class UserResource extends Resource
 {
     protected static ?string $model = User::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'User Management';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasRole('super_admin');
+    }
 
     public static function form(Form $form): Form
     {
@@ -35,6 +45,10 @@ class UserResource extends Resource
                             ->password(),
                         Forms\Components\TextInput::make('role')
                             ->required(),
+                        Forms\Components\Select::make('organization_id')
+                            ->relationship('organization', 'name')
+                            ->searchable()
+                            ->preload(),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
                         Forms\Components\Select::make('roles')
@@ -122,6 +136,12 @@ class UserResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('organization.name')
+                    ->label('Organization')
+                    ->badge()
+                    ->color('info')
+                    ->searchable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('affiliate.status')
                     ->label('Affiliate Status')
                     ->badge()
@@ -143,7 +163,16 @@ class UserResource extends Resource
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
-                Tables\Columns\TextColumn::make('role')
+                Tables\Columns\TextColumn::make('roles.name')
+                    ->label('Roles')
+                    ->badge()
+                    ->color(fn ($state): string => match ($state) {
+                        'super_admin' => 'danger',
+                        'admin' => 'warning',
+                        'partner' => 'info',
+                        'finance' => 'success',
+                        default => 'gray',
+                    })
                     ->searchable(),
                 Tables\Columns\TextColumn::make('google_id')
                     ->searchable(),

@@ -33,28 +33,13 @@
                                     </path>
                                 </svg>
                             </div>
-                            <span class="text-xs font-bold text-indigo-600 mt-2">Payment Details</span>
+                            <span class="text-xs font-bold text-indigo-600 mt-2">Details</span>
                         </div>
 
                         <!-- Connector -->
-                        <div class="w-16 h-1 bg-slate-200 -mt-6 mx-2"></div>
+                        <div class="w-24 h-1 bg-slate-200 -mt-6 mx-2"></div>
 
-                        <!-- Step 2: Payment Confirmation -->
-                        <div class="flex flex-col items-center relative z-10 opacity-50">
-                            <div
-                                class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </div>
-                            <span class="text-xs font-bold text-slate-500 mt-2">Confirmation</span>
-                        </div>
-
-                        <!-- Connector -->
-                        <div class="w-16 h-1 bg-slate-200 -mt-6 mx-2"></div>
-
-                        <!-- Step 3: Finish -->
+                        <!-- Step 2: Finish -->
                         <div class="flex flex-col items-center relative z-10 opacity-50">
                             <div
                                 class="w-10 h-10 rounded-full bg-slate-200 text-slate-500 flex items-center justify-center">
@@ -100,7 +85,11 @@
                                         {{ $registration->training->title }}
                                     </h3>
                                     <p class="text-xs text-slate-500 mt-1">
-                                        {{ $registration->training->event_date->format('d F Y, H:i') }} WIB
+                                        @if($registration->training->event_date)
+                                            {{ $registration->training->event_date->format('d F Y, H:i') }} WIB
+                                        @else
+                                            Self-paced Access
+                                        @endif
                                     </p>
                                     @if($registration->training->category == 'class')
                                         <span

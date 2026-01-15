@@ -23,6 +23,7 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
         'name',
         'email',
         'role',
+        'organization_id',
         'password',
         'google_id',
         'avatar',
@@ -105,5 +106,9 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new \App\Notifications\ResetPasswordNotification($token));
+    }
+    public function organization(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Organization::class);
     }
 }

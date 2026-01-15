@@ -75,6 +75,31 @@
                     </a>
                 </div>
 
+                <!-- Certificates (New) -->
+                <a href="{{ route('certificates.index') }}"
+                    class="neu-flat p-6 rounded-2xl border border-white/50 hover:scale-[1.02] transition-transform duration-300 group block">
+                    <div class="flex items-center justify-between mb-4">
+                        <div
+                            class="p-3 bg-yellow-100 rounded-xl text-yellow-600 group-hover:bg-yellow-500 group-hover:text-white transition-colors duration-300">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                        <span class="text-3xl font-bold text-slate-800">
+                             {{-- Rough count of 100% progress --}}
+                            {{ $registrations->where('status', 'completed')->filter(function($reg){ return $reg->training->modules->count() > 0 && \App\Models\UserModuleProgress::where('user_id', auth()->id())->whereIn('training_module_id', $reg->training->modules->pluck('id'))->where('is_completed', true)->count() == $reg->training->modules->count(); })->count() }}
+                        </span>
+                    </div>
+                    <h3 class="font-bold text-slate-700 mb-1">Certificates</h3>
+                    <p class="text-sm text-yellow-600 font-medium flex items-center gap-1">
+                        View Achievements <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg>
+                    </p>
+                </a>
+
                 <!-- Affiliate / Join -->
                 @if(Auth::user()->affiliate && Auth::user()->affiliate->status === 'approved')
                     <div

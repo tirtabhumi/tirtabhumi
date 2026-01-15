@@ -20,6 +20,11 @@ class WithdrawalRequestResource extends Resource
 
     protected static ?string $navigationLabel = 'Withdrawals';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Withdrawal';
+    }
+
     public static function canCreate(): bool
     {
         return auth()->user()->hasRole('partner');
@@ -32,7 +37,7 @@ class WithdrawalRequestResource extends Resource
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
                     ->default(fn() => auth()->id())
-                    ->disabled(fn() => !auth()->user()->hasRole(['super_admin', 'admin']))
+                    ->disabled(fn() => !auth()->user()->hasRole(['super_admin', 'admin', 'finance']))
                     ->dehydrated()
                     ->required(),
                 Forms\Components\TextInput::make('amount')
@@ -47,18 +52,18 @@ class WithdrawalRequestResource extends Resource
                     ])
                     ->default('pending')
                     ->required()
-                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin'])),
+                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin', 'finance'])),
                 Forms\Components\Textarea::make('bank_details')
                     ->columnSpanFull()
                     ->required(),
                 Forms\Components\FileUpload::make('proof_of_transfer')
                     ->image()
                     ->directory('withdrawals')
-                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin']))
+                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin', 'finance']))
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('admin_note')
                     ->columnSpanFull()
-                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin'])),
+                    ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin', 'finance'])),
             ]);
     }
 

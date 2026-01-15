@@ -14,6 +14,8 @@ class UserModuleProgress extends Model
         'training_module_id',
         'is_completed',
         'completed_at',
+        'score',
+        'attempts'
     ];
 
     protected $casts = [

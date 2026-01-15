@@ -12,7 +12,11 @@ class RevenueStats extends BaseWidget
     protected function getStats(): array
     {
         $totalRevenue = Registration::sum('total_amount') ?? 0;
-        $partnerCount = User::role('partner')->count();
+        try {
+            $partnerCount = User::role('partner')->count();
+        } catch (\Spatie\Permission\Exceptions\RoleDoesNotExist $e) {
+            $partnerCount = 0;
+        }
         $trainingsCount = \App\Models\Training::count();
 
         return [

@@ -25,19 +25,56 @@ class ModulesRelationManager extends RelationManager
                         'video' => 'Video (URL)',
                         'pdf' => 'PDF (File)',
                         'assignment' => 'Assignment',
+                        'quiz' => 'Quiz',
                     ])
                     ->required()
+                    ->default('video')
                     ->reactive(),
-                Forms\Components\TextInput::make('url')
+                Forms\Components\TextInput::make('video_url')
                     ->label('Video URL')
                     ->url()
                     ->visible(fn(Forms\Get $get) => $get('type') === 'video'),
-                Forms\Components\FileUpload::make('file')
+                Forms\Components\FileUpload::make('file_path')
+                    ->label('File')
+                    ->disk('public') // Ensure visibility
                     ->directory('training-modules')
+                    ->maxSize(51200) // 50MB
                     ->visible(fn(Forms\Get $get) => in_array($get('type'), ['pdf', 'assignment'])),
+                
+                Forms\Components\Repeater::make('questions')
+                    ->label('Quiz Questions')
+                    ->visible(fn(Forms\Get $get) => $get('type') === 'quiz')
+                    ->schema([
+                        Forms\Components\Select::make('question_type')
+                            ->options([
+                                'choice' => 'Multiple Choice',
+                                'essay' => 'Essay',
+                            ])
+                            ->default('choice')
+                            ->live()
+                            ->required(),
+                        Forms\Components\Textarea::make('question_text')
+                            ->required()
+                            ->label('Question'),
+                        Forms\Components\Repeater::make('options')
+                            ->label('Answer Options')
+                            ->visible(fn(Forms\Get $get) => $get('question_type') === 'choice')
+                            ->schema([
+                                Forms\Components\TextInput::make('label')
+                                    ->required()
+                                    ->label('Option Text'),
+                                Forms\Components\Toggle::make('is_correct')
+                                    ->label('Correct Answer')
+                                    ->default(false),
+                            ])
+                            ->columns(2),
+                    ])
+                    ->columnSpanFull(),
+
                 Forms\Components\TextInput::make('order')
                     ->numeric()
-                    ->default(0),
+                    ->default(fn(\Filament\Resources\RelationManagers\RelationManager $livewire): int => $livewire->getOwnerRecord()->modules()->max('order') + 1)
+                    ->required(),
             ]);
     }
 

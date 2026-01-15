@@ -203,9 +203,15 @@
                                     
                                     <!-- Status Badge -->
                                     <div class="absolute top-3 right-3">
-                                        <span class="px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
-                                            Purchased
-                                        </span>
+                                        @if($classProgress >= 100)
+                                            <span class="px-2 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full shadow-lg shadow-indigo-500/30">
+                                                Completed
+                                            </span>
+                                        @else
+                                            <span class="px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
+                                                Purchased
+                                            </span>
+                                        @endif
                                     </div>
                                 </div>
                                 
@@ -232,7 +238,14 @@
                                         </div>
                                         
                                         <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-                                            <span class="text-sm font-bold text-indigo-600">Continue Learning →</span>
+                                            @if($classProgress >= 100)
+                                                <a href="{{ route('my-classes.certificate', $registration->training_id) }}" target="_blank" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                    E-Certificate Ready
+                                                </a>
+                                            @else
+                                                <span class="text-sm font-bold text-indigo-600">Continue Learning →</span>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>

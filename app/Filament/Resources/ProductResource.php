@@ -21,6 +21,16 @@ class ProductResource extends Resource
 
     protected static ?string $navigationLabel = 'Procurement';
 
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Procurement';
+    }
+
+    public static function canViewAny(): bool
+    {
+        return auth()->user()->hasRole(['super_admin', 'admin']);
+    }
+
     public static function getModelLabel(): string
     {
         return 'Procurement';

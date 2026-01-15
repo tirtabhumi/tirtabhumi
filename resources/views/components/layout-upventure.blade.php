@@ -191,6 +191,10 @@
                             class="absolute right-0 mt-0 w-48 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
                             <a href="/dashboard"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                            <a href="{{ route('my-classes.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Classes</a>
+                            <a href="{{ route('certificates.index') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">My Certificates</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
@@ -373,6 +377,10 @@
                             <p class="text-sm text-slate-400 mb-2">Signed in as <span class="font-bold text-slate-600">{{ Auth::user()->name }}</span></p>
                             <a href="/dashboard"
                                 class="block text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-2">Dashboard</a>
+                            <a href="{{ route('my-classes.index') }}"
+                                class="block text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-2">My Classes</a>
+                            <a href="{{ route('certificates.index') }}"
+                                class="block text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-2">My Certificates</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"

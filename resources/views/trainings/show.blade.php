@@ -48,8 +48,13 @@
                                         </div>
                                         <div>
                                             <span class="block text-slate-500 text-xs mb-1">{{ __('messages.date_time') }}</span>
-                                            <span class="font-bold text-slate-800 block">{{ $training->event_date->format('d F Y') }}</span>
-                                            <span class="text-slate-600">{{ $training->event_date->format('H:i') }} WIB</span>
+                                            @if($training->event_date)
+                                                <span class="font-bold text-slate-800 block">{{ $training->event_date->format('d F Y') }}</span>
+                                                <span class="text-slate-600">{{ $training->event_date->format('H:i') }} WIB</span>
+                                            @else
+                                                <span class="font-bold text-slate-800 block">Self-paced Access</span>
+                                                <span class="text-slate-600">Flexible Schedule</span>
+                                            @endif
                                         </div>
                                     </li>
                                     <li class="flex items-start gap-4">
@@ -68,7 +73,9 @@
                                                 </span>
                                             @else
                                                 <span class="block text-slate-500 text-xs mb-1">{{ __('messages.location') }}</span>
-                                                <span class="font-bold text-slate-800 block">{{ __('messages.training_type_' . $training->type) }}</span>
+                                                <span class="font-bold text-slate-800 block">
+                                                    {{ $training->type ? __('messages.training_type_' . $training->type) : '-' }}
+                                                </span>
                                                 @if($training->type === 'online' || $training->type === 'hybrid')
                                                     @if($training->location_online)
                                                         <span class="block text-slate-600 text-xs mt-1">
@@ -114,7 +121,7 @@
                                     </div>
                                 @endif
 
-                                @if($training->event_date->isPast())
+                                @if($training->event_date && $training->event_date->isPast())
                                     <div class="bg-red-50 text-red-700 p-6 rounded-xl text-center border border-red-100">
                                         <div class="w-12 h-12 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4 text-red-500">
                                             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>

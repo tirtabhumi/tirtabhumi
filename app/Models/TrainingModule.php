@@ -13,14 +13,22 @@ class TrainingModule extends Model
         'training_id',
         'title',
         'description',
+        'type',
         'video_url',
+        'file_path',
+        'questions',
         'duration_minutes',
         'order',
         'is_preview',
+        'min_score',
+        'max_attempts',
     ];
 
     protected $casts = [
+        'questions' => 'array',
         'is_preview' => 'boolean',
+        'min_score' => 'integer',
+        'max_attempts' => 'integer',
     ];
 
     public function training()

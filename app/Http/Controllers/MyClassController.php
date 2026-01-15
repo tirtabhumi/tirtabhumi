@@ -93,6 +93,33 @@ class MyClassController extends Controller
         return view('my-classes.show', compact('training', 'userProgress', 'progressPercentage'));
     }
 
+    public function certificate($trainingId)
+    {
+        $user = auth()->user();
+
+        // Verify user has access and completed the training
+        $registration = Registration::where('email', $user->email)
+            ->where('training_id', $trainingId)
+            ->where('status', 'completed')
+            ->firstOrFail();
+
+        $training = $registration->training()->with('modules')->firstOrFail();
+
+        // Check completion progress
+        $userProgress = UserModuleProgress::where('user_id', $user->id)
+            ->whereIn('training_module_id', $training->modules->pluck('id'))
+            ->where('is_completed', true)
+            ->count();
+        
+        $totalModules = $training->modules->count();
+        
+        if ($totalModules > 0 && $userProgress < $totalModules) {
+            return back()->with('error', 'Please complete all modules to generate certificate.');
+        }
+
+        return view('my-classes.certificate', compact('training', 'user', 'registration'));
+    }
+
     public function markComplete(Request $request, $moduleId)
     {
         $user = auth()->user();
@@ -108,7 +135,72 @@ class MyClassController extends Controller
             return response()->json(['error' => 'Unauthorized'], 403);
         }
 
-        // Mark as completed
+        $isQuiz = $module->type === 'quiz' || (!empty($module->questions) && count($module->questions ?? []) > 0);
+
+        if ($isQuiz) {
+            $score = $request->input('score', 0);
+            
+            $progress = UserModuleProgress::firstOrNew([
+                'user_id' => $user->id,
+                'training_module_id' => $moduleId,
+            ]);
+
+            // If already completed, just return info
+            if ($progress->is_completed) {
+                return response()->json([
+                    'success' => true,
+                    'completed' => true,
+                    'score' => $progress->score,
+                    'attempts' => $progress->attempts,
+                    'message' => 'Quiz already passed.'
+                ]);
+            }
+
+            // Check max attempts
+            $maxAttempts = $module->max_attempts ?? 3;
+            if ($progress->attempts >= $maxAttempts) {
+                return response()->json([
+                    'success' => false,
+                    'completed' => false,
+                    'score' => $progress->score,
+                    'attempts' => $progress->attempts,
+                    'message' => 'Maximum attempts reached.'
+                ]);
+            }
+
+            // Update progress
+            $progress->attempts = ($progress->attempts ?? 0) + 1;
+            $progress->score = $score;
+
+            $minScore = $module->min_score ?? 70;
+            $passed = $score >= $minScore;
+
+            if ($passed) {
+                $progress->is_completed = true;
+                $progress->completed_at = now();
+                $progress->save();
+
+                return response()->json([
+                    'success' => true,
+                    'completed' => true,
+                    'score' => $score,
+                    'attempts' => $progress->attempts,
+                    'message' => 'Quiz passed! 🎉'
+                ]);
+            } else {
+                $progress->save();
+                return response()->json([
+                    'success' => true,
+                    'completed' => false,
+                    'score' => $score,
+                    'attempts' => $progress->attempts,
+                    'attempts_left' => $maxAttempts - $progress->attempts,
+                    'message' => 'Quiz failed. Please try again.'
+                ]);
+            }
+        }
+
+        // Standard Video Completion
         UserModuleProgress::updateOrCreate(
             [
                 'user_id' => $user->id,
@@ -120,6 +212,6 @@ class MyClassController extends Controller
             ]
         );
 
-        return response()->json(['success' => true]);
+        return response()->json(['success' => true, 'completed' => true]);
     }
 }
