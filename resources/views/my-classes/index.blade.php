@@ -268,8 +268,16 @@
                                     @endif
                                     <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                     
-                                    <!-- Status Badge -->
-                                    <div class="absolute top-3 right-3">
+                                    <!-- Status & Level Badges -->
+                                    <div class="absolute top-3 right-3 flex items-center gap-2">
+                                        <!-- Level Badge -->
+                                        @if($registration->training->level)
+                                            <span class="px-2 py-1 bg-white/90 backdrop-blur text-indigo-600 text-xs font-bold rounded-full shadow-sm">
+                                                {{ ucfirst($registration->training->level) }}
+                                            </span>
+                                        @endif
+                                        
+                                        <!-- Progress Status Badge -->
                                         @if($classProgress >= 100)
                                             <span class="px-2 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full shadow-lg shadow-indigo-500/30">
                                                 Completed
