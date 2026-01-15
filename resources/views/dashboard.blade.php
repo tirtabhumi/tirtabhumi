@@ -16,10 +16,33 @@
 
         <div class="container mx-auto px-6 relative z-10">
 
+            <!-- Back to Home -->
+            <div class="mb-4">
+                <a href="/"
+                    class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-sm font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    {{ __('messages.home') }}
+                </a>
+            </div>
+
             <!-- Dashboard Header -->
-            <div class="mb-8 animate-fade-in-up">
-                <h1 class="text-3xl font-bold text-slate-800">Welcome back, {{ Auth::user()->name }}!</h1>
-                <p class="text-slate-500 mt-2">Here's what's happening with your learning journey.</p>
+            <div class="mb-8 animate-fade-in-up flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800">Welcome back, {{ Auth::user()->name }}!</h1>
+                    <p class="text-slate-500 mt-2">Here's what's happening with your learning journey.</p>
+                </div>
+                <a href="{{ route('profile.edit') }}"
+                    class="neu-flat px-6 py-3 rounded-xl bg-white text-indigo-600 font-bold hover:bg-indigo-50 hover:scale-[1.02] transition-all flex items-center gap-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                        </path>
+                    </svg>
+                    Edit Profile
+                </a>
             </div>
 
             <!-- Stats Grid -->
@@ -87,8 +110,9 @@
                             </svg>
                         </div>
                         <span class="text-3xl font-bold text-slate-800">
-                             {{-- Rough count of 100% progress --}}
-                            {{ $registrations->where('status', 'completed')->filter(function($reg){ return $reg->training->modules->count() > 0 && \App\Models\UserModuleProgress::where('user_id', auth()->id())->whereIn('training_module_id', $reg->training->modules->pluck('id'))->where('is_completed', true)->count() == $reg->training->modules->count(); })->count() }}
+                            {{-- Rough count of 100% progress --}}
+                            {{ $registrations->where('status', 'completed')->filter(function ($reg) {
+    return $reg->training->modules->count() > 0 && \App\Models\UserModuleProgress::where('user_id', auth()->id())->whereIn('training_module_id', $reg->training->modules->pluck('id'))->where('is_completed', true)->count() == $reg->training->modules->count(); })->count() }}
                         </span>
                     </div>
                     <h3 class="font-bold text-slate-700 mb-1">Certificates</h3>

@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProcurementController;
+use App\Http\Controllers\ProfileController;
 
 // Public Routes
 Route::get('/', function () {
@@ -74,9 +75,22 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class, 'show'])->name('my-classes.show');
     Route::get('/my-classes/{training}/certificate', [\App\Http\Controllers\MyClassController::class, 'certificate'])->name('my-classes.certificate');
     Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class, 'markComplete'])->name('my-classes.module.complete');
-    
+
     // Certificates Route
     Route::get('/my-certificates', [\App\Http\Controllers\CertificateController::class, 'index'])->name('certificates.index');
+
+    // Profile Routes
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    Route::delete('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
+
+    // Secure Password Change Flow
+    Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
+    Route::get('/profile/security/change-password/{user}', [\App\Http\Controllers\ProfileController::class, 'editPassword'])
+        ->name('profile.password.edit')
+        ->middleware('signed');
+    Route::put('/profile/security/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
 
 
@@ -86,6 +100,17 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/affiliate/points', [\App\Http\Controllers\AffiliateController::class, 'points'])->name('affiliates.points'); // New Route
     Route::post('/affiliate/register', [\App\Http\Controllers\AffiliateController::class, 'register'])->name('affiliates.register');
     Route::post('/affiliate/withdrawal', [\App\Http\Controllers\AffiliateController::class, 'requestWithdrawal'])->name('affiliates.withdrawal');
+
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
+
+    // Profile Password Management
+    Route::post('/profile/password-link', [ProfileController::class, 'sendPasswordChangeLink'])->name('profile.password.link');
+    Route::get('/profile/password/{user}', [ProfileController::class, 'editPassword'])->name('profile.password.edit')->middleware('signed');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
     // Debug route
     Route::get('/debug-classes', function () {
