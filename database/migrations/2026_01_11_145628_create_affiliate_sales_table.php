@@ -10,7 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('affiliate_sales', function (Blueprint $table) {
+        if (!Schema::hasTable('affiliate_sales')) {
+            Schema::create('affiliate_sales', function (Blueprint $table) {
             $table->id();
             $table->foreignId('affiliate_id')->constrained()->cascadeOnDelete();
             $table->foreignId('registration_id')->constrained()->cascadeOnDelete();
@@ -18,7 +19,8 @@ return new class extends Migration {
             $table->decimal('commission_percentage', 5, 2);
             $table->string('status')->default('pending'); // pending, paid, cancelled
             $table->timestamps();
-        });
+            });
+        }
     }
 
     /**

@@ -144,122 +144,25 @@
                     </div>
 
                     <!-- Payment Methods -->
-                    <form action="{{ route('payment.process', $registration) }}" method="POST"
+                    <form action="{{ route('payment.process', $registration) }}" method="POST" target="_blank"
                         class="space-y-6 animate-fade-in-up animation-delay-200">
                         @csrf
                         <div class="neu-flat rounded-2xl p-6 border border-white/50">
-                            <h2 class="font-bold text-slate-800 mb-6 text-lg">Select Payment Method</h2>
-
-                            <div class="space-y-6">
-                                <!-- Virtual Accounts -->
-                                <div>
-                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">Virtual
-                                        Account</h3>
-                                    <div class="space-y-6">
-                                        <div class="relative group">
-                                            <input type="radio" name="payment_method" id="bca_va" value="bca_va"
-                                                class="peer hidden" checked>
-                                            <label for="bca_va"
-                                                class="flex items-center justify-between p-4 rounded-xl cursor-pointer neu-flat border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.98] active:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!border-indigo-600 peer-checked:!bg-indigo-100 peer-checked:hover:translate-y-0 peer-checked:hover:shadow-none peer-checked:[&_.selected-text]:opacity-100 peer-checked:[&_.selected-text]:translate-x-0">
-                                                <div class="flex items-center gap-4">
-                                                    <div
-                                                        class="w-10 h-10 rounded bg-white flex items-center justify-center p-1 shadow-sm">
-                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Bank_Central_Asia.svg"
-                                                            alt="BCA" class="h-full w-auto">
-                                                    </div>
-                                                    <span class="font-bold text-sm text-slate-700">Bank BCA</span>
-                                                </div>
-                                                <span
-                                                    class="selected-text text-xs font-bold text-indigo-600 opacity-0 transform translate-x-4 transition-all duration-300">Selected</span>
-                                            </label>
-                                        </div>
-                                        <div class="relative group">
-                                            <input type="radio" name="payment_method" id="mandiri_va" value="mandiri_va"
-                                                class="peer hidden">
-                                            <label for="mandiri_va"
-                                                class="flex items-center justify-between p-4 rounded-xl cursor-pointer neu-flat border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.98] active:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!border-indigo-600 peer-checked:!bg-indigo-100 peer-checked:hover:translate-y-0 peer-checked:hover:shadow-none peer-checked:[&_.selected-text]:opacity-100 peer-checked:[&_.selected-text]:translate-x-0">
-                                                <div class="flex items-center gap-4">
-                                                    <div
-                                                        class="w-10 h-10 rounded bg-white flex items-center justify-center p-1 shadow-sm">
-                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/a/ad/Bank_Mandiri_logo_2016.svg"
-                                                            alt="Mandiri" class="h-full w-auto">
-                                                    </div>
-                                                    <span class="font-bold text-sm text-slate-700">Bank Mandiri</span>
-                                                </div>
-                                                <span
-                                                    class="selected-text text-xs font-bold text-indigo-600 opacity-0 transform translate-x-4 transition-all duration-300">Selected</span>
-                                            </label>
-                                        </div>
-                                        <div class="relative group">
-                                            <input type="radio" name="payment_method" id="bri_va" value="bri_va"
-                                                class="peer hidden">
-                                            <label for="bri_va"
-                                                class="flex items-center justify-between p-4 rounded-xl cursor-pointer neu-flat border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.98] active:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!border-indigo-600 peer-checked:!bg-indigo-100 peer-checked:hover:translate-y-0 peer-checked:hover:shadow-none peer-checked:[&_.selected-text]:opacity-100 peer-checked:[&_.selected-text]:translate-x-0">
-                                                <div class="flex items-center gap-4">
-                                                    <div
-                                                        class="w-10 h-10 rounded bg-white flex items-center justify-center p-1 shadow-sm">
-                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/6/68/BANK_BRI_logo.svg"
-                                                            alt="BRI" class="h-full w-auto">
-                                                    </div>
-                                                    <span class="font-bold text-sm text-slate-700">Bank BRI</span>
-                                                </div>
-                                                <span
-                                                    class="selected-text text-xs font-bold text-indigo-600 opacity-0 transform translate-x-4 transition-all duration-300">Selected</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- E-Wallets -->
-                                <div class="pt-2">
-                                    <h3 class="text-xs font-bold text-slate-500 uppercase tracking-wider mb-4">E-Wallet
-                                    </h3>
-                                    <div class="space-y-6">
-                                        <div class="relative group">
-                                            <input type="radio" name="payment_method" id="ewallet_ovo" value="ovo"
-                                                class="peer hidden">
-                                            <label for="ewallet_ovo"
-                                                class="flex items-center justify-between p-4 rounded-xl cursor-pointer neu-flat border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.98] active:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!border-indigo-600 peer-checked:!bg-indigo-100 peer-checked:hover:translate-y-0 peer-checked:hover:shadow-none peer-checked:[&_.selected-text]:opacity-100 peer-checked:[&_.selected-text]:translate-x-0">
-                                                <div class="flex items-center gap-4">
-                                                    <div
-                                                        class="w-10 h-10 rounded bg-white flex items-center justify-center p-1 shadow-sm">
-                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/eb/Logo_ovo_purple.svg"
-                                                            alt="OVO" class="h-full w-auto">
-                                                    </div>
-                                                    <span class="font-bold text-sm text-slate-700">OVO</span>
-                                                </div>
-                                                <span
-                                                    class="selected-text text-xs font-bold text-indigo-600 opacity-0 transform translate-x-4 transition-all duration-300">Selected</span>
-                                            </label>
-                                        </div>
-                                        <div class="relative group">
-                                            <input type="radio" name="payment_method" id="ewallet_dana" value="dana"
-                                                class="peer hidden">
-                                            <label for="ewallet_dana"
-                                                class="flex items-center justify-between p-4 rounded-xl cursor-pointer neu-flat border-2 border-transparent transition-all duration-300 hover:-translate-y-1 hover:shadow-md active:scale-[0.98] active:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!shadow-[inset_6px_6px_12px_#d1d9e6,inset_-6px_-6px_12px_#ffffff] peer-checked:!border-indigo-600 peer-checked:!bg-indigo-100 peer-checked:hover:translate-y-0 peer-checked:hover:shadow-none peer-checked:[&_.selected-text]:opacity-100 peer-checked:[&_.selected-text]:translate-x-0">
-                                                <div class="flex items-center gap-4">
-                                                    <div
-                                                        class="w-10 h-10 rounded bg-white flex items-center justify-center p-1 shadow-sm">
-                                                        <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_dana_blue.svg"
-                                                            alt="DANA" class="h-full w-auto">
-                                                    </div>
-                                                    <span class="font-bold text-sm text-slate-700">DANA</span>
-                                                </div>
-                                                <span
-                                                    class="selected-text text-xs font-bold text-indigo-600 opacity-0 transform translate-x-4 transition-all duration-300">Selected</span>
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
+                            <h2 class="font-bold text-slate-800 mb-6 text-lg">Payment Method</h2>
+                            
+                            <div class="bg-indigo-50 border border-indigo-100 rounded-xl p-4 mb-6">
+                                <p class="text-sm text-indigo-800">
+                                    You will be redirected to Xendit secure payment page to complete your transaction. 
+                                    Multiple payment methods available (Virtual Account, E-Wallet, QRIS, etc).
+                                </p>
                             </div>
 
-                            <div class="mt-12">
-                                <button
+                            <div class="mt-4">
+                                <button type="submit"
                                     class="w-full py-4 bg-gradient-to-r from-indigo-600 to-indigo-700 hover:from-indigo-700 hover:to-indigo-800 text-white rounded-xl font-bold text-lg transition-all shadow-lg shadow-indigo-200 hover:-translate-y-0.5">
-                                    Pay Now
+                                    Pay with Xendit
                                 </button>
-                                <p
-                                    class="text-center text-xs text-slate-400 mt-4 flex items-center justify-center gap-1">
+                                <p class="text-center text-xs text-slate-400 mt-4 flex items-center justify-center gap-1">
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
@@ -268,7 +171,6 @@
                                     Secured by Xendit
                                 </p>
                             </div>
-
                         </div>
                 </div>
                 </form>

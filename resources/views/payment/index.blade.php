@@ -104,42 +104,11 @@
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
                                     <div id="payment-status-list" class="space-y-3">
-                                        @foreach(['paid' => 'Paid', 'unpaid' => 'Unpaid'] as $value => $label)
+                                        @foreach(['paid' => 'Paid', 'unpaid' => 'Unpaid', 'cancelled' => 'Cancelled'] as $value => $label)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
                                                 <input type="radio" name="payment_status" value="{{ $value }}"
                                                     class="peer sr-only"
                                                     {{ request('payment_status') == $value ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
-
-                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
-                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                                    </svg>
-                                                </div>
-
-                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ $label }}
-                                                </span>
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                </div>
-
-                                <div class="border-t border-slate-200/50 my-4"></div>
-
-                                <!-- Category Filter -->
-                                <div>
-                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('category-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Kategori</h4>
-                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                                    </button>
-                                    <div id="category-list" class="space-y-3">
-                                        @foreach(['class' => 'Class', 'webinar' => 'Webinar'] as $value => $label)
-                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="radio" name="category" value="{{ $value }}"
-                                                    class="peer sr-only"
-                                                    {{ request('category') == $value ? 'checked' : '' }}
                                                     onchange="this.form.submit()">
 
                                                 <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
@@ -229,6 +198,11 @@
                                                         <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
                                                         Paid
                                                     </span>
+                                                @elseif($registration->payment_status == 'cancelled')
+                                                    <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-red-100 text-red-700">
+                                                        <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5"></span>
+                                                        Cancelled
+                                                    </span>
                                                 @else
                                                     <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-100 text-amber-700">
                                                         <span class="w-1.5 h-1.5 bg-amber-500 rounded-full mr-1.5 animate-pulse"></span>
@@ -237,14 +211,30 @@
                                                 @endif
                                             </div>
                                             <h3 class="text-base font-bold text-slate-800 mb-1 line-clamp-1">{{ $registration->training->title }}</h3>
-                                            <div class="flex items-center gap-3 text-xs text-slate-500">
-                                                <span class="flex items-center gap-1">
-                                                    <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                    {{ $registration->training->event_date->format('d M Y') }}
-                                                </span>
-                                                @if($registration->transaction_id)
-                                                    <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
-                                                    <span class="font-mono">{{ $registration->transaction_id }}</span>
+                                            <div class="flex flex-col gap-1 text-xs text-slate-500">
+                                                <div class="flex items-center gap-3">
+                                                    <span class="flex items-center gap-1">
+                                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                        {{ $registration->training->event_date->format('d M Y') }}
+                                                    </span>
+                                                    @if($registration->transaction_id)
+                                                        <span class="w-1 h-1 bg-slate-300 rounded-full"></span>
+                                                        <span class="font-mono">{{ $registration->transaction_id }}</span>
+                                                    @endif
+                                                </div>
+                                                
+                                                @if($registration->payment_method)
+                                                    <div class="flex items-center gap-1 text-indigo-600 font-medium">
+                                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
+                                                        Via {{ str_replace('_', ' ', strtoupper($registration->payment_method)) }}
+                                                    </div>
+                                                @endif
+
+                                                @if($registration->payment_status == 'unpaid' && $registration->payment_expiry_time)
+                                                    <div class="flex items-center gap-1 text-amber-600 font-medium mt-1">
+                                                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                                        Pay before {{ $registration->payment_expiry_time->format('F j, Y \a\t g:i A') }}
+                                                    </div>
                                                 @endif
                                             </div>
                                         </div>
@@ -261,22 +251,38 @@
                                         </div>
 
                                         <!-- Actions -->
-                                        @if($registration->payment_status != 'paid')
-                                            <div class="flex flex-col gap-2">
-                                                <a href="{{ route('payment.confirmation', $registration) }}" 
-                                                   class="neu-btn px-4 py-2 text-sm font-bold text-indigo-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                                    Pay Now
-                                                </a>
-                                                <button onclick="cancelPayment({{ $registration->id }})" 
-                                                        class="neu-btn px-4 py-2 text-sm font-bold text-red-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
-                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                    Cancel
-                                                </button>
-                                            </div>
-                                        @else
+                                        @if($registration->payment_status == 'paid')
                                             <div class="neu-pressed px-4 py-2 rounded-xl">
                                                 <svg class="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            </div>
+                                        @elseif($registration->payment_status == 'cancelled')
+                                            <div class="neu-pressed px-4 py-2 rounded-xl">
+                                                <svg class="w-8 h-8 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                            </div>
+                                        @else
+                                            <div class="flex flex-col gap-2">
+                                                @if($registration->invoice_url && $registration->payment_status == 'unpaid')
+                                                    <a href="{{ $registration->invoice_url }}" 
+                                                       target="_blank"
+                                                       class="neu-btn px-4 py-2 text-sm font-bold text-indigo-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                                        Pay Now
+                                                    </a>
+                                                @else
+                                                    <a href="{{ route('payment.show', $registration) }}" 
+                                                       class="neu-btn px-4 py-2 text-sm font-bold text-indigo-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
+                                                        Pay Now
+                                                    </a>
+                                                @endif
+                                                <form action="{{ route('payment.cancel', $registration) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this payment?');">
+                                                    @csrf
+                                                    <button type="submit" 
+                                                            class="neu-btn px-4 py-2 text-sm font-bold text-red-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                                                        Cancel
+                                                    </button>
+                                                </form>
                                             </div>
                                         @endif
                                     </div>
@@ -327,31 +333,5 @@
             }
         });
 
-        function cancelPayment(registrationId) {
-            if (!confirm('Are you sure you want to cancel this payment? This action cannot be undone.')) {
-                return;
-            }
-
-            fetch(`/payment/${registrationId}/cancel`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert('Payment cancelled successfully');
-                    location.reload();
-                } else {
-                    alert('Failed to cancel payment: ' + (data.message || 'Unknown error'));
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-                alert('Failed to cancel payment. Please try again.');
-            });
-        }
     </script>
 </x-layout-upventure>

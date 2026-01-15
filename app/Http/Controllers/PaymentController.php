@@ -80,40 +80,52 @@ class PaymentController extends Controller
             abort(403);
         }
 
-        $validated = $request->validate([
-            'payment_method' => 'required|string',
-        ]);
+        // Initialize Xendit
+        \Xendit\Configuration::setXenditKey(env('XENDIT_SECRET_KEY'));
 
-        $paymentMethod = $validated['payment_method'];
-        $adminFee = 0;
-
-        // Simple fee logic
-        switch ($paymentMethod) {
-            case 'bca_va':
-            case 'mandiri_va':
-                $adminFee = 4000;
-                break;
-            case 'bri_va':
-                $adminFee = 3000;
-                break;
-            case 'ovo':
-            case 'dana':
-                $adminFee = 1500; // Or percentage
-                break;
-            default:
-                $adminFee = 0;
+        // Generate Transaction ID if not exists
+        if (!$registration->transaction_id) {
+            $registration->update([
+                'transaction_id' => 'TRX-' . strtoupper(uniqid()) . '-' . time(),
+            ]);
         }
-
+        
+        // Update expiry time
         $registration->update([
-            'payment_method' => $paymentMethod,
-            'payment_status' => 'unpaid',
-            'admin_fee' => $adminFee,
-            'total_amount' => $registration->training->price + $adminFee,
-            'transaction_id' => 'TRX-' . strtoupper(uniqid()),
-            'payment_expiry_time' => now()->addDay(),
+            'payment_expiry_time' => now()->addSeconds(86400),
         ]);
 
-        return redirect()->route('payment.confirmation', $registration);
+        try {
+            $apiInstance = new \Xendit\Invoice\InvoiceApi();
+            
+            $createParams = new \Xendit\Invoice\CreateInvoiceRequest([
+                'external_id' => $registration->transaction_id,
+                'amount' => (float) $registration->training->price,
+                'description' => 'Payment for ' . $registration->training->title,
+                'invoice_duration' => 86400, // 24 hours
+                'currency' => 'IDR',
+                'customer' => [
+                    'given_names' => $registration->name,
+                    'email' => $registration->email,
+                    'mobile_number' => $registration->phone,
+                ],
+                'success_redirect_url' => route('payment.confirmation', $registration),
+                'failure_redirect_url' => route('payment.show', $registration),
+            ]);
+
+            $result = $apiInstance->createInvoice($createParams);
+
+            // Save invoice_url
+            $registration->update([
+                'invoice_url' => $result->getInvoiceUrl(),
+            ]);
+            
+            return redirect($result->getInvoiceUrl());
+
+        } catch (\Throwable $e) {
+            \Illuminate\Support\Facades\Log::error('Xendit Payment Error: ' . $e->getMessage());
+            return back()->with('error', 'Failed to create payment: ' . $e->getMessage());
+        }
     }
 
     public function confirmation(Registration $registration)
@@ -130,11 +142,11 @@ class PaymentController extends Controller
     public function cancel(Request $request, Registration $registration)
     {
         if ($registration->email !== auth()->user()->email) {
-            return response()->json(['success' => false, 'message' => 'Unauthorized'], 403);
+            abort(403);
         }
 
         if ($registration->payment_status === 'paid') {
-            return response()->json(['success' => false, 'message' => 'Cannot cancel paid transaction'], 400);
+            return back()->with('error', 'Cannot cancel paid transaction');
         }
 
         $registration->update([
@@ -142,6 +154,40 @@ class PaymentController extends Controller
             'status' => 'cancelled',
         ]);
 
-        return response()->json(['success' => true, 'message' => 'Payment cancelled successfully']);
+        return back()->with('success', 'Payment cancelled successfully');
+    }
+
+    public function webhook(Request $request)
+    {
+        $xenditXCallbackToken = env('XENDIT_WEBHOOK_TOKEN');
+        $reqHeaders = $request->header('x-callback-token');
+
+        if ($xenditXCallbackToken && $reqHeaders !== $xenditXCallbackToken) {
+            return response()->json(['message' => 'Invalid Token'], 403);
+        }
+
+        $data = $request->all();
+
+        // Check for invoice callback
+        if (isset($data['status']) && isset($data['external_id'])) {
+            $registration = Registration::where('transaction_id', $data['external_id'])->first();
+
+            if ($registration) {
+                if ($data['status'] === 'PAID') {
+                    $registration->update([
+                        'status' => 'completed',
+                        'payment_status' => 'paid',
+                        'payment_method' => $data['payment_method'] ?? $data['payment_channel'] ?? 'xendit',
+                    ]);
+                } elseif ($data['status'] === 'EXPIRED') {
+                     $registration->update([
+                        'status' => 'cancelled',
+                        'payment_status' => 'expired',
+                    ]);
+                }
+            }
+        }
+
+        return response()->json(['message' => 'Success'], 200);
     }
 }

@@ -18,6 +18,8 @@ class Registration extends Model
         'admin_fee',
         'total_amount',
         'payment_expiry_time',
+        'status',
+        'invoice_url',
     ];
 
     protected $casts = [

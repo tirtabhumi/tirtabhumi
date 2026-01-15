@@ -10,7 +10,8 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('affiliate_withdrawals', function (Blueprint $table) {
+        if (!Schema::hasTable('affiliate_withdrawals')) {
+            Schema::create('affiliate_withdrawals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('affiliate_id')->constrained()->cascadeOnDelete();
             $table->decimal('amount', 15, 2);
@@ -21,7 +22,8 @@ return new class extends Migration {
             $table->text('notes')->nullable();
             $table->timestamp('processed_at')->nullable();
             $table->timestamps();
-        });
+            });
+        }
     }
 
     /**
