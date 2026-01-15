@@ -15,30 +15,25 @@
 
         <div class="relative container mx-auto px-6 z-10">
             <!-- Breadcrumb (Modern) -->
-
-            <div class="flex flex-col lg:flex-row items-center gap-16">
+            <div class="mb-10 animate-fade-in-up">
+                <x-breadcrumb :current="__('messages.training_title')" class="mb-0" />
+            </div>
+            
+            <div class="flex flex-col items-center text-center">
                 <!-- Text Column -->
-                <div class="lg:w-1/2 text-left">
-                    <div
-                        class="inline-flex items-center px-4 py-2 rounded-full bg-indigo-50 border border-indigo-100 mb-8 animate-fade-in-up">
-                        <span class="flex h-2 w-2 rounded-full bg-indigo-600 mr-3 animate-pulse"></span>
-                        <span class="text-xs font-bold text-indigo-600 uppercase tracking-wider">Upgrade Your
-                            Skills</span>
-                    </div>
-                    <h1
-                        class="text-5xl md:text-7xl font-bold tracking-tight mb-8 text-slate-900 leading-[1.1] animate-fade-in-up">
+                <div class="lg:w-8/12">
+
+                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-indigo-600 leading-[1.1] animate-fade-in-up">
                         {{ __('messages.training_title') }}
                     </h1>
-                    <p class="text-lg md:text-xl text-slate-500 mb-12 max-w-xl leading-relaxed animate-fade-in-up"
-                        style="animation-delay: 0.2s">
-                        {{ __('messages.training_subtitle') }}
+                    <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
+                        {!! nl2br(e(__('messages.training_subtitle'))) !!}
                         <br>
                         <span
                             class="text-indigo-600 font-semibold mt-4 block">{{ __('messages.training_subtitle_highlight') }}</span>
                     </p>
-                    <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
-                        <a href="#trainings"
-                            class="neu-btn px-8 py-4 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all">
+                    <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
+                        <a href="#classes" class="neu-btn px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all text-sm">
                             {{ __('messages.training_btn_schedule') }}
                         </a>
                         <a href="{{ route('contacts.index') }}"
@@ -46,16 +41,6 @@
                             {{ __('messages.partnership_btn') }}
                         </a>
                     </div>
-                </div>
-                <!-- Image Column -->
-                <div class="lg:w-5/12 relative animate-fade-in-up" style="animation-delay: 0.6s">
-                    <div class="neu-flat p-4 rounded-[2.5rem] relative z-10">
-                        <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
-                            alt="UpVenture Education" class="w-full h-full object-cover rounded-[2rem] shadow-sm">
-                    </div>
-                    <!-- Decorative Elements -->
-                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-cyan-400/20 rounded-full blur-2xl z-0"></div>
-                    <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-indigo-400/20 rounded-full blur-2xl z-0"></div>
                 </div>
             </div>
         </div>

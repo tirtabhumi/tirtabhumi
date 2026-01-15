@@ -1,6 +1,6 @@
 @props(['paths' => [], 'current'])
 
-<nav {{ $attributes->merge(['class' => 'flex justify-start mb-8 text-sm text-slate-500']) }} aria-label="Breadcrumb">
+<nav {{ $attributes->merge(['class' => 'flex justify-center mb-8 text-sm text-slate-500']) }} aria-label="Breadcrumb">
     <ol class="inline-flex items-center space-x-1 md:space-x-3 bg-white/50 backdrop-blur-sm px-4 py-2 rounded-full border border-white/50 shadow-sm flex-wrap">
         <li class="inline-flex items-center">
             <a href="/" class="inline-flex items-center hover:text-indigo-600 hover:underline transition-colors">

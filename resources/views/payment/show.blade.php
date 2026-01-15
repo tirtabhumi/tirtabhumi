@@ -21,6 +21,16 @@
                         box-shadow: inset 6px 6px 12px #d1d9e6, inset -6px -6px 12px #ffffff !important;
                     }
                 </style>
+
+                <div class="mb-8 animate-fade-in-up">
+                    <a href="{{ route('trainings.show', $registration->training->slug) }}" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors group">
+                        <svg class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                        Back to Learning Details
+                    </a>
+                </div>
+
                 <div class="flex items-center justify-center mb-10 animate-fade-in-up">
                     <div class="flex items-center">
                         <!-- Step 1: Payment Details (Active) -->
@@ -52,6 +62,8 @@
                         </div>
                     </div>
                 </div>
+
+
 
                 <h1 class="text-3xl font-bold text-slate-800 mb-8 text-center animate-fade-in-up animation-delay-100">
                     Complete Your Payment

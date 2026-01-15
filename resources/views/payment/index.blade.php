@@ -6,21 +6,22 @@
         }
 
         /* Active state: input checked -> ubah bulatan + centang + teks */
-        label input[type="checkbox"]:checked + .checkbox-ui{
+        /* Active state: input checked -> ubah bulatan + centang + teks */
+        label input:checked + .checkbox-ui {
         background: #3b82f6 !important;
         border-color: #3b82f6 !important;
         box-shadow: 0 0 0 3px rgba(59,130,246,.30) !important;
         }
 
-        label input[type="checkbox"]:checked + .checkbox-ui .check-icon{
+        label input:checked + .checkbox-ui .check-icon {
         transform: scale(1) !important;
         }
 
-        label .check-icon{
+        label .check-icon {
         transform: scale(0);
         }
 
-        label input[type="checkbox"]:checked + .checkbox-ui + .checkbox-text{
+        label input:checked + .checkbox-ui + .checkbox-text {
         color: #1d4ed8 !important;
         font-weight: 700 !important;
         }
@@ -109,7 +110,8 @@
                                                 <input type="radio" name="payment_status" value="{{ $value }}"
                                                     class="peer sr-only"
                                                     {{ request('payment_status') == $value ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
+                                                    data-checked="{{ request('payment_status') == $value ? 'true' : 'false' }}"
+                                                    onclick="toggleFilter(this)">
 
                                                 <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
                                                     <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
@@ -336,6 +338,21 @@
                 menu.classList.add('hidden');
             }
         });
+
+        function toggleFilter(radio) {
+            const wasChecked = radio.getAttribute('data-checked') === 'true';
+            
+            if (wasChecked) {
+                // Uncheck and submit to clear filter
+                radio.checked = false;
+                radio.setAttribute('data-checked', 'false');
+                radio.form.submit();
+            } else {
+                // Just submit (it's already checked by default browser behavior)
+                radio.setAttribute('data-checked', 'true');
+                radio.form.submit();
+            }
+        }
 
     </script>
 </x-layout-upventure>

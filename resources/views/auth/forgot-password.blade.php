@@ -47,7 +47,7 @@
                             
                             <div class="text-center mt-4">
                                 <a href="{{ route('login') }}" class="text-xs font-bold text-slate-500 hover:text-indigo-600 transition-colors">
-                                    <span class="mr-1">←</span> Back to Login
+                                    <span class="mr-1">←</span> Back to Sign In
                                 </a>
                             </div>
 

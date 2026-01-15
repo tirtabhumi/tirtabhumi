@@ -36,11 +36,9 @@
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
-             <div class="mb-4">
-                <a href="{{ route('trainings.index') }}" class="text-slate-500 hover:text-indigo-600 mb-4 inline-flex items-center gap-1 transition-colors">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to UpVenture
-                </a>
+            <!-- Breadcrumb -->
+            <div class="mb-10 animate-fade-in-up">
+                <x-breadcrumb :paths="[__('messages.training_title') => route('trainings.index')]" :current="$title" class="mb-0" />
             </div>
 
             <div class="text-center mb-16 animate-fade-in-up">

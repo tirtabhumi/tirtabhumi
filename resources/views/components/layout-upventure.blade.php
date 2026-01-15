@@ -216,13 +216,13 @@
                         </div>
                     </div>
                 @else
-                    <div class="flex items-center gap-1">
+                    <div class="flex items-center gap-4">
                         <a href="{{ route('login') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('login') ? 'neu-flat text-indigo-600' : 'text-slate-800 hover:text-indigo-600' }}">
+                            class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">
                             {{ __('messages.login') }}
                         </a>
                         <a href="{{ route('register') }}"
-                            class="px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 {{ request()->routeIs('register') ? 'neu-flat text-indigo-600' : 'text-slate-800 hover:text-indigo-600' }}">
+                            class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">
                             Sign Up
                         </a>
                     </div>

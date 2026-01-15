@@ -4,64 +4,66 @@
             .sidebar-width { width: 20% !important; flex: 0 0 20% !important; }
             .content-width { width: 80% !important; flex: 0 0 80% !important; }
         }
-
-        /* Active state: input checked -> ubah bulatan + centang + teks */
-        label input[type="checkbox"]:checked + .checkbox-ui{
-        background: #3b82f6 !important;  /* biru terang */
-        border-color: #3b82f6 !important;
-        box-shadow: 0 0 0 3px rgba(59,130,246,.30) !important;
-        }
-
-        /* munculkan icon centang saat checked */
-        label input[type="checkbox"]:checked + .checkbox-ui .check-icon{
-        transform: scale(1) !important;
-        }
-
-        /* kalau tidak checked, icon disembunyikan */
-        label .check-icon{
-        transform: scale(0);
-        }
-
-        /* teks ikut aktif */
-        label input[type="checkbox"]:checked + .checkbox-ui + .checkbox-text{
-        color: #1d4ed8 !important;
-        font-weight: 700 !important;
-        }
     </style>
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
-        <!-- Animated Background -->
-        <div class="absolute inset-0 w-full h-full pointer-events-none">
-            <div class="absolute top-0 right-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
-            <div class="absolute bottom-1/4 left-1/4 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
-            <div class="absolute -bottom-32 right-1/3 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
+    <section class="relative pt-32 pb-4 md:pt-40 md:pb-6 overflow-hidden">
+        <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-emerald-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-teal-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
         </div>
 
-        <div class="container mx-auto px-6 relative z-10">
-            <!-- Breadcrumb -->
-            <x-breadcrumb :paths="[__('messages.services') => '/#services']" :current="__('messages.service_procurement_title')" />
-
-            <div class="text-center mb-16 animate-fade-in-up">
-                <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
-                    {{ __('messages.service_procurement_title') }}
-                </h1>
-                <p class="text-slate-500 text-lg max-w-2xl mx-auto">
-                    {{ __('messages.service_procurement_desc') }}
-                </p>
+        <div class="relative container mx-auto px-6 z-10">
+            <!-- Breadcrumb (Modern) -->
+            <div class="mb-10 animate-fade-in-up">
+                <x-breadcrumb :paths="[__('messages.services') => '/#services']" :current="__('messages.service_procurement_title')" class="mb-0" />
             </div>
 
+            <div class="flex flex-col lg:flex-row items-center gap-16">
+                <!-- Text Column -->
+                <div class="lg:w-7/12 text-left">
+                    <div class="inline-flex items-center px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 mb-8 animate-fade-in-up">
+                        <span class="flex h-2 w-2 rounded-full bg-emerald-600 mr-3 animate-pulse"></span>
+                        <span class="text-xs font-bold text-emerald-600 uppercase tracking-wider">Procurement & Facilities</span>
+                    </div>
+                    <h1 class="text-5xl md:text-6xl font-bold tracking-tight mb-6 text-slate-900 leading-[1.1] animate-fade-in-up">
+                        {{ __('messages.service_procurement_title') }}
+                    </h1>
+                    <p class="text-base md:text-lg text-slate-500 mb-10 max-w-xl leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
+                        {!! nl2br(e(__('messages.service_procurement_desc_full'))) !!}
+                    </p>
+                    <div class="flex flex-wrap gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
+                        <a href="https://wa.me/6282229046099" target="_blank" class="neu-btn px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all text-sm">
+                            {{ __('messages.get_started') }}
+                        </a>
+                        <a href="#product-catalog" class="neu-btn px-8 py-3.5 rounded-2xl bg-white text-indigo-600 font-bold hover:bg-slate-50 transition-all text-sm">
+                             Lihat Katalog
+                        </a>
+                    </div>
+                </div>
+                <!-- Image Column -->
+                <div class="lg:w-5/12 relative animate-fade-in-up" style="animation-delay: 0.6s">
+                    <div class="neu-flat p-4 rounded-[2.5rem] relative z-10">
+                        <img src="{{ asset('images/service-procurement-v3.jpg') }}" alt="Procurement Services" class="w-full h-full object-cover rounded-[2rem] shadow-sm">
+                    </div>
+                    <!-- Decorative Elements -->
+                    <div class="absolute -top-8 -right-8 w-32 h-32 bg-emerald-400/20 rounded-full blur-2xl z-0"></div>
+                    <div class="absolute -bottom-8 -left-8 w-40 h-40 bg-teal-400/20 rounded-full blur-2xl z-0"></div>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <!-- Product Catalog Section -->
+    <section id="product-catalog" class="py-24 bg-[#eef2f6]">
+        <div class="container mx-auto px-6">
 
             <div class="flex flex-col lg:flex-row gap-8 animate-fade-in-up" style="animation-delay: 200ms">
                 <!-- Sidebar Filters -->
                 <div class="w-full lg:w-[20%] sidebar-width">
                     <div class="sticky top-24">
                         <form action="{{ route('services.procurement') }}" method="GET" id="filterForm">
-                            <!-- Helper to keep search when filtering -->
                             @if(request('search'))
                                 <input type="hidden" name="search" value="{{ request('search') }}">
-                            @endif
-                            @if(request('sort'))
-                                <input type="hidden" name="sort" value="{{ request('sort') }}">
                             @endif
 
                             <div class="neu-flat rounded-3xl p-8 border border-white/50">
@@ -106,22 +108,14 @@
                                     <div id="category-list" class="space-y-3">
                                         @foreach($categories as $category)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                               <input type="checkbox" name="category[]" value="{{ $category }}"
-                                                    class="peer sr-only"
+                                                <input type="checkbox" name="category[]" value="{{ $category }}" 
+                                                    class="peer sr-only" 
                                                     {{ in_array($category, (array)request('category', [])) ? 'checked' : '' }}
-                                                    onchange="setTimeout(() => this.form.submit(), 300)">
-
-                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
-                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                                    </svg>
+                                                    onchange="this.form.submit()">
+                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
+                                                    <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                                 </div>
-
-
-                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ $category }}
-                                                </span>
+                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $category }}</span>
                                             </label>
                                         @endforeach
                                     </div>
@@ -138,22 +132,14 @@
                                     <div id="platform-list" class="space-y-3">
                                         @foreach(['SIPLah', 'E-Katalog', 'PadiUMKM'] as $platform)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="checkbox" name="platform[]" value="{{ $platform }}"
-                                                    class="peer sr-only"
+                                                <input type="checkbox" name="platform[]" value="{{ $platform }}" 
+                                                    class="peer sr-only" 
                                                     {{ in_array($platform, (array)request('platform', [])) ? 'checked' : '' }}
-                                                    onchange="setTimeout(() => this.form.submit(), 300)">
-
-                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
-                                                    <svg class="check-icon w-3.5 h-3.5 transform scale-0 transition-transform duration-200"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                                    </svg>
+                                                    onchange="this.form.submit()">
+                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
+                                                    <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                                 </div>
-
-
-                                                  <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ $platform }}
-                                                </span>
+                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $platform }}</span>
                                             </label>
                                         @endforeach
                                     </div>
@@ -165,34 +151,23 @@
 
                 <!-- Product Grid -->
                 <div class="w-full lg:w-[80%] content-width">
-                <div class="mb-8">
+                    <div class="mb-8">
                         <div class="mb-6">
                             <h2 class="text-2xl font-bold text-slate-800 mb-1">Daftar Produk</h2>
                             <p class="text-slate-500 text-sm">{{ $products->total() }} produk tersedia</p>
                         </div>
                         <div class="w-full">
                              <form action="{{ route('services.procurement') }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">
-                                <!-- Hidden inputs to preserve filters -->
-                                @if(request('category')) 
-                                    @foreach((array)request('category') as $cat)
-                                        <input type="hidden" name="category[]" value="{{ $cat }}">
-                                    @endforeach
-                                @endif
-                                @if(request('platform'))
-                                    @foreach((array)request('platform') as $plat)
-                                        <input type="hidden" name="platform[]" value="{{ $plat }}">
-                                    @endforeach
-                                @endif
-                                @if(request('sort'))
-                                    <input type="hidden" name="sort" value="{{ request('sort') }}">
-                                @endif
+                                @if(request('category')) @foreach((array)request('category') as $cat) <input type="hidden" name="category[]" value="{{ $cat }}"> @endforeach @endif
+                                @if(request('platform')) @foreach((array)request('platform') as $plat) <input type="hidden" name="platform[]" value="{{ $plat }}"> @endforeach @endif
+                                @if(request('sort')) <input type="hidden" name="sort" value="{{ request('sort') }}"> @endif
 
                                 <input type="text" 
                                        name="search" 
                                        value="{{ request('search') }}"
                                        placeholder="Cari produk..." 
                                        class="w-full py-4 pl-4 bg-transparent border-none focus:ring-0 outline-none text-slate-600 placeholder-slate-400 transition-all">
-                                <button type="submit" class="p-3 rounded-full hover:bg-white/50 text-indigo-600 transition-colors flex-shrink-0">
+                                <button type="submit" class="p-3 text-indigo-600">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                     </svg>
@@ -269,26 +244,19 @@
                                 </div>
                             </div>
                         @empty
-
                             <div class="col-span-full text-center py-20">
                                 <div class="neu-pressed rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center text-slate-400">
                                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                                     </svg>
                                 </div>
-                                @if(request()->anyFilled(['search', 'category', 'platform']))
-                                    <h3 class="text-lg font-bold text-slate-800 mb-2">Produk tidak ditemukan</h3>
-                                    <p class="text-slate-500 max-w-sm mx-auto">Coba gunakan kata kunci lain atau ubah filter pencarian Anda.</p>
-                                    <a href="{{ route('services.procurement') }}" class="inline-block mt-4 neu-btn px-6 py-2 rounded-xl text-indigo-600 font-medium hover:text-indigo-700">Reset Filter</a>
-                                @else
-                                    <h3 class="text-lg font-bold text-slate-800 mb-2">Belum ada produk saat ini</h3>
-                                    <p class="text-slate-500 max-w-sm mx-auto">Kami sedang menyiapkan katalog produk terbaik untuk Anda. Silakan kembali lagi nanti.</p>
-                                @endif
+                                <h3 class="text-lg font-bold text-slate-800 mb-2">Produk tidak ditemukan</h3>
+                                <p class="text-slate-500 max-w-sm mx-auto">Coba gunakan kata kunci lain atau ubah filter pencarian Anda.</p>
+                                <a href="{{ route('services.procurement') }}" class="inline-block mt-4 neu-btn px-6 py-2 rounded-xl text-indigo-600 font-medium hover:text-indigo-700">Reset Filter</a>
                             </div>
                         @endforelse
                     </div>
 
-                    <!-- Pagination -->
                     <!-- Pagination -->
                     <div class="mt-12 animate-fade-in-up" style="animation-delay: 600ms">
                         {{ $products->links('components.pagination') }}
@@ -305,21 +273,16 @@
         }
 
         function selectSort(value, label) {
-            // Update hidden input
-            const input = document.getElementById('sort-input'); // pastikan sidebar punya id ini
+            const input = document.getElementById('sort-input');
             input.value = value;
-
             document.getElementById('sort-label').innerText = label;
             document.getElementById('sort-menu').classList.add('hidden');
-
-            input.form.submit(); // submit form sidebar
+            input.form.submit();
         }
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function(e) {
             const dropdown = document.getElementById('sort-dropdown');
             const menu = document.getElementById('sort-menu');
-            // If click is outside the dropdown container, hide the menu
             if (dropdown && !dropdown.contains(e.target)) {
                 menu.classList.add('hidden'); 
             }
