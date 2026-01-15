@@ -291,8 +291,8 @@
                                 </div>
                                 
                                 <div class="p-6 flex flex-col flex-grow">
-                                    <!-- Category Label -->
-                                    <div class="mb-1">
+                                    <!-- Category & Level Labels -->
+                                    <div class="mb-2 flex items-center gap-2">
                                         @php
                                             $catIconColors = [
                                                 'class' => 'text-blue-600',
@@ -304,6 +304,11 @@
                                         <span class="{{ $catIconColor }} font-bold uppercase tracking-wider text-[10px]">
                                             {{ ucfirst($registration->training->category) }}
                                         </span>
+                                        @if($registration->training->level)
+                                            <span class="px-2 py-0.5 bg-indigo-100 text-indigo-600 text-[10px] font-bold rounded-full">
+                                                {{ ucfirst($registration->training->level) }}
+                                            </span>
+                                        @endif
                                     </div>
 
                                     <h3 class="text-lg font-bold text-slate-700 line-clamp-2 group-hover:text-indigo-600 transition-colors mb-3">
