@@ -147,7 +147,11 @@
                     </div>
 
                     <a href="{{ route('trainings.index') }}"
+<<<<<<< HEAD
                         class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.service_people_title') }}</a>
+=======
+                    class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.service_people_title') }}</a>
+>>>>>>> 689a30fdd17d63bad48294f1943e8da0ea3a3f73
                     <a href="{{ route('blog.index') }}"
                         class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">{{ __('messages.blog') }}</a>
                     <a href="{{ route('contacts.index') }}"
@@ -372,12 +376,19 @@
                                     class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_digital_title') }}</a>
                                 <a href="{{ route('services.infrastructure') }}"
                                     class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_infra_title') }}</a>
+<<<<<<< HEAD
 
                                 <a href="{{ route('services.procurement') }}"
                                     class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_procurement_title') }}</a>
+=======
+                                <a href="{{ route('trainings.index') }}"
+                                    class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_people_title') }}</a>
+>>>>>>> 689a30fdd17d63bad48294f1943e8da0ea3a3f73
                             </div>
                         </div>
 
+                        <a href="{{ route('trainings.index') }}"
+                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.service_people_title') }}</a>
                         <a href="/#about"
                             class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
                         <a href="{{ route('blog.index') }}"

@@ -283,6 +283,21 @@
                                 </div>
                                 
                                 <div class="p-6 flex flex-col flex-grow">
+                                    <!-- Category Label -->
+                                    <div class="mb-1">
+                                        @php
+                                            $catIconColors = [
+                                                'class' => 'text-blue-600',
+                                                'webinar' => 'text-purple-600',
+                                                'workshop' => 'text-amber-600',
+                                            ];
+                                            $catIconColor = $catIconColors[$registration->training->category] ?? 'text-slate-600';
+                                        @endphp
+                                        <span class="{{ $catIconColor }} font-bold uppercase tracking-wider text-[10px]">
+                                            {{ ucfirst($registration->training->category) }}
+                                        </span>
+                                    </div>
+
                                     <h3 class="text-lg font-bold text-slate-700 line-clamp-2 group-hover:text-indigo-600 transition-colors mb-3">
                                         {{ $registration->training->title }}
                                     </h3>

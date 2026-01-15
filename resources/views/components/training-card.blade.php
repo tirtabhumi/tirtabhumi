@@ -18,7 +18,7 @@
         @endif
 
         <!-- Status Badges -->
-        @if($training->event_date->isPast())
+        @if($training->event_date && $training->event_date->isPast())
             <div
                 class="absolute top-4 right-4 bg-red-100/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-red-600">
                 {{ __('messages.finished') ?? 'Finished' }}
@@ -56,11 +56,16 @@
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
             </svg>
-            {{ \Carbon\Carbon::parse($training->event_date)->format('d M Y, H:i') }} WIB
+            @if($training->event_date)
+                {{ \Carbon\Carbon::parse($training->event_date)->format('d M Y, H:i') }} WIB
+            @else
+                Self-paced
+            @endif
         </div>
 
         <h3 class="text-xl font-bold text-slate-800 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">
-            {{ $training->title }}</h3>
+            {{ $training->title }}
+        </h3>
         <p class="text-slate-600 text-sm line-clamp-2 mb-4">{{ strip_tags($training->description) }}</p>
 
         <div class="mt-auto flex items-center justify-between">
