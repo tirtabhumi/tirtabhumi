@@ -13,7 +13,7 @@ class TrainingController extends Controller
         $trainings = Training::where('is_active', true)
             ->where(function ($q) {
                 $q->where('event_date', '>=', now())
-                  ->orWhereNull('event_date');
+                    ->orWhereNull('event_date');
             })
             ->orderByRaw('event_date IS NULL DESC, event_date ASC')
             ->take(9)
@@ -43,7 +43,7 @@ class TrainingController extends Controller
         $query = Training::where('is_active', true)
             ->where(function ($q) {
                 $q->where('event_date', '>=', now())
-                  ->orWhereNull('event_date');
+                    ->orWhereNull('event_date');
             });
 
         // Search
@@ -59,6 +59,11 @@ class TrainingController extends Controller
         // Filter Level
         if ($request->filled('level')) {
             $query->whereIn('level', (array) $request->level);
+        }
+
+        // Filter Type
+        if ($request->filled('type')) {
+            $query->whereIn('type', (array) $request->type);
         }
 
         // Sort
@@ -80,7 +85,8 @@ class TrainingController extends Controller
 
         $filters = [
             'category' => ['class', 'webinar', 'workshop'],
-            'level' => ['beginner', 'intermediate', 'advanced']
+            'level' => ['beginner', 'intermediate', 'advanced'],
+            'type' => ['online', 'offline', 'hybrid'],
         ];
 
         return view('trainings.list', compact('trainings', 'title', 'filters'));

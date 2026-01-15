@@ -39,6 +39,22 @@ class MyClassController extends Controller
             });
         }
 
+        // Filter by Category
+        if ($request->filled('category')) {
+            $categories = (array) $request->category;
+            $query->whereHas('training', function ($q) use ($categories) {
+                $q->whereIn('category', $categories);
+            });
+        }
+
+        // Filter by Type
+        if ($request->filled('type')) {
+            $types = (array) $request->type;
+            $query->whereHas('training', function ($q) use ($types) {
+                $q->whereIn('type', $types);
+            });
+        }
+
         // Sorting
         $sort = $request->get('sort', 'latest');
         switch ($sort) {
@@ -64,7 +80,14 @@ class MyClassController extends Controller
 
         $myClasses = $query->paginate(12);
 
-        return view('my-classes.index', compact('myClasses'));
+        // Pass available filters
+        $filters = [
+            'category' => ['class', 'webinar', 'workshop'],
+            'level' => ['beginner', 'intermediate', 'expert'],
+            'type' => ['online', 'offline', 'hybrid'],
+        ];
+
+        return view('my-classes.index', compact('myClasses', 'filters'));
     }
 
     public function show($trainingId)
@@ -110,9 +133,9 @@ class MyClassController extends Controller
             ->whereIn('training_module_id', $training->modules->pluck('id'))
             ->where('is_completed', true)
             ->count();
-        
+
         $totalModules = $training->modules->count();
-        
+
         if ($totalModules > 0 && $userProgress < $totalModules) {
             return back()->with('error', 'Please complete all modules to generate certificate.');
         }
@@ -139,7 +162,7 @@ class MyClassController extends Controller
 
         if ($isQuiz) {
             $score = $request->input('score', 0);
-            
+
             $progress = UserModuleProgress::firstOrNew([
                 'user_id' => $user->id,
                 'training_module_id' => $moduleId,

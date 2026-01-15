@@ -167,7 +167,7 @@
 
                                 <!-- Type Filter -->
                                 @if(isset($filters['type']) && !empty($filters['type']))
-                                <div>
+                                <div id="type-filter-container" style="{{ (in_array('webinar', (array)request('category', [])) || in_array('workshop', (array)request('category', []))) ? 'display: block;' : 'display: none;' }}">
                                     <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('type-list').classList.toggle('hidden')">
                                         <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Type</h4>
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
@@ -273,7 +273,7 @@
                     </div>
 
                     <div class="mt-12 animate-fade-in-up" style="animation-delay: 600ms">
-                        {{ $trainings->links() }}
+                        {{ $trainings->links('components.pagination') }}
                     </div>
                 </div>
             </div>
@@ -300,6 +300,32 @@
             if (dropdown && !dropdown.contains(e.target)) {
                 menu.classList.add('hidden'); 
             }
+        });
+
+        // Type Filter Visibility Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeFilterContainer = document.getElementById('type-filter-container');
+            const categoryCheckboxes = document.querySelectorAll('input[name="category[]"]');
+
+            function checkCategories() {
+                let showType = false;
+                categoryCheckboxes.forEach(cb => {
+                    if (cb.checked && (cb.value === 'webinar' || cb.value === 'workshop')) {
+                        showType = true;
+                    }
+                });
+
+                if (typeFilterContainer) {
+                    typeFilterContainer.style.display = showType ? 'block' : 'none';
+                }
+            }
+
+            // Add listeners
+            categoryCheckboxes.forEach(cb => {
+                cb.addEventListener('change', checkCategories);
+            });
+            
+            // Initial check already done by server-side style, but useful if we preventDefault submit later
         });
     </script>
 </x-layout-upventure>

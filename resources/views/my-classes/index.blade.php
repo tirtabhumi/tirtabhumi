@@ -75,15 +75,14 @@
 
                                 <!-- Sort -->
                                 <div class="mb-6 relative" id="sort-dropdown">
-                                    <h4 class="font-bold text-slate-800 mb-3">Urutkan</h4>
+                                    <h4 class="font-bold text-slate-800 mb-3">Sort By</h4>
                                     <input type="hidden" id="sort-input" name="sort" value="{{ request('sort', 'latest') }}">
                                     <button type="button" class="w-full flex items-center justify-between rounded-xl neu-pressed bg-[#eef2f6] px-4 py-3 text-sm text-slate-600 focus:outline-none hover:text-indigo-600 transition-colors" onclick="toggleSortDropdown()">
                                         <span id="sort-label" class="font-medium">
                                             @switch(request('sort'))
-                                                @case('price_asc') Harga Terendah @break
-                                                @case('price_desc') Harga Tertinggi @break
-                                                @case('title') A-Z @break
-                                                @default Terbaru
+                                                @case('price_asc') Lowest Price @break
+                                                @case('price_desc') Highest Price @break
+                                                @default Upcoming Date
                                             @endswitch
                                         </span>
                                         <svg class="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -92,28 +91,28 @@
                                     <!-- Custom Dropdown Menu -->
                                     <div id="sort-menu" class="absolute z-20 mt-4 w-full rounded-xl neu-flat bg-[#eef2f6] p-2 hidden border border-white/50">
                                         <div class="space-y-1">
-                                            <button type="button" onclick="selectSort('latest', 'Terbaru')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Terbaru</button>
-                                            <button type="button" onclick="selectSort('title', 'A-Z')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'title' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">A-Z</button>
-                                            <button type="button" onclick="selectSort('price_asc', 'Harga Terendah')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Harga Terendah</button>
-                                            <button type="button" onclick="selectSort('price_desc', 'Harga Tertinggi')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Harga Tertinggi</button>
+                                            <button type="button" onclick="selectSort('latest', 'Upcoming Date')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Upcoming Date</button>
+                                            <button type="button" onclick="selectSort('price_asc', 'Lowest Price')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Lowest Price</button>
+                                            <button type="button" onclick="selectSort('price_desc', 'Highest Price')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Highest Price</button>
                                         </div>
                                     </div>
                                 </div>
 
                                 <div class="border-t border-slate-200/50 my-4"></div>
 
-                                <!-- Difficulty Level Filter -->
-                                <div>
-                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('level-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Tingkat Kesulitan</h4>
+                                <!-- Category Filter -->
+                                @if(isset($filters['category']) && !empty($filters['category']))
+                                <div class="mb-6">
+                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('category-list').classList.toggle('hidden')">
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Category</h4>
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
-                                    <div id="level-list" class="space-y-3">
-                                        @foreach(['beginner' => 'Beginner', 'intermediate' => 'Intermediate', 'expert' => 'Expert'] as $value => $label)
+                                    <div id="category-list" class="space-y-3">
+                                        @foreach($filters['category'] as $category)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="checkbox" name="level[]" value="{{ $value }}"
+                                               <input type="checkbox" name="category[]" value="{{ $category }}"
                                                     class="peer sr-only"
-                                                    {{ in_array($value, (array)request('level', [])) ? 'checked' : '' }}
+                                                    {{ in_array($category, (array)request('category', [])) ? 'checked' : '' }}
                                                     onchange="setTimeout(() => this.form.submit(), 300)">
 
                                                 <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
@@ -124,12 +123,80 @@
                                                 </div>
 
                                                 <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ $label }}
+                                                    {{ ucfirst($category) }}
                                                 </span>
                                             </label>
                                         @endforeach
                                     </div>
                                 </div>
+                                <div class="border-t border-slate-200/50 my-4"></div>
+                                @endif
+
+                                <!-- Level Filter -->
+                                @if(isset($filters['level']) && !empty($filters['level']))
+                                <div class="mb-6">
+                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('level-list').classList.toggle('hidden')">
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Level</h4>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                                    </button>
+                                    <div id="level-list" class="space-y-3">
+                                        @foreach($filters['level'] as $level)
+                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
+                                               <input type="checkbox" name="level[]" value="{{ $level }}"
+                                                    class="peer sr-only"
+                                                    {{ in_array($level, (array)request('level', [])) ? 'checked' : '' }}
+                                                    onchange="setTimeout(() => this.form.submit(), 300)">
+
+                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
+                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+
+                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
+                                                    {{ ucfirst($level) }}
+                                                </span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endif
+
+                                @if(isset($filters['level']) && isset($filters['type']))
+                                <div class="border-t border-slate-200/50 my-4"></div>
+                                @endif
+
+                                <!-- Type Filter -->
+                                @if(isset($filters['type']) && !empty($filters['type']))
+                                <div id="type-filter-container" style="{{ (in_array('webinar', (array)request('category', [])) || in_array('workshop', (array)request('category', []))) ? 'display: block;' : 'display: none;' }}">
+                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('type-list').classList.toggle('hidden')">
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Type</h4>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+                                    </button>
+                                    <div id="type-list" class="space-y-3">
+                                        @foreach($filters['type'] as $type)
+                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
+                                                <input type="checkbox" name="type[]" value="{{ $type }}"
+                                                    class="peer sr-only"
+                                                    {{ in_array($type, (array)request('type', [])) ? 'checked' : '' }}
+                                                    onchange="setTimeout(() => this.form.submit(), 300)">
+
+                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
+                                                    <svg class="check-icon w-3.5 h-3.5 transform scale-0 transition-transform duration-200"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                                                    </svg>
+                                                </div>
+
+                                                  <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
+                                                    {{ __('messages.training_type_' . $type) }}
+                                                </span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                @endif
                             </div>
                         </form>
                     </div>
@@ -290,12 +357,41 @@
         }
 
         // Close dropdown when clicking outside
+        // Close dropdown when clicking outside
         document.addEventListener('click', function(event) {
             const dropdown = document.getElementById('sort-dropdown');
             const menu = document.getElementById('sort-menu');
             if (!dropdown.contains(event.target)) {
                 menu.classList.add('hidden');
             }
+        });
+
+        // Type Filter Visibility Logic
+        document.addEventListener('DOMContentLoaded', function() {
+            const typeFilterContainer = document.getElementById('type-filter-container');
+            const categoryCheckboxes = document.querySelectorAll('input[name="category[]"]');
+
+            function checkCategories() {
+                let showType = false;
+                categoryCheckboxes.forEach(cb => {
+                    if (cb.checked && (cb.value === 'webinar' || cb.value === 'workshop')) {
+                        showType = true;
+                    }
+                });
+
+                if (typeFilterContainer) {
+                    typeFilterContainer.style.display = showType ? 'block' : 'none';
+                }
+            }
+
+            // Add listeners
+            categoryCheckboxes.forEach(cb => {
+                cb.addEventListener('change', checkCategories);
+            });
+            
+            // Note: Initial check is handled by server-side rendering to prevent flash, 
+            // but we add this just in case of dynamic interactions without reload (though current implementation reloads)
+            // checkCategories(); 
         });
     </script>
 </x-layout-upventure>

@@ -15,36 +15,38 @@ class DummyCategoriesSeeder extends Seeder
      */
     public function run()
     {
-        // Create 5 Webinars
-        Training::factory()->count(5)->state(function (array $attributes) {
+        // Create 10 Webinars
+        Training::factory()->count(10)->state(function (array $attributes) {
             return [
                 'category' => 'webinar',
                 'title' => 'Webinar: ' . fake()->sentence(3),
+                'type' => fake()->randomElement(['online', 'hybrid']),
             ];
         })->create();
-        $this->command->info('Created 5 Webinars.');
+        $this->command->info('Created 10 Webinars.');
 
-        // Create 5 Workshops
-        Training::factory()->count(5)->state(function (array $attributes) {
+        // Create 10 Workshops
+        Training::factory()->count(10)->state(function (array $attributes) {
             return [
                 'category' => 'workshop',
                 'title' => 'Workshop: ' . fake()->sentence(3),
                 'price' => fake()->numberBetween(500000, 2000000),
-                'type' => 'offline', // Workshops are often offline
+                'type' => fake()->randomElement(['offline', 'hybrid']),
                 'location_offline' => fake()->address,
             ];
         })->create();
-        $this->command->info('Created 5 Workshops.');
+        $this->command->info('Created 10 Workshops.');
 
-        // Create 5 Classes
-        Training::factory()->count(5)->state(function (array $attributes) {
+        // Create 10 Classes
+        Training::factory()->count(10)->state(function (array $attributes) {
             return [
                 'category' => 'class',
                 'title' => 'Class: ' . fake()->sentence(3),
                 'price' => fake()->numberBetween(1000000, 5000000),
                 'level' => fake()->randomElement(['beginner', 'intermediate', 'expert']),
+                'type' => 'online',
             ];
         })->create();
-        $this->command->info('Created 5 Classes.');
+        $this->command->info('Created 10 Classes.');
     }
 }
