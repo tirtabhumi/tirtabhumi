@@ -217,7 +217,7 @@
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
                                 {{ __('messages.service_infra_title') }}
                             </a>
-                            
+
                             <a href="{{ route('services.procurement') }}"
                                 class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50">
                                 {{ __('messages.service_procurement_title') }}
@@ -265,7 +265,16 @@
                 @auth
                     <div class="relative">
                         <button id="user-menu-btn"
-                            class="flex items-center text-sm font-medium text-slate-800 hover:text-indigo-600 focus:outline-none transition-colors">
+                            class="flex items-center gap-2 text-sm font-medium text-slate-800 hover:text-indigo-600 focus:outline-none transition-colors">
+                            @if(Auth::user()->avatar)
+                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
+                                    class="w-8 h-8 rounded-full object-cover border border-slate-200">
+                            @else
+                                <div
+                                    class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 font-bold text-xs border border-indigo-200">
+                                    {{ substr(Auth::user()->name, 0, 1) }}
+                                </div>
+                            @endif
                             <span>{{ Auth::user()->name }}</span>
                             <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
@@ -274,7 +283,9 @@
                         </button>
                         <div id="user-menu-dropdown"
                             class="absolute right-0 mt-0 w-48 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
-                            <a href="/dashboard"
+                            <a href="{{ route('profile.edit') }}"
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile Settings</a>
+                            <a href="{{ route('dashboard') }}"
                                 class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
@@ -425,7 +436,7 @@
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_digital_title') }}</a>
                             <a href="{{ route('services.infrastructure') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_infra_title') }}</a>
-                           
+
                             <a href="{{ route('services.procurement') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_procurement_title') }}</a>
                         </div>
@@ -443,13 +454,21 @@
                     <!-- Mobile Auth Switcher -->
                     @auth
                         <div class="pt-4 pb-2 border-b border-slate-100">
-                            <p class="text-sm text-slate-400 mb-2">Signed in as <span class="font-bold text-slate-600">{{ Auth::user()->name }}</span></p>
-                            <a href="/dashboard"
-                                class="block text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-2">Dashboard</a>
+                            <p class="text-sm text-slate-400 mb-2">Signed in as <span
+                                    class="font-bold text-slate-600">{{ Auth::user()->name }}</span></p>
+                            <a href="{{ route('profile.edit') }}"
+                                class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                Profile Settings
+                            </a>
+                            <a href="{{ route('dashboard') }}"
+                                class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 transition-colors">
+                                Dashboard
+                            </a>
+                            <div class="border-t border-slate-200 dark:border-slate-700 my-1"></div>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="w-full text-center text-lg font-medium text-red-500 hover:text-red-700 transition-colors py-2">
+                                    class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-100 dark:text-red-400 dark:hover:bg-slate-700 transition-colors">
                                     Sign Out
                                 </button>
                             </form>
@@ -671,7 +690,7 @@
             // User Menu Logic
             // Navbar Scroll Effect
             const navbar = document.getElementById('navbar');
-            
+
             function handleScroll() {
                 if (window.scrollY > 20) {
                     navbar.classList.remove('bg-transparent');
