@@ -1,157 +1,161 @@
 <x-layout-upventure title="Profile Settings">
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
-        <div class="container mx-auto px-6 relative z-10">
+    <section class="pt-16 pb-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
+        <div class="container mx-auto px-6 relative z-10 max-w-4xl">
             <!-- Header -->
-            <div class="mb-12">
-                <h1 class="text-3xl font-bold text-slate-800">Profile Settings</h1>
-                <p class="text-slate-500 mt-2">Manage your account information and preferences.</p>
+            <div class="mb-6">
+                <div class="mb-8">
+                    <a href="{{ route('dashboard') }}"
+                        class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
+                        <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                        </svg>
+                        <span>{{ __('messages.back_to_dashboard') }}</span>
+                    </a>
+                </div>
+                <h1 class="text-3xl font-bold text-slate-800">{{ __('Profile Settings') }}</h1>
+                <p class="text-slate-500 mt-2">{{ __('Manage your account information and preferences.') }}</p>
             </div>
 
-            <div class="flex flex-col lg:flex-row gap-8">
-                <!-- Left Sidebar: Avatar & Basic Info -->
-                <div class="lg:w-1/3">
-                    <div class="neu-flat p-8 rounded-[2rem] text-center sticky top-32">
-                        <div class="relative w-32 h-32 mx-auto mb-6 group">
-                            @if($user->avatar)
-                                <img src="{{ Storage::url($user->avatar) }}" id="current-avatar" alt="{{ $user->name }}"
-                                    class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
-                            @else
-                                <div
-                                    class="w-full h-full rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 text-4xl font-bold border-4 border-white shadow-md">
-                                    {{ substr($user->name, 0, 1) }}
-                                </div>
-                            @endif
+            <div class="flex flex-col md:items-start gap-8">
+                <!-- Top Section: Avatar & Info centered or side-by-side -->
+                <div class="w-full flex flex-col md:flex-row gap-8">
+                    <!-- Left Sidebar: Avatar & Security -->
+                    <div class="w-full md:w-1/3">
+                        <div class="flex flex-col gap-8 sticky top-32">
+                            <!-- Avatar Card -->
+                            <div class="neu-flat p-8 rounded-[2rem] text-center">
+                                <div class="relative w-32 h-32 mx-auto mb-6 group">
+                                    @if($user->avatar)
+                                        <img src="{{ Storage::url($user->avatar) }}" id="current-avatar" alt="{{ $user->name }}"
+                                            class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
+                                    @else
+                                        <div
+                                            class="w-full h-full rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 text-4xl font-bold border-4 border-white shadow-md">
+                                            {{ substr($user->name, 0, 1) }}
+                                        </div>
+                                    @endif
 
-                            <!-- Overlay Button -->
-                            <button type="button" onclick="document.getElementById('avatar-input').click()"
-                                class="absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white cursor-pointer">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
-                                    </path>
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
-
-                        <input type="file" id="avatar-input" class="hidden" accept="image/*">
-
-                        <h2 class="text-xl font-bold text-slate-800">{{ $user->name }}</h2>
-                        <p class="text-sm text-slate-500 uppercase tracking-wide font-medium">
-                            {{ $user->role ?? 'User' }}
-                        </p>
-
-                        @if($user->avatar)
-                            <form action="{{ route('profile.avatar.delete') }}" method="POST" class="mt-4">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit"
-                                    class="text-xs text-red-500 hover:text-red-700 font-bold hover:underline">
-                                    Remove Profile Photo
-                                </button>
-                            </form>
-                        @endif
-                    </div>
-                </div>
-
-                <!-- Right Content: Forms -->
-                <div class="lg:w-2/3 space-y-8">
-                    @if(session('status') === 'profile-updated')
-                        <div class="bg-green-100 text-green-700 px-6 py-4 rounded-xl font-medium border border-green-200">
-                            Profile updated successfully!
-                        </div>
-                    @endif
-                    @if(session('status') === 'verification-link-sent')
-                        <div
-                            class="bg-indigo-100 text-indigo-700 px-6 py-4 rounded-xl font-medium border border-indigo-200">
-                            We have sent a password change link to your email (<b>{{ $user->email }}</b>). Please check your
-                            inbox.
-                        </div>
-                    @endif
-                    @if(session('status') === 'password-updated')
-                        <div class="bg-green-100 text-green-700 px-6 py-4 rounded-xl font-medium border border-green-200">
-                            Password has been changed successfully!
-                        </div>
-                    @endif
-
-
-                    <!-- Personal Information -->
-                    <div class="neu-flat p-8 rounded-[2rem]">
-                        <h3 class="text-xl font-bold text-slate-800 mb-6">Personal Information</h3>
-
-                        <form action="{{ route('profile.update') }}" method="POST">
-                            @csrf
-                            @method('PATCH')
-
-                            <div class="grid md:grid-cols-2 gap-6 mb-6">
-                                <div>
-                                    <label class="block text-sm font-bold text-slate-600 mb-2">Full Name</label>
-                                    <input type="text" name="name" value="{{ old('name', $user->name) }}"
-                                        class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
-                                    @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-bold text-slate-600 mb-2">Phone Number</label>
-                                    <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
-                                        class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
-                                    @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
-                                </div>
-                                <div class="col-span-full">
-                                    <label class="block text-sm font-bold text-slate-600 mb-2">Email Address</label>
-                                    <div class="relative">
-                                        <input type="email" name="email" value="{{ old('email', $user->email) }}"
-                                            class="w-full px-4 py-3 pl-10 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all read-only:bg-slate-100 read-only:text-slate-500">
-                                        <svg class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <!-- Overlay Button -->
+                                    <button type="button" onclick="document.getElementById('avatar-input').click()"
+                                        class="absolute inset-0 bg-black/40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white cursor-pointer">
+                                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+                                                d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z">
                                             </path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M15 13a3 3 0 11-6 0 3 3 0 016 0z"></path>
                                         </svg>
+                                    </button>
+                                </div>
+
+                                <input type="file" id="avatar-input" class="hidden" accept="image/*">
+
+                                <h2 class="text-xl font-bold text-slate-800">{{ $user->name }}</h2>
+                                <p class="text-sm text-slate-500 uppercase tracking-wide font-medium">
+                                    {{ $user->role ?? 'User' }}
+                                </p>
+
+                                @if($user->avatar)
+                                    <form action="{{ route('profile.avatar.delete') }}" method="POST" class="mt-4">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit"
+                                            class="text-xs text-red-500 hover:text-red-700 font-bold hover:underline">
+                                            Remove Profile Photo
+                                        </button>
+                                    </form>
+                                @endif
+                            </div>
+
+                            <!-- Security & Password -->
+                            <div class="neu-flat p-6 rounded-[2rem]">
+                                <h3 class="text-xl font-bold text-slate-800 mb-4">Security</h3>
+
+                                <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-xl border border-indigo-100 gap-4">
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="font-bold text-indigo-900 text-sm">Change Password</h4>
+                                        <p class="text-xs text-indigo-600/80 leading-relaxed mt-1">For your security, we will email you a link.</p>
                                     </div>
-                                    <p class="text-xs text-slate-400 mt-2">Changing email may require re-verification.
-                                    </p>
-                                    @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                    <form action="{{ route('profile.password.link') }}" method="POST">
+                                        @csrf
+                                        <button type="submit"
+                                            class="px-4 py-2 bg-white text-indigo-600 font-bold text-sm rounded-full shadow-sm hover:shadow-md transition-all whitespace-nowrap flex-shrink-0">
+                                            Send Link
+                                        </button>
+                                    </form>
                                 </div>
-
-                                {{-- If we had Institution column, we'd add it here. --}}
-                                {{--
-                                <div class="col-span-full">
-                                    <label class="block text-sm font-bold text-slate-600 mb-2">Institution /
-                                        Organization</label>
-                                    <input type="text" name="institution"
-                                        value="{{ old('institution', $user->institution ?? '') }}"
-                                        class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
-                                </div>
-                                --}}
                             </div>
-
-                            <div class="flex justify-end">
-                                <button type="submit"
-                                    class="neu-btn px-8 py-3 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 font-bold">
-                                    Save Changes
-                                </button>
-                            </div>
-                        </form>
+                        </div>
                     </div>
 
-                    <!-- Security & Password -->
-                    <div class="neu-flat p-8 rounded-[2rem]">
-                        <h3 class="text-xl font-bold text-slate-800 mb-6">Security</h3>
-
-                        <div
-                            class="flex items-center justify-between p-4 bg-indigo-50 rounded-xl border border-indigo-100">
-                            <div>
-                                <h4 class="font-bold text-indigo-900">Change Password</h4>
-                                <p class="text-sm text-indigo-600/80">For your security, we will email you a
-                                    verification link before you can change your password.</p>
+                    <!-- Right Content: Forms -->
+                    <div class="w-full md:w-2/3 space-y-8">
+                        @if(session('status') === 'profile-updated')
+                            <div class="bg-green-100 text-green-700 px-6 py-4 rounded-xl font-medium border border-green-200">
+                                Profile updated successfully!
                             </div>
-                            <form action="{{ route('profile.password.link') }}" method="POST">
+                        @endif
+                        @if(session('status') === 'verification-link-sent')
+                            <div
+                                class="bg-indigo-100 text-indigo-700 px-6 py-4 rounded-xl font-medium border border-indigo-200">
+                                We have sent a password change link to your email (<b>{{ $user->email }}</b>). Please check your
+                                inbox.
+                            </div>
+                        @endif
+                        @if(session('status') === 'password-updated')
+                            <div class="bg-green-100 text-green-700 px-6 py-4 rounded-xl font-medium border border-green-200">
+                                Password has been changed successfully!
+                            </div>
+                        @endif
+
+
+                        <!-- Personal Information -->
+                        <div class="neu-flat p-8 rounded-[2rem]">
+                            <h3 class="text-xl font-bold text-slate-800 mb-6">Personal Information</h3>
+
+                            <form action="{{ route('profile.update') }}" method="POST">
                                 @csrf
-                                <button type="submit"
-                                    class="px-6 py-2 bg-white text-indigo-600 font-bold rounded-full shadow-sm hover:shadow-md transition-all">
-                                    Send Link
-                                </button>
+                                @method('PATCH')
+
+                                <div class="space-y-5 mb-8">
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-600 mb-2">Full Name</label>
+                                        <input type="text" name="name" value="{{ old('name', $user->name) }}"
+                                            class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+                                        @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-600 mb-2">Phone Number</label>
+                                        <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
+                                            class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
+                                        @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-bold text-slate-600 mb-2">Email Address</label>
+                                        <div class="relative">
+                                            <input type="email" name="email" value="{{ old('email', $user->email) }}"
+                                                class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all read-only:bg-slate-100 read-only:text-slate-500">
+                                            
+                                        </div>
+                                        @error('email') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
+                                        
+                                        <!-- Email help text as alert -->
+                                        <div class="mt-3 flex items-start gap-3 p-3 bg-blue-50 rounded-xl border border-blue-100">
+                                            <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            <p class="text-xs text-blue-600 leading-relaxed">
+                                                Note: Changing your email address may require you to verify the new email before you can log in again.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex justify-end">
+                                    <button type="submit"
+                                        class="neu-btn px-8 py-3 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 font-bold shadow-lg shadow-indigo-200">
+                                        Save Changes
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

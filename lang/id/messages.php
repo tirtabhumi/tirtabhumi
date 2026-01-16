@@ -15,8 +15,24 @@ return [
         '9.000+ Implementasi AI & CCTV',
         'Mitra Resmi E-Katalog',
     ],
+    'upventure_rotating_text' => [
+        'Pelatihan IT & Industri Bersertifikat',
+        'Pengalaman Proyek Dunia Nyata',
+        'Mitra Sertifikasi Resmi',
+        'Mentor Ahli dari Industri Teknologi',
+    ],
     'get_started' => 'Konsultasi Gratis',
     'our_services' => 'Lihat Katalog Layanan',
+    'back_to_dashboard' => 'Kembali ke Dashboard',
+    'back_to_home' => 'Kembali ke Beranda',
+    'back_to_my_classes' => 'Kembali ke Materi Saya',
+    'access_my_classes' => 'Akses Materi Saya',
+    'browse_more' => 'Lihat Pelatihan Lainnya',
+    'payment_successful' => 'Pembayaran Berhasil!',
+    'payment_failed_cancelled' => 'Pembayaran Gagal / Dibatalkan',
+    'verifying_payment' => 'Memverifikasi Pembayaran...',
+    'check_status_again' => 'Cek Status Kembali',
+    'try_again' => 'Coba Lagi',
 
     'why_us_title' => 'Mengapa PT Tirta Bhumi Indonesia?',
     'why_us_subtitle' => 'Mengapa Memilih Kami',
@@ -270,7 +286,7 @@ return [
 
     // Training Index Page
     'training_title' => 'UpVenture',
-    'training_subtitle' => "Aselerasi karir digitalmu dengan kurikulum berbasis proyek nyata yang dirancang khusus untuk era teknologi modern. Kami mencetak talenta digital siap kerja versi terbaik dari diri Anda.\n\nDengan bimbingan langsung dari mentor praktisi terkemuka, Anda akan diajak menyelami pengalaman kerja sesungguhnya melalui studi kasus riil. Dapatkan akses ke komunitas eksklusif dan peluang karir yang lebih luas.",
+    'training_subtitle' => "Akselerasi karir digitalmu dengan kurikulum berbasis proyek nyata yang dirancang khusus untuk era teknologi modern. Kami mencetak talenta digital siap kerja melalui bimbingan langsung dari mentor praktisi terkemuka, mengajak Anda menyelami pengalaman kerja sesungguhnya melalui studi kasus riil.",
     'training_subtitle_highlight' => 'Bukan Sekadar Kursus, Ini Langkah Awal Karir Impianmu.',
     'training_about_title' => 'Apa itu UpVenture?',
     'training_about_desc' => 'UpVenture adalah platform edukasi digital dari PT Tirta Bhumi Indonesia yang berfokus pada pengembangan skill siap kerja. Kami menghadirkan program pelatihan intensif di bidang teknologi, desain, dan pemasaran digital untuk membantu Anda mencapai potensi maksimal di era ekonomi digital.',

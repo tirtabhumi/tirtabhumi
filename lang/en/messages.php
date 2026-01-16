@@ -15,8 +15,24 @@ return [
         '9,000+ AI & CCTV Implementations',
         'Official E-Catalog Partner',
     ],
+    'upventure_rotating_text' => [
+        'Certified Industrial & IT Training',
+        'Project-Based Real World Experience',
+        'Official Certification Partner',
+        'Expert Mentors from Tech Industry',
+    ],
     'get_started' => 'Free Consultation',
     'our_services' => 'View Service Catalog',
+    'back_to_dashboard' => 'Back to Dashboard',
+    'back_to_home' => 'Back to Home',
+    'back_to_my_classes' => 'Back to My Classes',
+    'access_my_classes' => 'Access My Classes',
+    'browse_more' => 'Browse More',
+    'payment_successful' => 'Payment Successful!',
+    'payment_failed_cancelled' => 'Payment Failed / Cancelled',
+    'verifying_payment' => 'Verifying Payment...',
+    'check_status_again' => 'Check Status Again',
+    'try_again' => 'Try Again',
 
     'why_us_title' => 'Why PT Tirta Bhumi Indonesia?',
     'why_us_subtitle' => 'Why Choose Us',
@@ -271,7 +287,7 @@ return [
 
     // Training Index Page
     'training_title' => 'UpVenture',
-    'training_subtitle' => "Accelerate your digital career with a real-world project-based curriculum designed specifically for the modern tech era. We shape job-ready digital talents to be the best version of yourself.\n\nWith direct guidance from leading practitioner mentors, you will be immersed in real work experiences through actual case studies. Gain access to an exclusive community and broader career opportunities.",
+    'training_subtitle' => "Accelerate your digital career with a real-world project-based curriculum designed specifically for the modern tech era. We shape job-ready digital talents through direct guidance from leading practitioner mentors, immersing you in real work experiences through actual case studies.",
     'training_subtitle_highlight' => 'Not Just a Course, It\'s the First Step to Your Dream Career.',
     'training_about_title' => 'What is UpVenture?',
     'training_about_desc' => 'UpVenture is a digital education platform by PT Tirta Bhumi Indonesia focusing on job-ready skill development. We present intensive training programs in technology, design, and digital marketing to help you reach your maximum potential in the digital economy era.',

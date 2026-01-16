@@ -28,7 +28,7 @@
         font-weight: 700 !important;
         }
     </style>
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
+    <section class="pt-24 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -37,11 +37,15 @@
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <!-- Breadcrumb -->
+            <!-- Back to Dashboard -->
             <div class="mb-8">
-                <a href="/dashboard" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Dashboard
+                <a href="/dashboard"
+                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
+                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>{{ __('messages.back_to_dashboard') }}</span>
                 </a>
             </div>
 
@@ -256,7 +260,7 @@
                             @endphp
                             
                             <div class="neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col h-full relative">
-                                <a href="{{ route('my-classes.show', $registration->training_id) }}" class="absolute inset-0 z-10"><span class="sr-only">Lihat Detail Kelas</span></a>
+                                <a href="{{ route('my-classes.show', $registration->training->slug) }}" class="absolute inset-0 z-10"><span class="sr-only">Lihat Detail Kelas</span></a>
 
                                 <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100">
                                     @if($registration->training->image)

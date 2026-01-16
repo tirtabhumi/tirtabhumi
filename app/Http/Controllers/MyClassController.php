@@ -90,17 +90,20 @@ class MyClassController extends Controller
         return view('my-classes.index', compact('myClasses', 'filters'));
     }
 
-    public function show($trainingId)
+    public function show($slug)
     {
         $user = auth()->user();
 
+        // Find training by slug
+        $training = \App\Models\Training::where('slug', $slug)->firstOrFail();
+
         // Verify user has access (completed registration)
         $registration = Registration::where('email', $user->email)
-            ->where('training_id', $trainingId)
+            ->where('training_id', $training->id)
             ->where('status', 'completed')
             ->firstOrFail();
 
-        $training = $registration->training()->with('modules')->firstOrFail();
+        $training->load('modules');
 
         // Get user's progress for all modules
         $userProgress = UserModuleProgress::where('user_id', $user->id)

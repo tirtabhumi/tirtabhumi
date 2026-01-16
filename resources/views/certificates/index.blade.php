@@ -1,22 +1,27 @@
 <x-layout-upventure title="My Certificates">
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
+    <section class="pt-24 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-yellow-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-orange-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10">
-            <!-- Breadcrumb -->
+            <!-- Back to Dashboard -->
             <div class="mb-8">
-                <a href="/dashboard" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Dashboard
+                <a href="/dashboard"
+                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
+                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>{{ __('messages.back_to_dashboard') }}</span>
                 </a>
             </div>
 
             <div class="text-center mb-16 animate-fade-in-up">
-                <div class="inline-flex items-center justify-center p-4 bg-yellow-100 rounded-full mb-6 text-yellow-600">
+                <div class="inline-flex items-center justify-center p-4 bg-indigo-100 rounded-full mb-6 text-indigo-600">
                     <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">

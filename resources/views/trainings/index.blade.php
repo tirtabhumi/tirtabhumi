@@ -1,48 +1,62 @@
-<x-layout-upventure title="{{ __('messages.training_title') }} - {{ config('app.name') }}">
-    <!-- Hero Section -->
-    <section class="relative -mt-32 pt-32 pb-4 md:pt-40 md:pb-6 overflow-hidden">
-        <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
-            <div
-                class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob">
+<x-layout title="{{ __('messages.training_title') }} - {{ config('app.name') }}">
+     <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
+        <!-- Animated Background -->
+        <div class="absolute inset-0 w-full h-full pointer-events-none">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
+            <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
+            <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
+        </div>
+
+        <!-- Main Hero Content (Shifted Down) -->
+        <div class="container mx-auto px-6 relative z-10">
+            <!-- Breadcrumb -->
+            <div class="mb-10 animate-fade-in-up">
+                <x-breadcrumb :current="__('messages.training_title')" />
             </div>
-            <div
-                class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000">
+
+            <div class="text-center mb-16 animate-fade-in-up">
+            <h1
+                class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black animate-fade-in-up animation-delay-100">
+                {{ __('messages.training_title') }}
+            </h1>
+            <p
+                class="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
+                {{ __('messages.training_subtitle') }}
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-6 justify-center animate-fade-in-up animation-delay-400 mb-20">
+                <a href="#schedule"
+                    class="px-8 py-4 neu-flat text-indigo-600 font-bold hover:scale-105 transition-transform duration-300">
+                    {{ __('messages.training_btn_schedule') }}
+                </a>
+                <a href="{{ route('contacts.index') }}" class="px-8 py-4 neu-btn-dark font-bold">
+                    Start Collaboration Now
+                </a>
             </div>
-            <div
-                class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000">
+
+            <!-- Partners Section -->
+            <div class="mt-16 animate-fade-in-up animation-delay-400 text-center">
+                <p class="text-[10px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-8">Our Partners</p>
+                <div class="flex flex-wrap justify-center gap-12 items-center px-6">
+                    @php
+                        $upventurePartners = [
+                            ['name' => 'UX Specialty', 'file' => 'ux-specialty.png'],
+                            ['name' => 'Educourse', 'file' => 'educourse.png']
+                        ];
+                    @endphp
+                    @foreach($upventurePartners as $partner)
+                        <div class="flex items-center gap-4 px-6 py-3 rounded-2xl bg-white/40 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 group">
+                            <div class="h-10 w-auto flex items-center justify-center">
+                                <img src="{{ asset('images/partners/'.$partner['file']) }}" alt="{{ $partner['name'] }}" class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+                            </div>
+                            <span class="text-sm font-bold text-slate-700 group-hover:text-indigo-600 transition-colors uppercase tracking-wider">{{ $partner['name'] }}</span>
+                        </div>
+                    @endforeach
+                </div>
             </div>
         </div>
 
-        <div class="relative container mx-auto px-6 z-10">
-            <!-- Breadcrumb (Modern) -->
-            <div class="mb-10 animate-fade-in-up">
-                <x-breadcrumb :current="__('messages.training_title')" class="mb-0" />
-            </div>
-            
-            <div class="flex flex-col items-center text-center">
-                <!-- Text Column -->
-                <div class="lg:w-8/12">
-
-                    <h1 class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-indigo-600 leading-[1.1] animate-fade-in-up">
-                        {{ __('messages.training_title') }}
-                    </h1>
-                    <p class="text-lg md:text-xl text-slate-500 mb-10 max-w-3xl mx-auto leading-relaxed animate-fade-in-up" style="animation-delay: 0.2s">
-                        {!! nl2br(e(__('messages.training_subtitle'))) !!}
-                        <br>
-                        <span
-                            class="text-indigo-600 font-semibold mt-4 block">{{ __('messages.training_subtitle_highlight') }}</span>
-                    </p>
-                    <div class="flex flex-wrap justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.4s">
-                        <a href="#classes" class="neu-btn px-8 py-3.5 rounded-2xl bg-indigo-600 text-white font-bold hover:bg-indigo-700 transition-all text-sm">
-                            {{ __('messages.training_btn_schedule') }}
-                        </a>
-                        <a href="{{ route('contacts.index') }}"
-                            class="neu-btn px-8 py-4 rounded-2xl bg-white text-indigo-600 font-bold hover:bg-slate-50 transition-all">
-                            {{ __('messages.partnership_btn') }}
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <div class="h-16 md:h-24"></div>
         </div>
     </section>
 
@@ -486,10 +500,38 @@
             width: max-content;
         }
 
-        /* Custom hover state for rows */
+        @keyframes marquee-scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(calc(-100% - 2rem)); }
+        }
+
+        .animate-marquee-scroll {
+            animation: marquee-scroll 30s linear infinite;
+        }
+
         .marquee-container:hover .animate-marquee-right,
         .marquee-container:hover .animate-marquee-left {
             animation-play-state: paused;
         }
     </style>
-</x-layout-upventure>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Rotating Text Logic
+            const texts = @json(__('messages.upventure_rotating_text'));
+            const textElement = document.getElementById('rotating-text');
+            let currentIndex = 0;
+
+            if (textElement && texts && texts.length > 1) {
+                setInterval(() => {
+                    textElement.style.opacity = '0';
+                    setTimeout(() => {
+                        currentIndex = (currentIndex + 1) % texts.length;
+                        textElement.textContent = texts[currentIndex];
+                        textElement.style.opacity = '1';
+                    }, 500);
+                }, 2500);
+            }
+        });
+    </script>
+</x-layout>

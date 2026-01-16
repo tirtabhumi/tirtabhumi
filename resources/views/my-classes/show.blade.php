@@ -5,7 +5,7 @@
             .content-width { width: 70% !important; flex: 0 0 70% !important; }
         }
     </style>
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen">
+    <section class="pt-24 pb-24 bg-[#eef2f6] min-h-screen">
         <div class="container mx-auto px-6">
             <!-- Breadcrumb -->
             <div class="mb-8">
@@ -15,7 +15,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Back to My Classes
+                    <span>{{ __('messages.back_to_my_classes') }}</span>
                 </a>
             </div>
 
@@ -78,6 +78,7 @@
                                 <div class="neu-flat rounded-2xl p-4 border border-white/50 {{ $isUnlocked ? 'hover:scale-[1.01] transition-transform cursor-pointer' : 'opacity-60' }}"
                                     data-module-id="{{ $module->id }}" 
                                     data-video-url="{{ $module->video_url }}"
+                                    data-file-path="{{ $module->file_path ? asset('storage/' . $module->file_path) : '' }}"
                                     data-type="{{ $module->type }}"
                                     data-questions="{{ json_encode($module->questions) }}"
                                     data-is-quiz="{{ $isQuiz ? 'true' : 'false' }}"
@@ -144,14 +145,26 @@
                                             </div>
                                         </div>
 
-                                        <!-- Play Icon -->
+                                        <!-- Icon Action -->
                                         @if($isUnlocked)
                                             <div class="flex-shrink-0">
                                                 <div
                                                     class="w-8 h-8 rounded-full bg-indigo-600 flex items-center justify-center group-hover:scale-110 transition-transform">
                                                     @if($isQuiz)
+                                                        <!-- Quiz Icon -->
                                                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                                    @elseif(in_array($module->type, ['pdf', 'document', 'doc', 'docx']) || Str::endsWith($module->file_path, ['.pdf', '.doc', '.docx']))
+                                                        <!-- Document Icon -->
+                                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                                                        </svg>
+                                                    @elseif(in_array($module->type, ['image', 'jpg', 'png', 'jpeg']) || Str::endsWith($module->file_path, ['.jpg', '.jpeg', '.png']))
+                                                        <!-- Image Icon -->
+                                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                                        </svg>
                                                     @else
+                                                        <!-- Video Icon (Default) -->
                                                         <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 24 24">
                                                             <path d="M8 5v14l11-7z"></path>
                                                         </svg>
@@ -166,13 +179,13 @@
                     </div>
                 </div>
 
-                <!-- Right Content - Video Player (70%) -->
                 <div class="w-full lg:w-[70%] content-width">
-                    <div class="neu-flat rounded-3xl p-8 border border-white/50 sticky top-24">
+                    <div class="neu-flat rounded-3xl p-8 border border-white/50">
                         <h3 id="player-title" class="text-2xl font-bold text-slate-800 mb-6">Video Player</h3>
 
                         <!-- Video Container -->
                         <div id="video-container" class="aspect-video bg-slate-900 rounded-xl overflow-hidden mb-6">
+                            <!-- Content injected via JS -->
                             <div class="flex items-center justify-center h-full text-slate-400">
                                 <div class="text-center">
                                     <svg class="w-20 h-20 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor"
@@ -220,6 +233,7 @@
             }
 
             const videoUrl = element.dataset.videoUrl;
+            const filePath = element.dataset.filePath; // Get file path
             const moduleId = element.dataset.moduleId;
             const type = element.dataset.type;
             const isQuiz = element.dataset.isQuiz === 'true';
@@ -246,18 +260,25 @@
 
             // Reset container
             videoContainer.innerHTML = '';
-            videoContainer.classList.remove('aspect-video', 'bg-slate-900');
-            videoContainer.classList.add('bg-white', 'p-6'); 
+            // Remove ALL potential classes added by various modes
+            videoContainer.classList.remove(
+                'aspect-video', 'bg-slate-900', // Video default
+                'min-h-[400px]', 'p-6', 'bg-white', // Quiz
+                'h-[800px]', // PDF
+                'bg-slate-100', 'p-4', 'flex', 'items-center', 'justify-center', // Image
+                'bg-slate-50', 'p-10', 'min-h-[300px]' // Doc download
+            );
+            
+            // Default styling reset
+            markCompleteBtn.classList.remove('hidden');
 
+            // --- QUIZ LOGIC ---
             if (isQuiz) {
                 playerTitle.textContent = 'Quiz';
-                videoContainer.classList.remove('aspect-video', 'bg-slate-900');
-                videoContainer.classList.add('min-h-[400px]');
+                videoContainer.classList.add('bg-white', 'p-6', 'min-h-[400px]');
                 
                 try {
                     const questions = JSON.parse(element.dataset.questions || '[]');
-                    
-                    // Pass constraints to the container for submitQuiz to read
                     videoContainer.dataset.minScore = element.dataset.minScore;
                     videoContainer.dataset.maxAttempts = element.dataset.maxAttempts;
                     
@@ -292,21 +313,71 @@
                     console.error('Error parsing questions:', e);
                     videoContainer.innerHTML = '<div class="text-red-500">Error loading quiz.</div>';
                 }
+                return;
+            }
+
+            // --- FILE / IMAGE / VIDEO LOGIC ---
+            
+            // Helper to clean and check type/extension
+            const safeType = (type || '').toLowerCase();
+            const hasExt = (ext) => filePath && filePath.toLowerCase().endsWith(ext);
+
+            const isImage = hasExt('.jpg') || hasExt('.jpeg') || hasExt('.png') || hasExt('.gif') || hasExt('.webp') || 
+                            ['image', 'jpg', 'jpeg', 'png'].includes(safeType);
+            
+            const isPdf = hasExt('.pdf') || ['pdf'].includes(safeType);
+            
+            const isDoc = hasExt('.doc') || hasExt('.docx') || ['document', 'doc', 'docx'].includes(safeType);
+
+            console.log('Module Load:', { moduleId, type: safeType, filePath, isImage, isPdf, isDoc });
+
+            if (isImage) {
+                playerTitle.textContent = 'Image Viewer';
+                // Image View
+                 videoContainer.classList.add('bg-slate-100', 'p-4', 'flex', 'items-center', 'justify-center');
+                 videoContainer.innerHTML = `<img src="${filePath}" alt="${moduleTitle}" class="max-w-full max-h-[600px] rounded-lg shadow-md object-contain">`;
+
+            } else if (isPdf) {
+                playerTitle.textContent = 'Document Viewer';
+                // PDF View
+                videoContainer.classList.add('h-[800px]', 'bg-white');
+                videoContainer.innerHTML = `<iframe src="${filePath}" class="w-full h-full rounded-lg" frameborder="0"></iframe>`;
+
+            } else if (isDoc) {
+                playerTitle.textContent = 'Document Download';
+                // Other Documents (Download)
+                videoContainer.classList.add('bg-slate-50', 'p-10', 'flex', 'items-center', 'justify-center', 'min-h-[300px]');
+                videoContainer.innerHTML = `
+                    <div class="text-center">
+                        <div class="w-20 h-20 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800 mb-2">Download Document</h3>
+                        <p class="text-slate-500 mb-6">This document cannot be previewed directly.</p>
+                        <a href="${filePath}" download class="px-8 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors inline-flex items-center gap-2">
+                            Download File
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        </a>
+                    </div>
+                `;
             } else {
-                // Video Mode
+                // Video Mode (Fallback)
                 playerTitle.textContent = 'Video Player';
                 videoContainer.classList.add('aspect-video', 'bg-slate-900');
-                videoContainer.classList.remove('min-h-[400px]', 'p-6', 'bg-white');
-                markCompleteBtn.classList.remove('hidden');
-
-                if (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be')) {
+                
+                if (videoUrl && (videoUrl.includes('youtube.com') || videoUrl.includes('youtu.be'))) {
                     const videoId = extractYouTubeId(videoUrl);
                     videoContainer.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${videoId}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
-                } else if (videoUrl.includes('vimeo.com')) {
+                } else if (videoUrl && videoUrl.includes('vimeo.com')) {
                     const videoId = extractVimeoId(videoUrl);
                     videoContainer.innerHTML = `<iframe class="w-full h-full" src="https://player.vimeo.com/video/${videoId}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                } else if (videoUrl) {
+                    // Generic video (mp4 etc)
+                     videoContainer.innerHTML = `<video controls class="w-full h-full" src="${videoUrl}"></video>`;
                 } else {
-                     videoContainer.innerHTML = '<div class="flex items-center justify-center h-full text-white">Video unavailable</div>';
+                     videoContainer.innerHTML = '<div class="flex items-center justify-center h-full text-white">Content unavailable</div>';
                 }
             }
         }

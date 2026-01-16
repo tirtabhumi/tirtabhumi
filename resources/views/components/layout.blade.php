@@ -282,15 +282,15 @@
                             </svg>
                         </button>
                         <div id="user-menu-dropdown"
-                            class="absolute right-0 mt-0 w-48 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
+                            class="absolute right-0 mt-0 w-56 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
                             <a href="{{ route('profile.edit') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Profile Settings</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">Profile Settings</a>
                             <a href="{{ route('dashboard') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Dashboard</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">Dashboard</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">Sign
+                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">Sign
                                     out</button>
                             </form>
                         </div>
@@ -468,7 +468,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-slate-100 dark:text-red-400 dark:hover:bg-slate-700 transition-colors">
+                                    class="block w-full text-center px-4 py-2 text-sm text-red-600 hover:bg-slate-100 dark:text-red-400 dark:hover:bg-slate-700 transition-colors">
                                     Sign Out
                                 </button>
                             </form>

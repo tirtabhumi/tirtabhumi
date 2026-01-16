@@ -43,7 +43,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-slate-800 mb-4">Payment Successful!</h1>
+                        <h1 class="text-3xl font-bold text-slate-800 mb-4">{{ __('messages.payment_successful') }}</h1>
                         <p class="text-slate-500 max-w-lg mx-auto mb-10">
                             Thank you for your payment. Your registration for <span class="font-bold text-slate-800">{{ $registration->training->title }}</span> has been confirmed.
                             You can now access your class.
@@ -51,10 +51,10 @@
                         
                         <div class="flex justify-center gap-4">
                             <a href="{{ route('my-classes.index') }}" class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all">
-                                Access My Classes
+                                {{ __('messages.access_my_classes') }}
                             </a>
                             <a href="{{ route('trainings.index') }}" class="px-8 py-3 bg-white text-indigo-600 font-bold rounded-xl border border-indigo-100 hover:bg-indigo-50 hover:-translate-y-1 transition-all">
-                                Browse More
+                                {{ __('messages.browse_more') }}
                             </a>
                         </div>
                     @elseif($registration->status == 'cancelled')
@@ -63,13 +63,13 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-slate-800 mb-4">Payment Failed / Cancelled</h1>
+                        <h1 class="text-3xl font-bold text-slate-800 mb-4">{{ __('messages.payment_failed_cancelled') }}</h1>
                         <p class="text-slate-500 max-w-lg mx-auto mb-10">
                             Your payment was cancelled or expired. Please try again.
                         </p>
                         <div class="flex justify-center gap-4">
                              <a href="{{ route('payment.show', $registration) }}" class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all">
-                                Try Again
+                                {{ __('messages.try_again') }}
                             </a>
                         </div>
                     @else
@@ -78,14 +78,14 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
                         </div>
-                        <h1 class="text-3xl font-bold text-slate-800 mb-4">Verifying Payment...</h1>
+                        <h1 class="text-3xl font-bold text-slate-800 mb-4">{{ __('messages.verifying_payment') }}</h1>
                         <p class="text-slate-500 max-w-lg mx-auto mb-10">
                             We are checking your payment status from Xendit. This usually takes a few seconds.
                             <br>Please click the button below to refresh status.
                         </p>
                          <div class="flex justify-center gap-4">
                             <a href="{{ route('payment.finish', $registration) }}" class="px-8 py-3 bg-indigo-600 text-white font-bold rounded-xl shadow-lg shadow-indigo-200 hover:bg-indigo-700 hover:-translate-y-1 transition-all">
-                                Check Status Again
+                                {{ __('messages.check_status_again') }}
                             </a>
                         </div>
                     @endif

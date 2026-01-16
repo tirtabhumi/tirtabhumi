@@ -1,5 +1,5 @@
 <x-layout-upventure title="Affiliate Dashboard">
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
+    <section class="pt-16 pb-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -11,6 +11,14 @@
         </div>
 
         <div class="container mx-auto px-6 relative z-10 max-w-6xl">
+            <!-- Breadcrumb -->
+            <div class="mb-4">
+                <a href="/dashboard" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    Back to Dashboard
+                </a>
+            </div>
+
             <!-- Header -->
             <div class="mb-8 animate-fade-in-up">
                 <h1 class="text-3xl font-bold text-slate-800 mb-2">Affiliate Dashboard</h1>
