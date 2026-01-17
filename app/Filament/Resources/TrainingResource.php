@@ -97,8 +97,19 @@ class TrainingResource extends Resource
                             ->label('Lokasi (Alamat Lengkap)')
                             ->maxLength(255)
                             ->visible(fn(Forms\Get $get) => in_array($get('type'), ['offline', 'hybrid'])),
+                        Forms\Components\Select::make('meeting_platform')
+                            ->label('Platform')
+                            ->options([
+                                'Zoom' => 'Zoom',
+                                'Google Meet' => 'Google Meet',
+                                'Microsoft Teams' => 'Microsoft Teams',
+                                'Youtube Live' => 'Youtube Live',
+                                'Other' => 'Other',
+                            ])
+                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid']))
+                            ->reactive(),
                         Forms\Components\TextInput::make('location_online')
-                            ->label('Link Meeting / Lokasi Online')
+                            ->label(fn(Forms\Get $get) => ($get('meeting_platform') ?? 'Meeting') . ' Link')
                             ->maxLength(255)
                             ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid'])),
                         

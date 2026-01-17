@@ -166,7 +166,7 @@
 
                         <div class="mb-4">
                             <label for="ktp_name" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.ktp_name_label') }} *</label>
-                            <input type="text" id="ktp_name" name="ktp_name" value="{{ old('ktp_name') }}" required
+                            <input type="text" id="ktp_name" name="ktp_name" value="{{ old('ktp_name', auth()->user()->name) }}" required
                                 class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                             @error('ktp_name')
                                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -192,7 +192,7 @@
                         <div class="mb-4">
                             <label for="bank_account_name" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.bank_account_holder_label') }} *</label>
                             <input type="text" id="bank_account_name" name="bank_account_name"
-                                value="{{ old('bank_account_name') }}" required
+                                value="{{ old('bank_account_name', auth()->user()->name) }}" required
                                 class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                             <p class="text-xs text-slate-500 mt-1">{{ __('messages.must_match_ktp') }}</p>
                             @error('bank_account_name')

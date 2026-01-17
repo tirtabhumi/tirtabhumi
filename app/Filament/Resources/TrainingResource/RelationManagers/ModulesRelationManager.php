@@ -44,9 +44,11 @@ class ModulesRelationManager extends RelationManager
                         'Other' => 'Other',
                     ])
                     ->visible(fn(Forms\Get $get) => $get('type') === 'online_session')
-                    ->required(fn(Forms\Get $get) => $get('type') === 'online_session'),
+                    ->required(fn(Forms\Get $get) => $get('type') === 'online_session')
+                    ->reactive(),
                 
                 Forms\Components\TextInput::make('meeting_link')
+                    ->label(fn(Forms\Get $get) => ($get('meeting_platform') ?? 'Meeting') . ' Link')
                     ->url()
                     ->visible(fn(Forms\Get $get) => $get('type') === 'online_session')
                     ->required(fn(Forms\Get $get) => $get('type') === 'online_session'),
