@@ -13,8 +13,8 @@
                         <span>{{ __('messages.back_to_dashboard') }}</span>
                     </a>
                 </div>
-                <h1 class="text-3xl font-bold text-slate-800">{{ __('Profile Settings') }}</h1>
-                <p class="text-slate-500 mt-2">{{ __('Manage your account information and preferences.') }}</p>
+                <h1 class="text-3xl font-bold text-slate-800">{{ __('messages.profile_settings') }}</h1>
+                <p class="text-slate-500 mt-2">{{ __('messages.manage_account_desc') }}</p>
             </div>
 
             <div class="flex flex-col md:items-start gap-8">
@@ -62,7 +62,7 @@
                                         @method('DELETE')
                                         <button type="submit"
                                             class="text-xs text-red-500 hover:text-red-700 font-bold hover:underline">
-                                            Remove Profile Photo
+                                            {{ __('messages.remove_photo') }}
                                         </button>
                                     </form>
                                 @endif
@@ -70,18 +70,18 @@
 
                             <!-- Security & Password -->
                             <div class="neu-flat p-6 rounded-[2rem]">
-                                <h3 class="text-xl font-bold text-slate-800 mb-4">Security</h3>
+                                <h3 class="text-xl font-bold text-slate-800 mb-4">{{ __('messages.security') }}</h3>
 
                                 <div class="flex items-center justify-between p-4 bg-indigo-50 rounded-xl border border-indigo-100 gap-4">
                                     <div class="flex-1 min-w-0">
-                                        <h4 class="font-bold text-indigo-900 text-sm">Change Password</h4>
-                                        <p class="text-xs text-indigo-600/80 leading-relaxed mt-1">For your security, we will email you a link.</p>
+                                        <h4 class="font-bold text-indigo-900 text-sm">{{ __('messages.change_password') }}</h4>
+                                        <p class="text-xs text-indigo-600/80 leading-relaxed mt-1">{{ __('messages.change_password_desc') }}</p>
                                     </div>
                                     <form action="{{ route('profile.password.link') }}" method="POST">
                                         @csrf
                                         <button type="submit"
                                             class="px-4 py-2 bg-white text-indigo-600 font-bold text-sm rounded-full shadow-sm hover:shadow-md transition-all whitespace-nowrap flex-shrink-0">
-                                            Send Link
+                                            {{ __('messages.send_link') }}
                                         </button>
                                     </form>
                                 </div>
@@ -93,26 +93,25 @@
                     <div class="w-full md:w-2/3 space-y-8">
                         @if(session('status') === 'profile-updated')
                             <div class="bg-green-100 text-green-700 px-6 py-4 rounded-xl font-medium border border-green-200">
-                                Profile updated successfully!
+                                {{ __('messages.profile_updated') }}
                             </div>
                         @endif
                         @if(session('status') === 'verification-link-sent')
                             <div
                                 class="bg-indigo-100 text-indigo-700 px-6 py-4 rounded-xl font-medium border border-indigo-200">
-                                We have sent a password change link to your email (<b>{{ $user->email }}</b>). Please check your
-                                inbox.
+                                {!! __('messages.verification_link_sent_desc', ['email' => $user->email]) !!}
                             </div>
                         @endif
                         @if(session('status') === 'password-updated')
                             <div class="bg-green-100 text-green-700 px-6 py-4 rounded-xl font-medium border border-green-200">
-                                Password has been changed successfully!
+                                {{ __('messages.password_updated') }}
                             </div>
                         @endif
 
 
                         <!-- Personal Information -->
                         <div class="neu-flat p-8 rounded-[2rem]">
-                            <h3 class="text-xl font-bold text-slate-800 mb-6">Personal Information</h3>
+                            <h3 class="text-xl font-bold text-slate-800 mb-6">{{ __('messages.personal_info') }}</h3>
 
                             <form action="{{ route('profile.update') }}" method="POST">
                                 @csrf
@@ -120,19 +119,19 @@
 
                                 <div class="space-y-5 mb-8">
                                     <div>
-                                        <label class="block text-sm font-bold text-slate-600 mb-2">Full Name</label>
+                                        <label class="block text-sm font-bold text-slate-600 mb-2">{{ __('messages.full_name') }}</label>
                                         <input type="text" name="name" value="{{ old('name', $user->name) }}"
                                             class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
                                         @error('name') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-bold text-slate-600 mb-2">Phone Number</label>
+                                        <label class="block text-sm font-bold text-slate-600 mb-2">{{ __('messages.phone_number') }}</label>
                                         <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
                                             class="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all">
                                         @error('phone') <p class="text-red-500 text-xs mt-1">{{ $message }}</p> @enderror
                                     </div>
                                     <div>
-                                        <label class="block text-sm font-bold text-slate-600 mb-2">Email Address</label>
+                                        <label class="block text-sm font-bold text-slate-600 mb-2">{{ __('messages.email_address') }}</label>
                                         <div class="relative">
                                             <input type="email" name="email" value="{{ old('email', $user->email) }}"
                                                 class="w-full px-4 py-3 rounded-xl bg-white border border-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500 transition-all read-only:bg-slate-100 read-only:text-slate-500">
@@ -144,7 +143,7 @@
                                         <div class="mt-3 flex items-start gap-3 p-3 bg-blue-50 rounded-xl border border-blue-100">
                                             <svg class="w-5 h-5 text-blue-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                             <p class="text-xs text-blue-600 leading-relaxed">
-                                                Note: Changing your email address may require you to verify the new email before you can log in again.
+                                                {{ __('messages.change_email_note') }}
                                             </p>
                                         </div>
                                     </div>
@@ -153,7 +152,7 @@
                                 <div class="flex justify-end">
                                     <button type="submit"
                                         class="neu-btn px-8 py-3 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 font-bold shadow-lg shadow-indigo-200">
-                                        Save Changes
+                                        {{ __('messages.save_changes') }}
                                     </button>
                                 </div>
                             </form>
@@ -168,16 +167,15 @@
     <div id="crop-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4"
         style="z-index: 99999;">
         <div class="bg-white rounded-2xl p-6 w-full max-w-lg">
-            <h3 class="text-xl font-bold mb-4">Crop Profile Photo</h3>
+            <h3 class="text-xl font-bold mb-4">{{ __('messages.crop_photo_title') }}</h3>
             <div class="relative w-full h-[300px] bg-slate-100 rounded-lg overflow-hidden mb-6">
                 <img id="crop-image" src="" alt="Crop Preview" class="max-w-full">
             </div>
             <div class="flex justify-end gap-4">
                 <button type="button" onclick="closeCropModal()"
-                    class="px-6 py-2 text-slate-600 font-bold hover:bg-slate-100 rounded-full transition-colors">Cancel</button>
+                    class="px-6 py-2 text-slate-600 font-bold hover:bg-slate-100 rounded-full transition-colors">{{ __('messages.cancel') }}</button>
                 <button type="button" id="crop-save-btn"
-                    class="px-6 py-2 bg-indigo-600 text-white font-bold rounded-full hover:bg-indigo-700 transition-colors">Save
-                    Photo</button>
+                    class="px-6 py-2 bg-indigo-600 text-white font-bold rounded-full hover:bg-indigo-700 transition-colors">{{ __('messages.save_photo') }}</button>
             </div>
         </div>
     </div>

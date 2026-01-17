@@ -88,6 +88,23 @@
             transform: scaleX(1);
             transform-origin: bottom left;
         }
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e1;
+        }
     </style>
 </head>
 
@@ -204,14 +221,13 @@
                         <div id="user-menu-dropdown"
                             class="absolute right-0 mt-0 w-56 neu-flat rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 hidden z-50">
                             <a href="{{ route('profile.edit') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">Profile Settings</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">{{ __('messages.profile_settings') }}</a>
                             <a href="{{ route('dashboard') }}"
-                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">Dashboard</a>
+                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">{{ __('messages.dashboard') }}</a>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
-                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">Sign
-                                    out</button>
+                                    class="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 whitespace-nowrap">{{ __('messages.sign_out') }}</button>
                             </form>
                         </div>
                     </div>
@@ -223,7 +239,7 @@
                         </a>
                         <a href="{{ route('register') }}"
                             class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors hover-underline-animation">
-                            Sign Up
+                            {{ __('messages.sign_up') }}
                         </a>
                     </div>
                 @endauth
@@ -390,22 +406,22 @@
                     <!-- Mobile Auth Switcher -->
                     @auth
                         <div class="pt-4 pb-2 border-b border-slate-100">
-                            <p class="text-sm text-slate-400 mb-2">Signed in as <span
+                            <p class="text-sm text-slate-400 mb-2">{{ __('messages.signed_in_as') }} <span
                                     class="font-bold text-slate-600">{{ Auth::user()->name }}</span></p>
                             <a href="{{ route('profile.edit') }}"
                                 class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 transition-colors">
-                                Profile Settings
+                                {{ __('messages.profile_settings') }}
                             </a>
                             <a href="{{ route('dashboard') }}"
                                 class="block px-4 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-700 transition-colors">
-                                Dashboard
+                                {{ __('messages.dashboard') }}
                             </a>
                             <div class="border-t border-slate-200 dark:border-slate-700 my-1"></div>
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button type="submit"
                                     class="block w-full text-center px-4 py-2 text-sm text-red-600 hover:bg-slate-100 dark:text-red-400 dark:hover:bg-slate-700 transition-colors">
-                                    Sign Out
+                                    {{ __('messages.sign_out') }}
                                 </button>
                             </form>
                         </div>
@@ -417,7 +433,7 @@
                             </a>
                             <a href="{{ route('register') }}"
                                 class="w-full py-3 rounded-xl text-center font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-200 hover:bg-indigo-700 transition-colors">
-                                Sign Up
+                                {{ __('messages.sign_up') }}
                             </a>
                         </div>
                     @endauth

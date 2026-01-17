@@ -12,17 +12,17 @@
 
         <div class="container mx-auto px-6 relative z-10 max-w-6xl">
             <!-- Breadcrumb -->
-            <div class="mb-4">
-                <a href="/dashboard" class="text-slate-500 hover:text-indigo-600 transition-colors flex items-center gap-2 text-lg font-medium">
+             <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                    Back to Dashboard
+                    {{ __('messages.back_to_dashboard') }}
                 </a>
             </div>
 
             <!-- Header -->
             <div class="mb-8 animate-fade-in-up">
-                <h1 class="text-3xl font-bold text-slate-800 mb-2">Affiliate Dashboard</h1>
-                <p class="text-slate-600">Kode Referral: <span
+                <h1 class="text-3xl font-bold text-slate-800 mb-2">{{ __('messages.affiliate_dashboard') }}</h1>
+                <p class="text-slate-600">{{ __('messages.referral_code') }}: <span
                         class="font-mono font-bold text-indigo-600">{{ $affiliate->referral_code }}</span></p>
             </div>
 
@@ -34,11 +34,11 @@
                             d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
                         </path>
                     </svg>
-                    Link Referral Anda
+                    {{ __('messages.your_referral_link') }}
                 </h2>
 
                 <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl p-4">
-                    <p class="text-sm text-slate-600 mb-2">Bagikan link ini untuk mendapatkan komisi 5%:</p>
+                    <p class="text-sm text-slate-600 mb-2">{{ __('messages.share_link_desc') }}</p>
                     <div class="flex gap-2">
                         <input type="text" id="referralLink" readonly
                             value="{{ url('/upventure/list?ref=' . $affiliate->referral_code) }}"
@@ -61,23 +61,25 @@
                 <!-- Total Sales Card -->
                 <div class="neu-flat p-6 rounded-2xl border border-white/50 h-full flex flex-col justify-between">
                     <div>
-                        <div class="flex items-center justify-between mb-4">
-                            <div class="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-xl">
-                                <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                                </svg>
-                            </div>
-                            <span class="text-2xl font-bold text-slate-800">{{ $totalSales }}</span>
+                        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
+                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                            {{ __('messages.total_sales') }}
+                        </h3>
+
+                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-100 mb-4">
+                            <p class="text-xs text-slate-500 mb-1">{{ __('messages.sales_via_link') }}</p>
+                            <p class="text-3xl font-bold text-slate-800">{{ $totalSales }}</p>
+                            <p class="text-xs text-blue-600 font-medium mt-1">Transactions</p> 
                         </div>
-                        <h3 class="font-bold text-slate-700 mb-1">Total Penjualan</h3>
-                        <p class="text-xs text-slate-500 mb-4">Kelas terjual via link Anda</p>
                     </div>
 
                     <a href="{{ route('affiliates.sales') }}"
-                        class="w-full px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2">
-                        <span>Lihat Detail Order</span>
-                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        class="w-full px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group mb-1">
+                        <span>{{ __('messages.view_order_details') }}</span>
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
                         </svg>
@@ -98,21 +100,21 @@
                                             d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                                         </path>
                                     </svg>
-                                    Dompet Poin
+                                    {{ __('messages.points_wallet') }}
                                 </h3>
                                 <div
                                     class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100 mb-4">
-                                    <p class="text-xs text-slate-500 mb-1">Poin Tersedia</p>
+                                    <p class="text-xs text-slate-500 mb-1">{{ __('messages.available_points') }}</p>
                                     <p class="text-3xl font-bold text-slate-800">
                                         {{ number_format($affiliate->total_points - $affiliate->withdrawn_points - $affiliate->pending_points, 0, ',', '.') }}
                                     </p>
-                                    <p class="text-xs text-emerald-600 font-medium mt-1">1000 poin = Rp 1.000</p>
+                                    <p class="text-xs text-emerald-600 font-medium mt-1">{{ __('messages.points_to_idr') }}</p>
                                 </div>
                             </div>
 
                             <a href="{{ route('affiliates.points') }}"
                                 class="w-full px-3 py-2 bg-green-50 hover:bg-green-100 text-green-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group">
-                                <span>Lihat Riwayat Poin</span>
+                                <span>{{ __('messages.view_points_history') }}</span>
                                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -130,21 +132,20 @@
                                         d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
                                     </path>
                                 </svg>
-                                Cairkan Poin
+                                {{ __('messages.withdraw_points') }}
                             </h3>
 
                             <form id="withdrawalForm" action="{{ route('affiliates.withdrawal') }}" method="POST"
                                 class="space-y-4">
                                 @csrf
                                 <div>
-                                    <label for="amount" class="text-xs font-semibold text-slate-500 mb-1 block">Jumlah
-                                        Pencairan</label>
+                                    <label for="amount" class="text-sm font-bold text-slate-700 mb-2 block">{{ __('messages.withdrawal_amount') }}</label>
                                     <div class="relative">
                                         <span
-                                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400 text-sm">Rp</span>
+                                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 font-semibold text-base">Rp</span>
                                         <input type="number" id="amount" name="amount" min="100000" step="1000" required
-                                            placeholder="Min 100.000"
-                                            class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-300 focus:border-purple-500 focus:ring-2 focus:ring-purple-200 transition-all neu-flat text-sm font-semibold text-slate-700">
+                                            placeholder="{{ __('messages.min_withdrawal') }}"
+                                            class="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-slate-300 bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all text-base font-bold text-slate-800 placeholder:text-slate-400 placeholder:font-normal">
                                     </div>
                                     @error('amount')
                                         <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
@@ -152,22 +153,22 @@
                                 </div>
 
                                 <button type="button" onclick="showConfirmationModal()"
-                                    class="w-full px-4 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all text-sm flex items-center justify-center gap-2">
-                                    <span>Ajukan Pencairan</span>
-                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    class="w-full px-6 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 hover:shadow-xl hover:scale-[1.02] transition-all text-base flex items-center justify-center gap-2 shadow-lg">
+                                    <span>{{ __('messages.apply_withdrawal') }}</span>
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                             d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
                                     </svg>
                                 </button>
-                                <div class="text-center space-y-1">
-                                    <p class="text-[10px] text-slate-400">
-                                        *Poin akan dipotong PPN 11% & Biaya Platform 5%
+                                <div class="text-center space-y-1.5 mt-3">
+                                    <p class="text-xs text-slate-500 font-medium">
+                                        {{ __('messages.fee_deduction_note') }}
                                     </p>
-                                    <p class="text-[10px] text-slate-500 font-medium">
-                                        Proses pencairan: 1 - 5 hari kerja
+                                    <p class="text-xs text-slate-600 font-semibold">
+                                        {{ __('messages.processing_time_note') }}
                                     </p>
-                                    <p class="text-[10px] text-slate-500 italic">
-                                        Poin akan dicairkan ke rekening yang terdaftar saat pendaftaran affiliate.
+                                    <p class="text-xs text-slate-500">
+                                        {{ __('messages.transfer_to_registered_account_note') }}
                                     </p>
                                 </div>
                             </form>
@@ -200,23 +201,23 @@
                                     </div>
                                     <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                                         <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">
-                                            Konfirmasi Pencairan</h3>
+                                            {{ __('messages.confirm_withdrawal') }}</h3>
                                         <div class="mt-4 space-y-3">
                                             <div class="flex justify-between text-sm">
-                                                <span class="text-slate-500">Jumlah Penarikan:</span>
+                                                <span class="text-slate-500">{{ __('messages.withdrawal_amount_label') }}:</span>
                                                 <span class="font-semibold text-slate-800" id="modalAmount">Rp 0</span>
                                             </div>
                                             <div class="flex justify-between text-sm text-red-500">
-                                                <span>Potongan PPN (11%):</span>
+                                                <span>{{ __('messages.tax_deduction') }}:</span>
                                                 <span id="modalTax">- Rp 0</span>
                                             </div>
                                             <div class="flex justify-between text-sm text-red-500">
-                                                <span>Biaya Platform (5%):</span>
+                                                <span>{{ __('messages.platform_fee') }}:</span>
                                                 <span id="modalFee">- Rp 0</span>
                                             </div>
                                             <div
                                                 class="border-t border-dashed border-slate-300 pt-3 flex justify-between font-bold text-lg">
-                                                <span class="text-purple-700">Total Diterima:</span>
+                                                <span class="text-purple-700">{{ __('messages.total_received') }}:</span>
                                                 <span class="text-purple-700" id="modalNet">Rp 0</span>
                                             </div>
                                             <div class="bg-blue-50 p-3 rounded-lg mt-3">
@@ -228,14 +229,11 @@
                                                             d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
                                                         </path>
                                                     </svg>
-                                                    Dana akan ditransfer ke rekening {{ $affiliate->bank_name }} -
-                                                    {{ $affiliate->bank_account_number }} a.n
-                                                    {{ $affiliate->bank_account_holder }} yang terdaftar.
+                                                    {{ __('messages.transfer_info_desc', ['bank' => $affiliate->bank_name, 'number' => $affiliate->bank_account_number, 'name' => $affiliate->bank_account_holder]) }}
                                                 </p>
                                             </div>
                                             <p class="text-xs text-slate-400 mt-2">
-                                                Dengan mengklik "Ya, Cairkan", Anda setuju dengan pemotongan biaya di
-                                                atas.
+                                                {{ __('messages.withdrawal_agreement') }}
                                             </p>
                                         </div>
                                     </div>
@@ -244,11 +242,11 @@
                             <div class="bg-slate-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
                                 <button type="button" onclick="submitWithdrawal()"
                                     class="inline-flex w-full justify-center rounded-lg bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
-                                    Ya, Cairkan
+                                    {{ __('messages.yes_withdraw') }}
                                 </button>
                                 <button type="button" onclick="closeConfirmationModal()"
                                     class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
-                                    Batal
+                                    {{ __('messages.cancel') }}
                                 </button>
                             </div>
                         </div>

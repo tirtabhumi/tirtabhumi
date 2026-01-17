@@ -9,14 +9,10 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Back to Dashboard -->
-            <div class="mb-8">
-                <a href="/dashboard"
-                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
-                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    <span>{{ __('messages.back_to_dashboard') }}</span>
+             <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    {{ __('messages.back_to_dashboard') }}
                 </a>
             </div>
 
@@ -25,10 +21,10 @@
                     <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                 </div>
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
-                    My Certificates
+                    {{ __('messages.my_certificates') }}
                 </h1>
                 <p class="text-slate-500 text-lg max-w-2xl mx-auto">
-                    Showcase your achievements and download your earned certificates
+                    {{ __('messages.my_certificates_desc') }}
                 </p>
             </div>
 
@@ -43,7 +39,7 @@
                                         <x-logo class="w-full h-full text-slate-300" />
                                     </div>
                                     <div class="h-1 w-16 bg-slate-200 mb-2"></div>
-                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">Certificate</h3>
+                                    <h3 class="text-xs font-bold text-slate-800 uppercase tracking-wider mb-1">{{ __('messages.certificate') }}</h3>
                                     <h4 class="text-[10px] text-slate-500 line-clamp-2 px-4">{{ $registration->training->title }}</h4>
                                     <div class="mt-4 flex justify-between w-full px-2">
                                         <div class="h-8 w-8 bg-slate-100 rounded"></div>
@@ -55,12 +51,12 @@
 
                             <div class="p-6">
                                 <h3 class="text-lg font-bold text-slate-800 mb-2 line-clamp-1">{{ $registration->training->title }}</h3>
-                                <p class="text-slate-500 text-sm mb-6">Completed on {{ $registration->updated_at->format('d M Y') }}</p>
+                                <p class="text-slate-500 text-sm mb-6">{{ __('messages.completed_on', ['date' => $registration->updated_at->format('d M Y')]) }}</p>
                                 
                                 <a href="{{ route('my-classes.certificate', $registration->training_id) }}" target="_blank" 
                                    class="block w-full neu-btn py-3 text-center font-bold text-indigo-600 rounded-xl hover:bg-indigo-50 transition-colors flex items-center justify-center gap-2">
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
-                                    Download Certificate
+                                    {{ __('messages.download_certificate') }}
                                 </a>
                             </div>
                         </div>
@@ -70,10 +66,10 @@
                                 <div class="inline-block p-6 bg-slate-100 rounded-full mb-6">
                                     <svg class="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-slate-700 mb-3">No Certificates Yet</h3>
-                                <p class="text-slate-500 mb-8 max-w-md mx-auto">Complete your classes to earn certificates.</p>
+                                <h3 class="text-2xl font-bold text-slate-700 mb-3">{{ __('messages.no_certificates_yet') }}</h3>
+                                <p class="text-slate-500 mb-8 max-w-md mx-auto">{{ __('messages.no_certificates_desc') }}</p>
                                 <a href="{{ route('my-classes.index') }}" class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-block">
-                                    Go to My Classes
+                                    {{ __('messages.go_to_my_classes') }}
                                 </a>
                             </div>
                         </div>

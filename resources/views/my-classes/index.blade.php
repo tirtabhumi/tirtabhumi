@@ -38,23 +38,19 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Back to Dashboard -->
-            <div class="mb-8">
-                <a href="/dashboard"
-                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
-                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    <span>{{ __('messages.back_to_dashboard') }}</span>
+             <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    {{ __('messages.back_to_dashboard') }}
                 </a>
             </div>
 
             <div class="text-center mb-16 animate-fade-in-up">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
-                    My Classes
+                    {{ __('messages.my_classes_title') }}
                 </h1>
                 <p class="text-slate-500 text-lg max-w-2xl mx-auto">
-                    Access your purchased digital classes and continue your learning journey
+                    {{ __('messages.my_classes_subtitle') }}
                 </p>
             </div>
 
@@ -74,19 +70,19 @@
                             <div class="neu-flat rounded-3xl p-8 border border-white/50">
                                 <div class="mb-6 flex items-center justify-between">
                                     <h3 class="font-bold text-lg text-slate-800">Filter</h3>
-                                    <a href="{{ route('my-classes.index') }}" class="text-xs text-red-500 font-bold hover:underline">Reset</a>
+                                    <a href="{{ route('my-classes.index') }}" class="text-xs text-red-500 font-bold hover:underline">{{ __('messages.reset') }}</a>
                                 </div>
 
                                 <!-- Sort -->
                                 <div class="mb-6 relative" id="sort-dropdown">
-                                    <h4 class="font-bold text-slate-800 mb-3">Sort By</h4>
+                                    <h4 class="font-bold text-slate-800 mb-3">{{ __('messages.sort_by') }}</h4>
                                     <input type="hidden" id="sort-input" name="sort" value="{{ request('sort', 'latest') }}">
                                     <button type="button" class="w-full flex items-center justify-between rounded-xl neu-pressed bg-[#eef2f6] px-4 py-3 text-sm text-slate-600 focus:outline-none hover:text-indigo-600 transition-colors" onclick="toggleSortDropdown()">
                                         <span id="sort-label" class="font-medium">
                                             @switch(request('sort'))
-                                                @case('price_asc') Lowest Price @break
-                                                @case('price_desc') Highest Price @break
-                                                @default Upcoming Date
+                                                @case('price_asc') {{ __('messages.lowest_price') }} @break
+                                                @case('price_desc') {{ __('messages.highest_price') }} @break
+                                                @default {{ __('messages.upcoming_date') }}
                                             @endswitch
                                         </span>
                                         <svg class="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -95,9 +91,9 @@
                                     <!-- Custom Dropdown Menu -->
                                     <div id="sort-menu" class="absolute z-20 mt-4 w-full rounded-xl neu-flat bg-[#eef2f6] p-2 hidden border border-white/50">
                                         <div class="space-y-1">
-                                            <button type="button" onclick="selectSort('latest', 'Upcoming Date')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Upcoming Date</button>
-                                            <button type="button" onclick="selectSort('price_asc', 'Lowest Price')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Lowest Price</button>
-                                            <button type="button" onclick="selectSort('price_desc', 'Highest Price')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Highest Price</button>
+                                            <button type="button" onclick="selectSort('latest', '{{ __('messages.upcoming_date') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.upcoming_date') }}</button>
+                                            <button type="button" onclick="selectSort('price_asc', '{{ __('messages.lowest_price') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.lowest_price') }}</button>
+                                            <button type="button" onclick="selectSort('price_desc', '{{ __('messages.highest_price') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.highest_price') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +104,7 @@
                                 @if(isset($filters['category']) && !empty($filters['category']))
                                 <div class="mb-6">
                                     <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('category-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Category</h4>
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{{ __('messages.category') }}</h4>
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
                                     <div id="category-list" class="space-y-3">
@@ -136,36 +132,6 @@
                                 <div class="border-t border-slate-200/50 my-4"></div>
                                 @endif
 
-                                <!-- Level Filter -->
-                                @if(isset($filters['level']) && !empty($filters['level']))
-                                <div class="mb-6">
-                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('level-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Level</h4>
-                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                                    </button>
-                                    <div id="level-list" class="space-y-3">
-                                        @foreach($filters['level'] as $level)
-                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                               <input type="checkbox" name="level[]" value="{{ $level }}"
-                                                    class="peer sr-only"
-                                                    {{ in_array($level, (array)request('level', [])) ? 'checked' : '' }}
-                                                    onchange="setTimeout(() => this.form.submit(), 300)">
-
-                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
-                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                                    </svg>
-                                                </div>
-
-                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ ucfirst($level) }}
-                                                </span>
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
 
                                 @if(isset($filters['level']) && isset($filters['type']))
                                 <div class="border-t border-slate-200/50 my-4"></div>
@@ -175,7 +141,7 @@
                                 @if(isset($filters['type']) && !empty($filters['type']))
                                 <div id="type-filter-container" style="{{ (in_array('webinar', (array)request('category', [])) || in_array('workshop', (array)request('category', []))) ? 'display: block;' : 'display: none;' }}">
                                     <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('type-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Type</h4>
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{{ __('messages.type') }}</h4>
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
                                     <div id="type-list" class="space-y-3">
@@ -210,8 +176,8 @@
                 <div class="w-full lg:w-[80%] content-width">
                     <div class="mb-8">
                         <div class="mb-6">
-                            <h2 class="text-2xl font-bold text-slate-800 mb-1">Daftar Kelas</h2>
-                            <p class="text-slate-500 text-sm">{{ $myClasses->total() }} kelas tersedia</p>
+                            <h2 class="text-2xl font-bold text-slate-800 mb-1">{{ __('messages.classes_list') }}</h2>
+                            <p class="text-slate-500 text-sm">{{ __('messages.classes_available', ['count' => $myClasses->total()]) }}</p>
                         </div>
                         <div class="w-full">
                             <form action="{{ route('my-classes.index') }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">
@@ -228,7 +194,7 @@
                                 <input type="text" 
                                        name="search" 
                                        value="{{ request('search') }}"
-                                       placeholder="Cari kelas..." 
+                                       placeholder="{{ __('messages.search_classes_placeholder') }}" 
                                        class="w-full py-4 pl-4 bg-transparent border-none focus:ring-0 outline-none text-slate-600 placeholder-slate-400 transition-all">
                                 <button type="submit" class="p-3 rounded-full hover:bg-white/50 text-indigo-600 transition-colors flex-shrink-0">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -242,7 +208,7 @@
                     <!-- Search Info -->
                     @if(request('search'))
                         <div class="mb-4 text-slate-500">
-                            Menampilkan hasil pencarian untuk "<span class="font-bold text-slate-800">{{ request('search') }}</span>"
+                            {!! __('messages.search_results_for', ['search' => request('search')]) !!}
                         </div>
                     @endif
 
@@ -260,7 +226,7 @@
                             @endphp
                             
                             <div class="neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 group flex flex-col h-full relative">
-                                <a href="{{ route('my-classes.show', $registration->training->slug) }}" class="absolute inset-0 z-10"><span class="sr-only">Lihat Detail Kelas</span></a>
+                                <a href="{{ route('my-classes.show', $registration->training->slug) }}" class="absolute inset-0 z-10"><span class="sr-only">{{ __('messages.view_class_detail') }}</span></a>
 
                                 <div class="relative aspect-video overflow-hidden bg-gradient-to-br from-indigo-100 to-purple-100">
                                     @if($registration->training->image)
@@ -284,11 +250,11 @@
                                         <!-- Progress Status Badge -->
                                         @if($classProgress >= 100)
                                             <span class="px-2 py-1 bg-indigo-600 text-white text-xs font-bold rounded-full shadow-lg shadow-indigo-500/30">
-                                                Completed
+                                                {{ __('messages.completed') }}
                                             </span>
                                         @else
                                             <span class="px-2 py-1 bg-green-500 text-white text-xs font-bold rounded-full">
-                                                Purchased
+                                                {{ __('messages.purchased') }}
                                             </span>
                                         @endif
                                     </div>
@@ -322,13 +288,13 @@
                                     <div class="mt-auto">
                                         <div class="flex items-center gap-2 text-xs text-slate-600 mb-3">
                                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
-                                            {{ $registration->training->modules->count() }} Modules
+                                            {{ $registration->training->modules->count() }} {{ __('messages.modules') }}
                                         </div>
                                         
                                         <!-- Progress Bar -->
                                         <div class="mb-3">
                                             <div class="flex items-center justify-between text-xs text-slate-600 mb-1">
-                                                <span class="font-medium">Progress</span>
+                                                <span class="font-medium">{{ __('messages.progress') }}</span>
                                                 <span class="font-bold">{{ $classProgress }}%</span>
                                             </div>
                                             <div class="h-2 bg-slate-200 rounded-full overflow-hidden">
@@ -340,10 +306,10 @@
                                             @if($classProgress >= 100)
                                                 <a href="{{ route('my-classes.certificate', $registration->training_id) }}" target="_blank" class="text-sm font-bold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
                                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                    E-Certificate Ready
+                                                    {{ __('messages.certificate_ready') }}
                                                 </a>
                                             @else
-                                                <span class="text-sm font-bold text-indigo-600">Continue Learning →</span>
+                                                <span class="text-sm font-bold text-indigo-600">{{ __('messages.continue_learning') }} →</span>
                                             @endif
                                         </div>
                                     </div>
@@ -355,10 +321,10 @@
                                     <div class="inline-block p-6 bg-slate-100 rounded-full mb-6">
                                         <svg class="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
                                     </div>
-                                    <h3 class="text-2xl font-bold text-slate-700 mb-3">Tidak Ada Kelas</h3>
-                                    <p class="text-slate-500 mb-8 max-w-md mx-auto">Tidak ada kelas yang sesuai dengan filter Anda</p>
+                                    <h3 class="text-2xl font-bold text-slate-700 mb-3">{{ __('messages.no_classes_found') }}</h3>
+                                    <p class="text-slate-500 mb-8 max-w-md mx-auto">{{ __('messages.no_classes_filter_desc') }}</p>
                                     <a href="{{ route('my-classes.index') }}" class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-block">
-                                        Reset Filter
+                                        {{ __('messages.reset_filter') }}
                                     </a>
                                 </div>
                             </div>

@@ -17,22 +17,19 @@
         <div class="container mx-auto px-6 relative z-10">
 
             <!-- Back to Home -->
-            <div class="mb-8">
-                <a href="/"
-                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
-                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    <span>{{ __('messages.back_to_home') }}</span>
+              <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <a href="/" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    {{ __('messages.back_to_home') }}
                 </a>
             </div>
+            
 
             <!-- Dashboard Header -->
             <div class="mb-6 animate-fade-in-up flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div>
-                    <h1 class="text-3xl font-bold text-slate-800">Welcome back, {{ Auth::user()->name }}!</h1>
-                    <p class="text-slate-500 mt-2">Here's what's happening with your learning journey.</p>
+                    <h1 class="text-3xl font-bold text-slate-800">{{ __('messages.dashboard_welcome', ['name' => Auth::user()->name]) }}</h1>
+                    <p class="text-slate-500 mt-2">{{ __('messages.dashboard_subtitle') }}</p>
                 </div>
                 <a href="{{ route('profile.edit') }}"
                     class="neu-flat px-6 py-3 rounded-xl bg-white text-indigo-600 font-bold hover:bg-indigo-50 hover:scale-[1.02] transition-all flex items-center gap-2 shadow-sm border border-indigo-50">
@@ -41,7 +38,7 @@
                             d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
                         </path>
                     </svg>
-                    Edit Profile
+                    {{ __('messages.edit_profile') }}
                 </a>
             </div>
 
@@ -66,9 +63,9 @@
                         <span
                             class="text-3xl font-bold text-slate-800">{{ $registrations->where('status', 'completed')->count() }}</span>
                     </div>
-                    <h3 class="font-bold text-slate-700 mb-1 relative z-10">My Learnings</h3>
+                    <h3 class="font-bold text-slate-700 mb-1 relative z-10">{{ __('messages.my_learnings') }}</h3>
                     <p class="text-sm text-indigo-600 font-medium flex items-center gap-1 relative z-10">
-                        View All <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {{ __('messages.view_all') }} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
@@ -93,11 +90,11 @@
                         <span
                             class="text-3xl font-bold text-slate-800">{{ $registrations->where('payment_status', 'unpaid')->count() }}</span>
                     </div>
-                    <h3 class="font-bold text-slate-700 mb-1 relative z-10">Payment</h3>
-                    <p class="text-xs text-slate-500 mb-2 relative z-10">Pending Transactions</p>
+                    <h3 class="font-bold text-slate-700 mb-1 relative z-10">{{ __('messages.payment') }}</h3>
+                    <p class="text-xs text-slate-500 mb-2 relative z-10">{{ __('messages.pending_transactions') }}</p>
                     <a href="{{ route('payments.index') }}"
                         class="text-sm text-indigo-600 font-medium flex items-center gap-1 relative z-10">
-                        View History <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {{ __('messages.view_history') }} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
@@ -124,9 +121,9 @@
     return $reg->training->modules->count() > 0 && \App\Models\UserModuleProgress::where('user_id', auth()->id())->whereIn('training_module_id', $reg->training->modules->pluck('id'))->where('is_completed', true)->count() == $reg->training->modules->count(); })->count() }}
                         </span>
                     </div>
-                    <h3 class="font-bold text-slate-700 mb-1 relative z-10">Certificates</h3>
+                    <h3 class="font-bold text-slate-700 mb-1 relative z-10">{{ __('messages.certificates') }}</h3>
                     <p class="text-sm text-indigo-600 font-medium flex items-center gap-1 relative z-10">
-                        View Achievements <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        {{ __('messages.view_achievements') }} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                         </svg>
@@ -152,10 +149,10 @@
                             <span class="text-xl font-bold text-slate-800">Rp
                                 {{ number_format(Auth::user()->affiliate->total_earnings ?? 0, 0, ',', '.') }}</span>
                         </div>
-                        <h3 class="font-bold text-slate-700 mb-1 relative z-10">Affiliate Balance</h3>
+                        <h3 class="font-bold text-slate-700 mb-1 relative z-10">{{ __('messages.affiliate_balance') }}</h3>
                         <a href="{{ route('affiliates.index') }}"
                             class="text-sm text-green-600 font-medium hover:underline flex items-center gap-1 relative z-10">
-                            Go to Dashboard <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            {{ __('messages.go_to_dashboard') }} <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                             </svg>
@@ -173,11 +170,11 @@
                                 </svg>
                             </div>
                         </div>
-                        <h3 class="font-bold text-slate-700 mb-1 relative z-10">Join Affiliates</h3>
-                        <p class="text-xs text-slate-500 mb-3 relative z-10">Earn commissions.</p>
+                        <h3 class="font-bold text-slate-700 mb-1 relative z-10">{{ __('messages.join_affiliates') }}</h3>
+                        <p class="text-xs text-slate-500 mb-3 relative z-10">{{ __('messages.earn_commissions') }}</p>
                         <a href="{{ route('affiliates.index') }}"
                             class="text-xs font-bold text-indigo-600 hover:text-indigo-800 hover:underline relative z-10">
-                            Join Program &rarr;
+                            {{ __('messages.join_program') }} &rarr;
                         </a>
                     </div>
                 @endif
@@ -186,8 +183,8 @@
             <!-- Recent Activity / Empty State -->
             <div class="neu-flat p-8 rounded-[2rem] border border-white/50 animate-fade-in-up animation-delay-400">
                 <div class="flex items-center justify-between mb-8">
-                    <h3 class="text-2xl font-bold text-slate-800">Recent Activity</h3>
-                    <a href="{{ route('my-classes.index') }}" class="text-sm font-bold text-indigo-600 hover:underline">View All</a>
+                    <h3 class="text-2xl font-bold text-slate-800">{{ __('messages.recent_activity') }}</h3>
+                    <a href="{{ route('my-classes.index') }}" class="text-sm font-bold text-indigo-600 hover:underline">{{ __('messages.view_all') }}</a>
                 </div>
 
                 @if($registrations->count() > 0)
@@ -204,12 +201,12 @@
                                     </div>
                                     <div>
                                         <h4 class="font-bold text-slate-700 group-hover:text-indigo-700 transition-colors">{{ $reg->training->title }}</h4>
-                                        <p class="text-xs text-slate-500">Joined {{ $reg->created_at->diffForHumans() }}</p>
+                                        <p class="text-xs text-slate-500">{{ __('messages.joined') }} {{ $reg->created_at->diffForHumans() }}</p>
                                     </div>
                                 </div>
                                 <div class="flex items-center gap-4">
                                     <span class="px-3 py-1 text-xs font-bold rounded-full {{ $reg->status == 'completed' ? 'bg-green-100 text-green-700' : ($reg->payment_status == 'paid' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700') }}">
-                                        {{ $reg->status == 'completed' ? 'Completed' : ucfirst($reg->payment_status) }}
+                                        {{ $reg->status == 'completed' ? __('messages.completed') : ($reg->payment_status == 'paid' ? __('messages.paid') : __('messages.unpaid')) }}
                                     </span>
                                     <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="p-2 text-slate-400 hover:text-indigo-600 transition-colors">
                                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -227,10 +224,10 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
                             </svg>
                         </div>
-                        <h4 class="text-lg font-bold text-slate-700 mb-2">Start Your Learning Journey</h4>
-                        <p class="text-slate-500 mb-6 max-w-md mx-auto">You haven't enrolled in any classes yet. Explore our course catalog to find your next skill.</p>
+                        <h4 class="text-lg font-bold text-slate-700 mb-2">{{ __('messages.empty_activity_title') }}</h4>
+                        <p class="text-slate-500 mb-6 max-w-md mx-auto">{{ __('messages.empty_activity_subtitle') }}</p>
                         <a href="{{ route('trainings.index') }}" class="neu-btn px-8 py-3 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 font-bold shadow-lg shadow-indigo-200">
-                            Browse Classes
+                            {{ __('messages.browse_classes') }}
                         </a>
                     </div>
                 @endif

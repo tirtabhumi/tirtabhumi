@@ -36,23 +36,19 @@
 
         <div class="container mx-auto px-6 relative z-10">
             <!-- Back to Dashboard -->
-            <div class="mb-8">
-                <a href="/dashboard"
-                    class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
-                    <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                    </svg>
-                    <span>{{ __('messages.back_to_dashboard') }}</span>
+             <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                    {{ __('messages.back_to_dashboard') }}
                 </a>
             </div>
 
             <div class="text-center mb-16 animate-fade-in-up">
                 <h1 class="text-4xl md:text-6xl font-bold mb-6 text-slate-800">
-                    Payment History
+                    {{ __('messages.payment_history') }}
                 </h1>
                 <p class="text-slate-500 text-lg max-w-2xl mx-auto">
-                    View and manage all your transaction history
+                    {{ __('messages.payment_history_desc') }}
                 </p>
             </div>
 
@@ -70,21 +66,21 @@
 
                             <div class="neu-flat rounded-3xl p-8 border border-white/50">
                                 <div class="mb-6 flex items-center justify-between">
-                                    <h3 class="font-bold text-lg text-slate-800">Filter</h3>
-                                    <a href="{{ route('payments.index') }}" class="text-xs text-red-500 font-bold hover:underline">Reset</a>
+                                    <h3 class="font-bold text-lg text-slate-800">{{ __('messages.filter') }}</h3>
+                                    <a href="{{ route('payments.index') }}" class="text-xs text-red-500 font-bold hover:underline">{{ __('messages.reset') }}</a>
                                 </div>
 
                                 <!-- Sort -->
                                 <div class="mb-6 relative" id="sort-dropdown">
-                                    <h4 class="font-bold text-slate-800 mb-3">Urutkan</h4>
+                                    <h4 class="font-bold text-slate-800 mb-3">{{ __('messages.sort_title') }}</h4>
                                     <input type="hidden" id="sort-input" name="sort" value="{{ request('sort', 'latest') }}">
                                     <button type="button" class="w-full flex items-center justify-between rounded-xl neu-pressed bg-[#eef2f6] px-4 py-3 text-sm text-slate-600 focus:outline-none hover:text-indigo-600 transition-colors" onclick="toggleSortDropdown()">
                                         <span id="sort-label" class="font-medium">
                                             @switch(request('sort'))
-                                                @case('oldest') Terlama @break
-                                                @case('amount_asc') Nominal Terendah @break
-                                                @case('amount_desc') Nominal Tertinggi @break
-                                                @default Terbaru
+                                                @case('oldest') {{ __('messages.sort_oldest') }} @break
+                                                @case('amount_asc') {{ __('messages.sort_price_low') }} @break
+                                                @case('amount_desc') {{ __('messages.sort_price_high') }} @break
+                                                @default {{ __('messages.sort_latest') }}
                                             @endswitch
                                         </span>
                                         <svg class="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -92,10 +88,10 @@
                                     
                                     <div id="sort-menu" class="absolute z-20 mt-4 w-full rounded-xl neu-flat bg-[#eef2f6] p-2 hidden border border-white/50">
                                         <div class="space-y-1">
-                                            <button type="button" onclick="selectSort('latest', 'Terbaru')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Terbaru</button>
-                                            <button type="button" onclick="selectSort('oldest', 'Terlama')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'oldest' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Terlama</button>
-                                            <button type="button" onclick="selectSort('amount_asc', 'Nominal Terendah')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'amount_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Nominal Terendah</button>
-                                            <button type="button" onclick="selectSort('amount_desc', 'Nominal Tertinggi')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'amount_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Nominal Tertinggi</button>
+                                            <button type="button" onclick="selectSort('latest', '{{ __('messages.sort_latest') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.sort_latest') }}</button>
+                                            <button type="button" onclick="selectSort('oldest', '{{ __('messages.sort_oldest') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'oldest' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.sort_oldest') }}</button>
+                                            <button type="button" onclick="selectSort('amount_asc', '{{ __('messages.sort_price_low') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'amount_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.sort_price_low') }}</button>
+                                            <button type="button" onclick="selectSort('amount_desc', '{{ __('messages.sort_price_high') }}')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'amount_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">{{ __('messages.sort_price_high') }}</button>
                                         </div>
                                     </div>
                                 </div>
@@ -105,11 +101,11 @@
                                 <!-- Payment Status Filter -->
                                 <div class="mb-6">
                                     <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('payment-status-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Status Pembayaran</h4>
+                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">{{ __('messages.payment_status_header') }}</h4>
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
                                     <div id="payment-status-list" class="space-y-3">
-                                        @foreach(['paid' => 'Paid', 'unpaid' => 'Unpaid', 'cancelled' => 'Cancelled'] as $value => $label)
+                                        @foreach(['paid' => __('messages.paid_status'), 'unpaid' => __('messages.unpaid_status'), 'cancelled' => __('messages.cancelled_status')] as $value => $label)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
                                                 <input type="radio" name="payment_status" value="{{ $value }}"
                                                     class="peer sr-only"
@@ -140,8 +136,8 @@
                 <div class="w-full lg:w-[80%] content-width">
                     <div class="mb-8">
                         <div class="mb-6">
-                            <h2 class="text-2xl font-bold text-slate-800 mb-1">Daftar Transaksi</h2>
-                            <p class="text-slate-500 text-sm">{{ $registrations->total() }} transaksi ditemukan</p>
+                            <h2 class="text-2xl font-bold text-slate-800 mb-1">{{ __('messages.transactions_list') }}</h2>
+                            <p class="text-slate-500 text-sm">{{ __('messages.transactions_found', ['count' => $registrations->total()]) }}</p>
                         </div>
                         <div class="w-full">
                             <form action="{{ route('payments.index') }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">
@@ -158,7 +154,7 @@
                                 <input type="text" 
                                        name="search" 
                                        value="{{ request('search') }}"
-                                       placeholder="Cari transaksi atau ID..." 
+                                       placeholder="{{ __('messages.search_transactions_placeholder') }}" 
                                        class="w-full py-4 pl-4 bg-transparent border-none focus:ring-0 outline-none text-slate-600 placeholder-slate-400 transition-all">
                                 <button type="submit" class="p-3 rounded-full hover:bg-white/50 text-indigo-600 transition-colors flex-shrink-0">
                                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -171,7 +167,7 @@
 
                     @if(request('search'))
                         <div class="mb-4 text-slate-500">
-                            Menampilkan hasil pencarian untuk "<span class="font-bold text-slate-800">{{ request('search') }}</span>"
+                            {!! __('messages.search_results_for', ['search' => '<span class="font-bold text-slate-800">'.request('search').'</span>']) !!}
                         </div>
                     @endif
 
@@ -202,17 +198,17 @@
                                                 @if($registration->payment_status == 'paid')
                                                     <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-green-100 text-green-700">
                                                         <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
-                                                        Paid
+                                                        {{ __('messages.paid_status') }}
                                                     </span>
                                                 @elseif($registration->payment_status == 'cancelled')
                                                     <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-red-100 text-red-700">
                                                         <span class="w-1.5 h-1.5 bg-red-500 rounded-full mr-1.5"></span>
-                                                        Cancelled
+                                                        {{ __('messages.cancelled_status') }}
                                                     </span>
                                                 @else
                                                     <span class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-bold bg-amber-100 text-amber-700">
                                                         <span class="w-1.5 h-1.5 bg-amber-500 rounded-full mr-1.5 animate-pulse"></span>
-                                                        Unpaid
+                                                        {{ __('messages.unpaid_status') }}
                                                     </span>
                                                 @endif
                                             </div>
@@ -224,7 +220,7 @@
                                                         @if($registration->training->event_date)
                                                             {{ $registration->training->event_date->format('d M Y') }}
                                                         @else
-                                                            Self-paced Access
+                                                            {{ __('messages.self_paced_access') }}
                                                         @endif
                                                     </span>
                                                     @if($registration->transaction_id)
@@ -236,14 +232,14 @@
                                                 @if($registration->payment_method)
                                                     <div class="flex items-center gap-1 text-indigo-600 font-medium">
                                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path></svg>
-                                                        Via {{ str_replace('_', ' ', strtoupper($registration->payment_method)) }}
+                                                        {{ __('messages.payment_method_via', ['method' => str_replace('_', ' ', strtoupper($registration->payment_method))]) }}
                                                     </div>
                                                 @endif
 
                                                 @if($registration->payment_status == 'unpaid' && $registration->payment_expiry_time)
                                                     <div class="flex items-center gap-1 text-amber-600 font-medium mt-1">
                                                         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                                        Pay before {{ $registration->payment_expiry_time->format('F j, Y \a\t g:i A') }}
+                                                        {{ __('messages.pay_before', ['time' => $registration->payment_expiry_time->format('F j, Y \a\t g:i A')]) }}
                                                     </div>
                                                 @endif
                                             </div>
@@ -254,7 +250,7 @@
                                     <div class="flex items-center justify-between lg:justify-end gap-4 pt-4 lg:pt-0 border-t lg:border-t-0 border-slate-100">
                                         <!-- Amount -->
                                         <div class="text-right">
-                                            <div class="text-xs text-slate-500 mb-1">Total Amount</div>
+                                            <div class="text-xs text-slate-500 mb-1">{{ __('messages.total_amount_label') }}</div>
                                             <div class="text-xl font-bold text-slate-800">
                                                 Rp {{ number_format($registration->total_amount ?? $registration->training->price, 0, ',', '.') }}
                                             </div>
@@ -276,21 +272,21 @@
                                                        target="_blank"
                                                        class="neu-btn px-4 py-2 text-sm font-bold text-indigo-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                                        Pay Now
+                                                        {{ __('messages.pay_now') }}
                                                     </a>
                                                 @else
                                                     <a href="{{ route('payment.show', $registration) }}" 
                                                        class="neu-btn px-4 py-2 text-sm font-bold text-indigo-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path></svg>
-                                                        Pay Now
+                                                        {{ __('messages.pay_now') }}
                                                     </a>
                                                 @endif
-                                                <form action="{{ route('payment.cancel', $registration) }}" method="POST" onsubmit="return confirm('Are you sure you want to cancel this payment?');">
+                                                <form action="{{ route('payment.cancel', $registration) }}" method="POST" onsubmit="return confirm('{{ __('messages.cancel_payment_confirm') }}');">
                                                     @csrf
                                                     <button type="submit" 
                                                             class="neu-btn px-4 py-2 text-sm font-bold text-red-600 rounded-xl hover:scale-105 transition-transform flex items-center justify-center gap-1">
                                                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-                                                        Cancel
+                                                        {{ __('messages.cancel') }}
                                                     </button>
                                                 </form>
                                             </div>
@@ -303,10 +299,10 @@
                                 <div class="inline-block p-6 bg-slate-100 rounded-full mb-6">
                                     <svg class="w-16 h-16 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path></svg>
                                 </div>
-                                <h3 class="text-2xl font-bold text-slate-700 mb-3">Tidak Ada Transaksi</h3>
-                                <p class="text-slate-500 mb-8 max-w-md mx-auto">Tidak ada transaksi yang sesuai dengan filter Anda</p>
+                                <h3 class="text-2xl font-bold text-slate-700 mb-3">{{ __('messages.no_transactions_found') }}</h3>
+                                <p class="text-slate-500 mb-8 max-w-md mx-auto">{{ __('messages.no_transactions_filter_desc') }}</p>
                                 <a href="{{ route('payments.index') }}" class="neu-btn px-8 py-4 font-bold text-indigo-600 inline-block">
-                                    Reset Filter
+                                    {{ __('messages.reset_filter') }}
                                 </a>
                             </div>
                         @endforelse

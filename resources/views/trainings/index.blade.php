@@ -1,5 +1,5 @@
 <x-layout title="{{ __('messages.training_title') }} - {{ config('app.name') }}">
-     <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
+     <section class="pt-32 pb-12 bg-[#eef2f6] min-h-screen relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -25,7 +25,7 @@
             </p>
 
             <div class="flex flex-col md:flex-row gap-6 justify-center animate-fade-in-up animation-delay-400 mb-20">
-                <a href="#schedule"
+                <a href="#classes"
                     class="px-8 py-4 neu-flat text-indigo-600 font-bold hover:scale-105 transition-transform duration-300">
                     {{ __('messages.training_btn_schedule') }}
                 </a>
@@ -34,42 +34,139 @@
                 </a>
             </div>
 
-            <!-- Partners Section -->
-            <div class="mt-16 animate-fade-in-up animation-delay-400 text-center">
-                <p class="text-[10px] font-black text-indigo-600 uppercase tracking-[0.3em] mb-8">Our Partners</p>
-                <div class="flex flex-wrap justify-center gap-12 items-center px-6">
-                    @php
-                        $upventurePartners = [
-                            ['name' => 'UX Specialty', 'file' => 'ux-specialty.png'],
-                            ['name' => 'Educourse', 'file' => 'educourse.png']
-                        ];
-                    @endphp
-                    @foreach($upventurePartners as $partner)
-                        <div class="flex items-center gap-4 px-6 py-3 rounded-2xl bg-white/40 backdrop-blur-sm shadow-sm hover:shadow-md transition-all duration-300 group">
-                            <div class="h-10 w-auto flex items-center justify-center">
-                                <img src="{{ asset('images/partners/'.$partner['file']) }}" alt="{{ $partner['name'] }}" class="h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105">
+        </div>
+
+        </div>
+    </section>
+
+    <!-- Mentor Section -->
+    <section class="py-24 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 font-bold tracking-wider uppercase text-xs mb-4 border border-indigo-100">
+                    Expert Mentor
+                </span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-900">{{ __('messages.mentors_section_title') }}</h2>
+                <p class="text-slate-500 max-w-2xl mx-auto text-lg">{{ __('messages.mentors_section_desc') }}</p>
+            </div>
+
+                @php
+                    $mentors = [
+                        [
+                            'name' => 'Ir. Bengris Pasaribu M.M',
+                            'title' => __('messages.mentor_role_founder'),
+                            'subtitle' => __('messages.mentor_subtitle_ux_master'),
+                            'image' => 'bengris-pasaribu-v2.png',
+                            'certs' => ['Interaction Design Foundation'],
+                            'linkedin' => 'https://www.linkedin.com/in/bengris-pasaribu-6377b52a'
+                        ],
+                        [
+                            'name' => 'Hanny Zora Agustina S.T, M.M',
+                            'title' => __('messages.mentor_role_ceo'),
+                            'subtitle' => __('messages.mentor_subtitle_ux_intl'),
+                            'image' => 'hanny-zora-v2.jpg',
+                            'certs' => ['UX Research Specialist'],
+                            'linkedin' => 'https://www.linkedin.com/in/hanny-zora-agustina-607274210'
+                        ],
+                        [
+                            'name' => 'Andi Wijaya S.Kom, M.T',
+                            'title' => __('messages.mentor_role_senior_ux'),
+                            'subtitle' => __('messages.mentor_subtitle_product_specialist'),
+                            'image' => 'mentor-3.png',
+                            'certs' => ['UX Certified'],
+                            'linkedin' => '#'
+                        ],
+                       
+                    ];
+                @endphp
+
+            <div class="relative group">
+                @if(count($mentors) > 3)
+                    <!-- Left Button -->
+                    <button onclick="document.getElementById('mentor-carousel').scrollBy({left: -300, behavior: 'smooth'})" 
+                            class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 flex items-center justify-center neu-flat rounded-full text-indigo-600 hover:text-indigo-700 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100 hidden md:flex">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+
+                    <!-- Right Button -->
+                    <button onclick="document.getElementById('mentor-carousel').scrollBy({left: 300, behavior: 'smooth'})"
+                            class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 z-20 w-12 h-12 flex items-center justify-center neu-flat rounded-full text-indigo-600 hover:text-indigo-700 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100 hidden md:flex">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                @endif
+
+                <!-- Scroll Container -->
+                <div id="mentor-carousel" class="flex {{ count($mentors) > 3 ? 'overflow-x-auto pb-8 hide-scrollbar' : 'justify-center flex-wrap' }} gap-4 snap-x snap-mandatory scroll-smooth px-1" style="scrollbar-width: none; -ms-overflow-style: none;">
+                    @foreach($mentors as $mentor)
+                        <div class="flex-shrink-0 w-64 snap-start neu-flat rounded-3xl p-4 bg-[#eef2f6] hover:shadow-xl transition-all duration-300 my-4 mx-2">
+                            <div class="flex flex-col items-center text-center">
+                                <!-- Mentor Photo -->
+                                <div class="mb-3">
+                                    <img src="{{ asset('images/mentors/' . $mentor['image']) }}" 
+                                         alt="{{ $mentor['name'] }}" 
+                                         class="w-32 h-32 object-cover rounded-full shadow-lg mx-auto">
+                                </div>
+
+                                <!-- Mentor Info -->
+                                <div class="w-full">
+                                    <h3 class="text-base font-bold text-slate-900 mb-0.5 truncate">{{ $mentor['name'] }}</h3>
+                                    <p class="text-indigo-600 font-bold text-xs mb-0.5 truncate">{{ $mentor['title'] }}</p>
+                                    <p class="text-slate-600 font-semibold text-[10px] mb-2 truncate">{{ $mentor['subtitle'] }}</p>
+                                    
+                                    <!-- Certifications -->
+                                    <div class="flex flex-wrap gap-1.5 justify-center mb-3 min-h-[50px]">
+                                        @foreach($mentor['certs'] as $cert)
+                                            <div class="inline-flex items-center gap-1.5 px-2.5 py-1.5 neu-pressed rounded-lg bg-white/60 h-fit">
+                                                <svg class="w-3 h-3 text-indigo-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                                </svg>
+                                                <span class="text-[10px] font-bold text-slate-700 whitespace-nowrap">{{ $cert }}</span>
+                                            </div>
+                                        @endforeach
+                                    </div>
+
+                                    <!-- LinkedIn Button -->
+                                    <a href="{{ $mentor['linkedin'] }}" 
+                                       target="_blank"
+                                       rel="noopener noreferrer"
+                                       class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white font-bold rounded-xl shadow-lg hover:bg-indigo-700 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 group text-xs text-center justify-center w-full">
+                                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                                        </svg>
+                                        {{ __('messages.linkedin_view_profile') }}
+                                        <svg class="w-3 h-3 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                        </svg>
+                                    </a>
+                                </div>
                             </div>
-                            <span class="text-sm font-bold text-slate-700 group-hover:text-indigo-600 transition-colors uppercase tracking-wider">{{ $partner['name'] }}</span>
                         </div>
                     @endforeach
                 </div>
+                
+                @if(count($mentors) > 3)
+                    <!-- Gradient Shadows for visual cue -->
+                    <div class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 hidden md:block"></div>
+                    <div class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 hidden md:block"></div>
+                @endif
             </div>
-        </div>
-
-            <div class="h-16 md:h-24"></div>
+            </div>
         </div>
     </section>
 
     <!-- Categories Section -->
-    <section class="py-24 bg-[#eef2f6]">
+    <section class="pt-12 pb-24 bg-[#eef2f6]">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16">
                 <span
                     class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 text-indigo-600 font-bold tracking-wider uppercase text-xs mb-4 border border-indigo-100">
-                    Most Updated Material
+                    {{ __('messages.category_section_badge') }}
                 </span>
-                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-900">{{ __('messages.category_title') }}
-                    Paling Update</h2>
+                <h2 class="text-4xl md:text-5xl font-bold mb-4 text-slate-900">{{ __('messages.category_section_title') }}</h2>
                 <p class="text-slate-500 max-w-2xl mx-auto text-lg">{{ __('messages.category_desc') }}</p>
             </div>
 
@@ -204,11 +301,11 @@
                     <div class="grid grid-cols-2 gap-8">
                         <div>
                             <div class="text-3xl font-bold text-indigo-600 mb-1">100%</div>
-                            <div class="text-slate-500 text-sm italic">Kurikulum Berbasis Proyek</div>
+                            <div class="text-slate-500 text-sm italic">{{ __('messages.stat_curriculum') }}</div>
                         </div>
                         <div>
-                            <div class="text-3xl font-bold text-indigo-600 mb-1">Resmi</div>
-                            <div class="text-slate-500 text-sm italic">Sertifikat Kompetensi</div>
+                            <div class="text-3xl font-bold text-indigo-600 mb-1">{{ __('messages.stat_official') }}</div>
+                            <div class="text-slate-500 text-sm italic">{{ __('messages.stat_certificate') }}</div>
                         </div>
                     </div>
                 </div>

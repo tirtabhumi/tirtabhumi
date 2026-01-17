@@ -202,9 +202,15 @@
                 <!-- Product/Training Grid -->
                 <div class="w-full lg:w-[80%] content-width">
                      <div class="mb-8">
-                        <div class="mb-6">
-                            <h2 class="text-2xl font-bold text-slate-800 mb-1">Available Programs</h2>
-                            <p class="text-slate-500 text-sm">{{ $trainings->total() }} programs found</p>
+                        <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                            <div>
+                                <h2 class="text-2xl font-bold text-slate-800 mb-1">Available Programs</h2>
+                                <p class="text-slate-500 text-sm">{{ $trainings->total() }} programs found</p>
+                            </div>
+                            <a href="{{ route('trainings.index') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                                Back to UpVenture
+                            </a>
                         </div>
                         <div class="w-full">
                              <form action="{{ request()->url() }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">

@@ -23,14 +23,12 @@
 
                 <!-- Title -->
                 <h1 class="text-3xl font-bold text-slate-800 mb-4">
-                    Dokumen Sedang Direview
+                    {{ __('messages.documents_under_review') }}
                 </h1>
 
                 <!-- Description -->
                 <p class="text-lg text-slate-600 mb-8 leading-relaxed">
-                    Terima kasih telah mendaftar sebagai <strong>UpVenture Affiliate</strong>!
-                    Dokumen Anda sedang dalam proses review oleh tim kami.
-                    Bila disetujui, Anda akan dapat menjadi UpVenture Affiliate dan mulai mendapatkan komisi.
+                    {!! __('messages.pending_affiliate_desc') !!}
                 </p>
 
                 <!-- Info Box -->
@@ -41,7 +39,7 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
-                        Yang Perlu Anda Ketahui
+                        {{ __('messages.what_you_need_to_know') }}
                     </h3>
                     <ul class="space-y-2 text-sm text-slate-700">
                         <li class="flex gap-2">
@@ -50,7 +48,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Proses review biasanya memakan waktu 1-3 hari kerja</span>
+                            <span>{{ __('messages.review_time_desc') }}</span>
                         </li>
                         <li class="flex gap-2">
                             <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor"
@@ -58,7 +56,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Anda akan menerima notifikasi via email setelah review selesai</span>
+                            <span>{{ __('messages.email_notification_desc') }}</span>
                         </li>
                         <li class="flex gap-2">
                             <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor"
@@ -66,7 +64,7 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                             </svg>
-                            <span>Pastikan data yang Anda berikan valid dan sesuai</span>
+                            <span>{{ __('messages.ensure_valid_data_desc') }}</span>
                         </li>
                     </ul>
                 </div>
@@ -78,7 +76,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Kembali ke Dashboard
+                    {{ __('messages.back_to_dashboard') }}
                 </a>
             </div>
         </div>

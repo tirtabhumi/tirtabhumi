@@ -10,15 +10,15 @@
             <!-- Header -->
             <div class="mb-8 animate-fade-in-up flex items-center justify-between">
                 <div>
-                    <h1 class="text-3xl font-bold text-slate-800 mb-2">Riwayat Penjualan</h1>
-                    <p class="text-slate-600">Detail order yang berhasil terjual melalui link referral Anda</p>
+                    <h1 class="text-3xl font-bold text-slate-800 mb-2">{{ __('messages.sales_history') }}</h1>
+                    <p class="text-slate-600">{{ __('messages.sales_history_desc') }}</p>
                 </div>
                 <a href="{{ route('affiliates.index') }}" 
                     class="px-6 py-3 bg-white border border-slate-300 text-slate-700 font-semibold rounded-xl hover:bg-slate-50 transition-all flex items-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                     </svg>
-                    Kembali
+                    {{ __('messages.back') }}
                 </a>
             </div>
 
@@ -27,45 +27,45 @@
                 <form method="GET" action="{{ route('affiliates.sales') }}" class="grid md:grid-cols-4 gap-4">
                     <!-- Search -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Cari</label>
-                        <input type="text" name="search" value="{{ request('search') }}" placeholder="Nama kelas atau customer..."
-                            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+                        <label class="block text-sm font-bold text-slate-900 mb-2">{{ __('messages.search') }}</label>
+                        <input type="text" name="search" value="{{ request('search') }}" placeholder="{{ __('messages.search_sales_placeholder') }}"
+                            class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-slate-800 font-medium">
                     </div>
 
                     <!-- Start Date -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Dari Tanggal</label>
+                        <label class="block text-sm font-bold text-slate-900 mb-2">{{ __('messages.from_date') }}</label>
                         <input type="date" name="start_date" value="{{ request('start_date') }}"
-                            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+                            class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-slate-800 font-medium">
                     </div>
 
                     <!-- End Date -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Sampai Tanggal</label>
+                        <label class="block text-sm font-bold text-slate-900 mb-2">{{ __('messages.to_date') }}</label>
                         <input type="date" name="end_date" value="{{ request('end_date') }}"
-                            class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
+                            class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-slate-800 font-medium">
                     </div>
 
                     <!-- Status -->
                     <div>
-                        <label class="block text-sm font-semibold text-slate-700 mb-2">Status</label>
-                        <select name="status" class="w-full px-4 py-2 rounded-xl border border-slate-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all">
-                            <option value="">Semua Status</option>
-                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Pending</option>
-                            <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>Approved</option>
-                            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>Paid</option>
+                        <label class="block text-sm font-bold text-slate-900 mb-2">{{ __('messages.status') }}</label>
+                        <select name="status" class="w-full px-4 py-2.5 rounded-xl border-2 border-slate-300 bg-white focus:border-blue-500 focus:ring-2 focus:ring-blue-200 transition-all text-slate-800 font-medium">
+                            <option value="">{{ __('messages.all_status') }}</option>
+                            <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>{{ __('messages.pending_status') }}</option>
+                            <option value="approved" {{ request('status') == 'approved' ? 'selected' : '' }}>{{ __('messages.approved_status') }}</option>
+                            <option value="paid" {{ request('status') == 'paid' ? 'selected' : '' }}>{{ __('messages.paid_status') }}</option>
                         </select>
                     </div>
 
                     <!-- Buttons -->
                     <div class="md:col-span-4 flex gap-3">
                         <button type="submit" 
-                            class="px-6 py-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all">
-                            Filter
+                            class="px-6 py-2 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:shadow-lg hover:scale-105 transition-all text-sm h-[42px]">
+                            {{ __('messages.filter') }}
                         </button>
                         <a href="{{ route('affiliates.sales') }}" 
                             class="px-6 py-2 bg-slate-200 text-slate-700 font-semibold rounded-xl hover:bg-slate-300 transition-all">
-                            Reset
+                            {{ __('messages.reset') }}
                         </a>
                     </div>
                 </form>
@@ -78,12 +78,12 @@
                         <table class="w-full">
                             <thead class="bg-gradient-to-r from-blue-50 to-cyan-50">
                                 <tr>
-                                    <th class="text-left py-4 px-6 text-sm font-bold text-slate-700">Tanggal</th>
-                                    <th class="text-left py-4 px-6 text-sm font-bold text-slate-700">Kelas</th>
-                                    <th class="text-left py-4 px-6 text-sm font-bold text-slate-700">Customer</th>
-                                    <th class="text-right py-4 px-6 text-sm font-bold text-slate-700">Harga</th>
-                                    <th class="text-right py-4 px-6 text-sm font-bold text-slate-700">Komisi</th>
-                                    <th class="text-center py-4 px-6 text-sm font-bold text-slate-700">Status</th>
+                                    <th class="text-left py-4 px-6 text-sm font-bold text-slate-700">{{ __('messages.date') }}</th>
+                                    <th class="text-left py-4 px-6 text-sm font-bold text-slate-700">{{ __('messages.class') }}</th>
+                                    <th class="text-left py-4 px-6 text-sm font-bold text-slate-700">{{ __('messages.customer') }}</th>
+                                    <th class="text-right py-4 px-6 text-sm font-bold text-slate-700">{{ __('messages.price') }}</th>
+                                    <th class="text-right py-4 px-6 text-sm font-bold text-slate-700">{{ __('messages.commission') }}</th>
+                                    <th class="text-center py-4 px-6 text-sm font-bold text-slate-700">{{ __('messages.status') }}</th>
                                 </tr>
                             </thead>
                             <tbody class="divide-y divide-slate-100">
@@ -112,11 +112,11 @@
                                         </td>
                                         <td class="py-4 px-6 text-center">
                                             @if($sale->status === 'pending')
-                                                <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">Pending</span>
+                                                <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-amber-100 text-amber-700">{{ __('messages.pending_status') }}</span>
                                             @elseif($sale->status === 'approved')
-                                                <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">Approved</span>
+                                                <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-green-100 text-green-700">{{ __('messages.approved_status') }}</span>
                                             @else
-                                                <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">Paid</span>
+                                                <span class="inline-flex px-3 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-700">{{ __('messages.paid_status') }}</span>
                                             @endif
                                         </td>
                                     </tr>
@@ -134,8 +134,8 @@
                         <svg class="w-20 h-20 text-slate-300 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
                         </svg>
-                        <p class="text-slate-500 text-lg font-semibold mb-2">Belum ada penjualan</p>
-                        <p class="text-slate-400">Mulai bagikan link referral Anda untuk mendapatkan komisi!</p>
+                        <p class="text-slate-500 text-lg font-semibold mb-2">{{ __('messages.no_sales_yet') }}</p>
+                        <p class="text-slate-400">{{ __('messages.start_sharing_desc') }}</p>
                     </div>
                 @endif
             </div>
