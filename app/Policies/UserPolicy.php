@@ -18,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_user');
+        return $user->can('view_any_user') || $user->hasRole('partner');
     }
 
     /**
@@ -27,9 +27,15 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function view(User $user): bool
+    public function view(User $user, User $model): bool // $model is the target user
     {
-        return $user->can('view_user');
+        if ($user->can('view_user')) {
+            return true;
+        }
+        if ($user->hasRole('partner') && $user->organization_id === $model->organization_id) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -40,7 +46,7 @@ class UserPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_user');
+        return $user->can('create_user') || $user->hasRole('partner');
     }
 
     /**
@@ -49,9 +55,15 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function update(User $user): bool
+    public function update(User $user, User $model): bool
     {
-        return $user->can('update_user');
+         if ($user->can('update_user')) {
+            return true;
+        }
+        if ($user->hasRole('partner') && $user->organization_id === $model->organization_id) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -60,9 +72,15 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function delete(User $user): bool
+    public function delete(User $user, User $model): bool
     {
-        return $user->can('delete_user');
+         if ($user->can('delete_user')) {
+            return true;
+        }
+        if ($user->hasRole('partner') && $user->organization_id === $model->organization_id) {
+            return true;
+        }
+        return false;
     }
 
     /**
@@ -73,7 +91,7 @@ class UserPolicy
      */
     public function deleteAny(User $user): bool
     {
-        return $user->can('delete_any_user');
+        return $user->can('delete_any_user') || $user->hasRole('partner');
     }
 
     /**
@@ -82,7 +100,7 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function forceDelete(User $user): bool
+    public function forceDelete(User $user, User $model): bool
     {
         return $user->can('force_delete_user');
     }
@@ -104,7 +122,7 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function restore(User $user): bool
+    public function restore(User $user, User $model): bool
     {
         return $user->can('restore_user');
     }
@@ -126,7 +144,7 @@ class UserPolicy
      * @param  \App\Models\User  $user
      * @return bool
      */
-    public function replicate(User $user): bool
+    public function replicate(User $user, User $model): bool
     {
         return $user->can('replicate_user');
     }

@@ -47,5 +47,7 @@ class AppServiceProvider extends ServiceProvider
         Gate::before(function ($user, $ability) {
             return $user->hasRole('super_admin') ? true : null;
         });
+
+        Gate::policy(\App\Models\WithdrawalRequestHistory::class, \App\Policies\WithdrawalRequestHistoryPolicy::class);
     }
 }

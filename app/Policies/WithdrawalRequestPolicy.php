@@ -15,7 +15,7 @@ class WithdrawalRequestPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_withdrawal::request');
+        return $user->can('view_own_withdrawal') || $user->can('view_all_withdrawals');
     }
 
     /**
@@ -23,7 +23,10 @@ class WithdrawalRequestPolicy
      */
     public function view(User $user, WithdrawalRequest $withdrawalRequest): bool
     {
-        return $user->can('view_withdrawal::request');
+        if ($user->can('view_all_withdrawals')) {
+            return true;
+        }
+        return $user->can('view_own_withdrawal') && $withdrawalRequest->user_id === $user->id;
     }
 
     /**
@@ -31,7 +34,7 @@ class WithdrawalRequestPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_withdrawal::request');
+        return $user->can('create_withdrawal');
     }
 
     /**
@@ -39,7 +42,7 @@ class WithdrawalRequestPolicy
      */
     public function update(User $user, WithdrawalRequest $withdrawalRequest): bool
     {
-        return $user->can('update_withdrawal::request');
+        return $user->can('update_withdrawal_status');
     }
 
     /**
@@ -47,7 +50,11 @@ class WithdrawalRequestPolicy
      */
     public function delete(User $user, WithdrawalRequest $withdrawalRequest): bool
     {
-        return $user->can('delete_withdrawal::request');
+        // Only allow deletion if pending and own request, or if admin
+        if ($user->can('view_all_withdrawals')) {
+            return true;
+        }
+        return $user->can('view_own_withdrawal') && $withdrawalRequest->user_id === $user->id && $withdrawalRequest->status === 'pending';
     }
 
     /**

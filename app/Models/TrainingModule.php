@@ -22,6 +22,8 @@ class TrainingModule extends Model
         'is_preview',
         'min_score',
         'max_attempts',
+        'meeting_platform',
+        'meeting_link',
     ];
 
     protected $casts = [

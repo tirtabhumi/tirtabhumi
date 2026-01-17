@@ -23,7 +23,10 @@ class TrainingPolicy
      */
     public function view(User $user, Training $training): bool
     {
-        return $user->can('view_training');
+        if ($user->hasRole('super_admin') || $user->hasRole('admin')) {
+            return true;
+        }
+        return $user->can('view_any_training') && $training->user_id === $user->id;
     }
 
     /**
@@ -39,7 +42,15 @@ class TrainingPolicy
      */
     public function update(User $user, Training $training): bool
     {
-        return $user->can('update_training');
+        if ($user->hasRole('super_admin')) {
+            return true;
+        }
+        
+        if ($user->can('update_own_training') && $training->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**
@@ -47,7 +58,15 @@ class TrainingPolicy
      */
     public function delete(User $user, Training $training): bool
     {
-        return $user->can('delete_training');
+        if ($user->can('delete_any_training')) {
+             return true;
+        }
+
+        if ($user->can('delete_own_training') && $training->user_id === $user->id) {
+            return true;
+        }
+
+        return false;
     }
 
     /**

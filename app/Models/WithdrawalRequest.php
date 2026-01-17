@@ -17,6 +17,7 @@ class WithdrawalRequest extends Model
         'bank_details',
         'admin_note',
         'proof_of_transfer',
+        'processed_by',
     ];
 
     protected $casts = [
@@ -26,5 +27,15 @@ class WithdrawalRequest extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function processor(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'processed_by');
+    }
+
+    public function histories()
+    {
+        return $this->hasMany(WithdrawalRequestHistory::class);
     }
 }

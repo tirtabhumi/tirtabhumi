@@ -130,6 +130,37 @@ class PaymentController extends Controller
 
 
 
+    private function creditPartnerWallet(Registration $registration)
+    {
+        // Prevent double credit if already paid (this check should be done before calling this, but safe to double check if needed)
+        // Here we assume the caller has verified the status transition to 'paid'
+        
+        $training = $registration->training;
+        if (!$training) return;
+
+        $partner = $training->partner; // User relation
+        if (!$partner) return;
+
+        // Ensure wallet exists
+        $wallet = \App\Models\Wallet::firstOrCreate(
+            ['user_id' => $partner->id],
+            ['balance' => 0]
+        );
+
+        // Credit the amount
+        $wallet->increment('balance', $registration->training->price);
+        
+        // Log Transaction
+        \App\Models\WalletTransaction::create([
+            'wallet_id' => $wallet->id,
+            'type' => 'credit',
+            'amount' => $registration->training->price,
+            'description' => 'Payment from student for ' . $training->title,
+            'source_type' => get_class($registration),
+            'source_id' => $registration->id,
+        ]);
+    }
+
     public function finish(Registration $registration)
     {
         if ($registration->email !== auth()->user()->email) {
@@ -149,13 +180,17 @@ class PaymentController extends Controller
                     // Start checking the first match (usually correct due to unique external_id)
                     $invoice = $invoices[0];
                     $status = $invoice['status'];
-
-                    if ($status === 'PAID' || $status === 'SETTLED') {
+                    
+                    // Only update if status is actually changing from non-final to final
+                    if (($status === 'PAID' || $status === 'SETTLED') && $registration->payment_status !== 'paid') {
                         $registration->update([
                             'status' => 'completed',
                             'payment_status' => 'paid',
                             'payment_method' => $invoice['payment_method'] ?? 'xendit',
                         ]);
+                        
+                        $this->creditPartnerWallet($registration);
+
                     } elseif ($status === 'EXPIRED') {
                         $registration->update([
                             'status' => 'cancelled',
@@ -206,15 +241,20 @@ class PaymentController extends Controller
 
         // Check for invoice callback
         if (isset($data['status']) && isset($data['external_id'])) {
-            $registration = Registration::where('transaction_id', $data['external_id'])->first();
+            $registration = Registration::with('training.partner')->where('transaction_id', $data['external_id'])->first();
 
             if ($registration) {
                 if ($data['status'] === 'PAID') {
-                    $registration->update([
-                        'status' => 'completed',
-                        'payment_status' => 'paid',
-                        'payment_method' => $data['payment_method'] ?? $data['payment_channel'] ?? 'xendit',
-                    ]);
+                     // Check if not already paid to avoid double credit
+                     if ($registration->payment_status !== 'paid') {
+                        $registration->update([
+                            'status' => 'completed',
+                            'payment_status' => 'paid',
+                            'payment_method' => $data['payment_method'] ?? $data['payment_channel'] ?? 'xendit',
+                        ]);
+                        
+                        $this->creditPartnerWallet($registration);
+                     }
                 } elseif ($data['status'] === 'EXPIRED') {
                      $registration->update([
                         'status' => 'cancelled',

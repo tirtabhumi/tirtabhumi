@@ -15,6 +15,16 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class OrganizationResource extends Resource
 {
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (auth()->user()->hasRole('partner')) {
+            $query->where('id', auth()->user()->organization_id);
+        }
+
+        return $query;
+    }
     protected static ?string $model = Organization::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-building-office-2';
@@ -46,7 +56,22 @@ class OrganizationResource extends Resource
                             ->columnSpanFull(),
                     ])->columns(2),
 
-                Forms\Components\Section::make('Documents')
+                Forms\Components\Section::make('Bank Details')
+                    ->description('Account information for withdrawals.')
+                    ->schema([
+                        Forms\Components\TextInput::make('bank_name')
+                            ->label('Bank Name')
+                            ->placeholder('e.g. BCA, Mandiri')
+                            ->required(),
+                        Forms\Components\TextInput::make('bank_account_name')
+                            ->label('Account Holder Name')
+                            ->required(),
+                        Forms\Components\TextInput::make('bank_account_number')
+                            ->label('Account Number')
+                            ->required(),
+                    ])->columns(3),
+
+                Forms\Components\Section::make('Legal Documents')
                     ->description('Upload legal documents (PKS, NIB, NPWP)')
                     ->schema([
                         Forms\Components\FileUpload::make('pks')
@@ -54,19 +79,25 @@ class OrganizationResource extends Resource
                             ->directory('organizations/pks')
                             ->openable()
                             ->downloadable()
-                            ->disk('public'),
+                            ->disk('public')
+                            ->disabled(fn () => auth()->user()->hasRole('partner'))
+                            ->dehydrated(fn () => ! auth()->user()->hasRole('partner')),
                         Forms\Components\FileUpload::make('nib')
                             ->label('Nomor Induk Berusaha (NIB)')
                             ->directory('organizations/nib')
                             ->openable()
                             ->downloadable()
-                            ->disk('public'),
+                            ->disk('public')
+                            ->disabled(fn () => auth()->user()->hasRole('partner'))
+                            ->dehydrated(fn () => ! auth()->user()->hasRole('partner')),
                         Forms\Components\FileUpload::make('npwp')
                             ->label('NPWP')
                             ->directory('organizations/npwp')
                             ->openable()
                             ->downloadable()
-                            ->disk('public'),
+                            ->disk('public')
+                            ->disabled(fn () => auth()->user()->hasRole('partner'))
+                            ->dehydrated(fn () => ! auth()->user()->hasRole('partner')),
                     ])->columns(3),
             ]);
     }

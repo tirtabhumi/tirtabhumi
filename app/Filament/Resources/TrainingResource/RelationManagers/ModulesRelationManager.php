@@ -26,6 +26,7 @@ class ModulesRelationManager extends RelationManager
                         'pdf' => 'PDF (File)',
                         'assignment' => 'Assignment',
                         'quiz' => 'Quiz',
+                        'online_session' => 'Online Session / Webinar',
                     ])
                     ->required()
                     ->default('video')
@@ -34,6 +35,22 @@ class ModulesRelationManager extends RelationManager
                     ->label('Video URL')
                     ->url()
                     ->visible(fn(Forms\Get $get) => $get('type') === 'video'),
+                Forms\Components\Select::make('meeting_platform')
+                    ->options([
+                        'Zoom' => 'Zoom',
+                        'Google Meet' => 'Google Meet',
+                        'Microsoft Teams' => 'Microsoft Teams',
+                        'Youtube Live' => 'Youtube Live',
+                        'Other' => 'Other',
+                    ])
+                    ->visible(fn(Forms\Get $get) => $get('type') === 'online_session')
+                    ->required(fn(Forms\Get $get) => $get('type') === 'online_session'),
+                
+                Forms\Components\TextInput::make('meeting_link')
+                    ->url()
+                    ->visible(fn(Forms\Get $get) => $get('type') === 'online_session')
+                    ->required(fn(Forms\Get $get) => $get('type') === 'online_session'),
+
                 Forms\Components\FileUpload::make('file_path')
                     ->label('File')
                     ->disk('public') // Ensure visibility

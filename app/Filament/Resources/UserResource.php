@@ -26,7 +26,18 @@ class UserResource extends Resource
 
     public static function canViewAny(): bool
     {
-        return auth()->user()->hasRole('super_admin');
+        return auth()->user()->hasRole('super_admin') || auth()->user()->hasRole('partner');
+    }
+
+    public static function getEloquentQuery(): Builder
+    {
+        $query = parent::getEloquentQuery();
+
+        if (auth()->user()->hasRole('partner')) {
+            $query->where('organization_id', auth()->user()->organization_id);
+        }
+
+        return $query;
     }
 
     public static function form(Form $form): Form
@@ -44,18 +55,24 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->password(),
                         Forms\Components\TextInput::make('role')
-                            ->required(),
+                            ->required()
+                            ->hidden(fn () => auth()->user()->hasRole('partner')),
                         Forms\Components\Select::make('organization_id')
                             ->relationship('organization', 'name')
                             ->searchable()
-                            ->preload(),
+                            ->preload()
+                            ->disabled(fn () => auth()->user()->hasRole('partner'))
+                            ->default(fn () => auth()->user()->hasRole('partner') ? auth()->user()->organization_id : null)
+                            ->dehydrated() // Ensure it is saved even if disabled
+                            ->required(),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
                         Forms\Components\Select::make('roles')
                             ->relationship('roles', 'name')
                             ->multiple()
                             ->preload()
-                            ->searchable(),
+                            ->searchable()
+                            ->hidden(fn () => auth()->user()->hasRole('partner')),
                         Forms\Components\TextInput::make('phone')
                             ->tel(),
                         Forms\Components\Toggle::make('is_blocked')
@@ -141,7 +158,8 @@ class UserResource extends Resource
                     ->badge()
                     ->color('info')
                     ->searchable()
-                    ->sortable(),
+                    ->sortable()
+                    ->hidden(fn () => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('affiliate.status')
                     ->label('Affiliate Status')
                     ->badge()
@@ -151,7 +169,8 @@ class UserResource extends Resource
                         'pending' => 'warning',
                         default => 'gray',
                     })
-                    ->sortable(),
+                    ->sortable()
+                    ->hidden(fn () => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
                     ->sortable(),
@@ -173,11 +192,14 @@ class UserResource extends Resource
                         'finance' => 'success',
                         default => 'gray',
                     })
-                    ->searchable(),
+                    ->searchable()
+                    ->hidden(fn () => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('google_id')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('avatar')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('phone')
                     ->searchable(),
                 Tables\Columns\IconColumn::make('is_blocked')
