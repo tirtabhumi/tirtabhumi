@@ -16,7 +16,7 @@ class TrainingController extends Controller
                     ->orWhereNull('event_date');
             })
             ->orderByRaw('event_date IS NULL DESC, event_date ASC')
-            ->take(9)
+            ->take(15)
             ->get();
 
         return view('trainings.index', compact('trainings'));
@@ -111,7 +111,18 @@ class TrainingController extends Controller
             }
         }
 
-        return view('trainings.show', compact('training'));
+        $isRegistered = false;
+        if (auth()->check()) {
+            $isRegistered = Registration::where('email', auth()->user()->email)
+                ->where('training_id', $training->id)
+                ->where('status', 'completed')
+                ->exists();
+        }
+
+        return view('trainings.show', [
+            'training' => $training->load('modules'),
+            'isRegistered' => $isRegistered
+        ]);
     }
 
     public function register(Request $request, Training $training)
