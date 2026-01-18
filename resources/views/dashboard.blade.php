@@ -190,9 +190,9 @@
                 @if($registrations->count() > 0)
                     <div class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
                         @foreach($registrations->take(10) as $reg)
-                            <div class="group flex items-center justify-between p-4 bg-white/50 rounded-2xl border border-white/50 hover:bg-white hover:shadow-sm transition-all duration-300">
+                            <div class="group flex items-center justify-between p-4 bg-white/30 rounded-2xl border border-white/30 hover:bg-white/50 transition-all duration-300">
                                 <div class="flex items-center gap-4">
-                                    <div class="p-3 bg-indigo-50 rounded-xl text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
+                                    <div class="p-3 bg-indigo-50/50 rounded-xl text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
                                         {{-- Dynamic Icon based on Category? Or just generic --}}
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>

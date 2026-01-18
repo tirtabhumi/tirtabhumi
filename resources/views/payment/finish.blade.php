@@ -1,5 +1,5 @@
 <x-layout-upventure title="Payment Success - {{ $registration->training->title }}">
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen">
+    <section class="pt-0 pb-24 bg-[#eef2f6] min-h-screen">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
 

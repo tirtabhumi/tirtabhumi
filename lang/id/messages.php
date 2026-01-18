@@ -337,6 +337,7 @@ return [
     'training_schedule_title' => 'Webinar & Workshop',
     'training_schedule_desc' => 'Pilih pelatihan yang sesuai dengan minat dan kebutuhan karir Anda.',
     'login_to_register' => 'Silakan Sign In untuk melanjutkan pendaftaran',
+    'total_earnings' => 'Total Pendapatan',
   
 
     'class_title' => 'UpVenture Learnings',
@@ -827,8 +828,8 @@ return [
     'network_basic_enterprise_rack' => 'Wallmount Rack 4U',
     'network_basic_enterprise_cable' => 'Cabling UTP Cat 6 included accessories',
 
-    'status' => 'Status',
-    'search' => 'Cari',
+    'search' => 'Cari berdasarkan nama',
+    'status' => 'Berdasarkan status',
     'filter' => 'Filter',
 
     // Dashboard

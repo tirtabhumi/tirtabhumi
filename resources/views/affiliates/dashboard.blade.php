@@ -1,5 +1,5 @@
 <x-layout-upventure title="Affiliate Dashboard">
-    <section class="pt-16 pb-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
+    <section class="min-h-screen pt-12 pb-24 relative overflow-hidden bg-[#eef2f6]">
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -31,30 +31,37 @@
             </div>
 
             <!-- Referral Link Section -->
-            <div class="neu-flat p-6 rounded-2xl border border-white/50 mb-8 animate-fade-in-up animation-delay-100">
-                <h2 class="text-xl font-bold text-slate-800 mb-4 flex items-center gap-2">
-                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1">
-                        </path>
-                    </svg>
-                    {{ __('messages.your_referral_link') }}
-                </h2>
+            <div class="neu-flat rounded-3xl border border-white/50 mb-10 group relative overflow-hidden animate-fade-in-up animation-delay-100">
+                <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/5 rounded-full -mr-32 -mt-32 blur-3xl group-hover:bg-indigo-500/10 transition-all duration-500"></div>
+                
+                <div class="p-8 md:p-10 relative z-10">
+                    <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
+                        <div class="flex-1">
+                            <h2 class="text-2xl font-black text-slate-800 mb-2 flex items-center gap-3">
+                                <div class="w-10 h-10 bg-indigo-600 text-white rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path>
+                                    </svg>
+                                </div>
+                                {{ __('messages.your_referral_link') }}
+                            </h2>
+                            <p class="text-sm text-slate-500 font-medium max-w-lg">{{ __('messages.share_link_desc') }}</p>
+                        </div>
 
-                <div class="bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-xl p-4">
-                    <p class="text-sm text-slate-600 mb-2">{{ __('messages.share_link_desc') }}</p>
-                    <div class="flex gap-2">
-                        <input type="text" id="referralLink" readonly
-                            value="{{ url('/upventure/list?ref=' . $affiliate->referral_code) }}"
-                            class="flex-1 px-4 py-2 rounded-lg border border-indigo-300 bg-white font-mono text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
-                        <button type="button" onclick="copyReferralLink()"
-                            class="px-6 py-2 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-lg hover:shadow-lg hover:scale-105 transition-all">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z">
-                                </path>
-                            </svg>
-                        </button>
+                        <div class="flex-1 w-full">
+                            <div class="bg-white/80 backdrop-blur-sm p-2 rounded-2xl border-2 border-indigo-100 flex items-center gap-2 group-focus-within:border-indigo-500 transition-all shadow-sm">
+                                <div class="px-4 py-2 bg-indigo-50 text-indigo-700 rounded-xl font-black text-xs uppercase tracking-widest hidden sm:block">URL</div>
+                                <input type="text" id="referralLink" readonly
+                                    value="{{ url('/upventure/list?ref=' . $affiliate->referral_code) }}"
+                                    class="flex-1 bg-transparent border-none focus:ring-0 font-mono text-sm text-slate-600 py-3 lg:py-4">
+                                <button type="button" onclick="copyReferralLink()"
+                                    class="p-3 lg:p-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 hover:scale-105 active:scale-95 transition-all shadow-md flex-shrink-0">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -63,127 +70,159 @@
             <div class="grid md:grid-cols-3 gap-6 mb-8 animate-fade-in-up animation-delay-200">
 
                 <!-- Total Sales Card -->
-                <div class="neu-flat p-6 rounded-2xl border border-white/50 h-full flex flex-col justify-between">
-                    <div>
-                        <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                            <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
-                            </svg>
-                            {{ __('messages.total_sales') }}
-                        </h3>
+                <div class="neu-flat rounded-[2rem] border border-white/50 h-full flex flex-col relative overflow-hidden group transition-all duration-500 hover:shadow-2xl hover:shadow-blue-200/50">
+                    <!-- Background Decor -->
+                    <div class="absolute -top-12 -right-12 w-40 h-40 bg-blue-100 rounded-full blur-3xl opacity-60 group-hover:bg-blue-200 group-hover:scale-110 transition-all duration-700"></div>
+                    <div class="absolute top-0 left-0 w-full h-1.5 bg-gradient-to-r from-blue-400 via-indigo-500 to-purple-500"></div>
+                    
+                    <div class="p-8 flex-1 flex flex-col items-center">
+                        <div class="flex items-center gap-4 mb-8 w-full">
+                            <div class="w-14 h-14 bg-gradient-to-br from-blue-50 to-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-blue-100 flex items-center justify-center text-blue-600 rotate-3 group-hover:rotate-12 transition-all duration-500">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-slate-800 tracking-tight uppercase text-xs">{{ __('messages.total_sales') }}</h3>
+                                <div class="flex items-center gap-1.5 mt-1">
+                                    <span class="flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                                    <p class="text-[10px] text-blue-600 font-black uppercase tracking-widest">Performance</p>
+                                </div>
+                            </div>
+                        </div>
 
-                        <div
-                            class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-100 mb-4">
-                            <p class="text-xs text-slate-500 mb-1">{{ __('messages.sales_via_link') }}</p>
-                            <p class="text-3xl font-bold text-slate-800">{{ $totalSales }}</p>
-                            <p class="text-xs text-blue-600 font-medium mt-1">Transactions</p>
+                        <div class="w-full mb-8 flex-1 flex flex-col justify-center">
+                            <div class="neu-pressed p-8 relative overflow-hidden text-center group/card transition-all hover:scale-[0.99]">
+                                <p class="text-[10px] font-black uppercase tracking-[0.2em] mb-3 text-blue-700/60">{{ __('messages.sales_via_link') }}</p>
+                                <div class="flex items-center justify-center gap-2 mb-4">
+                                    <span class="text-6xl font-black tracking-tighter text-blue-600/90">{{ $totalSales }}</span>
+                                    <span class="text-sm font-bold text-blue-400 uppercase tracking-widest">Units</span>
+                                </div>
+                                <div class="py-2 px-4 neu-flat rounded-xl inline-block">
+                                    <p class="text-[10px] font-black text-blue-500/70 uppercase tracking-widest">100% Verified Sales</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-full mt-auto">
+                            <a href="{{ route('affiliates.sales') }}"
+                                class="w-full py-4 bg-white/50 hover:bg-blue-600 text-blue-700 hover:text-white text-xs font-black rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 group border border-blue-100/50 shadow-sm">
+                                <span>{{ __('messages.view_order_details') }}</span>
+                                <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
                         </div>
                     </div>
-
-                    <a href="{{ route('affiliates.sales') }}"
-                        class="w-full px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group mb-1">
-                        <span>{{ __('messages.view_order_details') }}</span>
-                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
-                            </path>
-                        </svg>
-                    </a>
                 </div>
 
-                <!-- Combined Wallet & Withdrawal Card -->
-                <div class="md:col-span-2 neu-flat p-6 rounded-2xl border border-white/50">
-                    <div class="flex flex-col md:flex-row gap-8 h-full">
-                        <!-- Left: Points Info -->
-                        <div
-                            class="flex-1 flex flex-col justify-between border-b md:border-b-0 md:border-r border-slate-100 pb-6 md:pb-0 md:pr-6">
+                <!-- Right Side: Wallet & Withdrawal separated but in same 2-col span -->
+                <div class="md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Points Wallet Card -->
+                    <div class="neu-flat rounded-[2rem] border border-white/50 p-8 flex flex-col relative overflow-hidden group">
+                        <div class="flex items-center gap-4 mb-10">
+                            <div class="w-14 h-14 bg-gradient-to-br from-emerald-50 to-white rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-emerald-100 flex items-center justify-center text-emerald-600 -rotate-3 group-hover:rotate-0 transition-all duration-500">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
                             <div>
-                                <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                    <svg class="w-6 h-6 text-green-600" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                                        </path>
-                                    </svg>
-                                    {{ __('messages.points_wallet') }}
-                                </h3>
-                                <div
-                                    class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-4 border border-green-100 mb-4">
-                                    <p class="text-xs text-slate-500 mb-1">{{ __('messages.available_points') }}</p>
-                                    <p class="text-3xl font-bold text-slate-800">
+                                <h3 class="font-black text-slate-800 tracking-tight uppercase text-xs">{{ __('messages.points_wallet') }}</h3>
+                                <div class="flex items-center gap-1.5 mt-1">
+                                    <span class="flex h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                                    <p class="text-[10px] text-emerald-600 font-black uppercase tracking-widest">{{ __('messages.available_points') }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mb-10 flex-1 flex flex-col justify-center">
+                            <div class="neu-pressed p-8 relative overflow-hidden group/wallet text-center transition-all hover:scale-[0.99]">
+                                <p class="text-[10px] font-black uppercase tracking-[0.2em] mb-3 text-emerald-700/60">{{ __('messages.total_earnings') }}</p>
+                                <div class="flex items-center justify-center gap-2 mb-4">
+                                     <span class="text-6xl font-black tracking-tighter text-emerald-600/90">
                                         {{ number_format($affiliate->total_points - $affiliate->withdrawn_points - $affiliate->pending_points, 0, ',', '.') }}
-                                    </p>
-                                    <p class="text-xs text-emerald-600 font-medium mt-1">
+                                    </span>
+                                    <span class="text-sm font-bold text-emerald-400 uppercase tracking-widest">Points</span>
+                                </div>
+                                <div class="py-2 px-4 neu-flat rounded-xl inline-block">
+                                    <p class="text-[10px] font-black text-emerald-600/70 uppercase tracking-widest">
                                         {{ __('messages.points_to_idr') }}
                                     </p>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="mt-auto">
                             <a href="{{ route('affiliates.points') }}"
-                                class="w-full px-3 py-2 bg-green-50 hover:bg-green-100 text-green-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group">
+                                class="w-full py-4 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 text-xs font-black rounded-2xl transition-all duration-300 flex items-center justify-center gap-2 group border border-emerald-100">
                                 <span>{{ __('messages.view_points_history') }}</span>
                                 <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                                 </svg>
                             </a>
                         </div>
-
-                        <!-- Right: Withdrawal Form -->
-                        <div class="flex-1 flex flex-col justify-center">
-                            <h3 class="font-bold text-slate-800 mb-4 flex items-center gap-2">
-                                <svg class="w-5 h-5 text-purple-600" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z">
-                                    </path>
-                                </svg>
-                                {{ __('messages.withdraw_points') }}
-                            </h3>
-
-                            <form id="withdrawalForm" action="{{ route('affiliates.withdrawal') }}" method="POST"
-                                class="space-y-4">
-                                @csrf
-                                <div>
-                                    <label for="amount"
-                                        class="text-sm font-bold text-slate-700 mb-2 block">{{ __('messages.withdrawal_amount') }}</label>
-                                    <div class="relative">
-                                        <span
-                                            class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 font-semibold text-base">Rp</span>
-                                        <input type="number" id="amount" name="amount"
-                                            min="{{ config('affiliate.min_withdrawal', 100000) }}" step="1000" required
-                                            placeholder="{{ __('messages.min_withdrawal') }}"
-                                            class="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-slate-300 bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all text-base font-bold text-slate-800 placeholder:text-slate-400 placeholder:font-normal">
-                                    </div>
-                                    @error('amount')
-                                        <p class="text-red-600 text-xs mt-1">{{ $message }}</p>
-                                    @enderror
-                                </div>
-
-                                <button type="button" onclick="showConfirmationModal()"
-                                    class="w-full px-6 py-4 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-700 hover:shadow-xl hover:scale-[1.02] transition-all text-base flex items-center justify-center gap-2 shadow-lg">
-                                    <span>{{ __('messages.apply_withdrawal') }}</span>
-                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
-                                    </svg>
-                                </button>
-                                <div class="text-center space-y-1.5 mt-3">
-                                    <p class="text-xs text-slate-500 font-medium">
-                                        {{ __('messages.fee_deduction_note') }}
-                                    </p>
-                                    <p class="text-xs text-slate-600 font-semibold">
-                                        {{ __('messages.processing_time_note') }}
-                                    </p>
-                                    <p class="text-xs text-slate-500">
-                                        {{ __('messages.transfer_to_registered_account_note') }}
-                                    </p>
-                                </div>
-                            </form>
-                        </div>
                     </div>
+
+                    <!-- Withdrawal Card -->
+                    <div class="neu-flat rounded-[2rem] border border-white/50 p-8 flex flex-col justify-center relative overflow-hidden group">
+                        <div class="flex items-center gap-4 mb-10">
+                            <div class="w-14 h-14 bg-blue-50 rounded-2xl shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-blue-100 flex items-center justify-center text-blue-600 -rotate-3 group-hover:rotate-0 transition-all duration-500">
+                                <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2-2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="font-black text-slate-800 tracking-tight uppercase text-xs">{{ __('messages.withdraw_points') }}</h3>
+                                <div class="flex items-center gap-1.5 mt-1">
+                                    <span class="flex h-1.5 w-1.5 rounded-full bg-blue-500"></span>
+                                    <p class="text-[10px] text-blue-600 font-black uppercase tracking-widest">Transfer Out</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <form id="withdrawalForm" action="{{ route('affiliates.withdrawal') }}" method="POST" class="space-y-5">
+                            @csrf
+                            <div>
+                                <label for="amount" class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-2 block">{{ __('messages.withdrawal_amount') }}</label>
+                                <div class="flex items-center w-full rounded-2xl neu-pressed group overflow-hidden transition-all focus-within:ring-4 focus-within:ring-blue-100">
+                                    <div class="w-24 flex items-center justify-center text-slate-400 font-black text-sm transition-colors group-focus-within:text-blue-600 select-none border-r border-slate-200/50">
+                                        Rp
+                                    </div>
+                                    <input type="number" id="amount" name="amount"
+                                        min="{{ config('affiliate.min_withdrawal', 100000) }}" step="1000" required
+                                        placeholder="{{ __('messages.min_withdrawal') }}"
+                                        class="flex-1 border-none focus:ring-0 py-4 px-10 text-base font-black text-slate-800 placeholder:text-slate-300 placeholder:font-bold bg-transparent">
+                                </div>
+                                @error('amount')
+                                    <p class="text-red-600 text-[10px] font-bold mt-2 ml-1 flex items-center gap-1">
+                                        <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path></svg>
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <button type="button" onclick="showConfirmationModal()"
+                                class="w-full py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-black rounded-2xl hover:from-blue-700 hover:to-indigo-700 hover:shadow-xl transition-all text-sm flex items-center justify-center gap-3 shadow-lg shadow-blue-100">
+                                <span>{{ __('messages.apply_withdrawal') }}</span>
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </button>
+                            
+                            <div class="bg-indigo-50/30 p-4 rounded-2xl border border-indigo-100/20 space-y-2">
+                                <div class="flex items-start gap-2 text-[10px] leading-relaxed">
+                                    <svg class="w-3.5 h-3.5 text-indigo-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                    <div class="text-indigo-600/70 font-medium">
+                                        <p>{{ __('messages.fee_deduction_note') }}</p>
+                                        <p class="font-bold border-t border-indigo-100/30 mt-1 pt-1">{{ __('messages.processing_time_note') }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
                 </div>
             </div>
 
@@ -202,8 +241,8 @@
                             <div class="bg-white px-4 pb-4 pt-5 sm:p-6 sm:pb-4">
                                 <div class="sm:flex sm:items-start">
                                     <div
-                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-purple-100 sm:mx-0 sm:h-10 sm:w-10">
-                                        <svg class="h-6 w-6 text-purple-600" fill="none" viewBox="0 0 24 24"
+                                        class="mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-blue-100 sm:mx-0 sm:h-10 sm:w-10">
+                                        <svg class="h-6 w-6 text-blue-600" fill="none" viewBox="0 0 24 24"
                                             stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
@@ -230,8 +269,8 @@
                                             <div
                                                 class="border-t border-dashed border-slate-300 pt-3 flex justify-between font-bold text-lg">
                                                 <span
-                                                    class="text-purple-700">{{ __('messages.total_received') }}:</span>
-                                                <span class="text-purple-700" id="modalNet">Rp 0</span>
+                                                    class="text-blue-700">{{ __('messages.total_received') }}:</span>
+                                                <span class="text-blue-700" id="modalNet">Rp 0</span>
                                             </div>
                                             <div class="bg-blue-50 p-3 rounded-lg mt-3">
                                                 <p class="text-[11px] text-blue-700 flex gap-2">
@@ -252,13 +291,13 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="bg-slate-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6">
+                            <div class="bg-slate-50 px-6 py-4 flex flex-col sm:flex-row-reverse gap-3">
                                 <button type="button" onclick="submitWithdrawal()"
-                                    class="inline-flex w-full justify-center rounded-lg bg-purple-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-purple-500 sm:ml-3 sm:w-auto">
+                                    class="flex-1 sm:flex-none inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 px-8 py-4 text-xs font-black text-white shadow-lg shadow-blue-100 hover:from-blue-700 hover:to-indigo-700 transition-all uppercase tracking-widest whitespace-nowrap">
                                     {{ __('messages.yes_withdraw') }}
                                 </button>
                                 <button type="button" onclick="closeConfirmationModal()"
-                                    class="mt-3 inline-flex w-full justify-center rounded-lg bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto">
+                                    class="flex-1 sm:flex-none inline-flex items-center justify-center rounded-2xl bg-white px-8 py-4 text-xs font-black text-slate-500 shadow-sm border border-slate-200 hover:bg-slate-50 transition-all uppercase tracking-widest whitespace-nowrap">
                                     {{ __('messages.cancel') }}
                                 </button>
                             </div>

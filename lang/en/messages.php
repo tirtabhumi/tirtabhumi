@@ -799,6 +799,10 @@ return [
     'modules' => 'Modules',
     'progress' => 'Progress',
 
+    'search' => 'Search by name',
+    'status' => 'by Status',
+    'total_earnings' => 'Total Earnings',
+    
     // Mentors Section
     'mentors_section_title' => 'Our Best Mentors',
     'mentors_section_desc' => 'Learn directly from experienced practitioners who are internationally certified.',
