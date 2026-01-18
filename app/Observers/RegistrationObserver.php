@@ -32,9 +32,10 @@ class RegistrationObserver
                 ->first();
 
             if ($affiliate && $registration->training) {
-                // Calculate 5% commission
-                $commissionPercentage = 5.00;
-                $commissionAmount = ($registration->training->price * $commissionPercentage) / 100;
+                // Calculate commission using config
+                $commissionRate = config('affiliate.commission_rate', 0.05);
+                $commissionPercentage = $commissionRate * 100; // e.g. 5.00
+                $commissionAmount = $registration->training->price * $commissionRate;
 
                 // Convert to points (1000 points = Rp 1000, so 1 point = Rp 1)
                 $points = $commissionAmount;

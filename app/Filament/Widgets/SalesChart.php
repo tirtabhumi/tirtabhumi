@@ -11,6 +11,8 @@ class SalesChart extends ChartWidget
 {
     protected static ?string $heading = 'Sales over time';
 
+    protected static ?int $sort = 4;
+
     protected function getData(): array
     {
         $data = Trend::model(Registration::class)

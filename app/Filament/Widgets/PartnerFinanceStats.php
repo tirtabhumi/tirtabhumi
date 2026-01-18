@@ -9,6 +9,8 @@ use App\Models\WalletTransaction;
 
 class PartnerFinanceStats extends BaseWidget
 {
+    protected static ?int $sort = 3;
+
     public static function canView(): bool
     {
         return auth()->user()->hasRole('partner');
@@ -18,18 +20,18 @@ class PartnerFinanceStats extends BaseWidget
     {
         $userId = auth()->id();
         $wallet = Wallet::where('user_id', $userId)->first();
-        
+
         $currentBalance = $wallet ? $wallet->balance : 0;
-        
-        $totalEarnings = WalletTransaction::whereHas('wallet', function($q) use ($userId) {
-                $q->where('user_id', $userId);
-            })
+
+        $totalEarnings = WalletTransaction::whereHas('wallet', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
+        })
             ->where('type', 'credit')
             ->sum('amount');
-            
-        $totalWithdrawn = WalletTransaction::whereHas('wallet', function($q) use ($userId) {
-                $q->where('user_id', $userId);
-            })
+
+        $totalWithdrawn = WalletTransaction::whereHas('wallet', function ($q) use ($userId) {
+            $q->where('user_id', $userId);
+        })
             ->where('type', 'debit')
             ->sum('amount');
 

@@ -120,8 +120,12 @@ class AffiliateController extends Controller
 
     public function requestWithdrawal(Request $request)
     {
+        $minWithdrawal = config('affiliate.min_withdrawal', 100000);
+        $taxRate = config('affiliate.tax_rate', 0.11);
+        $platformFeeRate = config('affiliate.platform_fee_rate', 0.05);
+
         $validated = $request->validate([
-            'amount' => 'required|numeric|min:100000', // Minimum 100k
+            'amount' => 'required|numeric|min:' . $minWithdrawal,
         ]);
 
         $affiliate = Auth::user()->affiliate;
@@ -134,8 +138,8 @@ class AffiliateController extends Controller
         }
 
         // Calculate deductions
-        $taxAmount = $validated['amount'] * 0.11; // PPN 11%
-        $platformFee = $validated['amount'] * 0.05; // Platform fee 5%
+        $taxAmount = $validated['amount'] * $taxRate;
+        $platformFee = $validated['amount'] * $platformFeeRate;
         $netAmount = $validated['amount'] - $taxAmount - $platformFee;
 
         // Create withdrawal request
