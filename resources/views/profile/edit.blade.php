@@ -2,19 +2,19 @@
     <section class="pt-16 pb-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
         <div class="container mx-auto px-6 relative z-10 max-w-4xl">
             <!-- Header -->
-            <div class="mb-6">
-                <div class="mb-8">
-                    <a href="{{ route('dashboard') }}"
-                        class="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-[#eef2f6] shadow-[5px_5px_10px_#d1d9e6,-5px_-5px_10px_#ffffff] text-slate-600 font-bold hover:text-indigo-600 transition-all duration-300 hover:scale-105 group">
-                        <svg class="w-5 h-5 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                        <span>{{ __('messages.back_to_dashboard') }}</span>
-                    </a>
+            <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-800">{{ __('messages.profile_settings') }}</h1>
+                    <p class="text-slate-500 mt-2">{{ __('messages.manage_account_desc') }}</p>
                 </div>
-                <h1 class="text-3xl font-bold text-slate-800">{{ __('messages.profile_settings') }}</h1>
-                <p class="text-slate-500 mt-2">{{ __('messages.manage_account_desc') }}</p>
+                <a href="{{ route('dashboard') }}"
+                    class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm group shrink-0 self-start md:self-center">
+                    <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
+                    <span>{{ __('messages.back_to_dashboard') }}</span>
+                </a>
             </div>
 
             <div class="flex flex-col md:items-start gap-8">
@@ -149,7 +149,7 @@
                                     </div>
                                 </div>
 
-                                <div class="flex justify-end">
+                                <div class="flex justify-center">
                                     <button type="submit"
                                         class="neu-btn px-8 py-3 rounded-full text-white bg-indigo-600 hover:bg-indigo-700 font-bold shadow-lg shadow-indigo-200">
                                         {{ __('messages.save_changes') }}
