@@ -20,6 +20,7 @@ class Registration extends Model
         'payment_expiry_time',
         'status',
         'invoice_url',
+        'referred_by',
     ];
 
     protected $casts = [

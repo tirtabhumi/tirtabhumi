@@ -12,9 +12,13 @@
 
         <div class="container mx-auto px-6 relative z-10 max-w-6xl">
             <!-- Breadcrumb -->
-             <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
-                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+            <div class="mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <a href="{{ route('dashboard') }}"
+                    class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                    </svg>
                     {{ __('messages.back_to_dashboard') }}
                 </a>
             </div>
@@ -69,17 +73,19 @@
                             {{ __('messages.total_sales') }}
                         </h3>
 
-                        <div class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-100 mb-4">
+                        <div
+                            class="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-xl p-4 border border-blue-100 mb-4">
                             <p class="text-xs text-slate-500 mb-1">{{ __('messages.sales_via_link') }}</p>
                             <p class="text-3xl font-bold text-slate-800">{{ $totalSales }}</p>
-                            <p class="text-xs text-blue-600 font-medium mt-1">Transactions</p> 
+                            <p class="text-xs text-blue-600 font-medium mt-1">Transactions</p>
                         </div>
                     </div>
 
                     <a href="{{ route('affiliates.sales') }}"
                         class="w-full px-3 py-2 bg-blue-50 hover:bg-blue-100 text-blue-600 text-sm font-semibold rounded-lg transition-all flex items-center justify-center gap-2 group mb-1">
                         <span>{{ __('messages.view_order_details') }}</span>
-                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
                             </path>
                         </svg>
@@ -108,7 +114,9 @@
                                     <p class="text-3xl font-bold text-slate-800">
                                         {{ number_format($affiliate->total_points - $affiliate->withdrawn_points - $affiliate->pending_points, 0, ',', '.') }}
                                     </p>
-                                    <p class="text-xs text-emerald-600 font-medium mt-1">{{ __('messages.points_to_idr') }}</p>
+                                    <p class="text-xs text-emerald-600 font-medium mt-1">
+                                        {{ __('messages.points_to_idr') }}
+                                    </p>
                                 </div>
                             </div>
 
@@ -139,11 +147,13 @@
                                 class="space-y-4">
                                 @csrf
                                 <div>
-                                    <label for="amount" class="text-sm font-bold text-slate-700 mb-2 block">{{ __('messages.withdrawal_amount') }}</label>
+                                    <label for="amount"
+                                        class="text-sm font-bold text-slate-700 mb-2 block">{{ __('messages.withdrawal_amount') }}</label>
                                     <div class="relative">
                                         <span
                                             class="absolute left-4 top-1/2 -translate-y-1/2 text-slate-600 font-semibold text-base">Rp</span>
-                                        <input type="number" id="amount" name="amount" min="100000" step="1000" required
+                                        <input type="number" id="amount" name="amount"
+                                            min="{{ config('affiliate.min_withdrawal', 100000) }}" step="1000" required
                                             placeholder="{{ __('messages.min_withdrawal') }}"
                                             class="w-full pl-12 pr-4 py-3.5 rounded-xl border-2 border-slate-300 bg-white focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 transition-all text-base font-bold text-slate-800 placeholder:text-slate-400 placeholder:font-normal">
                                     </div>
@@ -201,10 +211,12 @@
                                     </div>
                                     <div class="mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left w-full">
                                         <h3 class="text-base font-semibold leading-6 text-gray-900" id="modal-title">
-                                            {{ __('messages.confirm_withdrawal') }}</h3>
+                                            {{ __('messages.confirm_withdrawal') }}
+                                        </h3>
                                         <div class="mt-4 space-y-3">
                                             <div class="flex justify-between text-sm">
-                                                <span class="text-slate-500">{{ __('messages.withdrawal_amount_label') }}:</span>
+                                                <span
+                                                    class="text-slate-500">{{ __('messages.withdrawal_amount_label') }}:</span>
                                                 <span class="font-semibold text-slate-800" id="modalAmount">Rp 0</span>
                                             </div>
                                             <div class="flex justify-between text-sm text-red-500">
@@ -217,7 +229,8 @@
                                             </div>
                                             <div
                                                 class="border-t border-dashed border-slate-300 pt-3 flex justify-between font-bold text-lg">
-                                                <span class="text-purple-700">{{ __('messages.total_received') }}:</span>
+                                                <span
+                                                    class="text-purple-700">{{ __('messages.total_received') }}:</span>
                                                 <span class="text-purple-700" id="modalNet">Rp 0</span>
                                             </div>
                                             <div class="bg-blue-50 p-3 rounded-lg mt-3">
@@ -258,6 +271,13 @@
     </section>
 
     <script>
+        // Affiliate Config
+        const affiliateConfig = {
+            minWithdrawal: {{ config('affiliate.min_withdrawal', 100000) }},
+            taxRate: {{ config('affiliate.tax_rate', 0.11) }},
+            feeRate: {{ config('affiliate.platform_fee_rate', 0.05) }}
+        };
+
         // Copy referral link to clipboard
         function copyReferralLink() {
             const input = document.getElementById('referralLink');
@@ -289,14 +309,14 @@
             const amountInput = document.getElementById('amount');
             const amount = parseFloat(amountInput.value);
 
-            if (!amount || amount < 100000) {
-                alert('Minimal pencairan adalah Rp 100.000');
+            if (!amount || amount < affiliateConfig.minWithdrawal) {
+                alert('Minimal pencairan adalah ' + formatRupiah(affiliateConfig.minWithdrawal));
                 return;
             }
 
             // Calculate fees
-            const tax = amount * 0.11;
-            const fee = amount * 0.05;
+            const tax = amount * affiliateConfig.taxRate;
+            const fee = amount * affiliateConfig.feeRate;
             const net = amount - tax - fee;
 
             // Update modal Content

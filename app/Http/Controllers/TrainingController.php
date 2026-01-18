@@ -27,18 +27,7 @@ class TrainingController extends Controller
 
     public function list(Request $request)
     {
-        // Capture referral code from URL and store in session
-        if ($request->has('ref')) {
-            $referralCode = strtoupper($request->get('ref'));
-            // Verify the referral code exists and is approved
-            $affiliate = \App\Models\Affiliate::where('referral_code', $referralCode)
-                ->where('status', 'approved')
-                ->first();
-
-            if ($affiliate) {
-                session(['referral_code' => $referralCode]);
-            }
-        }
+        // Referral code is now handled by SaveReferralCode global middleware
 
         $query = Training::where('is_active', true)
             ->where(function ($q) {
@@ -98,18 +87,7 @@ class TrainingController extends Controller
             abort(404);
         }
 
-        // Capture referral code from URL and store in session
-        if ($request->has('ref')) {
-            $referralCode = strtoupper($request->get('ref'));
-            // Verify the referral code exists and is approved
-            $affiliate = \App\Models\Affiliate::where('referral_code', $referralCode)
-                ->where('status', 'approved')
-                ->first();
-
-            if ($affiliate) {
-                session(['referral_code' => $referralCode]);
-            }
-        }
+        // Referral code is now handled by SaveReferralCode global middleware
 
         return view('trainings.show', compact('training'));
     }
