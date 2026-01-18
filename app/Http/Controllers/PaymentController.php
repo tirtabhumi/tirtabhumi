@@ -89,7 +89,7 @@ class PaymentController extends Controller
                 'transaction_id' => 'TRX-' . strtoupper(uniqid()) . '-' . time(),
             ]);
         }
-        
+
         // Update expiry time
         $registration->update([
             'payment_expiry_time' => now()->addSeconds(86400),
@@ -97,7 +97,7 @@ class PaymentController extends Controller
 
         try {
             $apiInstance = new \Xendit\Invoice\InvoiceApi();
-            
+
             $createParams = new \Xendit\Invoice\CreateInvoiceRequest([
                 'external_id' => $registration->transaction_id,
                 'amount' => (float) $registration->training->price,
@@ -119,7 +119,7 @@ class PaymentController extends Controller
             $registration->update([
                 'invoice_url' => $result->getInvoiceUrl(),
             ]);
-            
+
             return redirect($result->getInvoiceUrl());
 
         } catch (\Throwable $e) {
@@ -134,31 +134,59 @@ class PaymentController extends Controller
     {
         // Prevent double credit if already paid (this check should be done before calling this, but safe to double check if needed)
         // Here we assume the caller has verified the status transition to 'paid'
-        
+
         $training = $registration->training;
-        if (!$training) return;
+        if (!$training)
+            return;
 
         $partner = $training->partner; // User relation
-        if (!$partner) return;
+        if (!$partner)
+            return;
 
-        // Ensure wallet exists
-        $wallet = \App\Models\Wallet::firstOrCreate(
+        // 1. Calculate Split
+        $price = $registration->training->price;
+        $platformFeeRate = config('platform.fee_rate', 0.10); // Default 10%
+        $platformFee = $price * $platformFeeRate;
+        $partnerAmount = $price - $platformFee;
+
+        // 2. Credit Partner
+        $partnerWallet = \App\Models\Wallet::firstOrCreate(
             ['user_id' => $partner->id],
             ['balance' => 0]
         );
 
-        // Credit the amount
-        $wallet->increment('balance', $registration->training->price);
-        
-        // Log Transaction
+        $partnerWallet->increment('balance', $partnerAmount);
+
+        // Log Transaction for Partner
         \App\Models\WalletTransaction::create([
-            'wallet_id' => $wallet->id,
+            'wallet_id' => $partnerWallet->id,
             'type' => 'credit',
-            'amount' => $registration->training->price,
-            'description' => 'Payment from student for ' . $training->title,
+            'amount' => $partnerAmount,
+            'description' => 'Payment from student for ' . $training->title . ' (deducted ' . ($platformFeeRate * 100) . '% platform fee)',
             'source_type' => get_class($registration),
             'source_id' => $registration->id,
         ]);
+
+        // 3. Credit Super Admin (Platform)
+        // Find a Super Admin user to receive the fee
+        $admin = \App\Models\User::role('super_admin')->orderBy('id', 'asc')->first();
+
+        if ($admin) {
+            $adminWallet = \App\Models\Wallet::firstOrCreate(
+                ['user_id' => $admin->id],
+                ['balance' => 0]
+            );
+            $adminWallet->increment('balance', $platformFee);
+
+            \App\Models\WalletTransaction::create([
+                'wallet_id' => $adminWallet->id,
+                'type' => 'credit',
+                'amount' => $platformFee,
+                'description' => 'Platform Fee from ' . $training->title . ' (Partner: ' . $partner->name . ')',
+                'source_type' => get_class($registration),
+                'source_id' => $registration->id,
+            ]);
+        }
     }
 
     public function finish(Registration $registration)
@@ -172,15 +200,15 @@ class PaymentController extends Controller
             try {
                 \Xendit\Configuration::setXenditKey(config('services.xendit.key'));
                 $apiInstance = new \Xendit\Invoice\InvoiceApi();
-                
+
                 // Get invoices by external_id (transaction_id)
                 $invoices = $apiInstance->getInvoices(null, $registration->transaction_id);
-                
+
                 if (!empty($invoices) && count($invoices) > 0) {
                     // Start checking the first match (usually correct due to unique external_id)
                     $invoice = $invoices[0];
                     $status = $invoice['status'];
-                    
+
                     // Only update if status is actually changing from non-final to final
                     if (($status === 'PAID' || $status === 'SETTLED') && $registration->payment_status !== 'paid') {
                         $registration->update([
@@ -188,7 +216,7 @@ class PaymentController extends Controller
                             'payment_status' => 'paid',
                             'payment_method' => $invoice['payment_method'] ?? 'xendit',
                         ]);
-                        
+
                         $this->creditPartnerWallet($registration);
 
                     } elseif ($status === 'EXPIRED') {
@@ -245,18 +273,18 @@ class PaymentController extends Controller
 
             if ($registration) {
                 if ($data['status'] === 'PAID') {
-                     // Check if not already paid to avoid double credit
-                     if ($registration->payment_status !== 'paid') {
+                    // Check if not already paid to avoid double credit
+                    if ($registration->payment_status !== 'paid') {
                         $registration->update([
                             'status' => 'completed',
                             'payment_status' => 'paid',
                             'payment_method' => $data['payment_method'] ?? $data['payment_channel'] ?? 'xendit',
                         ]);
-                        
+
                         $this->creditPartnerWallet($registration);
-                     }
+                    }
                 } elseif ($data['status'] === 'EXPIRED') {
-                     $registration->update([
+                    $registration->update([
                         'status' => 'cancelled',
                         'payment_status' => 'expired',
                     ]);
