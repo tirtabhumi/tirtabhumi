@@ -56,17 +56,17 @@ class UserResource extends Resource
                             ->password(),
                         Forms\Components\TextInput::make('role')
                             ->required()
-                            ->hidden(fn () => auth()->user()->hasRole('partner'))
+                            ->hidden(fn() => auth()->user()->hasRole('partner'))
                             ->reactive(),
                         Forms\Components\Select::make('organization_id')
                             ->relationship('organization', 'name')
                             ->searchable()
                             ->preload()
-                            ->visible(fn (Forms\Get $get) => $get('role') === 'partner')
-                            ->disabled(fn () => auth()->user()->hasRole('partner'))
-                            ->default(fn () => auth()->user()->hasRole('partner') ? auth()->user()->organization_id : null)
+                            ->visible(fn(Forms\Get $get) => $get('role') === 'partner')
+                            ->disabled(fn() => auth()->user()->hasRole('partner'))
+                            ->default(fn() => auth()->user()->hasRole('partner') ? auth()->user()->organization_id : null)
                             ->dehydrated() // Ensure it is saved even if disabled
-                            ->required(fn (Forms\Get $get) => $get('role') === 'partner'),
+                            ->required(fn(Forms\Get $get) => $get('role') === 'partner'),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
                         Forms\Components\Select::make('roles')
@@ -74,7 +74,7 @@ class UserResource extends Resource
                             ->multiple()
                             ->preload()
                             ->searchable()
-                            ->hidden(fn () => auth()->user()->hasRole('partner')),
+                            ->hidden(fn() => auth()->user()->hasRole('partner')),
                         Forms\Components\TextInput::make('phone')
                             ->tel(),
                         Forms\Components\Toggle::make('is_blocked')
@@ -161,7 +161,7 @@ class UserResource extends Resource
                     ->color('info')
                     ->searchable()
                     ->sortable()
-                    ->hidden(fn () => auth()->user()->hasRole('partner')),
+                    ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('affiliate.status')
                     ->label('Affiliate Status')
                     ->badge()
@@ -172,10 +172,11 @@ class UserResource extends Resource
                         default => 'gray',
                     })
                     ->sortable()
-                    ->hidden(fn () => auth()->user()->hasRole('partner')),
+                    ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('email_verified_at')
                     ->dateTime()
-                    ->sortable(),
+                    ->sortable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -185,17 +186,41 @@ class UserResource extends Resource
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('roles.name')
-                    ->label('Roles')
+                    ->label('Role')
+                    ->formatStateUsing(fn($state) => $state === 'end_user' ? 'End User' : ucfirst(str_replace('_', ' ', $state)))
                     ->badge()
-                    ->color(fn ($state): string => match ($state) {
+                    ->color(fn($state): string => match ($state) {
                         'super_admin' => 'danger',
                         'admin' => 'warning',
                         'partner' => 'info',
                         'finance' => 'success',
+                        'end_user' => 'gray',
                         default => 'gray',
                     })
                     ->searchable()
-                    ->hidden(fn () => auth()->user()->hasRole('partner')),
+                    ->default('End User')
+                    ->hidden(fn() => auth()->user()->hasRole('partner')),
+                Tables\Columns\TextColumn::make('organization.name')
+                    ->label('Organization')
+                    ->badge()
+                    ->color('info')
+                    ->searchable()
+                    ->sortable()
+                    ->default('End User')
+                    ->hidden(fn() => auth()->user()->hasRole('partner')),
+                Tables\Columns\TextColumn::make('affiliate.status')
+                    ->label('Affiliate Status')
+                    ->badge()
+                    ->color(fn($state): string => match ($state) {
+                        'approved' => 'success',
+                        'rejected' => 'danger',
+                        'pending' => 'warning',
+                        default => 'gray',
+                    })
+                    ->formatStateUsing(fn($state) => ucfirst($state))
+                    ->default('Not Requested')
+                    ->sortable()
+                    ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('google_id')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
@@ -203,13 +228,19 @@ class UserResource extends Resource
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('phone')
-                    ->searchable(),
+                    ->searchable()
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('is_blocked')
                     ->boolean()
                     ->label('Blocked')
                     ->sortable(),
             ])
             ->filters([
+                Tables\Filters\SelectFilter::make('role')
+                    ->label('Role')
+                    ->relationship('roles', 'name')
+                    ->preload()
+                    ->searchable(),
                 Tables\Filters\TernaryFilter::make('is_blocked')
                     ->label('Blocked Status'),
             ])
