@@ -31,12 +31,11 @@ class EditWithdrawalRequest extends EditRecord
                  $record->update(['processed_by' => $user->id]);
              }
 
-             $description = "Status updated to {$record->status} by {$user->name}";
-             if ($record->status === 'approved') {
-                 $description = "Approved by {$user->name}";
-             } elseif ($record->status === 'rejected') {
-                 $description = "Rejected by {$user->name}";
-             }
+             $oldStatus = $record->getOriginal('status');
+             $newStatus = $record->status;
+             $note = $record->admin_note ? " with note: '{$record->admin_note}'" : "";
+
+             $description = "{$user->name} changed status '{$oldStatus}' to '{$newStatus}'{$note}";
 
              \App\Models\WithdrawalRequestHistory::create([
                  'withdrawal_request_id' => $record->id,
@@ -60,6 +59,16 @@ class EditWithdrawalRequest extends EditRecord
                          'source_id' => $record->id,
                      ]);
                  }
+
+                 // Notify partner
+                 \Illuminate\Support\Facades\Mail::to($record->user->email)
+                     ->send(new \App\Mail\WithdrawalRejectedPartnerMail($record));
+             }
+
+             // If status changed to approved, notify partner
+             if ($record->status === 'approved') {
+                 \Illuminate\Support\Facades\Mail::to($record->user->email)
+                     ->send(new \App\Mail\WithdrawalApprovedPartnerMail($record));
              }
         }
     }

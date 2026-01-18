@@ -56,15 +56,17 @@ class UserResource extends Resource
                             ->password(),
                         Forms\Components\TextInput::make('role')
                             ->required()
-                            ->hidden(fn () => auth()->user()->hasRole('partner')),
+                            ->hidden(fn () => auth()->user()->hasRole('partner'))
+                            ->reactive(),
                         Forms\Components\Select::make('organization_id')
                             ->relationship('organization', 'name')
                             ->searchable()
                             ->preload()
+                            ->visible(fn (Forms\Get $get) => $get('role') === 'partner')
                             ->disabled(fn () => auth()->user()->hasRole('partner'))
                             ->default(fn () => auth()->user()->hasRole('partner') ? auth()->user()->organization_id : null)
                             ->dehydrated() // Ensure it is saved even if disabled
-                            ->required(),
+                            ->required(fn (Forms\Get $get) => $get('role') === 'partner'),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
                         Forms\Components\Select::make('roles')

@@ -55,7 +55,14 @@ class CreateWithdrawalRequest extends CreateRecord
             'withdrawal_request_id' => $record->id,
             'user_id' => auth()->id(),
             'action' => 'created',
-            'description' => "Withdrawal requested by " . auth()->user()->name,
+            'description' => auth()->user()->name . " requested withdrawal",
         ]);
+
+        // Notify admins
+        $admins = \App\Models\User::role(['super_admin', 'admin', 'finance'])->get();
+        foreach ($admins as $admin) {
+            \Illuminate\Support\Facades\Mail::to($admin->email)
+                ->send(new \App\Mail\WithdrawalRequestedAdminMail($record));
+        }
     }
 }

@@ -22,6 +22,7 @@ class Training extends Model
         'price',
         'location_offline',
         'location_online',
+        'meeting_platform',
         'is_active',
     ];
 
