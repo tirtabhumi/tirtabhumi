@@ -1,13 +1,18 @@
 <x-layout title="{{ __('messages.training_title') }} - {{ config('app.name') }}">
-     <section class="pt-32 pb-12 bg-[#eef2f6] min-h-screen relative overflow-hidden">
+     <section class="pt-32 pb-20 bg-[#eef2f6] relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
-            <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
-            <div class="absolute top-0 right-1/4 w-96 h-96 bg-cyan-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000"></div>
-            <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
+            <div class="absolute top-1/4 left-1/4 w-96 h-96 lg:w-[700px] lg:h-[700px] bg-indigo-300/20 rounded-full blur-[120px] mix-blend-multiply animate-blob"></div>
+            <div class="absolute top-1/3 right-1/4 w-96 h-96 lg:w-[600px] lg:h-[600px] bg-cyan-300/20 rounded-full blur-[100px] mix-blend-multiply animate-blob animation-delay-2000"></div>
+            <div class="absolute bottom-1/4 left-1/3 w-96 h-96 lg:w-[800px] lg:h-[800px] bg-purple-300/20 rounded-full blur-[130px] mix-blend-multiply animate-blob animation-delay-4000"></div>
+            
+            <!-- Additional Large Screen Blooms -->
+            <div class="hidden xl:block absolute top-1/2 left-[-10%] w-[600px] h-[600px] bg-blue-200/10 rounded-full blur-[100px] animate-blob animation-delay-3000"></div>
+            <div class="hidden xl:block absolute top-1/2 right-[-10%] w-[600px] h-[600px] bg-pink-200/10 rounded-full blur-[100px] animate-blob animation-delay-5000"></div>
         </div>
 
-        <!-- Main Hero Content (Shifted Down) -->
+        
+        <!-- Main Hero Content -->
         <div class="container mx-auto px-6 relative z-10">
             <!-- Breadcrumb -->
             <div class="mb-10 animate-fade-in-up">
@@ -34,8 +39,34 @@
                 </a>
             </div>
 
-        </div>
+            <!-- Floating Decorative Elements -->
+            <div class="flex flex-col md:flex-row gap-6 justify-center mt-16">
+                <!-- Project Based Chip -->
+                <div class="animate-bounce transition-all duration-1000" style="animation-duration: 4s;">
+                    <div class="neu-flat px-6 py-3 rounded-2xl flex items-center gap-3 bg-white/40 backdrop-blur-md border border-white/50 shadow-lg">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.538.538a2 2 0 01-2.828 0l-.538-.538z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Project Based</p>
+                            <p class="text-sm font-bold text-slate-800">Learn by Doing</p>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Certification Chip -->
+                <div class="animate-bounce transition-all duration-1000" style="animation-duration: 5s; animation-delay: 1s;">
+                    <div class="neu-flat px-6 py-3 rounded-2xl flex items-center gap-3 bg-white/40 backdrop-blur-md border border-white/50 shadow-lg">
+                        <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"></path></svg>
+                        </div>
+                        <div>
+                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Certification</p>
+                            <p class="text-sm font-bold text-slate-800">Official Partner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -265,7 +296,7 @@
 
             @if($trainings->count() > 0)
                 <div class="grid md:grid-cols-3 gap-8">
-                    @foreach($trainings->take(3) as $training)
+                    @foreach($trainings as $training)
                         <x-training-card :training="$training" />
                     @endforeach
                 </div>

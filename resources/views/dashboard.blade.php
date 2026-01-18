@@ -215,7 +215,7 @@
                                     @endphp
 
                                     <div class="w-full">
-                                        <div class="flex items-center justify-between text-xs text-slate-600 mb-1">
+                                        <div class="flex items-center justify-end gap-2 text-xs text-slate-600 mb-1">
                                             <span class="font-medium">{{ __('messages.progress') }}</span>
                                             <span class="font-bold">{{ $progress }}%</span>
                                         </div>

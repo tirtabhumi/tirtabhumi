@@ -41,15 +41,28 @@ class Training extends Model
         return $this->hasMany(TrainingModule::class)->orderBy('order');
     }
 
+    public function userModuleProgresses()
+    {
+        return $this->hasManyThrough(UserModuleProgress::class, TrainingModule::class);
+    }
+
     public function partner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    public function scopeOwnedByPartner($query)
+    public static function scopeOwnedByPartner($query)
     {
-        if (auth()->user() && auth()->user()->hasRole('partner')) {
-            return $query->where('user_id', auth()->id());
+        $user = auth()->user();
+        if ($user && $user->hasRole('partner')) {
+            return $query->where(function ($sq) use ($user) {
+                $sq->where('user_id', $user->id);
+                if ($user->organization_id) {
+                    $sq->orWhereHas('partner', function ($pq) use ($user) {
+                        $pq->where('organization_id', $user->organization_id);
+                    });
+                }
+            });
         }
         return $query;
     }

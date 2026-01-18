@@ -111,4 +111,9 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     {
         return $this->belongsTo(Organization::class);
     }
+
+    public function moduleProgress(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(UserModuleProgress::class);
+    }
 }

@@ -128,40 +128,9 @@
                                 <div class="border-t border-slate-200/50 my-4"></div>
                                 @endif
 
-                                <!-- Level Filter -->
-                                @if(isset($filters['level']) && !empty($filters['level']))
-                                <div class="mb-6">
-                                    <button type="button" class="flex items-center justify-between w-full mb-3 group" onclick="document.getElementById('level-list').classList.toggle('hidden')">
-                                        <h4 class="font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">Level</h4>
-                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-                                    </button>
-                                    <div id="level-list" class="space-y-3">
-                                        @foreach($filters['level'] as $level)
-                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                               <input type="checkbox" name="level[]" value="{{ $level }}"
-                                                    class="peer sr-only"
-                                                    {{ in_array($level, (array)request('level', [])) ? 'checked' : '' }}
-                                                    onchange="setTimeout(() => this.form.submit(), 300)">
 
-                                                <div class="checkbox-ui w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent">
-                                                    <svg class="w-3.5 h-3.5 check-icon transform scale-0 transition-transform duration-200"
-                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
-                                                    </svg>
-                                                </div>
 
-                                                <span class="checkbox-text text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium">
-                                                    {{ ucfirst($level) }}
-                                                </span>
-                                            </label>
-                                        @endforeach
-                                    </div>
-                                </div>
-                                @endif
 
-                                @if(isset($filters['level']) && isset($filters['type']))
-                                <div class="border-t border-slate-200/50 my-4"></div>
-                                @endif
 
                                 <!-- Type Filter -->
                                 @if(isset($filters['type']) && !empty($filters['type']))
@@ -220,11 +189,7 @@
                                         <input type="hidden" name="category[]" value="{{ $cat }}">
                                     @endforeach
                                 @endif
-                                @if(request('level')) 
-                                    @foreach((array)request('level') as $lvl)
-                                        <input type="hidden" name="level[]" value="{{ $lvl }}">
-                                    @endforeach
-                                @endif
+
                                 @if(request('type'))
                                     @foreach((array)request('type') as $typ)
                                         <input type="hidden" name="type[]" value="{{ $typ }}">
@@ -264,7 +229,7 @@
                                 <div class="neu-pressed rounded-full p-6 w-24 h-24 mx-auto mb-4 flex items-center justify-center text-slate-400">
                                     <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                                 </div>
-                                @if(request()->anyFilled(['search', 'level', 'type']))
+                                @if(request()->anyFilled(['search', 'type']))
                                     <h3 class="text-lg font-bold text-slate-800 mb-2">No programs found</h3>
                                     <p class="text-slate-500 max-w-sm mx-auto">Try different filters or search terms.</p>
                                     <a href="{{ request()->url() }}" class="inline-block mt-4 neu-btn px-6 py-2 rounded-xl text-indigo-600 font-medium hover:text-indigo-700">Reset Filter</a>

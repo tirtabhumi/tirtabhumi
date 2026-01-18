@@ -33,6 +33,57 @@
                                 {!! $training->description !!}
                             </div>
                         </div>
+
+                        <!-- Course Curriculum / Session Schedule (New) -->
+                        @if($training->modules->count() > 0)
+                            <div class="neu-flat rounded-2xl p-8 border border-white/50 space-y-6">
+                                <h2 class="text-2xl font-bold text-slate-800 flex items-center gap-3">
+                                    <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.246.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.246.477-4.5 1.253"></path></svg>
+                                    Sessions & Curriculum
+                                </h2>
+
+                                <div class="space-y-4">
+                                    @foreach($training->modules->sortBy('order') as $module)
+                                        <div class="p-5 rounded-xl border border-slate-100 bg-white shadow-sm hover:shadow-md transition-shadow">
+                                            <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+                                                <div class="flex items-start gap-4">
+                                                    <div class="w-10 h-10 rounded-full bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0 font-bold text-sm">
+                                                        {{ $loop->iteration }}
+                                                    </div>
+                                                    <div>
+                                                        <h3 class="font-bold text-slate-800">{{ $module->title }}</h3>
+                                                        <p class="text-xs text-slate-500 uppercase tracking-wider font-semibold">{{ $module->type }}</p>
+                                                    </div>
+                                                </div>
+
+                                                @if($module->meeting_link)
+                                                    <div class="flex-shrink-0">
+                                                        @if($isRegistered ?? false)
+                                                            @php
+                                                                $mLink = trim($module->meeting_link);
+                                                                if ($mLink && !str_starts_with($mLink, 'http://') && !str_starts_with($mLink, 'https://')) {
+                                                                    $mLink = 'https://' . $mLink;
+                                                                }
+                                                            @endphp
+                                                            <a href="{{ $mLink }}" target="_blank" 
+                                                               class="inline-flex items-center gap-2 px-4 py-2 bg-indigo-50 text-indigo-700 rounded-lg text-sm font-bold hover:bg-indigo-100 transition-colors">
+                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                                                {{ $module->meeting_platform ?: 'Join Meeting' }}
+                                                            </a>
+                                                        @else
+                                                            <div class="inline-flex items-center gap-2 px-4 py-2 bg-slate-50 text-slate-400 rounded-lg text-sm font-bold cursor-not-allowed" title="Please register to access">
+                                                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+                                                                Locked
+                                                            </div>
+                                                        @endif
+                                                    </div>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
                     </div>
 
                     <!-- Sidebar / Registration Form -->
@@ -77,9 +128,22 @@
                                                     {{ $training->type ? __('messages.training_type_' . $training->type) : '-' }}
                                                 </span>
                                                 @if($training->type === 'online' || $training->type === 'hybrid')
-                                                    @if($training->location_online)
+                                                    @if($training->modules->whereNotNull('meeting_link')->count() > 0)
+                                                        <span class="block text-indigo-600 text-xs mt-1 font-bold italic">
+                                                            Check sessions below for links
+                                                        </span>
+                                                    @elseif($training->location_online)
+                                                        @php
+                                                            $onlineUrl = trim($training->location_online);
+                                                            if ($onlineUrl && !str_starts_with($onlineUrl, 'http://') && !str_starts_with($onlineUrl, 'https://')) {
+                                                                $onlineUrl = 'https://' . $onlineUrl;
+                                                            }
+                                                        @endphp
                                                         <span class="block text-slate-600 text-xs mt-1">
-                                                            <span class="font-semibold">Online:</span> {{ $training->location_online }}
+                                                            <span class="font-semibold">Online:</span> 
+                                                            <a href="{{ $onlineUrl }}" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-bold hover:underline break-all">
+                                                                {{ $training->location_online }}
+                                                            </a>
                                                         </span>
                                                     @endif
                                                 @endif

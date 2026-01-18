@@ -1,5 +1,5 @@
 <x-layout-upventure title="Payment - {{ $registration->training->title }}">
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen">
+    <section class="pt-4 pb-24 bg-[#eef2f6] min-h-screen">
         <div class="container mx-auto px-6">
             <div class="max-w-4xl mx-auto">
 
@@ -22,11 +22,9 @@
                     }
                 </style>
 
-                <div class="mb-8 animate-fade-in-up">
-                    <a href="{{ route('trainings.show', $registration->training->slug) }}" class="inline-flex items-center text-sm font-bold text-slate-500 hover:text-indigo-600 transition-colors group">
-                        <svg class="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
+                <div class="mb-4 animate-fade-in-up">
+                    <a href="{{ route('trainings.show', $registration->training->slug) }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to Learning Details
                     </a>
                 </div>

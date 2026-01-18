@@ -24,6 +24,7 @@ class TrainingModule extends Model
         'max_attempts',
         'meeting_platform',
         'meeting_link',
+        'scheduled_at',
     ];
 
     protected $casts = [
@@ -31,6 +32,7 @@ class TrainingModule extends Model
         'is_preview' => 'boolean',
         'min_score' => 'integer',
         'max_attempts' => 'integer',
+        'scheduled_at' => 'datetime',
     ];
 
     public function training()
@@ -51,6 +53,17 @@ class TrainingModule extends Model
             ->exists();
     }
 
+    public function isCompletedOrSubmittedBy($userId)
+    {
+        return $this->userProgress()
+            ->where('user_id', $userId)
+            ->where(function ($query) {
+                $query->where('is_completed', true)
+                    ->orWhereIn('status', ['Menunggu Penilaian', 'submitted']);
+            })
+            ->exists();
+    }
+
     public function isUnlockedFor($userId)
     {
         // First module is always unlocked
@@ -68,6 +81,6 @@ class TrainingModule extends Model
             return true;
         }
 
-        return $previousModule->isCompletedBy($userId);
+        return $previousModule->isCompletedOrSubmittedBy($userId);
     }
 }

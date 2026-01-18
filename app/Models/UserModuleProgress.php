@@ -15,12 +15,19 @@ class UserModuleProgress extends Model
         'is_completed',
         'completed_at',
         'score',
-        'attempts'
+        'attempts',
+        'submission_text',
+        'submission_file',
+        'status',
+        'quiz_answers',
+        'mentor_feedback',
     ];
 
     protected $casts = [
         'is_completed' => 'boolean',
         'completed_at' => 'datetime',
+        'submission_file' => 'array',
+        'quiz_answers' => 'array',
     ];
 
     public function user()

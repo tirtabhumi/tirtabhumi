@@ -131,16 +131,24 @@ class MyClassController extends Controller
 
         $training = $registration->training()->with('modules')->firstOrFail();
 
-        // Check completion progress
-        $userProgress = UserModuleProgress::where('user_id', $user->id)
+        // Check completion progress (all is_completed must be true)
+        $completedCount = UserModuleProgress::where('user_id', $user->id)
             ->whereIn('training_module_id', $training->modules->pluck('id'))
             ->where('is_completed', true)
             ->count();
 
         $totalModules = $training->modules->count();
 
-        if ($totalModules > 0 && $userProgress < $totalModules) {
-            return back()->with('error', 'Please complete all modules to generate certificate.');
+        // Check for ANY pending grading status that isn't already marked completed
+        $hasPending = UserModuleProgress::where('user_id', $user->id)
+            ->whereIn('training_module_id', $training->modules->pluck('id'))
+            ->where('status', 'Menunggu Penilaian')
+            ->where('is_completed', false)
+            ->exists();
+
+        if ($totalModules > 0 && ($completedCount < $totalModules || $hasPending)) {
+            $msg = $hasPending ? 'Your assignments/quizzes are still being graded by the mentor.' : 'Please complete all modules to generate certificate.';
+            return back()->with('error', $msg);
         }
 
         return view('my-classes.certificate', compact('training', 'user', 'registration'));
@@ -162,8 +170,9 @@ class MyClassController extends Controller
         }
 
         $isQuiz = $module->type === 'quiz' || (!empty($module->questions) && count($module->questions ?? []) > 0);
+        $isManual = $request->input('manual_complete', false);
 
-        if ($isQuiz) {
+        if ($isQuiz && !$isManual) {
             $score = $request->input('score', 0);
 
             $progress = UserModuleProgress::firstOrNew([
@@ -194,14 +203,40 @@ class MyClassController extends Controller
                 ]);
             }
 
+            // Check if there are essay questions
+            $hasEssay = false;
+            foreach ($module->questions as $q) {
+                if (($q['question_type'] ?? '') === 'essay') {
+                    $hasEssay = true;
+                    break;
+                }
+            }
+
             // Update progress
             $progress->attempts = ($progress->attempts ?? 0) + 1;
             $progress->score = $score;
+            $progress->quiz_answers = $request->quiz_answers;
 
             $minScore = $module->min_score ?? 70;
             $passed = $score >= $minScore;
 
+            if ($hasEssay) {
+                $progress->status = 'Menunggu Penilaian';
+                $progress->is_completed = false; // Must be graded by mentor
+                $progress->save();
+                
+                return response()->json([
+                    'success' => true,
+                    'completed' => false,
+                    'is_pending' => true,
+                    'score' => $score,
+                    'attempts' => $progress->attempts,
+                    'message' => 'Jawaban Essay berhasil disimpan! Menunggu penilaian mentor.'
+                ]);
+            }
+
             if ($passed) {
+                $progress->status = 'graded';
                 $progress->is_completed = true;
                 $progress->completed_at = now();
                 $progress->save();
@@ -214,6 +249,7 @@ class MyClassController extends Controller
                     'message' => 'Quiz passed! 🎉'
                 ]);
             } else {
+                $progress->status = 'graded';
                 $progress->save();
                 return response()->json([
                     'success' => true,
@@ -235,6 +271,7 @@ class MyClassController extends Controller
             [
                 'is_completed' => true,
                 'completed_at' => now(),
+                'status' => 'graded',
             ]
         );
 
@@ -268,22 +305,23 @@ class MyClassController extends Controller
 
         if ($request->hasFile('submission_file')) {
             $path = $request->file('submission_file')->store('assignments/' . $user->id, 'public');
-            $progress->submission_file = $path;
+            // Store as array to match Model cast and Filament expectance
+            $progress->submission_file = [$path];
         }
 
         if ($request->submission_text) {
             $progress->submission_text = $request->submission_text;
         }
 
-        $progress->status = 'submitted';
-        $progress->is_completed = true; // Mark as completed upon submission? Or wait for grade? For now mark complete.
-        $progress->completed_at = now();
+        $progress->status = 'Menunggu Penilaian';
+        $progress->is_completed = false; // Wait for grading
+        $progress->completed_at = null;
         $progress->save();
 
         return response()->json([
             'success' => true,
-            'message' => 'Assignment submitted successfully!',
-            'submission_date' => $progress->completed_at->diffForHumans()
+            'message' => 'Assignment submitted! Menunggu penilaian mentor.',
+            'submission_date' => now()->diffForHumans()
         ]);
     }
 }

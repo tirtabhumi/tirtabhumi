@@ -26,6 +26,12 @@ class TrainingPolicy
         if ($user->hasRole('super_admin') || $user->hasRole('admin')) {
             return true;
         }
+
+        // Check if same organization
+        if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id) {
+            return true;
+        }
+
         return $user->can('view_any_training') && $training->user_id === $user->id;
     }
 
@@ -42,7 +48,12 @@ class TrainingPolicy
      */
     public function update(User $user, Training $training): bool
     {
-        if ($user->hasRole('super_admin')) {
+        if ($user->hasRole('super_admin') || $user->hasRole('admin')) {
+            return true;
+        }
+
+        // Check if same organization
+        if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id) {
             return true;
         }
         

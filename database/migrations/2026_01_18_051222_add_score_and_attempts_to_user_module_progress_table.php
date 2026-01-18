@@ -12,14 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('user_module_progress', function (Blueprint $table) {
-            if (!Schema::hasColumn('user_module_progress', 'submission_text')) {
-                $table->text('submission_text')->nullable()->after('is_completed');
+            if (!Schema::hasColumn('user_module_progress', 'score')) {
+                $table->integer('score')->default(0)->after('status');
             }
-            if (!Schema::hasColumn('user_module_progress', 'submission_file')) {
-                $table->string('submission_file')->nullable()->after('submission_text');
-            }
-            if (!Schema::hasColumn('user_module_progress', 'status')) {
-                $table->string('status')->default('started')->after('submission_file'); // started, submitted, graded
+            if (!Schema::hasColumn('user_module_progress', 'attempts')) {
+                $table->integer('attempts')->default(0)->after('score');
             }
         });
     }

@@ -90,6 +90,31 @@ class ModulesRelationManager extends RelationManager
                     ])
                     ->columnSpanFull(),
 
+                Forms\Components\Section::make('Assessment Settings')
+                    ->schema([
+                        Forms\Components\TextInput::make('min_score')
+                            ->label('Minimum Passing Score')
+                            ->numeric()
+                            ->default(70)
+                            ->minValue(0)
+                            ->maxValue(100)
+                            ->helperText('Required score to pass this module.'),
+                        Forms\Components\TextInput::make('max_attempts')
+                            ->label('Maximum Attempts')
+                            ->numeric()
+                            ->default(3)
+                            ->minValue(1)
+                            ->visible(fn(Forms\Get $get) => $get('type') === 'quiz')
+                            ->helperText('Number of times a student can take this quiz.'),
+                    ])
+                    ->columns(2)
+                    ->visible(fn(Forms\Get $get) => in_array($get('type'), ['quiz', 'assignment'])),
+
+                Forms\Components\DateTimePicker::make('scheduled_at')
+                    ->label('Scheduled Date & Time')
+                    ->visible(fn(Forms\Get $get) => $get('type') === 'online_session')
+                    ->required(fn(Forms\Get $get) => $get('type') === 'online_session'),
+
                 Forms\Components\TextInput::make('order')
                     ->numeric()
                     ->default(fn(\Filament\Resources\RelationManagers\RelationManager $livewire): int => $livewire->getOwnerRecord()->modules()->max('order') + 1)
