@@ -31,6 +31,7 @@ class PartnerAndAffiliateBalanceStats extends BaseWidget
             $pendingPoints = Affiliate::sum('pending_points');
 
             $affiliateBalance = $totalPoints - $withdrawnPoints;
+            $withdrawnAffiliateBalance = $withdrawnPoints;
 
             // Note: Pending points are usually deducted from available? 
             // If "Saldo Saat Ini" means what they HOLD, it's Total - Withdrawn.
@@ -38,18 +39,27 @@ class PartnerAndAffiliateBalanceStats extends BaseWidget
             // I will use Total - Withdrawn (Current Assets held by Affiliates).
         } catch (\Exception $e) {
             $affiliateBalance = 0;
+            $withdrawnAffiliateBalance = 0;
         }
 
         return [
             Stat::make('Saldo Partner Saat Ini', 'Rp ' . number_format($partnerBalance, 0, ',', '.'))
                 ->description('Total Saldo Tersimpan di Dompet Partner')
                 ->descriptionIcon('heroicon-m-wallet')
-                ->color('primary'),
+                ->color('primary')
+                ->url(\App\Filament\Resources\WithdrawalRequestResource::getUrl('index')), // Link to partner withdrawals? or User list
 
             Stat::make('Saldo Affiliate Saat Ini', 'Rp ' . number_format($affiliateBalance, 0, ',', '.'))
-                ->description('Total Komisi Affiliate (Belum Dicairkan)')
+                ->description('Total Komisi Affiliate (Tersedia)')
                 ->descriptionIcon('heroicon-m-users')
-                ->color('info'),
+                ->color('info')
+                ->url(\App\Filament\Resources\AffiliateSaleResource::getUrl('index')), // Link to Commissions list
+
+            Stat::make('Saldo Affiliates yang Sudah Dicairkan', 'Rp ' . number_format($withdrawnAffiliateBalance, 0, ',', '.'))
+                ->description('Total Komisi Sudah Dibayarkan')
+                ->descriptionIcon('heroicon-m-check-circle')
+                ->color('success')
+                ->url(\App\Filament\Resources\AffiliateWithdrawalResource::getUrl('index')), // Links to table with proofs
         ];
     }
 }

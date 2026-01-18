@@ -143,50 +143,23 @@ class PaymentController extends Controller
         if (!$partner)
             return;
 
-        // 1. Calculate Split
-        $price = $registration->training->price;
-        $platformFeeRate = config('platform.fee_rate', 0.10); // Default 10%
-        $platformFee = $price * $platformFeeRate;
-        $partnerAmount = $price - $platformFee;
-
-        // 2. Credit Partner
+        // Revert to 100% Credit (Fee deducted at Withdrawal)
         $partnerWallet = \App\Models\Wallet::firstOrCreate(
             ['user_id' => $partner->id],
             ['balance' => 0]
         );
 
-        $partnerWallet->increment('balance', $partnerAmount);
+        $partnerWallet->increment('balance', $registration->training->price);
 
-        // Log Transaction for Partner
+        // Log Transaction
         \App\Models\WalletTransaction::create([
             'wallet_id' => $partnerWallet->id,
             'type' => 'credit',
-            'amount' => $partnerAmount,
-            'description' => 'Payment from student for ' . $training->title . ' (deducted ' . ($platformFeeRate * 100) . '% platform fee)',
+            'amount' => $registration->training->price,
+            'description' => 'Payment from student for ' . $training->title,
             'source_type' => get_class($registration),
             'source_id' => $registration->id,
         ]);
-
-        // 3. Credit Super Admin (Platform)
-        // Find a Super Admin user to receive the fee
-        $admin = \App\Models\User::role('super_admin')->orderBy('id', 'asc')->first();
-
-        if ($admin) {
-            $adminWallet = \App\Models\Wallet::firstOrCreate(
-                ['user_id' => $admin->id],
-                ['balance' => 0]
-            );
-            $adminWallet->increment('balance', $platformFee);
-
-            \App\Models\WalletTransaction::create([
-                'wallet_id' => $adminWallet->id,
-                'type' => 'credit',
-                'amount' => $platformFee,
-                'description' => 'Platform Fee from ' . $training->title . ' (Partner: ' . $partner->name . ')',
-                'source_type' => get_class($registration),
-                'source_id' => $registration->id,
-            ]);
-        }
     }
 
     public function finish(Registration $registration)
