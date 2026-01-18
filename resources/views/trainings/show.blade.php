@@ -1,10 +1,10 @@
 <x-layout-upventure title="{{ $training->title }} - Tirtabhumi Training" description="{{ Str::limit(strip_tags($training->description), 150) }}">
 
-    <section class="pt-32 pb-24 bg-[#eef2f6]">
+    <section class="pt-4 pb-24 bg-[#eef2f6]">
         <div class="container mx-auto px-6">
             <div class="max-w-6xl mx-auto">
                 <!-- Back to UpVenture Learnings -->
-                <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                <div class="mb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                     <a href="{{ route('trainings.index') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                         Back to UpVenture Learnings

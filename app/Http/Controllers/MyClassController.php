@@ -240,4 +240,50 @@ class MyClassController extends Controller
 
         return response()->json(['success' => true, 'completed' => true]);
     }
+
+    public function submitAssignment(Request $request, $moduleId)
+    {
+        $request->validate([
+            'submission_text' => 'nullable|url',
+            'submission_file' => 'nullable|file|mimes:pdf,zip,doc,docx,jpg,png|max:10240', // 10MB
+        ]);
+
+        $user = auth()->user();
+        $module = TrainingModule::findOrFail($moduleId);
+
+        // Verify access
+        $hasAccess = Registration::where('email', $user->email)
+            ->where('training_id', $module->training_id)
+            ->where('status', 'completed')
+            ->exists();
+
+        if (!$hasAccess) {
+            return response()->json(['error' => 'Unauthorized'], 403);
+        }
+
+        $progress = UserModuleProgress::firstOrNew([
+            'user_id' => $user->id,
+            'training_module_id' => $moduleId,
+        ]);
+
+        if ($request->hasFile('submission_file')) {
+            $path = $request->file('submission_file')->store('assignments/' . $user->id, 'public');
+            $progress->submission_file = $path;
+        }
+
+        if ($request->submission_text) {
+            $progress->submission_text = $request->submission_text;
+        }
+
+        $progress->status = 'submitted';
+        $progress->is_completed = true; // Mark as completed upon submission? Or wait for grade? For now mark complete.
+        $progress->completed_at = now();
+        $progress->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Assignment submitted successfully!',
+            'submission_date' => $progress->completed_at->diffForHumans()
+        ]);
+    }
 }

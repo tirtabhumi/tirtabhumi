@@ -204,15 +204,36 @@
                                         <p class="text-xs text-slate-500">{{ __('messages.joined') }} {{ $reg->created_at->diffForHumans() }}</p>
                                     </div>
                                 </div>
-                                <div class="flex items-center gap-4">
-                                    <span class="px-3 py-1 text-xs font-bold rounded-full {{ $reg->status == 'completed' ? 'bg-green-100 text-green-700' : ($reg->payment_status == 'paid' ? 'bg-blue-100 text-blue-700' : 'bg-orange-100 text-orange-700') }}">
-                                        {{ $reg->status == 'completed' ? __('messages.completed') : ($reg->payment_status == 'paid' ? __('messages.paid') : __('messages.unpaid')) }}
-                                    </span>
-                                    <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="p-2 text-slate-400 hover:text-indigo-600 transition-colors">
-                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                                        </svg>
-                                    </a>
+                                <div class="flex flex-col items-end gap-2 w-64">
+                                    @php
+                                        $totalModules = $reg->training->modules->count();
+                                        $completedModules = \App\Models\UserModuleProgress::where('user_id', auth()->id())
+                                            ->whereIn('training_module_id', $reg->training->modules->pluck('id'))
+                                            ->where('is_completed', true)
+                                            ->count();
+                                        $progress = $totalModules > 0 ? round(($completedModules / $totalModules) * 100) : 0;
+                                    @endphp
+
+                                    <div class="w-full">
+                                        <div class="flex items-center justify-between text-xs text-slate-600 mb-1">
+                                            <span class="font-medium">{{ __('messages.progress') }}</span>
+                                            <span class="font-bold">{{ $progress }}%</span>
+                                        </div>
+                                        <div class="h-2 bg-slate-200 rounded-full overflow-hidden w-full">
+                                            <div class="h-full bg-gradient-to-r from-indigo-500 to-purple-500 transition-all duration-500" style="width: {{ $progress }}%"></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="flex items-center gap-2">
+                                         @if($progress >= 100)
+                                            <span class="px-2 py-1 bg-green-100 text-green-700 text-[10px] font-bold rounded-full">
+                                                {{ __('messages.completed') }}
+                                            </span>
+                                        @endif
+                                        <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                                            {{ __('messages.continue_learning') }} &rarr;
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         @endforeach

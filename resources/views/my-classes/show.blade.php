@@ -5,10 +5,10 @@
             .content-width { width: 70% !important; flex: 0 0 70% !important; }
         }
     </style>
-    <section class="pt-24 pb-24 bg-[#eef2f6] min-h-screen">
+    <section class="pt-4 pb-24 bg-[#eef2f6] min-h-screen">
         <div class="container mx-auto px-6">
             <!-- Back to My Classes -->
-            <div class="mb-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div class="mb-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <a href="{{ route('my-classes.index') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Back to My Classes
@@ -85,7 +85,13 @@
                                     data-description="{{ $module->description }}"
 
                                     data-is-completed="{{ $isCompleted ? 'true' : 'false' }}"
-                                    data-is-unlocked="{{ $isUnlocked ? 'true' : 'false' }}" onclick="loadModule(this)">
+                                    data-is-unlocked="{{ $isUnlocked ? 'true' : 'false' }}" 
+                                    data-meeting-platform="{{ $module->meeting_platform }}"
+                                    data-meeting-link="{{ $module->meeting_link }}"
+                                    data-submission-text="{{ $userProgress[$module->id]->submission_text ?? '' }}"
+                                    data-submission-file="{{ $userProgress[$module->id]->submission_file ?? '' }}"
+                                    data-submission-status="{{ $userProgress[$module->id]->status ?? 'started' }}"
+                                    onclick="loadModule(this)">
                                     <div class="flex items-start gap-3">
                                         <!-- Module Number/Status -->
                                         <div class="flex-shrink-0">
@@ -109,7 +115,7 @@
                                                     <svg class="w-5 h-5 text-slate-400" fill="none" stroke="currentColor"
                                                         viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+                                                            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v8a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
                                                         </path>
                                                     </svg>
                                                 </div>
@@ -132,6 +138,13 @@
                                                         {{ $module->duration_minutes }} min
                                                     </div>
                                                 @endif
+                                                
+                                                @if($module->meeting_link)
+                                                     <div class="flex items-center gap-1 text-indigo-600 font-bold">
+                                                        <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                                        Live Session
+                                                    </div>
+                                                @endif
 
                                                 @if(!$isUnlocked)
                                                     <span class="text-xs font-bold text-orange-600">🔒</span>
@@ -149,6 +162,12 @@
                                                     @if($isQuiz)
                                                         <!-- Quiz Icon -->
                                                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>
+                                                    @elseif($module->meeting_link)
+                                                        <!-- Meeting Icon -->
+                                                        <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                                                    @elseif($module->type === 'assignment')
+                                                         <!-- Assignment Icon -->
+                                                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                                                     @elseif(in_array($module->type, ['pdf', 'document', 'doc', 'docx']) || Str::endsWith($module->file_path, ['.pdf', '.doc', '.docx']))
                                                         <!-- Document Icon -->
                                                         <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -180,21 +199,66 @@
                         <h3 id="player-title" class="text-2xl font-bold text-slate-800 mb-6">Video Player</h3>
 
                         <!-- Video Container -->
+                        <!-- Video Container / Event Details -->
                         <div id="video-container" class="aspect-video bg-slate-900 rounded-xl overflow-hidden mb-6">
-                            <!-- Content injected via JS -->
-                            <div class="flex items-center justify-center h-full text-slate-400">
-                                <div class="text-center">
-                                    <svg class="w-20 h-20 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
-                                        </path>
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                    </svg>
-                                    <p class="text-base">Select a module to start learning</p>
+                            <!-- Default Content logic -->
+                            @if(in_array($training->category, ['workshop', 'webinar']))
+                                <div class="w-full h-full bg-slate-50 flex flex-col items-center justify-center p-8 text-center">
+                                    <div class="mb-6">
+                                        <div class="inline-flex items-center justify-center w-20 h-20 rounded-full bg-indigo-100 text-indigo-600 mb-4 animate-pulse">
+                                            <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                        </div>
+                                        <h2 class="text-3xl font-bold text-slate-800 mb-2">{{ ucfirst($training->category) }} Details</h2>
+                                        <p class="text-slate-500 max-w-lg mx-auto">This is a live session. Please check the details below to join.</p>
+                                    </div>
+                                    
+                                    <div class="grid gap-6 w-full max-w-md text-left bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+                                        <!-- Date -->
+                                        <div class="flex items-start gap-4">
+                                            <div class="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Date & Time</p>
+                                                <p class="font-bold text-slate-800 text-lg">
+                                                    {{ $training->event_date ? $training->event_date->format('d F Y, H:i') : 'Date to be announced' }}
+                                                </p>
+                                            </div>
+                                        </div>
+
+                                        <!-- Location -->
+                                        <div class="flex items-start gap-4">
+                                            <div class="p-2 bg-indigo-50 rounded-lg text-indigo-600">
+                                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                                            </div>
+                                            <div>
+                                                <p class="text-sm font-bold text-slate-500 uppercase tracking-wider">Location / Link</p>
+                                                @if($training->location_online)
+                                                    <a href="{{ $training->location_online }}" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-bold hover:underline break-all block mt-1">
+                                                        {{ $training->location_online }}
+                                                    </a>
+                                                    <span class="text-xs text-slate-400 block mt-1">(Click to Join/View)</span>
+                                                @elseif($training->location_offline)
+                                                    <p class="font-bold text-slate-800">{{ $training->location_offline }}</p>
+                                                @else
+                                                    <p class="text-slate-400 italic">Location to be announced</p>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @else
+                                <!-- Standard Video Player Placeholder (User selects module) -->
+                                <div class="flex items-center justify-center h-full text-slate-400">
+                                    <div class="text-center">
+                                        <svg class="w-20 h-20 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                        </svg>
+                                        <p class="text-base">Select a module to start learning</p>
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
                     </div>
@@ -234,8 +298,17 @@
             const type = element.dataset.type;
             const isQuiz = element.dataset.isQuiz === 'true';
             const moduleTitle = element.querySelector('h3').textContent;
-            const description = element.dataset.description;
+            let description = element.dataset.description || '';
             
+            // New Meeting Props
+            const meetingLink = element.dataset.meetingLink;
+            const meetingPlatform = element.dataset.meetingPlatform;
+
+            // Assignment Props
+            const submissionText = element.dataset.submissionText || '';
+            const submissionFile = element.dataset.submissionFile || '';
+            const submissionStatus = element.dataset.submissionStatus || 'started';
+
             currentModuleId = moduleId;
 
             const videoContainer = document.getElementById('video-container');
@@ -247,8 +320,35 @@
             currentModuleTitle.textContent = moduleTitle;
             currentModuleTitle.classList.remove('hidden');
 
-            if (description && description !== 'null') {
-                currentModuleDescription.textContent = description;
+            
+            // Update Description Area
+            
+            // Append Meeting Link to Description if exists
+            let finalDescription = description !== 'null' ? description : '';
+            
+            if (meetingLink && meetingLink !== 'null') {
+                 finalDescription += `
+                    <div class="mt-6 p-4 bg-indigo-50 rounded-xl border border-indigo-100">
+                        <h4 class="font-bold text-indigo-700 mb-2 flex items-center gap-2">
+                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                             Live Session Details
+                        </h4>
+                        <div class="grid gap-2 text-sm">
+                            <div>
+                                <span class="font-bold text-slate-600">Platform:</span> 
+                                <span class="text-slate-800">${meetingPlatform || 'Online Meeting'}</span>
+                            </div>
+                            <div>
+                                <span class="font-bold text-slate-600">Link:</span>
+                                <a href="${meetingLink}" target="_blank" class="font-bold text-indigo-600 hover:underline break-all">${meetingLink}</a>
+                            </div>
+                        </div>
+                    </div>
+                 `;
+            }
+
+            if (finalDescription) {
+                currentModuleDescription.innerHTML = finalDescription; // Use innerHTML to render the link block
                 currentModuleDescription.classList.remove('hidden');
             } else {
                 currentModuleDescription.classList.add('hidden');
@@ -262,7 +362,8 @@
                 'min-h-[400px]', 'p-6', 'bg-white', // Quiz
                 'h-[800px]', // PDF
                 'bg-slate-100', 'p-4', 'flex', 'items-center', 'justify-center', // Image
-                'bg-slate-50', 'p-10', 'min-h-[300px]' // Doc download
+                'bg-slate-50', 'p-10', 'min-h-[300px]', // Doc download
+                'flex-col' // Assignment
             );
             
             // Default styling reset
@@ -309,6 +410,75 @@
                     console.error('Error parsing questions:', e);
                     videoContainer.innerHTML = '<div class="text-red-500">Error loading quiz.</div>';
                 }
+                return;
+            } else if (type === 'assignment') {
+                // --- ASSIGNMENT LOGIC ---
+                playerTitle.textContent = 'Project Assignment';
+                videoContainer.classList.add('bg-white', 'p-8', 'flex', 'flex-col', 'min-h-[400px]');
+                markCompleteBtn.classList.add('hidden'); // Hide default button, use form
+
+                const isSubmitted = submissionStatus === 'submitted' || submissionStatus === 'graded' || element.dataset.isCompleted === 'true';
+
+                let formHtml = '';
+
+                if (isSubmitted) {
+                    formHtml = `
+                        <div class="text-center py-10">
+                            <div class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            </div>
+                            <h3 class="text-2xl font-bold text-slate-800 mb-2">Assignment Submitted!</h3>
+                            <p class="text-slate-500 mb-6">You have successfully submitted your project.</p>
+                            
+                            ${submissionText ? `<div class="mb-4 text-left bg-slate-50 p-4 rounded-xl border border-slate-200"><p class="font-bold text-xs text-slate-500 uppercase mb-1">Submission Link</p><a href="${submissionText}" target="_blank" class="text-indigo-600 hover:underline break-all">${submissionText}</a></div>` : ''}
+                            ${submissionFile ? `<div class="mb-4 text-left bg-slate-50 p-4 rounded-xl border border-slate-200"><p class="font-bold text-xs text-slate-500 uppercase mb-1">Attached File</p><a href="/storage/${submissionFile}" target="_blank" class="text-indigo-600 hover:underline flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg> View File</a></div>` : ''}
+                        </div>
+                    `;
+                } else {
+                    formHtml = `
+                        <div class="max-w-2xl mx-auto w-full">
+                            <div class="mb-8 p-6 bg-indigo-50 rounded-2xl border border-indigo-100">
+                                <h3 class="font-bold text-indigo-800 mb-2">Submission Instructions</h3>
+                                <p class="text-indigo-600 text-sm">Please upload your project file or provide a link to your work (Google Drive, GitHub, etc.).</p>
+                            </div>
+
+                            <form id="assignment-form" onsubmit="submitAssignment(event)" class="space-y-6">
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-2">Project Link (Optional)</label>
+                                    <input type="url" name="submission_text" class="w-full rounded-xl border-slate-200 focus:ring-indigo-500 focus:border-indigo-500" placeholder="https://...">
+                                </div>
+                                
+                                <div class="relative">
+                                    <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                                        <div class="w-full border-t border-slate-200"></div>
+                                    </div>
+                                    <div class="relative flex justify-center">
+                                        <span class="px-2 bg-white text-sm text-slate-500">OR</span>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-sm font-bold text-slate-700 mb-2">Upload File (Optional)</label>
+                                    <input type="file" name="submission_file" class="block w-full text-sm text-slate-500
+                                        file:mr-4 file:py-3 file:px-6
+                                        file:rounded-xl file:border-0
+                                        file:text-sm file:font-bold
+                                        file:bg-indigo-50 file:text-indigo-700
+                                        hover:file:bg-indigo-100
+                                    "/>
+                                    <p class="mt-1 text-xs text-slate-500">Max size: 10MB. Allowed: PDF, ZIP, DOC, JPG, PNG.</p>
+                                </div>
+
+                                <button type="submit" class="w-full py-4 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl transition-all shadow-lg hover:-translate-y-1">
+                                    Submit Assignment
+                                </button>
+                            </form>
+                            <div id="submission-error" class="hidden mt-4 p-4 bg-red-50 text-red-600 rounded-xl text-sm"></div>
+                        </div>
+                    `;
+                }
+
+                videoContainer.innerHTML = formHtml;
                 return;
             }
 
@@ -523,6 +693,54 @@
             });
         }
 
+
+
+        function submitAssignment(event) {
+            event.preventDefault();
+            const form = event.target;
+            const formData = new FormData(form);
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const errorDiv = document.getElementById('submission-error');
+
+            // Basic validation: Check if at least one field is filled
+            if (!formData.get('submission_text') && (!formData.get('submission_file') || formData.get('submission_file').size === 0)) {
+                errorDiv.textContent = 'Please provide either a link or upload a file.';
+                errorDiv.classList.remove('hidden');
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting...';
+            errorDiv.classList.add('hidden');
+
+            fetch(`/my-classes/module/${currentModuleId}/submit`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                },
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert(data.message);
+                    location.reload();
+                } else {
+                    errorDiv.textContent = data.message || 'Submission failed.';
+                    errorDiv.classList.remove('hidden');
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit Assignment';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                errorDiv.textContent = 'An error occurred. Please try again.';
+                errorDiv.classList.remove('hidden');
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Submit Assignment';
+            });
+        }
+
         function extractYouTubeId(url) {
             if(!url) return null;
             const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
@@ -562,6 +780,12 @@
 
 
         document.addEventListener('DOMContentLoaded', () => {
+            // For Workshops/Webinars, do NOT auto-load the first module so the Event Details stay visible.
+            const isWorkshopOrWebinar = @json(in_array($training->category, ['workshop', 'webinar']));
+            if (isWorkshopOrWebinar) {
+                return;
+            }
+
             // Find first unlocked module that is NOT completed
             let targetModule = document.querySelector('.neu-flat[onclick="loadModule(this)"][data-is-unlocked="true"][data-is-completed="false"]');
             

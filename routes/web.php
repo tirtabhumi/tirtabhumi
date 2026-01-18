@@ -57,7 +57,7 @@ Route::middleware(['auth'])->group(function () {
             return redirect('/admin');
         }
 
-        $registrations = \App\Models\Registration::with('training')
+        $registrations = \App\Models\Registration::with(['training.modules'])
             ->where('email', $user->email)
             ->latest()
             ->get();
@@ -75,6 +75,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class, 'show'])->name('my-classes.show');
     Route::get('/my-classes/{training}/certificate', [\App\Http\Controllers\MyClassController::class, 'certificate'])->name('my-classes.certificate');
     Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class, 'markComplete'])->name('my-classes.module.complete');
+    Route::post('/my-classes/module/{module}/submit', [\App\Http\Controllers\MyClassController::class, 'submitAssignment'])->name('my-classes.module.submit');
 
     // Certificates Route
     Route::get('/my-certificates', [\App\Http\Controllers\CertificateController::class, 'index'])->name('certificates.index');
