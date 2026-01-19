@@ -100,11 +100,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::delete('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
 
     // Secure Password Change Flow
-    Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
+    // Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
+    /* 
     Route::get('/profile/security/change-password/{user}', [\App\Http\Controllers\ProfileController::class, 'editPassword'])
         ->name('profile.password.edit')
         ->middleware('signed');
     Route::put('/profile/security/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    */
 
 
 
