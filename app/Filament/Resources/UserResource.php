@@ -80,7 +80,9 @@ class UserResource extends Resource
                             ->relationship('organization', 'name')
                             ->searchable()
                             ->preload()
-                            ->hidden(fn() => auth()->user()->hasRole('partner')) // Hidden for partners, handled in CreateUser
+                            ->disabled(fn() => auth()->user()->hasRole('partner')) // Disabled but visible
+                            ->default(fn() => auth()->user()->hasRole('partner') ? auth()->user()->organization_id : null)
+                            ->dehydrated() // Ensure it is saved
                             ->required(fn(Forms\Get $get) => $get('role') === 'partner'),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
@@ -178,8 +180,7 @@ class UserResource extends Resource
                     ->badge()
                     ->color('info')
                     ->searchable()
-                    ->sortable()
-                    ->hidden(fn() => auth()->user()->hasRole('partner')),
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('affiliate.status')
                     ->label('Status Afiliasi')
                     ->badge()
@@ -227,8 +228,7 @@ class UserResource extends Resource
                     ->color('info')
                     ->searchable()
                     ->sortable()
-                    ->default('Pengguna Akhir')
-                    ->hidden(fn() => auth()->user()->hasRole('partner')),
+                    ->default('Pengguna Akhir'),
                 Tables\Columns\TextColumn::make('affiliate.status')
                     ->label('Status Afiliasi')
                     ->badge()
