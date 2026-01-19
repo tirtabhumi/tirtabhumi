@@ -105,6 +105,12 @@
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #cbd5e1;
         }
+
+        /* Hide browser native password reveal button */
+        input::-ms-reveal,
+        input::-ms-clear {
+            display: none;
+        }
     </style>
 </head>
 

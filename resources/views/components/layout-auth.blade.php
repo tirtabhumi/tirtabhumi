@@ -70,6 +70,12 @@
             box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 5px #ffffff;
             transform: translateY(1px);
         }
+
+        /* Hide browser native password reveal button */
+        input::-ms-reveal,
+        input::-ms-clear {
+            display: none;
+        }
     </style>
 </head>
 

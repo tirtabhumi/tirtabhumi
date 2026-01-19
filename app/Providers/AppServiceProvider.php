@@ -41,6 +41,12 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        // Set Password validation defaults
+        \Illuminate\Validation\Rules\Password::defaults(function () {
+            return \Illuminate\Validation\Rules\Password::min(8)
+                ->symbols();
+        });
+
         // Register observers
         \App\Models\Registration::observe(\App\Observers\RegistrationObserver::class);
 
