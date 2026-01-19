@@ -95,25 +95,19 @@ class OrganizationResource extends Resource
                             ->directory('organizations/pks')
                             ->openable()
                             ->downloadable()
-                            ->disk('public')
-                            ->disabled(fn() => auth()->user()->hasRole('partner'))
-                            ->dehydrated(fn() => !auth()->user()->hasRole('partner')),
+                            ->disk('public'),
                         Forms\Components\FileUpload::make('nib')
                             ->label('Nomor Induk Berusaha (NIB)')
                             ->directory('organizations/nib')
                             ->openable()
                             ->downloadable()
-                            ->disk('public')
-                            ->disabled(fn() => auth()->user()->hasRole('partner'))
-                            ->dehydrated(fn() => !auth()->user()->hasRole('partner')),
+                            ->disk('public'),
                         Forms\Components\FileUpload::make('npwp')
                             ->label('NPWP')
                             ->directory('organizations/npwp')
                             ->openable()
                             ->downloadable()
-                            ->disk('public')
-                            ->disabled(fn() => auth()->user()->hasRole('partner'))
-                            ->dehydrated(fn() => !auth()->user()->hasRole('partner')),
+                            ->disk('public'),
                     ])->columns(3),
             ]);
     }

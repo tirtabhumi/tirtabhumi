@@ -70,11 +70,17 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('password')
                             ->label('Kata Sandi')
                             ->password(),
-                        Forms\Components\TextInput::make('role')
+                        Forms\Components\Select::make('role')
                             ->label('Peran (Legacy)')
+                            ->options([
+                                'super_admin' => 'Super Admin',
+                                'admin' => 'Admin',
+                                'partner' => 'Partner',
+                                'end_user' => 'User',
+                            ])
                             ->required()
                             ->hidden(fn() => auth()->user()->hasRole('partner'))
-                            ->reactive(),
+                            ->live(),
                         Forms\Components\Select::make('organization_id')
                             ->label('Organisasi')
                             ->relationship('organization', 'name')
