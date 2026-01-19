@@ -18,7 +18,7 @@ class AffiliateWithdrawalResource extends Resource
     protected static ?string $model = AffiliateWithdrawal::class;
 
     protected static ?string $navigationGroup = 'Finance';
-    protected static ?string $navigationLabel = 'Withdrawal Requests';
+    protected static ?string $navigationLabel = 'Affiliate Withdrawals';
 
     // Disable creation of new withdrawal requests from admin UI (users request via front‑end)
     public static function canCreate(): bool

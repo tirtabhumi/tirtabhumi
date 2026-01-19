@@ -20,7 +20,7 @@ class WithdrawalRequestResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
-    protected static ?string $navigationLabel = 'Withdrawals';
+    protected static ?string $navigationLabel = 'Withdrawal Requests';
 
     public static function getNavigationGroup(): ?string
     {
@@ -58,12 +58,13 @@ class WithdrawalRequestResource extends Resource
                     ->label('Rincian Potongan')
                     ->content(function (Forms\Get $get) {
                         $amount = (float) $get('amount');
-                        if (!$amount) return '-';
+                        if (!$amount)
+                            return '-';
 
                         // Assumptions: PPN 11%, Platform 5%, Bank 6500
                         // The user can adjust these logic later
-                        $ppn = $amount * 0.11; 
-                        $platformFee = $amount * 0.05; 
+                        $ppn = $amount * 0.11;
+                        $platformFee = $amount * 0.05;
                         $bankFee = 6500;
                         $totalDeduction = $ppn + $platformFee + $bankFee;
                         $net = $amount - $totalDeduction;
@@ -168,20 +169,17 @@ class WithdrawalRequestResource extends Resource
                     ])
                     ->query(function ($query, array $data) {
                         return $query
-                            ->when($data['created_from'], fn ($q, $date) => $q->whereDate('created_at', '>=', $date))
-                            ->when($data['created_until'], fn ($q, $date) => $q->whereDate('created_at', '<=', $date));
+                            ->when($data['created_from'], fn($q, $date) => $q->whereDate('created_at', '>=', $date))
+                            ->when($data['created_until'], fn($q, $date) => $q->whereDate('created_at', '<=', $date));
                     }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
-                    ->visible(fn (WithdrawalRequest $record) => $record->status === 'pending' || auth()->user()->hasRole(['super_admin', 'admin', 'finance'])),
-                Tables\Actions\ViewAction::make(),
+                    ->visible(fn(WithdrawalRequest $record) => $record->status === 'pending' || auth()->user()->hasRole(['super_admin', 'admin', 'finance'])),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
-                    Tables\Actions\ExportBulkAction::make()
-                        ->exporter(\App\Filament\Exports\WithdrawalRequestExporter::class),
                 ]),
             ])
             ->headerActions([
@@ -210,9 +208,9 @@ class WithdrawalRequestResource extends Resource
     {
         return [
             'index' => Pages\ListWithdrawalRequests::route('/'),
-            'create' => Pages\CreateWithdrawalRequest::route('/create'),
+            // 'create' => Pages\CreateWithdrawalRequest::route('/create'), // creation handled by front‑end
             'edit' => Pages\EditWithdrawalRequest::route('/{record}/edit'),
-            'view' => Pages\ViewWithdrawalRequest::route('/{record}'),
+            // 'view' => Pages\ViewWithdrawalRequest::route('/{record}'), // view page removed for simplicity
         ];
     }
 }
