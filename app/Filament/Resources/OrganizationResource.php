@@ -139,7 +139,7 @@ class OrganizationResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\ViewAction::make()->label('Lihat Detail')->visible(fn() => auth()->user()->hasRole('partner')),
+                Tables\Actions\ViewAction::make()->label('Lihat Detail')->icon('heroicon-o-eye')->visible(fn() => auth()->user()->hasRole('partner')),
                 Tables\Actions\EditAction::make()->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Actions\DeleteAction::make()->hidden(fn() => auth()->user()->hasRole('partner')),
             ])
