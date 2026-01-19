@@ -59,7 +59,7 @@ Route::post('/email/verification-notification', function (Illuminate\Http\Reques
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 // Protected Routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         $user = auth()->user();
 
