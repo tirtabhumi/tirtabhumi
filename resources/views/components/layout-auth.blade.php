@@ -87,13 +87,17 @@
             <div class="flex items-center justify-between gap-4">
                 
                 <!-- Left Side: Back Button -->
-                <a href="/" class="group text-slate-600 hover:text-indigo-600 transition-colors">
-                    <div class="neu-icon-btn">
-                        <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                        </svg>
-                    </div>
-                </a>
+                @unless($hideBackButton ?? false)
+                    <a href="/" class="group text-slate-600 hover:text-indigo-600 transition-colors">
+                        <div class="neu-icon-btn">
+                            <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            </svg>
+                        </div>
+                    </a>
+                @else
+                    <div class="w-10"></div> <!-- Spacer for centering logo -->
+                @endunless
 
                 <!-- Center: Logo -->
                 <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">

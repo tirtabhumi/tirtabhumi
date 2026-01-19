@@ -1,4 +1,4 @@
-<x-layout-auth title="Verify Email" :hideAuthSwitcher="true">
+<x-layout-auth title="Verify Email" :hideAuthSwitcher="true" :hideBackButton="true">
     <!-- Contact-style Background -->
     <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
         <!-- Background Blobs -->
@@ -43,12 +43,7 @@
                                 </button>
                             </form>
                             
-                            <form method="POST" action="{{ route('logout') }}" class="mt-6">
-                                @csrf
-                                <button type="submit" class="text-sm font-bold text-slate-500 hover:text-red-500 transition-colors">
-                                    Log Out
-                                </button>
-                            </form>
+
 
                         </div>
                     </div>

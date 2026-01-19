@@ -11,13 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('affiliates', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
-            $table->decimal('balance', 15, 2)->default(0);
-            $table->string('status')->default('active'); // active, suspended
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('affiliates')) {
+            Schema::create('affiliates', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+                $table->decimal('balance', 15, 2)->default(0);
+                $table->string('status')->default('active'); // active, suspended
+                $table->timestamps();
+            });
+        }
     }
 
     /**
