@@ -1,3 +1,4 @@
+@props(['errors' => $errors ?? new \Illuminate\Support\ViewErrorBag])
 <x-layout-upventure title="Join UpVenture Affiliates">
     <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
         <!-- Background Blobs -->
