@@ -22,8 +22,12 @@ class CreateUser extends CreateRecord
 
     protected function afterCreate(): void
     {
-        if (auth()->user()->hasRole('partner')) {
-            $this->record->assignRole('end_user');
+        $role = $this->record->role;
+        // Map legacy role names to Spatie role names if needed, or assume they match
+        // Legacy: super_admin, admin, partner, end_user
+        // Spatie: super_admin, admin, partner, end_user
+        if ($role) {
+            $this->record->syncRoles([$role]);
         }
     }
 }

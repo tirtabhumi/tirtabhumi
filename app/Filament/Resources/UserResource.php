@@ -92,6 +92,7 @@ class UserResource extends Resource
                             ->required(fn(Forms\Get $get) => $get('role') === 'partner'),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
+                        /*
                         Forms\Components\Select::make('roles')
                             ->label('Peran')
                             ->relationship('roles', 'name')
@@ -99,6 +100,7 @@ class UserResource extends Resource
                             ->preload()
                             ->searchable()
                             ->hidden(fn() => auth()->user()->hasRole('partner')),
+                        */
                         Forms\Components\TextInput::make('phone')
                             ->label('Telepon')
                             ->tel(),

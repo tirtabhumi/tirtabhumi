@@ -143,6 +143,11 @@ class OrganizationResource extends Resource
                 Tables\Actions\EditAction::make()->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Actions\DeleteAction::make()->hidden(fn() => auth()->user()->hasRole('partner')),
             ])
+            ->recordUrl(
+                fn(Organization $record): string => auth()->user()->hasRole('partner')
+                ? Pages\ViewOrganization::getUrl([$record->id])
+                : Pages\EditOrganization::getUrl([$record->id])
+            )
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
                     Tables\Actions\DeleteBulkAction::make(),
