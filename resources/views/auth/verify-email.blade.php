@@ -36,10 +36,26 @@
 
                             <p class="text-slate-600 mb-6 font-medium">Didn't receive the email?</p>
 
-                            <form method="POST" action="{{ route('verification.send') }}">
+                            <form method="POST" action="{{ route('verification.send') }}" x-data="{ 
+                                    seconds: 120, 
+                                    timer: null,
+                                    init() { 
+                                        this.timer = setInterval(() => {
+                                            if (this.seconds > 0) {
+                                                this.seconds--;
+                                            } else {
+                                                clearInterval(this.timer);
+                                            }
+                                        }, 1000);
+                                    }
+                                }">
                                 @csrf
-                                <button type="submit" class="w-full px-8 py-4 neu-btn font-bold text-indigo-600 hover:scale-[1.02] active:scale-[0.98] transition-all">
-                                    Resend Verification Email
+                                <button type="submit" 
+                                        :disabled="seconds > 0"
+                                        :class="{ 'opacity-50 cursor-not-allowed': seconds > 0 }"
+                                        class="w-full px-8 py-4 neu-btn font-bold text-indigo-600 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                                    <span x-show="seconds > 0">Resend in <span x-text="seconds"></span>s</span>
+                                    <span x-show="seconds === 0">Resend Verification Email</span>
                                 </button>
                             </form>
                             
