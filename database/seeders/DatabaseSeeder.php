@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             SuperAdminSeeder::class,
             RoleAssignmentSeeder::class,
+            AdminUserSeeder::class,
         ]);
 
         User::factory()->create([
