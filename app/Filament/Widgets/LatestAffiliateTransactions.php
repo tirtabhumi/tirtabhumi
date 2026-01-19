@@ -26,7 +26,7 @@ class LatestAffiliateTransactions extends BaseWidget
                     ->label('Tanggal')
                     ->dateTime('d M Y H:i'),
                 Tables\Columns\TextColumn::make('affiliate.user.name')
-                    ->label('Affiliate')
+                    ->label('Afiliator')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('registration.training.title')
                     ->label('Kelas/Produk')
@@ -43,6 +43,13 @@ class LatestAffiliateTransactions extends BaseWidget
                         'pending' => 'warning',
                         'rejected' => 'danger',
                         default => 'gray',
+                    })
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'paid' => 'Dibayar',
+                        'approved' => 'Disetujui',
+                        'pending' => 'Menunggu',
+                        'rejected' => 'Ditolak',
+                        default => ucfirst($state),
                     }),
             ])
             ->actions([

@@ -17,5 +17,10 @@ class ListUsers extends ListRecords
         ];
     }
 
+    public function getSubheading(): ?string
+    {
+        return 'Kelola data pengguna, role, dan hak akses aplikasi.';
+    }
+
 
 }

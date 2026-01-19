@@ -18,14 +18,16 @@ class WalletTransactionResource extends Resource
     protected static ?string $model = WalletTransaction::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clock';
-    
-    protected static ?string $navigationLabel = 'Payment History';
+
+    protected static ?string $navigationLabel = 'Riwayat Transaksi';
+    protected static ?string $modelLabel = 'Riwayat Transaksi';
+    protected static ?string $pluralModelLabel = 'Riwayat Transaksi';
 
     protected static ?string $activeNavigationIcon = 'heroicon-s-clock';
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Finance';
+        return 'Keuangan & Afiliasi';
     }
 
     public static function form(Form $form): Form
@@ -42,23 +44,26 @@ class WalletTransactionResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('created_at')
-                    ->label('Date')
+                    ->label('Tanggal')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('type')
+                    ->label('Tipe')
                     ->badge()
-                    ->color(fn (string $state): string => match ($state) {
+                    ->color(fn(string $state): string => match ($state) {
                         'credit' => 'success',
                         'debit' => 'danger',
                         default => 'gray',
                     })
-                    ->formatStateUsing(fn (string $state): string => ucfirst($state)),
+                    ->formatStateUsing(fn(string $state): string => ucfirst($state)),
                 Tables\Columns\TextColumn::make('amount')
+                    ->label('Jumlah')
                     ->money('IDR')
                     ->sortable()
-                    ->color(fn ($record) => $record->type === 'credit' ? 'success' : 'danger')
-                    ->prefix(fn ($record) => $record->type === 'credit' ? '+ ' : '- '),
+                    ->color(fn($record) => $record->type === 'credit' ? 'success' : 'danger')
+                    ->prefix(fn($record) => $record->type === 'credit' ? '+ ' : '- '),
                 Tables\Columns\TextColumn::make('description')
+                    ->label('Deskripsi')
                     ->wrap()
                     ->searchable(),
             ])
@@ -73,8 +78,8 @@ class WalletTransactionResource extends Resource
                     ])
                     ->query(function ($query, array $data) {
                         return $query
-                            ->when($data['created_from'], fn ($q, $date) => $q->whereDate('created_at', '>=', $date))
-                            ->when($data['created_until'], fn ($q, $date) => $q->whereDate('created_at', '<=', $date));
+                            ->when($data['created_from'], fn($q, $date) => $q->whereDate('created_at', '>=', $date))
+                            ->when($data['created_until'], fn($q, $date) => $q->whereDate('created_at', '<=', $date));
                     }),
             ])
             ->actions([

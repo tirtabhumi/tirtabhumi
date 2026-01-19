@@ -17,8 +17,10 @@ class AffiliateSaleResource extends Resource
 {
     protected static ?string $model = AffiliateSale::class;
 
-    protected static ?string $navigationGroup = 'Finance';
-    protected static ?string $navigationLabel = 'Affiliate Commissions';
+    protected static ?string $navigationGroup = 'Keuangan & Afiliasi';
+    protected static ?string $navigationLabel = 'Komisi Afiliasi';
+    protected static ?string $modelLabel = 'Komisi Afiliasi';
+    protected static ?string $pluralModelLabel = 'Komisi Afiliasi';
 
     // Prevent creation of affiliate commission records from admin UI
     public static function canCreate(): bool
@@ -32,23 +34,26 @@ class AffiliateSaleResource extends Resource
             ->schema([
                 Forms\Components\Select::make('affiliate_id')
                     ->relationship('affiliate.user', 'name')
+                    ->label('Afiliator')
                     ->disabled()
                     ->required(),
                 Forms\Components\Select::make('registration_id')
                     ->relationship('registration.training', 'title') // Shows Title of Training
-                    ->label('Product / Training')
+                    ->label('Produk / Pelatihan')
                     ->disabled(),
                 Forms\Components\TextInput::make('commission_amount')
-                    ->label('Commission')
+                    ->label('Jumlah Komisi')
                     ->numeric()
                     ->readOnly(),
                 Forms\Components\TextInput::make('commission_percentage')
-                    ->label('Percentage')
+                    ->label('Persentase')
                     ->suffix('%')
                     ->readOnly(),
                 Forms\Components\TextInput::make('status')
+                    ->label('Status')
                     ->readOnly(),
                 Forms\Components\DateTimePicker::make('created_at')
+                    ->label('Dibuat Pada')
                     ->readOnly(),
             ]);
     }
@@ -60,18 +65,20 @@ class AffiliateSaleResource extends Resource
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
-                    ->label('Date'),
+                    ->label('Tanggal'),
                 Tables\Columns\TextColumn::make('affiliate.user.name')
-                    ->label('Affiliate')
+                    ->label('Afiliator')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('registration.training.title')
-                    ->label('Product')
+                    ->label('Produk')
                     ->searchable()
                     ->limit(30),
                 Tables\Columns\TextColumn::make('commission_amount')
+                    ->label('Komisi')
                     ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'paid' => 'success',
@@ -79,16 +86,24 @@ class AffiliateSaleResource extends Resource
                         'pending' => 'warning',
                         'rejected' => 'danger',
                         default => 'gray',
+                    })
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'paid' => 'Dibayar',
+                        'approved' => 'Disetujui',
+                        'pending' => 'Menunggu',
+                        'rejected' => 'Ditolak',
+                        default => ucfirst($state),
                     }),
             ])
             ->defaultSort('created_at', 'desc')
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
+                    ->label('Status')
                     ->options([
-                        'pending' => 'Pending',
-                        'approved' => 'Approved',
-                        'paid' => 'Paid',
-                        'rejected' => 'Rejected',
+                        'pending' => 'Menunggu',
+                        'approved' => 'Disetujui',
+                        'paid' => 'Dibayar',
+                        'rejected' => 'Ditolak',
                     ]),
             ])
             ->actions([

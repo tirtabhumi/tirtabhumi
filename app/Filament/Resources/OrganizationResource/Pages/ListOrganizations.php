@@ -16,4 +16,9 @@ class ListOrganizations extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function getSubheading(): ?string
+    {
+        return 'Kelola data organisasi mitra dan afiliasi.';
+    }
 }

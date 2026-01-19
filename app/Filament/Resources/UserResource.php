@@ -19,9 +19,19 @@ class UserResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
 
+    public static function getModelLabel(): string
+    {
+        return 'Pengguna';
+    }
+
+    public static function getPluralModelLabel(): string
+    {
+        return 'Pengguna';
+    }
+
     public static function getNavigationGroup(): ?string
     {
-        return 'User Management';
+        return 'Manajemen Pengguna';
     }
 
     public static function canViewAny(): bool
@@ -44,21 +54,26 @@ class UserResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Section::make('User Details')
+                Forms\Components\Section::make('Detail Pengguna')
                     ->schema([
                         Forms\Components\TextInput::make('name')
+                            ->label('Nama')
                             ->required(),
                         Forms\Components\TextInput::make('email')
                             ->email()
                             ->required(),
-                        Forms\Components\DateTimePicker::make('email_verified_at'),
+                        Forms\Components\DateTimePicker::make('email_verified_at')
+                            ->label('Email Diverifikasi Pada'),
                         Forms\Components\TextInput::make('password')
+                            ->label('Kata Sandi')
                             ->password(),
                         Forms\Components\TextInput::make('role')
+                            ->label('Peran (Legacy)')
                             ->required()
                             ->hidden(fn() => auth()->user()->hasRole('partner'))
                             ->reactive(),
                         Forms\Components\Select::make('organization_id')
+                            ->label('Organisasi')
                             ->relationship('organization', 'name')
                             ->searchable()
                             ->preload()
@@ -70,35 +85,37 @@ class UserResource extends Resource
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
                         Forms\Components\Select::make('roles')
+                            ->label('Peran')
                             ->relationship('roles', 'name')
                             ->multiple()
                             ->preload()
                             ->searchable()
                             ->hidden(fn() => auth()->user()->hasRole('partner')),
                         Forms\Components\TextInput::make('phone')
+                            ->label('Telepon')
                             ->tel(),
                         Forms\Components\Toggle::make('is_blocked')
-                            ->label('Block User')
+                            ->label('Blokir Pengguna')
                             ->onColor('danger')
                             ->offColor('success')
                             ->default(false),
                     ]),
 
-                Forms\Components\Section::make('Affiliate Application')
-                    ->description('Review and manage affiliate application details.')
+                Forms\Components\Section::make('Aplikasi Afiliasi')
+                    ->description('Tinjau dan kelola detail aplikasi afiliasi.')
                     ->relationship('affiliate')
                     ->schema([
                         Forms\Components\Grid::make(2)
                             ->schema([
                                 Forms\Components\TextInput::make('affiliate_code')
-                                    ->label('Affiliate Code')
+                                    ->label('Kode Afiliasi')
                                     ->disabled(),
                                 Forms\Components\Select::make('status')
-                                    ->label('Application Status')
+                                    ->label('Status Aplikasi')
                                     ->options([
-                                        'pending' => 'Pending',
-                                        'approved' => 'Approved',
-                                        'rejected' => 'Rejected',
+                                        'pending' => 'Menunggu',
+                                        'approved' => 'Disetujui',
+                                        'rejected' => 'Ditolak',
                                     ])
                                     ->required()
                                     ->live(),
@@ -107,9 +124,9 @@ class UserResource extends Resource
                         Forms\Components\Grid::make(2)
                             ->schema([
                                 Forms\Components\TextInput::make('ktp_name')
-                                    ->label('KTP Name'),
+                                    ->label('Nama Sesuai KTP'),
                                 Forms\Components\FileUpload::make('ktp_photo')
-                                    ->label('KTP Photo')
+                                    ->label('Foto KTP')
                                     ->image()
                                     ->maxSize(200)
                                     ->disk('public')
@@ -121,15 +138,15 @@ class UserResource extends Resource
                         Forms\Components\Grid::make(3)
                             ->schema([
                                 Forms\Components\TextInput::make('bank_name')
-                                    ->label('Bank Name'),
+                                    ->label('Nama Bank'),
                                 Forms\Components\TextInput::make('bank_account_number')
-                                    ->label('Account Number'),
+                                    ->label('Nomor Rekening'),
                                 Forms\Components\TextInput::make('bank_account_name')
-                                    ->label('Account Name'),
+                                    ->label('Nama Pemilik Rekening'),
                             ]),
 
                         Forms\Components\FileUpload::make('bank_book_photo')
-                            ->label('Bank Book Photo')
+                            ->label('Foto Buku Tabungan')
                             ->image()
                             ->maxSize(200)
                             ->disk('public')
@@ -138,7 +155,7 @@ class UserResource extends Resource
                             ->openable(),
 
                         Forms\Components\Textarea::make('rejection_reason')
-                            ->label('Reason for Rejection')
+                            ->label('Alasan Penolakan')
                             ->visible(fn(Forms\Get $get) => $get('status') === 'rejected')
                             ->required(fn(Forms\Get $get) => $get('status') === 'rejected')
                             ->columnSpanFull(),
@@ -152,18 +169,19 @@ class UserResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
+                    ->label('Nama')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('organization.name')
-                    ->label('Organization')
+                    ->label('Organisasi')
                     ->badge()
                     ->color('info')
                     ->searchable()
                     ->sortable()
                     ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('affiliate.status')
-                    ->label('Affiliate Status')
+                    ->label('Status Afiliasi')
                     ->badge()
                     ->color(fn($state): string => match ($state) {
                         'approved' => 'success',
@@ -174,20 +192,23 @@ class UserResource extends Resource
                     ->sortable()
                     ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('email_verified_at')
+                    ->label('Terverifikasi')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('roles.name')
-                    ->label('Role')
-                    ->formatStateUsing(fn($state) => $state === 'end_user' ? 'End User' : ucfirst(str_replace('_', ' ', $state)))
+                    ->label('Peran')
+                    ->formatStateUsing(fn($state) => $state === 'end_user' ? 'Pengguna Akhir' : ucfirst(str_replace('_', ' ', $state)))
                     ->badge()
                     ->color(fn($state): string => match ($state) {
                         'super_admin' => 'danger',
@@ -198,18 +219,18 @@ class UserResource extends Resource
                         default => 'gray',
                     })
                     ->searchable()
-                    ->default('End User')
+                    ->default('Pengguna Akhir')
                     ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('organization.name')
-                    ->label('Organization')
+                    ->label('Organisasi')
                     ->badge()
                     ->color('info')
                     ->searchable()
                     ->sortable()
-                    ->default('End User')
+                    ->default('Pengguna Akhir')
                     ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('affiliate.status')
-                    ->label('Affiliate Status')
+                    ->label('Status Afiliasi')
                     ->badge()
                     ->color(fn($state): string => match ($state) {
                         'approved' => 'success',
@@ -218,7 +239,7 @@ class UserResource extends Resource
                         default => 'gray',
                     })
                     ->formatStateUsing(fn($state) => ucfirst($state))
-                    ->default('Not Requested')
+                    ->default('Belum Mengajukan')
                     ->sortable()
                     ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Columns\TextColumn::make('google_id')
@@ -228,21 +249,22 @@ class UserResource extends Resource
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('phone')
+                    ->label('Telepon')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\IconColumn::make('is_blocked')
                     ->boolean()
-                    ->label('Blocked')
+                    ->label('Diblokir')
                     ->sortable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('role')
-                    ->label('Role')
+                    ->label('Peran')
                     ->relationship('roles', 'name')
                     ->preload()
                     ->searchable(),
                 Tables\Filters\TernaryFilter::make('is_blocked')
-                    ->label('Blocked Status'),
+                    ->label('Status Blokir'),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),

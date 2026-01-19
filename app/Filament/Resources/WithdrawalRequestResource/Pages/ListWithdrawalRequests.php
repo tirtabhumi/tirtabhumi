@@ -17,4 +17,9 @@ class ListWithdrawalRequests extends ListRecords
                 ->visible(fn() => auth()->user()->hasRole('partner')),
         ];
     }
+
+    public function getSubheading(): ?string
+    {
+        return 'Kelola permintaan pencairan dana dari mitra dan afiliator.';
+    }
 }

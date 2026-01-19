@@ -16,4 +16,9 @@ class ListAffiliateSales extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function getSubheading(): ?string
+    {
+        return 'Daftar transaksi penjualan yang melalui kode afiliasi, serta status komisi.';
+    }
 }
