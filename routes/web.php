@@ -35,6 +35,9 @@ Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('
 
 // Email Verification Routes
 Route::get('/email/verify', function () {
+    if (auth()->user()->hasVerifiedEmail()) {
+        return redirect()->intended(route('dashboard'));
+    }
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
