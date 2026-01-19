@@ -20,7 +20,7 @@
                     </svg>
                 </div>
 
-                <h1 class="text-3xl font-extrabold text-slate-800 mb-4 tracking-tight">Email Verified!</h1>
+                <h1 class="text-3xl font-extrabold text-indigo-700 mb-4 tracking-tight">Email Verified!</h1>
                 <p class="text-slate-500 mb-8 leading-relaxed">
                     Thank you, <span class="font-semibold text-slate-700">{{ $name ?? 'User' }}</span>. Your email has
                     been successfully verified. You can now access all dashboard features.

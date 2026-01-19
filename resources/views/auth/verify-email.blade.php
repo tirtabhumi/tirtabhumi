@@ -70,6 +70,16 @@
                                     </span>
                                 </button>
                             </form>
+
+                            <form method="POST" action="{{ route('logout') }}" class="mt-6">
+                                @csrf
+                                <button type="submit" class="inline-flex items-center justify-center gap-2 text-sm text-slate-500 hover:text-indigo-600 font-medium transition-colors group w-full">
+                                    <svg class="w-4 h-4 transition-transform group-hover:-translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                                    </svg>
+                                    Kembali ke Halaman Login
+                                </button>
+                            </form>
                             
 
 
