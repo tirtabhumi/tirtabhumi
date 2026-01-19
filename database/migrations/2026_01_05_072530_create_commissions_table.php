@@ -11,14 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('commissions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('affiliate_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('transaction_id')->constrained();
-            $table->decimal('amount', 15, 2);
-            $table->string('status')->default('pending'); // pending, approved, paid
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('commissions')) {
+            Schema::create('commissions', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('affiliate_id')->constrained()->cascadeOnDelete();
+                $table->foreignId('transaction_id')->constrained();
+                $table->decimal('amount', 15, 2);
+                $table->string('status')->default('pending'); // pending, approved, paid
+                $table->timestamps();
+            });
+        }
     }
 
     /**

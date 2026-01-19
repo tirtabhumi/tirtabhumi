@@ -11,18 +11,20 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('transactions', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')->constrained();
-            $table->string('item_type'); // Training, Webinar
-            $table->unsignedBigInteger('item_id');
-            $table->decimal('amount', 15, 2);
-            $table->string('status')->default('pending'); // pending, paid, failed
-            $table->string('affiliate_code')->nullable();
-            $table->timestamps();
+        if (!Schema::hasTable('transactions')) {
+            Schema::create('transactions', function (Blueprint $table) {
+                $table->id();
+                $table->foreignId('user_id')->constrained();
+                $table->string('item_type'); // Training, Webinar
+                $table->unsignedBigInteger('item_id');
+                $table->decimal('amount', 15, 2);
+                $table->string('status')->default('pending'); // pending, paid, failed
+                $table->string('affiliate_code')->nullable();
+                $table->timestamps();
 
-            $table->index(['item_type', 'item_id']);
-        });
+                $table->index(['item_type', 'item_id']);
+            });
+        }
     }
 
     /**
