@@ -50,7 +50,7 @@ Route::get('/email/verify/{id}/{hash}', function ($id, $hash, Illuminate\Http\Re
         event(new \Illuminate\Auth\Events\Verified($user));
     }
 
-    return redirect('/login')->with('verified', true);
+    return view('auth.verified', ['name' => $user->name]);
 })->middleware(['signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Illuminate\Http\Request $request) {
