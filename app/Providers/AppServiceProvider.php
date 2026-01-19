@@ -41,6 +41,10 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
+        if ($this->app->environment('production')) {
+            URL::forceScheme('https');
+        }
+
         // Set Password validation defaults
         \Illuminate\Validation\Rules\Password::defaults(function () {
             return \Illuminate\Validation\Rules\Password::min(8)
