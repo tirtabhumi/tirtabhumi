@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\OrganizationResource\Pages;
 use App\Filament\Resources\OrganizationResource\RelationManagers;
 use App\Models\Organization;
+use Illuminate\Database\Eloquent\Model;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -36,9 +37,20 @@ class OrganizationResource extends Resource
         return 'Manajemen Pengguna';
     }
 
+    public static function canCreate(): bool
+    {
+        return !auth()->user()->hasRole('partner');
+    }
+
+    public static function canDelete(Model $record): bool
+    {
+        return !auth()->user()->hasRole('partner');
+    }
+
     public static function form(Form $form): Form
     {
         return $form
+            ->disabled(fn() => auth()->user()->hasRole('partner'))
             ->schema([
                 Forms\Components\Section::make('Detail Organisasi')
                     ->schema([
@@ -133,8 +145,9 @@ class OrganizationResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
-                Tables\Actions\DeleteAction::make(),
+                Tables\Actions\ViewAction::make()->label('Lihat Detail')->visible(fn() => auth()->user()->hasRole('partner')),
+                Tables\Actions\EditAction::make()->hidden(fn() => auth()->user()->hasRole('partner')),
+                Tables\Actions\DeleteAction::make()->hidden(fn() => auth()->user()->hasRole('partner')),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -155,6 +168,7 @@ class OrganizationResource extends Resource
         return [
             'index' => Pages\ListOrganizations::route('/'),
             'create' => Pages\CreateOrganization::route('/create'),
+            'view' => Pages\ViewOrganization::route('/{record}'),
             'edit' => Pages\EditOrganization::route('/{record}/edit'),
         ];
     }

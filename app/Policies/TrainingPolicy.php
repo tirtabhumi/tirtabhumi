@@ -15,7 +15,7 @@ class TrainingPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_training');
+        return $user->hasRole('partner') || $user->can('view_any_training');
     }
 
     /**
@@ -27,9 +27,12 @@ class TrainingPolicy
             return true;
         }
 
-        // Check if same organization
-        if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id) {
-            return true;
+        if ($user->hasRole('partner')) {
+            // Own mapping or Org mapping
+            if ($training->user_id === $user->id)
+                return true;
+            if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id)
+                return true;
         }
 
         return $user->can('view_any_training') && $training->user_id === $user->id;
@@ -40,7 +43,7 @@ class TrainingPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_training');
+        return $user->hasRole('partner') || $user->can('create_training');
     }
 
     /**
@@ -52,11 +55,14 @@ class TrainingPolicy
             return true;
         }
 
-        // Check if same organization
-        if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id) {
-            return true;
+        if ($user->hasRole('partner')) {
+            // Own mapping or Org mapping
+            if ($training->user_id === $user->id)
+                return true;
+            if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id)
+                return true;
         }
-        
+
         if ($user->can('update_own_training') && $training->user_id === $user->id) {
             return true;
         }
@@ -70,10 +76,15 @@ class TrainingPolicy
     public function delete(User $user, Training $training): bool
     {
         if ($user->can('delete_any_training')) {
-             return true;
+            return true;
         }
 
         if ($user->can('delete_own_training') && $training->user_id === $user->id) {
+            return true;
+        }
+
+        // Check if same organization
+        if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id) {
             return true;
         }
 

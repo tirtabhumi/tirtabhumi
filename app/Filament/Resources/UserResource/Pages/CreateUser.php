@@ -13,16 +13,17 @@ class CreateUser extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         if (auth()->user()->hasRole('partner')) {
-            $data['role'] = 'partner';
+            $data['role'] = 'end_user';
+            $data['organization_id'] = auth()->user()->organization_id;
         }
-    
+
         return $data;
     }
 
     protected function afterCreate(): void
     {
         if (auth()->user()->hasRole('partner')) {
-            $this->record->assignRole('partner');
+            $this->record->assignRole('end_user');
         }
     }
 }

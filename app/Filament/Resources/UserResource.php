@@ -44,7 +44,10 @@ class UserResource extends Resource
         $query = parent::getEloquentQuery();
 
         if (auth()->user()->hasRole('partner')) {
-            $query->where('organization_id', auth()->user()->organization_id);
+            $query->where('organization_id', auth()->user()->organization_id)
+                ->whereDoesntHave('roles', function ($q) {
+                    $q->whereIn('name', ['super_admin', 'admin']);
+                });
         }
 
         return $query;
@@ -77,10 +80,7 @@ class UserResource extends Resource
                             ->relationship('organization', 'name')
                             ->searchable()
                             ->preload()
-                            ->visible(fn(Forms\Get $get) => $get('role') === 'partner')
-                            ->disabled(fn() => auth()->user()->hasRole('partner'))
-                            ->default(fn() => auth()->user()->hasRole('partner') ? auth()->user()->organization_id : null)
-                            ->dehydrated() // Ensure it is saved even if disabled
+                            ->hidden(fn() => auth()->user()->hasRole('partner')) // Hidden for partners, handled in CreateUser
                             ->required(fn(Forms\Get $get) => $get('role') === 'partner'),
                         Forms\Components\TextInput::make('google_id'),
                         Forms\Components\TextInput::make('avatar'),
@@ -262,7 +262,8 @@ class UserResource extends Resource
                     ->label('Peran')
                     ->relationship('roles', 'name')
                     ->preload()
-                    ->searchable(),
+                    ->searchable()
+                    ->hidden(fn() => auth()->user()->hasRole('partner')),
                 Tables\Filters\TernaryFilter::make('is_blocked')
                     ->label('Status Blokir'),
             ])

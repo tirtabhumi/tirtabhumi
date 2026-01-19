@@ -11,6 +11,11 @@ class PartnerAndAffiliateBalanceStats extends BaseWidget
 {
     protected static ?int $sort = 2;
 
+    public static function canView(): bool
+    {
+        return !auth()->user()->hasRole('partner');
+    }
+
     protected function getStats(): array
     {
         // 1. Partner Balance (Total balance of all wallets)

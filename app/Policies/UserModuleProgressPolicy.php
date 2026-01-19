@@ -22,7 +22,8 @@ class UserModuleProgressPolicy
         }
 
         $training = $record->trainingModule->training;
-        if (!$training) return false;
+        if (!$training)
+            return false;
 
         // Check if same organization
         if ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id) {
@@ -34,7 +35,7 @@ class UserModuleProgressPolicy
 
     public function create(User $user): bool
     {
-        return $user->hasAnyRole(['super_admin', 'admin']);
+        return $user->hasAnyRole(['super_admin', 'admin', 'partner']);
     }
 
     public function update(User $user, UserModuleProgress $record): bool
@@ -44,6 +45,15 @@ class UserModuleProgressPolicy
 
     public function delete(User $user, UserModuleProgress $record): bool
     {
-        return $user->hasAnyRole(['super_admin', 'admin']);
+        if ($user->hasAnyRole(['super_admin', 'admin'])) {
+            return true;
+        }
+
+        // Partner can delete if they can view/manage it
+        if ($user->hasRole('partner')) {
+            return $this->view($user, $record);
+        }
+
+        return false;
     }
 }

@@ -18,9 +18,22 @@ class LatestAffiliateTransactions extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(
-                AffiliateSale::query()->latest()
-            )
+            ->query(function () {
+                $query = AffiliateSale::query()->latest();
+
+                if (auth()->user()->hasRole('partner')) {
+                    $query->whereHas('registration.training', function ($q) {
+                        $q->where('user_id', auth()->id());
+                        if (auth()->user()->organization_id) {
+                            $q->orWhereHas('partner', function ($pq) {
+                                $pq->where('organization_id', auth()->user()->organization_id);
+                            });
+                        }
+                    });
+                }
+
+                return $query;
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal')
