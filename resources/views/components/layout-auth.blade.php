@@ -84,7 +84,7 @@
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-50 p-3 md:p-4 pointer-events-none">
         <div class="container mx-auto max-w-7xl pointer-events-auto">
-            <div class="flex items-center justify-between gap-4">
+            <div class="flex items-center justify-between gap-4 relative">
                 
                 <!-- Left Side: Back Button -->
                 @unless($hideBackButton ?? false)
@@ -96,11 +96,11 @@
                         </div>
                     </a>
                 @else
-                    <div class="w-10"></div> <!-- Spacer for centering logo -->
+                    <div class="w-10 md:w-20"></div> <!-- Spacer for centering logo -->
                 @endunless
 
                 <!-- Center: Logo -->
-                <div class="md:absolute md:left-1/2 md:transform md:-translate-x-1/2">
+                <div class="md:absolute md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
                     <a href="/" class="flex items-center gap-3">
                         <x-logo class="h-10 w-auto text-indigo-600" />
                         <div class="h-8 w-[1px] bg-slate-300"></div>
@@ -120,6 +120,8 @@
                             Sign Up
                         </a>
                     </div>
+                @else
+                    <div class="w-10 md:w-20"></div> <!-- Spacer to balance the left one -->
                 @endunless
             </div>
         </div>
