@@ -3,25 +3,30 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
-    <!-- Google Tag Manager -->
-    <script>(function (w, d, s, l, i) {
-            w[l] = w[l] || []; w[l].push({
-                'gtm.start':
-                    new Date().getTime(), event: 'gtm.js'
-            }); var f = d.getElementsByTagName(s)[0],
-                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
-                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
-        })(window, document, 'script', 'dataLayer', 'GTM-PJ9GZ5CT');</script>
-    <!-- End Google Tag Manager -->
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HD40Z9KRKN"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+    @if(config('services.google.site_verification'))
+    <meta name="google-site-verification" content="{{ config('services.google.site_verification') }}" />
+    @endif
 
-        gtag('config', 'G-HD40Z9KRKN');
+    @if(config('services.google.tag_manager_id'))
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ config('services.google.tag_manager_id') }}');</script>
+    <!-- End Google Tag Manager -->
+    @endif
+
+    @if(config('services.google.analytics_id'))
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google.analytics_id') }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ config('services.google.analytics_id') }}');
     </script>
+    @endif
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, interactive-widget=resizes-content">
     <link rel="icon" href="{{ asset('favicon.png') }}" type="image/png">
@@ -172,10 +177,12 @@
 </head>
 
 <body class="antialiased selection:bg-indigo-500 selection:text-white">
+    @if(config('services.google.tag_manager_id'))
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PJ9GZ5CT" height="0" width="0"
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('services.google.tag_manager_id') }}" height="0" width="0"
             style="display:none;visibility:hidden"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
+    @endif
     <header class="fixed top-0 w-full z-50 transition-all duration-300 bg-transparent" id="navbar">
         <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center relative">
             <div class="flex items-center gap-3">
@@ -267,7 +274,7 @@
                         <button id="user-menu-btn"
                             class="flex items-center gap-2 text-sm font-medium text-slate-800 hover:text-indigo-600 focus:outline-none transition-colors">
                             @if(Auth::user()->avatar)
-                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
+                                <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}"
                                     class="w-8 h-8 rounded-full object-cover border border-slate-200">
                             @else
                                 <div

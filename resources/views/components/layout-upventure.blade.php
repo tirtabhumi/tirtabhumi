@@ -19,6 +19,31 @@
             color: #334155;
         }
 
+    @if(config('services.google.site_verification'))
+    <meta name="google-site-verification" content="{{ config('services.google.site_verification') }}" />
+    @endif
+
+    @if(config('services.google.tag_manager_id'))
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{{ config('services.google.tag_manager_id') }}');</script>
+    <!-- End Google Tag Manager -->
+    @endif
+
+    @if(config('services.google.analytics_id'))
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('services.google.analytics_id') }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ config('services.google.analytics_id') }}');
+    </script>
+    @endif
+
         /* Glassmorphism Light */
         .glass {
             background: rgba(255, 255, 255, 0.25);
@@ -118,6 +143,12 @@
 </head>
 
 <body class="antialiased text-slate-800">
+    @if(config('services.google.tag_manager_id'))
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('services.google.tag_manager_id') }}"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    @endif
     <header class="fixed top-0 w-full z-50 transition-all duration-300" id="navbar">
         <div class="container mx-auto px-6 py-3 sm:py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
@@ -213,7 +244,7 @@
                         <button id="user-menu-btn"
                             class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
                             @if(Auth::user()->avatar)
-                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
+                                <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}"
                                     class="w-8 h-8 rounded-full object-cover border border-slate-200">
                             @else
                                 <div

@@ -26,8 +26,8 @@
                             <div class="neu-flat p-8 rounded-[2rem] text-center">
                                 <div class="relative w-32 h-32 mx-auto mb-6 group">
                                     @if($user->avatar)
-                                        <img src="{{ Storage::url($user->avatar) }}" id="current-avatar" alt="{{ $user->name }}"
-                                            class="w-full h-full rounded-full object-cover border-4 border-white shadow-md">
+                                        <img src="{{ $user->avatar_url }}" id="current-avatar" alt="{{ $user->name }}"
+                                            class="w-24 h-24 rounded-full object-cover border-4 border-slate-100 shadow-md">
                                     @else
                                         <div
                                             class="w-full h-full rounded-full bg-indigo-100 flex items-center justify-center text-indigo-500 text-4xl font-bold border-4 border-white shadow-md">
