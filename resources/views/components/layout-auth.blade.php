@@ -84,50 +84,48 @@
 
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-50 p-3 md:p-4 pointer-events-none">
-        <div class="container mx-auto max-w-7xl pointer-events-auto">
-            <div class="flex items-center justify-between gap-4">
-
-            <div class="flex items-center justify-between gap-4 relative">
+        <div class="container mx-auto max-w-7xl pointer-events-auto relative">
+            <div class="flex items-center justify-between w-full h-12 md:h-16">
                 
                 <!-- Left Side: Back Button -->
-                @unless($hideBackButton ?? false)
-                    <a href="/" class="group text-slate-600 hover:text-indigo-600 transition-colors">
-                        <div class="neu-icon-btn">
-                            <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none"
-                                stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
-                            </svg>
-                        </div>
-                    </a>
-                @else
-                    <div class="w-10 md:w-20"></div> <!-- Spacer for centering logo -->
-                @endunless
+                <div class="flex items-center min-w-[40px] md:min-w-[80px]">
+                    @unless($hideBackButton ?? false)
+                        <a href="/" class="group text-slate-600 hover:text-indigo-600 transition-colors">
+                            <div class="neu-icon-btn">
+                                <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                                </svg>
+                            </div>
+                        </a>
+                    @endunless
+                </div>
 
-                <!-- Center: Logo -->
-                <div class="md:absolute md:left-1/2 md:top-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2">
-                    <a href="/" class="flex items-center gap-3">
-                        <x-logo class="h-10 w-auto text-indigo-600" />
-                        <div class="h-8 w-[1px] bg-slate-300"></div>
-                        <span class="text-xl font-bold text-indigo-600 tracking-tighter">UpVenture</span>
+                <!-- Center: Logo (Absolute Centered) -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <a href="/" class="flex items-center gap-2 md:gap-3 whitespace-nowrap">
+                        <x-logo class="h-8 md:h-10 w-auto text-indigo-600" />
+                        <div class="h-6 md:h-8 w-[1px] bg-slate-300"></div>
+                        <span class="text-lg md:text-xl font-bold text-indigo-600 tracking-tighter">UpVenture</span>
                     </a>
                 </div>
 
                 <!-- Right Side: Auth Switcher -->
-                @unless($hideAuthSwitcher ?? false)
-                    <div class="flex items-center gap-4 md:gap-6">
-                        <a href="{{ route('login') }}"
-                            class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
-                            {{ __('messages.login') }}
-                        </a>
-                        <a href="{{ route('register') }}"
-                            class="text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
-                            Sign Up
-                        </a>
-                    </div>
-                @else
-                    <div class="w-10 md:w-20"></div> <!-- Spacer to balance the left one -->
-                @endunless
+                <div class="flex items-center justify-end min-w-[40px] md:min-w-[80px]">
+                    @unless($hideAuthSwitcher ?? false)
+                        <div class="flex items-center gap-3 md:gap-6">
+                            <a href="{{ route('login') }}"
+                                class="text-xs md:text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
+                                {{ __('messages.login') }}
+                            </a>
+                            <a href="{{ route('register') }}"
+                                class="text-xs md:text-sm font-medium text-slate-800 hover:text-indigo-600 transition-colors">
+                                Sign Up
+                            </a>
+                        </div>
+                    @endunless
+                </div>
             </div>
         </div>
     </header>
