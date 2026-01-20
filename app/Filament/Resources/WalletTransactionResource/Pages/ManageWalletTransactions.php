@@ -13,7 +13,12 @@ class ManageWalletTransactions extends ManageRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            // Actions\CreateAction::make(), // Transactions are read-only
         ];
+    }
+
+    public function getSubheading(): ?string
+    {
+        return 'Pantau riwayat pemasukan dan pengeluaran saldo Anda.';
     }
 }

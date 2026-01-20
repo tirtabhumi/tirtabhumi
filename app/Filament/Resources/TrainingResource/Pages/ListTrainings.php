@@ -16,4 +16,9 @@ class ListTrainings extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function getSubheading(): ?string
+    {
+        return 'Kelola kelas, webinar, dan workshop untuk program pembelajaran UpVenture.';
+    }
 }

@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.3/dist/cdn.min.js"></script>
     <style>
         body {
             font-family: 'Outfit', sans-serif;
@@ -51,7 +52,7 @@
             box-shadow: inset 5px 5px 10px #d1d9e6,
                 inset -5px -5px 10px #ffffff;
         }
-        
+
         .neu-icon-btn {
             display: flex;
             align-items: center;
@@ -64,7 +65,7 @@
             transition: all 0.3s ease;
             color: #64748b;
         }
-        
+
         .neu-icon-btn:hover {
             color: #4f46e5;
             box-shadow: 2px 2px 5px #d1d9e6, -2px -2px 5px #ffffff;
@@ -80,18 +81,22 @@
 </head>
 
 <body class="antialiased text-slate-800 min-h-screen flex flex-col relative overflow-x-hidden">
-    
+
     <!-- Header -->
     <header class="fixed top-0 left-0 w-full z-50 p-3 md:p-4 pointer-events-none">
         <div class="container mx-auto max-w-7xl pointer-events-auto">
+            <div class="flex items-center justify-between gap-4">
+
             <div class="flex items-center justify-between gap-4 relative">
                 
                 <!-- Left Side: Back Button -->
                 @unless($hideBackButton ?? false)
                     <a href="/" class="group text-slate-600 hover:text-indigo-600 transition-colors">
                         <div class="neu-icon-btn">
-                            <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                            <svg class="w-5 h-5 transition-transform group-hover:-translate-x-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
                             </svg>
                         </div>
                     </a>
@@ -127,9 +132,11 @@
         </div>
     </header>
 
-    <main class="flex-grow flex items-center justify-center relative z-10 w-full px-4 pb-4 pt-20 md:px-0 md:pb-0 md:pt-24">
+    <main
+        class="flex-grow flex items-center justify-center relative z-10 w-full px-4 pb-4 pt-20 md:px-0 md:pb-0 md:pt-24">
         {{ $slot }}
     </main>
 
 </body>
+
 </html>

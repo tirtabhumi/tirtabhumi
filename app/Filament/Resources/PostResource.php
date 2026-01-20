@@ -18,39 +18,48 @@ class PostResource extends Resource
     protected static ?string $model = Post::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $modelLabel = 'Artikel / Berita';
+    protected static ?string $pluralModelLabel = 'Artikel / Berita';
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Post';
+        return 'Manajemen Konten';
     }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
-                Forms\Components\Section::make()
+                Forms\Components\Section::make('Konten Artikel')
                     ->schema([
                         Forms\Components\TextInput::make('title')
+                            ->label('Judul')
                             ->required()
                             ->maxLength(255)
                             ->live(onBlur: true)
-                            ->afterStateUpdated(fn (string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', \Illuminate\Support\Str::slug($state)) : null),
+                            ->afterStateUpdated(fn(string $operation, $state, Forms\Set $set) => $operation === 'create' ? $set('slug', \Illuminate\Support\Str::slug($state)) : null),
                         Forms\Components\Hidden::make('user_id')
                             ->default(auth()->id()),
                         Forms\Components\TextInput::make('slug')
+                            ->label('Slug URL')
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
                         Forms\Components\Select::make('category_id')
+                            ->label('Kategori')
                             ->relationship('category', 'name')
                             ->required(),
-                        Forms\Components\DateTimePicker::make('published_at'),
+                        Forms\Components\DateTimePicker::make('published_at')
+                            ->label('Tanggal Terbit'),
                         Forms\Components\Toggle::make('is_featured')
+                            ->label('Artikel Unggulan (Featured)')
                             ->required(),
                         Forms\Components\FileUpload::make('image')
+                            ->label('Gambar Sampul')
                             ->image()
                             ->directory('posts'),
                         Forms\Components\RichEditor::make('content')
+                            ->label('Isi Konten')
                             ->columnSpanFull(),
                     ])
             ]);
@@ -60,26 +69,33 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar'),
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
+                    ->label('Kategori')
                     ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Author')
+                    ->label('Penulis')
                     ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('published_at')
+                    ->label('Tanggal Terbit')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\IconColumn::make('is_featured')
+                    ->label('Unggulan')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('updated_at')
+                    ->label('Diperbarui Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

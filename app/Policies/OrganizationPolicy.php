@@ -20,7 +20,12 @@ class OrganizationPolicy
         if ($user->hasRole('super_admin')) {
             return true;
         }
-        return $user->organization_id === $organization->id;
+
+        if ($user->hasRole('partner')) {
+            return (int) $user->organization_id === (int) $organization->id;
+        }
+
+        return false;
     }
 
     public function create(User $user): bool

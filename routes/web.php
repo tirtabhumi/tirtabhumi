@@ -35,13 +35,26 @@ Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('
 
 // Email Verification Routes
 Route::get('/email/verify', function () {
+    if (auth()->user()->hasVerifiedEmail()) {
+        return redirect()->intended(route('dashboard'));
+    }
     return view('auth.verify-email');
 })->middleware('auth')->name('verification.notice');
 
-Route::get('/email/verify/{id}/{hash}', function (Illuminate\Foundation\Auth\EmailVerificationRequest $request) {
-    $request->fulfill();
-    return redirect('/dashboard');
-})->middleware(['auth', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', function ($id, $hash, Illuminate\Http\Request $request) {
+    $user = \App\Models\User::find($id);
+
+    if (!$user || !hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
+        abort(403);
+    }
+
+    if (!$user->hasVerifiedEmail()) {
+        $user->markEmailAsVerified();
+        event(new \Illuminate\Auth\Events\Verified($user));
+    }
+
+    return view('auth.verified', ['name' => $user->name]);
+})->middleware(['signed'])->name('verification.verify');
 
 Route::post('/email/verification-notification', function (Illuminate\Http\Request $request) {
     $request->user()->sendEmailVerificationNotification();
@@ -49,7 +62,7 @@ Route::post('/email/verification-notification', function (Illuminate\Http\Reques
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 // Protected Routes
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', function () {
         $user = auth()->user();
 
@@ -87,11 +100,13 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
 
     // Secure Password Change Flow
-    Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
+    // Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
+    /* 
     Route::get('/profile/security/change-password/{user}', [\App\Http\Controllers\ProfileController::class, 'editPassword'])
         ->name('profile.password.edit')
         ->middleware('signed');
     Route::put('/profile/security/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
+    */
 
 
 

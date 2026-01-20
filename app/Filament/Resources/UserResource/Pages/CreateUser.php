@@ -13,16 +13,21 @@ class CreateUser extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array
     {
         if (auth()->user()->hasRole('partner')) {
-            $data['role'] = 'partner';
+            $data['role'] = 'end_user';
+            $data['organization_id'] = auth()->user()->organization_id;
         }
-    
+
         return $data;
     }
 
     protected function afterCreate(): void
     {
-        if (auth()->user()->hasRole('partner')) {
-            $this->record->assignRole('partner');
+        $role = $this->record->role;
+        // Map legacy role names to Spatie role names if needed, or assume they match
+        // Legacy: super_admin, admin, partner, end_user
+        // Spatie: super_admin, admin, partner, end_user
+        if ($role) {
+            $this->record->syncRoles([$role]);
         }
     }
 }

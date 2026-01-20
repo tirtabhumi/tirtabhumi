@@ -26,6 +26,8 @@ class Dashboard extends BaseDashboard
         return [
             RevenueStats::class,
             PartnerAndAffiliateBalanceStats::class,
+            \App\Filament\Widgets\PartnerRevenueStats::class,
+            \App\Filament\Widgets\PartnerFinanceStats::class,
             LatestAffiliateTransactions::class,
         ];
     }

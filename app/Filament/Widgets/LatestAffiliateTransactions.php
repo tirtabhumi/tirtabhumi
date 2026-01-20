@@ -18,15 +18,28 @@ class LatestAffiliateTransactions extends BaseWidget
     public function table(Table $table): Table
     {
         return $table
-            ->query(
-                AffiliateSale::query()->latest()
-            )
+            ->query(function () {
+                $query = AffiliateSale::query()->latest();
+
+                if (auth()->user()->hasRole('partner')) {
+                    $query->whereHas('registration.training', function ($q) {
+                        $q->where('user_id', auth()->id());
+                        if (auth()->user()->organization_id) {
+                            $q->orWhereHas('partner', function ($pq) {
+                                $pq->where('organization_id', auth()->user()->organization_id);
+                            });
+                        }
+                    });
+                }
+
+                return $query;
+            })
             ->columns([
                 Tables\Columns\TextColumn::make('created_at')
                     ->label('Tanggal')
                     ->dateTime('d M Y H:i'),
                 Tables\Columns\TextColumn::make('affiliate.user.name')
-                    ->label('Affiliate')
+                    ->label('Afiliator')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('registration.training.title')
                     ->label('Kelas/Produk')
@@ -43,6 +56,13 @@ class LatestAffiliateTransactions extends BaseWidget
                         'pending' => 'warning',
                         'rejected' => 'danger',
                         default => 'gray',
+                    })
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'paid' => 'Dibayar',
+                        'approved' => 'Disetujui',
+                        'pending' => 'Menunggu',
+                        'rejected' => 'Ditolak',
+                        default => ucfirst($state),
                     }),
             ])
             ->actions([

@@ -18,13 +18,13 @@ class TrainingResource extends Resource
     protected static ?string $model = Training::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-academic-cap';
-    protected static ?string $navigationLabel = 'UpVenture Learnings';
-    protected static ?string $modelLabel = 'UpVenture Learning';
-    protected static ?string $pluralModelLabel = 'UpVenture Learnings';
+    protected static ?string $navigationLabel = 'Pembelajaran UpVenture';
+    protected static ?string $modelLabel = 'Program Pelatihan';
+    protected static ?string $pluralModelLabel = 'Program Pelatihan';
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Upventure Learning';
+        return 'Manajemen UpVenture';
     }
 
     public static function form(Form $form): Form
@@ -43,6 +43,7 @@ class TrainingResource extends Resource
                         Forms\Components\Hidden::make('user_id')
                             ->default(auth()->id()),
                         Forms\Components\TextInput::make('slug')
+                            ->label('Slug URL')
                             ->required()
                             ->maxLength(255)
                             ->unique(ignoreRecord: true),
@@ -60,39 +61,39 @@ class TrainingResource extends Resource
                     ->description('Atur jadwal, tipe acara (Online/Offline), dan harga tiket.')
                     ->schema([
                         Forms\Components\Grid::make(2)
-                        ->schema([
-                            Forms\Components\DateTimePicker::make('event_date')
-                                ->label('Tanggal Acara')
-                                ->required()
-                                ->visible(fn(Forms\Get $get) => $get('category') !== 'class'), // Hide if class // Hide if class
-                            Forms\Components\TextInput::make('price')
-                                ->label('Harga')
-                                ->numeric()
-                                ->prefix('Rp')
-                                ->default(0)
-                                ->required(),
-                            Forms\Components\Select::make('category')
-                                ->label('Kategori')
-                                ->options([
-                                    'class' => 'Class',
-                                    'webinar' => 'Webinar',
-                                    'workshop' => 'Workshop',
-                                ])
-                                ->required()
-                                ->default('class')
-                                ->live(), // Add live updating
-                            Forms\Components\Select::make('type')
-                                ->label('Tipe Acara')
-                                ->options([
-                                    'online' => 'Online',
-                                    'offline' => 'Offline',
-                                    'hybrid' => 'Hybrid',
-                                ])
-                                ->required() // Required only if visible
-                                ->live()
-                                ->visible(fn(Forms\Get $get) => $get('category') !== 'class'), // Hide if class
-                        ]),
-                        
+                            ->schema([
+                                Forms\Components\DateTimePicker::make('event_date')
+                                    ->label('Tanggal Acara')
+                                    ->required()
+                                    ->visible(fn(Forms\Get $get) => $get('category') !== 'class'), // Hide if class // Hide if class
+                                Forms\Components\TextInput::make('price')
+                                    ->label('Harga')
+                                    ->numeric()
+                                    ->prefix('Rp')
+                                    ->default(0)
+                                    ->required(),
+                                Forms\Components\Select::make('category')
+                                    ->label('Kategori')
+                                    ->options([
+                                        'class' => 'Kelas Online',
+                                        'webinar' => 'Webinar',
+                                        'workshop' => 'Workshop',
+                                    ])
+                                    ->required()
+                                    ->default('class')
+                                    ->live(), // Add live updating
+                                Forms\Components\Select::make('type')
+                                    ->label('Tipe Acara')
+                                    ->options([
+                                        'online' => 'Online',
+                                        'offline' => 'Offline',
+                                        'hybrid' => 'Hybrid',
+                                    ])
+                                    ->required() // Required only if visible
+                                    ->live()
+                                    ->visible(fn(Forms\Get $get) => $get('category') !== 'class'), // Hide if class
+                            ]),
+
                         Forms\Components\TextInput::make('location_offline')
                             ->label('Lokasi (Alamat Lengkap)')
                             ->maxLength(255)
@@ -104,7 +105,7 @@ class TrainingResource extends Resource
                                 'Google Meet' => 'Google Meet',
                                 'Microsoft Teams' => 'Microsoft Teams',
                                 'Youtube Live' => 'Youtube Live',
-                                'Other' => 'Other',
+                                'Other' => 'Lainnya',
                             ])
                             ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid']))
                             ->reactive(),
@@ -112,7 +113,7 @@ class TrainingResource extends Resource
                             ->label(fn(Forms\Get $get) => ($get('meeting_platform') ?? 'Meeting') . ' Link')
                             ->maxLength(255)
                             ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid'])),
-                        
+
                         Forms\Components\Toggle::make('is_active')
                             ->label('Publikasikan (Aktif)')
                             ->required()
@@ -125,22 +126,25 @@ class TrainingResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->label('Gambar'),
                 Tables\Columns\TextColumn::make('title')
+                    ->label('Judul')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('partner.name')
-                    ->label('Author')
+                    ->label('Pembuat')
                     ->searchable()
                     ->sortable()
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('partner.organization.name')
-                    ->label('Organization')
+                    ->label('Organisasi')
                     ->searchable()
                     ->sortable()
                     ->badge()
                     ->color('info')
                     ->toggleable(),
                 Tables\Columns\TextColumn::make('category')
+                    ->label('Kategori')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'class', 'digital_class' => 'primary',
@@ -149,13 +153,16 @@ class TrainingResource extends Resource
                         default => 'gray',
                     })
                     ->formatStateUsing(fn(string $state): string => match ($state) {
-                        'digital_class' => 'Class',
+                        'digital_class' => 'Kelas Online',
+                        'class' => 'Kelas Online',
                         default => ucfirst($state),
                     }),
                 Tables\Columns\TextColumn::make('event_date')
+                    ->label('Tanggal Acara')
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('type')
+                    ->label('Tipe')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'online' => 'success',
@@ -163,8 +170,10 @@ class TrainingResource extends Resource
                         'hybrid' => 'info',
                     }),
                 Tables\Columns\IconColumn::make('is_active')
+                    ->label('Aktif')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),

@@ -20,11 +20,13 @@ class WithdrawalRequestResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-banknotes';
 
-    protected static ?string $navigationLabel = 'Withdrawal Requests';
+    protected static ?string $navigationLabel = 'Permintaan Penarikan';
+    protected static ?string $modelLabel = 'Permintaan Penarikan';
+    protected static ?string $pluralModelLabel = 'Permintaan Penarikan';
 
     public static function getNavigationGroup(): ?string
     {
-        return 'Finance';
+        return 'Keuangan & Afiliasi';
     }
 
     public static function canCreate(): bool
@@ -38,18 +40,20 @@ class WithdrawalRequestResource extends Resource
             ->schema([
                 Forms\Components\Select::make('user_id')
                     ->relationship('user', 'name')
+                    ->label('Mitra / Pengguna')
                     ->default(fn() => auth()->id())
                     ->disabled(fn() => !auth()->user()->hasRole(['super_admin', 'admin', 'finance']))
                     ->dehydrated()
                     ->required(),
                 Forms\Components\Placeholder::make('current_balance')
-                    ->label('Current Balance')
+                    ->label('Saldo Saat Ini')
                     ->content(function (Forms\Get $get) {
                         $userId = $get('user_id') ?? auth()->id();
                         $wallet = \App\Models\Wallet::where('user_id', $userId)->first();
                         return 'IDR ' . number_format($wallet?->balance ?? 0, 0, ',', '.');
                     }),
                 Forms\Components\TextInput::make('amount')
+                    ->label('Jumlah Penarikan')
                     ->required()
                     ->numeric()
                     ->live(debounce: 500)
@@ -80,7 +84,7 @@ class WithdrawalRequestResource extends Resource
                                     <span>Rp " . number_format($platformFee, 0, ',', '.') . "</span>
                                 </div>
                                 <div class='flex justify-between'>
-                                    <span>Bank Admin:</span>
+                                    <span>Biaya Admin Bank:</span>
                                     <span>Rp " . number_format($bankFee, 0, ',', '.') . "</span>
                                 </div>
                                 <div class='flex justify-between font-bold pt-2 border-t'>
@@ -91,20 +95,22 @@ class WithdrawalRequestResource extends Resource
                         ");
                     }),
                 Forms\Components\Select::make('status')
+                    ->label('Status')
                     ->options([
-                        'pending' => 'Pending',
-                        'approved' => 'Approved',
-                        'rejected' => 'Rejected',
+                        'pending' => 'Menunggu',
+                        'approved' => 'Disetujui',
+                        'rejected' => 'Ditolak',
                     ])
                     ->default('pending')
                     ->required()
                     ->visible(fn() => auth()->user()->hasRole(['super_admin', 'admin', 'finance'])),
                 Forms\Components\Textarea::make('bank_details')
+                    ->label('Detail Bank')
                     ->columnSpanFull()
                     ->default(function () {
                         $user = auth()->user();
                         if ($user && $user->organization) {
-                            return "Bank Name: {$user->organization->bank_name}\nAccount Name: {$user->organization->bank_account_name}\nAccount Number: {$user->organization->bank_account_number}";
+                            return "Nama Bank: {$user->organization->bank_name}\nNama Pemilik: {$user->organization->bank_account_name}\nNo. Rekening: {$user->organization->bank_account_number}";
                         }
                         return null;
                     })
@@ -112,18 +118,20 @@ class WithdrawalRequestResource extends Resource
                     ->dehydrated()
                     ->required(),
                 Forms\Components\FileUpload::make('proof_of_transfer')
+                    ->label('Bukti Transfer')
                     ->image()
                     ->directory('withdrawals')
                     ->visible(fn(Forms\Get $get) => auth()->user()->hasRole(['super_admin', 'admin', 'finance']) || $get('proof_of_transfer'))
                     ->disabled(fn() => !auth()->user()->hasRole(['super_admin', 'admin', 'finance']))
                     ->columnSpanFull(),
                 Forms\Components\Select::make('processed_by')
-                    ->label('Processed By')
+                    ->label('Diproses Oleh')
                     ->relationship('processor', 'name')
                     ->visible(fn(Forms\Get $get) => $get('processed_by'))
                     ->disabled()
                     ->columnSpanFull(),
                 Forms\Components\Textarea::make('admin_note')
+                    ->label('Catatan Admin')
                     ->columnSpanFull()
                     ->visible(fn(Forms\Get $get) => auth()->user()->hasRole(['super_admin', 'admin', 'finance']) || $get('admin_note'))
                     ->disabled(fn() => !auth()->user()->hasRole(['super_admin', 'admin', 'finance'])),
@@ -135,30 +143,40 @@ class WithdrawalRequestResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('user.name')
-                    ->label('Partner')
+                    ->label('Mitra')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('amount')
+                    ->label('Jumlah')
                     ->money('IDR')
                     ->sortable(),
                 Tables\Columns\TextColumn::make('status')
+                    ->label('Status')
                     ->badge()
                     ->color(fn(string $state): string => match ($state) {
                         'approved' => 'success',
                         'rejected' => 'danger',
                         'pending' => 'warning',
                         'default' => 'gray',
+                    })
+                    ->formatStateUsing(fn(string $state): string => match ($state) {
+                        'approved' => 'Disetujui',
+                        'rejected' => 'Ditolak',
+                        'pending' => 'Menunggu',
+                        default => ucfirst($state),
                     }),
                 Tables\Columns\TextColumn::make('created_at')
+                    ->label('Dibuat Pada')
                     ->dateTime()
                     ->sortable(),
             ])
             ->filters([
                 Tables\Filters\SelectFilter::make('status')
+                    ->label('Status')
                     ->options([
-                        'pending' => 'Pending',
-                        'approved' => 'Approved',
-                        'rejected' => 'Rejected',
+                        'pending' => 'Menunggu',
+                        'approved' => 'Disetujui',
+                        'rejected' => 'Ditolak',
                     ]),
                 Tables\Filters\Filter::make('created_at')
                     ->form([

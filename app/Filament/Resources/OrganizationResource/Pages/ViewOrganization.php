@@ -4,21 +4,16 @@ namespace App\Filament\Resources\OrganizationResource\Pages;
 
 use App\Filament\Resources\OrganizationResource;
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use Filament\Resources\Pages\ViewRecord;
 
-class ListOrganizations extends ListRecords
+class ViewOrganization extends ViewRecord
 {
     protected static string $resource = OrganizationResource::class;
 
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            // No edit action for partners
         ];
-    }
-
-    public function getSubheading(): ?string
-    {
-        return 'Kelola data organisasi mitra dan afiliasi.';
     }
 }

@@ -16,4 +16,9 @@ class ListPosts extends ListRecords
             Actions\CreateAction::make(),
         ];
     }
+
+    public function getSubheading(): ?string
+    {
+        return 'Kelola artikel blog dan berita resmi Tirtabhumi.';
+    }
 }

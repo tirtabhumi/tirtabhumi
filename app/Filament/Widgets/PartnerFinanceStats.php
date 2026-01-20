@@ -36,16 +36,16 @@ class PartnerFinanceStats extends BaseWidget
             ->sum('amount');
 
         return [
-            Stat::make('Current Balance', 'Rp ' . number_format($currentBalance, 0, ',', '.'))
-                ->description('Ready for withdrawal')
+            Stat::make('Saldo Aktif', 'Rp ' . number_format($currentBalance, 0, ',', '.'))
+                ->description('Siap untuk dicairkan')
                 ->descriptionIcon('heroicon-m-wallet')
                 ->color('primary'),
-            Stat::make('Total Earnings', 'Rp ' . number_format($totalEarnings, 0, ',', '.'))
-                ->description('Lifetime gross earnings')
+            Stat::make('Total Pendapatan', 'Rp ' . number_format($totalEarnings, 0, ',', '.'))
+                ->description('Akumulasi pendapatan kotor')
                 ->descriptionIcon('heroicon-m-arrow-trending-up')
                 ->color('success'),
-            Stat::make('Total Withdrawn', 'Rp ' . number_format($totalWithdrawn, 0, ',', '.'))
-                ->description('Lifetime withdrawals')
+            Stat::make('Total Ditarik', 'Rp ' . number_format($totalWithdrawn, 0, ',', '.'))
+                ->description('Total dana yang sudah dicairkan')
                 ->descriptionIcon('heroicon-m-banknotes')
                 ->color('warning'),
         ];
