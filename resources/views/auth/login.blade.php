@@ -1,6 +1,5 @@
 <x-layout-auth title="Sign In">
-    <!-- Contact-style Background -->
-    <section class="w-full relative overflow-hidden flex items-center justify-center py-12 md:py-0">
+   
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -133,5 +132,4 @@
                 </div>
             </div>
         </div>
-    </section>
 </x-layout-auth>

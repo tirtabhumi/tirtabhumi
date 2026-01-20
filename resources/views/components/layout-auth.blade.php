@@ -83,7 +83,7 @@
 <body class="antialiased text-slate-800 min-h-screen flex flex-col relative overflow-x-hidden">
 
     <!-- Header -->
-    <header class="fixed top-0 left-0 w-full z-50 p-3 md:p-4 pointer-events-none">
+    <header id="navbar" class="fixed top-0 left-0 w-full z-50 p-3 md:p-4 pointer-events-none transition-all duration-300">
         <div class="container mx-auto max-w-7xl pointer-events-auto relative">
             <div class="flex items-center justify-between w-full h-12 md:h-16">
                 
@@ -135,6 +135,17 @@
         {{ $slot }}
     </main>
 
+    <script>
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 20) {
+                // Using Tailwind classes that match the main layout's "glass" look
+                navbar.classList.add('bg-[#eef2f6]/80', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/20');
+            } else {
+                navbar.classList.remove('bg-[#eef2f6]/80', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/20');
+            }
+        });
+    </script>
 </body>
 
 </html>
