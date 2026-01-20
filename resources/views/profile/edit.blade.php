@@ -1,5 +1,4 @@
 <x-layout-upventure title="Profile Settings">
-    <section class="pt-16 pb-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
         <div class="container mx-auto px-6 relative z-10 max-w-4xl">
             <!-- Header -->
             <div class="mb-8 flex flex-col md:flex-row md:items-center justify-between gap-6">
@@ -161,7 +160,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
     <!-- Crop Modal -->
     <div id="crop-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4"

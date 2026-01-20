@@ -514,50 +514,46 @@
                             <p class="text-slate-500 font-medium mb-8 text-lg">${timeDisplay}</p>
 
                             <!-- Details Card -->
-                            <div class="bg-slate-50/80 backdrop-blur-sm p-6 rounded-2xl border border-slate-200 mb-8 text-left relative overflow-hidden">
+                            <div class="bg-slate-50/80 backdrop-blur-sm p-6 rounded-2xl border border-slate-200 mb-8 text-left relative">
                                 <div class="absolute top-0 left-0 w-1 h-full ${isLive ? 'bg-red-500' : 'bg-indigo-500'}"></div>
                                 <div class="grid gap-4">
-                                    <div class="flex items-center justify-between group/item">
-                                        <div class="flex items-center gap-3">
-                                            <div class="p-2 bg-white rounded-lg text-slate-400 shadow-sm border border-slate-100">
+                                    <div class="flex items-start gap-3">
+                                            <div class="p-2 bg-white rounded-lg text-slate-400 shadow-sm border border-slate-100 flex-shrink-0">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
                                             </div>
-                                            <div>
-                                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Platform</p>
-                                                <p class="font-bold text-slate-800">${meetingPlatform || 'Online Meeting'}</p>
-                                            </div>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Platform</p>
+                                            <p class="font-bold text-slate-800">${meetingPlatform || 'Online Meeting'}</p>
                                         </div>
                                     </div>
                                     <div class="w-full h-px bg-slate-200"></div>
-                                    <div class="flex items-center justify-between group/item">
-                                        <div class="flex items-center gap-3">
-                                             <div class="p-2 bg-white rounded-lg text-slate-400 shadow-sm border border-slate-100">
+                                    <div class="flex items-start gap-3">
+                                             <div class="p-2 bg-white rounded-lg text-slate-400 shadow-sm border border-slate-100 flex-shrink-0">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                             </div>
-                                            <div>
-                                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Status</p>
+                                        <div class="flex-1 min-w-0">
+                                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Status</p>
                                                 <div class="flex items-center gap-2">
                                                     <span class="relative flex h-2.5 w-2.5">
                                                       <span class="animate-ping absolute inline-flex h-full w-full rounded-full ${isLive ? 'bg-red-400 opacity-75' : 'hidden'}"></span>
                                                       <span class="relative inline-flex rounded-full h-2.5 w-2.5 ${isLive ? 'bg-red-500' : 'bg-amber-500'}"></span>
                                                     </span>
                                                     <p class="font-bold ${isLive ? 'text-red-600' : 'text-amber-600'}">${isLive ? 'Live Streaming' : 'Scheduled'}</p>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="w-full h-px bg-slate-200"></div>
-                                    <div class="flex items-center justify-between group/item">
-                                        <div class="flex items-center gap-3">
-                                            <div class="p-2 bg-white rounded-lg text-slate-400 shadow-sm border border-slate-100">
+                                    <div class="flex items-start gap-3">
+                                            <div class="p-2 bg-white rounded-lg text-slate-400 shadow-sm border border-slate-100 flex-shrink-0">
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"></path></svg>
                                             </div>
-                                            <div class="overflow-hidden">
-                                                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Link</p>
-                                                <a href="${meetingLink.trim().startsWith('http') ? '' : 'https://'}${meetingLink.trim()}" target="_blank" class="font-bold text-indigo-600 hover:text-indigo-700 truncate block max-w-[200px] md:max-w-xs hover:underline transition-colors">${meetingLink}</a>
-                                            </div>
+                                        <div class="flex-1 min-w-0 overflow-hidden">
+                                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Link</p>
+                                            <a href="${meetingLink.trim().startsWith('http') ? '' : 'https://'}${meetingLink.trim()}" target="_blank" class="font-bold text-indigo-600 hover:text-indigo-700 hover:underline transition-colors text-sm break-all inline-block">${meetingLink}</a>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
 
                             <!-- Actions -->
                             ${isLive ? `
@@ -602,7 +598,7 @@
                     if (isImg) {
                         instructionFile = `<div class="mb-8"><p class="font-bold text-slate-700 mb-4 flex items-center gap-2"><svg class="w-5 h-5 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg> Assignment Instructions / Material:</p><img src="${filePath}" class="max-w-full rounded-2xl shadow-lg border border-slate-200"></div>`;
                     } else {
-                        instructionFile = `<div class="mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200 flex items-center justify-between"><div class="flex items-center gap-3"><div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><div><p class="font-bold text-slate-800">Assignment File</p><p class="text-xs text-slate-500">Download the instructions below</p></div></div><a href="${filePath}" download class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-bold text-sm">Download</a></div>`;
+                        instructionFile = `<div class="mb-8 p-4 bg-slate-50 rounded-xl border border-slate-200 flex flex-col md:flex-row md:items-center md:justify-between gap-4"><div class="flex items-center gap-3 flex-1 min-w-0"><div class="p-2 bg-indigo-100 text-indigo-600 rounded-lg flex-shrink-0"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg></div><div class="min-w-0"><p class="font-bold text-slate-800">Assignment File</p><p class="text-xs text-slate-500">Download the instructions below</p></div></div><a href="${filePath}" download class="px-4 py-2 bg-indigo-600 text-white rounded-lg font-bold text-sm hover:bg-indigo-700 transition-colors flex-shrink-0 whitespace-nowrap text-center">Download</a></div>`;
                     }
                 }
 

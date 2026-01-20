@@ -53,22 +53,21 @@
                             <div>
                                 <label for="phone_number" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Phone
                                     Number</label>
-                                <div class="flex gap-2">
-                                    <div class="w-32">
+                                <div class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative overflow-hidden">
+                                    <div class="w-14 flex-shrink-0 relative">
                                         <select id="country_code" name="country_code" required
-                                            class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
-                                            <option value="+62">🇮🇩 +62</option>
-                                            <option value="+1">🇺🇸 +1</option>
-                                            <option value="+44">🇬🇧 +44</option>
-                                            <option value="+65">🇸🇬 +65</option>
-                                            <option value="+60">🇲🇾 +60</option>
+                                            class="w-full pl-3 pr-2 py-2.5 bg-transparent border-none focus:ring-0 text-sm cursor-pointer font-medium text-slate-700">
+                                            <option value="+62">+62</option>
+                                            <option value="+1">+1</option>
+                                            <option value="+44">+44</option>
+                                            <option value="+65">+65</option>
+                                            <option value="+60">+60</option>
                                         </select>
                                     </div>
-                                    <div class="flex-1">
-                                        <input type="tel" id="phone_number" name="phone_number" required
-                                           class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
-                                            placeholder="812345678" value="{{ old('phone_number') }}">
-                                    </div>
+                                    <div class="w-px h-6 bg-slate-200 flex-shrink-0"></div>
+                                    <input type="tel" id="phone_number" name="phone_number" required
+                                        class="flex-1 min-w-0 px-3 py-2.5 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400"
+                                        placeholder="812345678" value="{{ old('phone_number') }}">
                                 </div>
                                 @error('country_code') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                                 @error('phone_number') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
@@ -78,13 +77,13 @@
                             <div>
                                 <label for="password"
                                     class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Password</label>
-                                <div class="flex items-center px-4 py-1.5 rounded-xl border border-slate-300 bg-white/50 focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group">
+                                <div class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative w-full overflow-hidden">
                                     <input type="password" id="password" name="password" required
-                                        class="flex-1 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-1"
+                                        class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-3 pl-4 pr-1"
                                         style="-ms-reveal: none; -webkit-appearance: none;"
                                         placeholder="Min. 8 chars & symbols">
                                     <button type="button" onclick="togglePassword('password', this)"
-                                        class="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-white/50 transition-all focus:outline-none flex-shrink-0">
+                                        class="p-3 text-slate-400 hover:text-indigo-600 transition-all focus:outline-none flex-shrink-0 bg-transparent">
                                         <svg id="eye-icon-password" class="w-5 h-5 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
@@ -107,13 +106,13 @@
                             <div>
                                 <label for="password_confirmation"
                                     class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Confirm Password</label>
-                                <div class="flex items-center px-4 py-1.5 rounded-xl border border-slate-300 bg-white/50 focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group">
+                                <div class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative w-full overflow-hidden">
                                     <input type="password" id="password_confirmation" name="password_confirmation" required
-                                        class="flex-1 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-1"
+                                        class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-3 pl-4 pr-1"
                                         style="-ms-reveal: none; -webkit-appearance: none;"
                                         placeholder="Re-enter password">
                                     <button type="button" onclick="togglePassword('password_confirmation', this)"
-                                        class="p-1.5 rounded-lg text-slate-400 hover:text-indigo-600 hover:bg-white/50 transition-all focus:outline-none flex-shrink-0">
+                                        class="p-3 text-slate-400 hover:text-indigo-600 transition-all focus:outline-none flex-shrink-0 bg-transparent">
                                         <svg id="eye-icon-password_confirmation" class="w-5 h-5 block" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />

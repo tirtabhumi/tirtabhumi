@@ -738,8 +738,17 @@ return [
     'network_managed_term_4' => 'Maintenance aktif selama masa sewa',
     'network_managed_term_5' => 'Pembayaran mengikuti BAST',
 
-    'network_feat_router_ruijie_1' => 'Router:RG-EG105G-P-V3',
-    'network_feat_router_ruijie_2' => 'Router RG-EG310GH-P-E',
+    
+    'network_basic_rd_1' => 'RG-RAP2200(F) Reyee Wi-Fi5 Ceiling Access Point',
+    'network_basic_rd_2' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_basic_rd_3' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_basic_rd_4' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+
+    'network_prem_rd_1' => 'RG-RAP2200(F) Reyee Wi-Fi5 Ceiling Access Point',
+    'network_prem_rd_2' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_prem_rd_3' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+    'network_prem_rd_4' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
+
     'network_feat_gateway_ruijie' => 'Gateway Ruijie RG-EG105G-V3',
     'network_feat_switch_es209' => 'Switch RG-ES209GC-P',
     'network_feat_switch_es209_poe' => 'Switch RG-ES209GC-P (PoE)',
@@ -750,11 +759,15 @@ return [
     'network_feat_backup_2' => '2 unit backup AP',
     'network_feat_monitoring' => 'Monitoring & maintenance',
 
-    'network_ap_wifi5_3' => '3 AP Wi-Fi 5',
-    'network_ap_wifi6_3' => '3 AP Wi-Fi 6 AX1800',
-    'network_ap_wifi6_7' => '7 AP Wi-Fi 6 AX1800',
-    'network_ap_wifi6_10' => '10 AP Wi-Fi 6 AX1800',
-    'network_ap_wifi6_15' => '15 AP Wi-Fi 6 AX1800',
+    'network_basic_router_1' => 'Router:RG-EG105G-P-V3',
+    'network_basic_router_2' => 'Router:RG-EG105G-V3',
+    'network_basic_router_3' => 'Router: RG-EG210G-P-V3',
+    'network_basic_router_4' => 'Router: RG-EG210G-P-V3',
+
+    'network_prem_router_1' => 'Router:RG-EG105G-P-V3',
+    'network_prem_router_2' => 'Router: RG-EG310GH-P-E',
+    'network_prem_router_3' => 'Router: RG-EG310GH-P-E',
+    'network_prem_router_4' => 'Router: RG-EG310GH-P-E',
 
     // Premium Infrastructure Packages
     'network_premium_infra_label' => 'Wi-Fi Infrastructure Packages',

@@ -1,6 +1,6 @@
 <x-layout-upventure title="Dashboard">
     <!-- Main Background -->
-    <section class="pt-16 pb-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
+    
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -252,6 +252,5 @@
                         </a>
                     </div>
                 @endif
-            </div>
     </section>
 </x-layout-upventure>

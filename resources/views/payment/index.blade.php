@@ -26,7 +26,6 @@
         font-weight: 700 !important;
         }
     </style>
-    <section class="pt-24 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -317,7 +316,7 @@
                 </div>
             </div>
         </div>
-    </section>
+
 
     <script>
         function toggleSortDropdown() {
