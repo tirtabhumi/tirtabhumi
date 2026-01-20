@@ -39,6 +39,9 @@ return [
         'client_id' => env('GOOGLE_CLIENT_ID'),
         'client_secret' => env('GOOGLE_CLIENT_SECRET'),
         'redirect' => env('GOOGLE_REDIRECT_URL'),
+        'analytics_id' => env('GOOGLE_ANALYTICS_ID', 'G-HD40Z9KRKN'),
+        'tag_manager_id' => env('GOOGLE_TAG_MANAGER_ID', 'GTM-PJ9GZ5CT'),
+        'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
     ],
 
     'xendit' => [
