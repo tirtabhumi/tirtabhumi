@@ -116,4 +116,17 @@ class User extends Authenticatable implements FilamentUser, MustVerifyEmail
     {
         return $this->hasMany(UserModuleProgress::class);
     }
+
+    public function getAvatarUrlAttribute(): string
+    {
+        if (!$this->avatar) {
+            return ''; // Or a default image URL if you prefer
+        }
+
+        if (filter_var($this->avatar, FILTER_VALIDATE_URL)) {
+            return $this->avatar;
+        }
+
+        return \Illuminate\Support\Facades\Storage::url($this->avatar);
+    }
 }

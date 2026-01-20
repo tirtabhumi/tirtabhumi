@@ -244,7 +244,7 @@
                         <button id="user-menu-btn"
                             class="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-indigo-600 focus:outline-none transition-colors">
                             @if(Auth::user()->avatar)
-                                <img src="{{ Storage::url(Auth::user()->avatar) }}" alt="{{ Auth::user()->name }}"
+                                <img src="{{ Auth::user()->avatar_url }}" alt="{{ Auth::user()->name }}"
                                     class="w-8 h-8 rounded-full object-cover border border-slate-200">
                             @else
                                 <div
