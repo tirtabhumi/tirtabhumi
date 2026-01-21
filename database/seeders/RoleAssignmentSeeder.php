@@ -73,6 +73,18 @@ class RoleAssignmentSeeder extends Seeder
             
             // General
             'view_admin_panel',
+
+            // Extra Permissions for Partner Dashboard / Relations
+            'view_any_registration',
+            'view_registration',
+            'update_registration',
+            'view_any_user_module_progress',
+            'view_user_module_progress',
+            'update_user_module_progress',
+            'view_any_training_module',
+            'create_training_module',
+            'update_training_module',
+            'delete_training_module',
         ];
 
         foreach ($permissions as $permission) {
@@ -93,6 +105,16 @@ class RoleAssignmentSeeder extends Seeder
             'view_organization_info',
             'create_assignment',
             'grade_project',
+            'view_any_registration',
+            'view_registration',
+            'update_registration',
+            'view_any_user_module_progress',
+            'view_user_module_progress',
+            'update_user_module_progress',
+            'view_any_training_module',
+            'create_training_module',
+            'update_training_module',
+            'delete_training_module',
         ]);
 
         // --- Super Admin ---

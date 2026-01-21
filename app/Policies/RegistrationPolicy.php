@@ -15,7 +15,7 @@ class RegistrationPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->can('view_any_registration');
+        return $user->hasRole('partner') || $user->can('view_any_registration');
     }
 
     /**
@@ -23,6 +23,15 @@ class RegistrationPolicy
      */
     public function view(User $user, Registration $registration): bool
     {
+        if ($user->hasAnyRole(['super_admin', 'admin'])) {
+            return true;
+        }
+
+        if ($user->hasRole('partner')) {
+            $training = $registration->training;
+            return $training && ($training->user_id === $user->id || ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id));
+        }
+
         return $user->can('view_registration');
     }
 
@@ -31,7 +40,7 @@ class RegistrationPolicy
      */
     public function create(User $user): bool
     {
-        return $user->can('create_registration');
+        return $user->hasRole('partner') || $user->can('create_registration');
     }
 
     /**
@@ -39,6 +48,15 @@ class RegistrationPolicy
      */
     public function update(User $user, Registration $registration): bool
     {
+        if ($user->hasAnyRole(['super_admin', 'admin'])) {
+            return true;
+        }
+
+        if ($user->hasRole('partner')) {
+            $training = $registration->training;
+            return $training && ($training->user_id === $user->id || ($user->organization_id && $training->partner && $training->partner->organization_id === $user->organization_id));
+        }
+
         return $user->can('update_registration');
     }
 
