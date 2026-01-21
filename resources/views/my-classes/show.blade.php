@@ -378,7 +378,7 @@
                             </div>
                             <div>
                                 <span class="font-bold text-slate-600">Link:</span>
-                                <a href="${meetingLink.trim().startsWith('http') ? '' : 'https://'}${meetingLink.trim()}" target="_blank" class="font-bold text-indigo-600 hover:underline break-all">${meetingLink}</a>
+                                <a href="${meetingLink.trim().startsWith('http') ? '' : 'https://'}${meetingLink.trim()}" target="_blank" class="font-bold text-indigo-600 hover:underline break-all">${meetingPlatform || 'Join Meeting'}</a>
                             </div>
                         </div>
                     </div>
@@ -549,7 +549,7 @@
                                             </div>
                                         <div class="flex-1 min-w-0 overflow-hidden">
                                             <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Link</p>
-                                            <a href="${meetingLink.trim().startsWith('http') ? '' : 'https://'}${meetingLink.trim()}" target="_blank" class="font-bold text-indigo-600 hover:text-indigo-700 hover:underline transition-colors text-sm break-all inline-block">${meetingLink}</a>
+                                            <a href="${meetingLink.trim().startsWith('http') ? '' : 'https://'}${meetingLink.trim()}" target="_blank" class="font-bold text-indigo-600 hover:text-indigo-700 hover:underline transition-colors text-sm break-all inline-block">${meetingPlatform || 'Join Meeting'}</a>
                                         </div>
                                     </div>
                                 </div>

@@ -81,7 +81,13 @@ class TrainingResource extends Resource
                                     ])
                                     ->required()
                                     ->default('class')
-                                    ->live(), // Add live updating
+                                    ->live()
+                                    ->afterStateUpdated(function ($state, Forms\Set $set) {
+                                        if ($state === 'class') {
+                                            $set('type', null);
+                                            $set('event_date', null);
+                                        }
+                                    }),
                                 Forms\Components\Select::make('type')
                                     ->label('Tipe Acara')
                                     ->options([
@@ -97,7 +103,7 @@ class TrainingResource extends Resource
                         Forms\Components\TextInput::make('location_offline')
                             ->label('Lokasi (Alamat Lengkap)')
                             ->maxLength(255)
-                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['offline', 'hybrid'])),
+                            ->visible(fn(Forms\Get $get) => $get('category') !== 'class' && in_array($get('type'), ['offline', 'hybrid'])),
                         Forms\Components\Select::make('meeting_platform')
                             ->label('Platform')
                             ->options([
@@ -107,12 +113,12 @@ class TrainingResource extends Resource
                                 'Youtube Live' => 'Youtube Live',
                                 'Other' => 'Lainnya',
                             ])
-                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid']))
+                            ->visible(fn(Forms\Get $get) => $get('category') !== 'class' && in_array($get('type'), ['online', 'hybrid']))
                             ->reactive(),
                         Forms\Components\TextInput::make('location_online')
                             ->label(fn(Forms\Get $get) => ($get('meeting_platform') ?? 'Meeting') . ' Link')
                             ->maxLength(255)
-                            ->visible(fn(Forms\Get $get) => in_array($get('type'), ['online', 'hybrid'])),
+                            ->visible(fn(Forms\Get $get) => $get('category') !== 'class' && in_array($get('type'), ['online', 'hybrid'])),
 
                         Forms\Components\Toggle::make('is_active')
                             ->label('Publikasikan (Aktif)')

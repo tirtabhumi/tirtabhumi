@@ -140,9 +140,9 @@
                                                             }
                                                         @endphp
                                                         <span class="block text-slate-600 text-xs mt-1">
-                                                            <span class="font-semibold">Online:</span> 
+                                                            <span class="font-semibold">Platform:</span> 
                                                             <a href="{{ $onlineUrl }}" target="_blank" class="text-indigo-600 hover:text-indigo-800 font-bold hover:underline break-all">
-                                                                {{ $training->location_online }}
+                                                                {{ $training->meeting_platform ?: 'Join Meeting' }}
                                                             </a>
                                                         </span>
                                                     @endif
