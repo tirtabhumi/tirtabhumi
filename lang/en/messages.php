@@ -763,6 +763,7 @@ return [
     'network_prem_router_3' => 'Router: RG-EG310GH-P-E',
     'network_prem_router_4' => 'Router: RG-EG310GH-P-E',
 
+    'continue_to_login' => 'Continue to Login / Dashboard',
     // Dashboard
     'dashboard_welcome' => 'Welcome back, :name!',
     'dashboard_subtitle' => "Here's what's happening with your learning journey.",

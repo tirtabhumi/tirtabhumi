@@ -28,8 +28,9 @@
 
                 <div class="space-y-4">
                     <a href="{{ route('login') }}"
-                        class="block w-full px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 text-center">
-                        Continue to Login / Dashboard
+                        class="block w-full px-8 py-4 font-semibold rounded-xl text-center shadow-md transition-all hover:opacity-90 active:scale-95"
+                        style="background-color: #1d4ed8 !important; color: #ffffff !important;">
+                        {{ __('messages.continue_to_login') ?? 'Continue to Login / Dashboard' }}
                     </a>
                 </div>
 

@@ -1,6 +1,6 @@
 @props(['errors' => $errors ?? new \Illuminate\Support\ViewErrorBag])
 <x-layout-upventure title="Join UpVenture Affiliates">
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen">
+
         <!-- Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
             <div
@@ -25,8 +25,8 @@
             <!-- Introduction Section -->
             <div class="neu-flat p-8 rounded-3xl border border-white/50 mb-8 animate-fade-in-up animation-delay-200">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                    <div class="p-3 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 bg-blue-50 rounded-xl">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                         </svg>
@@ -147,8 +147,8 @@
             <!-- Registration Form -->
             <div class="neu-flat p-8 rounded-3xl border border-white/50 animate-fade-in-up animation-delay-400">
                 <h2 class="text-2xl font-bold text-slate-800 mb-6 flex items-center gap-3">
-                    <div class="p-3 bg-gradient-to-br from-green-500 to-emerald-600 rounded-xl">
-                        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="p-3 bg-blue-50 rounded-xl">
+                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                 d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
                             </path>
@@ -168,7 +168,7 @@
                         <div class="mb-4">
                             <label for="ktp_name" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.ktp_name_label') }} *</label>
                             <input type="text" id="ktp_name" name="ktp_name" value="{{ old('ktp_name', auth()->user()->name) }}" required
-                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                             @error('ktp_name')
                                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                             @enderror
@@ -178,7 +178,7 @@
                             <label for="ktp_photo" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.ktp_photo_label') }}
                                 *</label>
                             <input type="file" id="ktp_photo" name="ktp_photo" accept="image/*" required
-                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                             <p class="text-xs text-slate-500 mt-1">Format: JPG, PNG. Max: 2MB</p>
                             @error('ktp_photo')
                                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -194,7 +194,7 @@
                             <label for="bank_account_name" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.bank_account_holder_label') }} *</label>
                             <input type="text" id="bank_account_name" name="bank_account_name"
                                 value="{{ old('bank_account_name', auth()->user()->name) }}" required
-                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                             <p class="text-xs text-slate-500 mt-1">{{ __('messages.must_match_ktp') }}</p>
                             @error('bank_account_name')
                                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -206,7 +206,7 @@
                                 <label for="bank_name" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.bank_name_label') }}
                                     *</label>
                                 <select id="bank_name" name="bank_name" required
-                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                                     <option value="">{{ __('messages.select_bank') }}</option>
                                     <option value="BCA" {{ old('bank_name') == 'BCA' ? 'selected' : '' }}>BCA</option>
                                     <option value="Mandiri" {{ old('bank_name') == 'Mandiri' ? 'selected' : '' }}>Mandiri
@@ -233,7 +233,7 @@
                                     class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.bank_account_number_label') }} *</label>
                                 <input type="text" id="bank_account_number" name="bank_account_number"
                                     value="{{ old('bank_account_number') }}" required
-                                    class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                    class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                                 @error('bank_account_number')
                                     <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
                                 @enderror
@@ -243,7 +243,7 @@
                         <div>
                             <label for="bank_book_photo" class="block text-sm font-semibold text-slate-700 mb-2">{{ __('messages.bank_book_photo_label') }} *</label>
                             <input type="file" id="bank_book_photo" name="bank_book_photo" accept="image/*" required
-                                class="w-full px-4 py-3 rounded-xl border border-slate-300 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat">
                             <p class="text-xs text-slate-500 mt-1">Format: JPG, PNG. Max: 2MB</p>
                             @error('bank_book_photo')
                                 <p class="text-red-600 text-sm mt-1">{{ $message }}</p>
@@ -265,5 +265,4 @@
                 </form>
             </div>
         </div>
-    </section>
 </x-layout-upventure>

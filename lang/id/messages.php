@@ -769,6 +769,7 @@ return [
     'network_prem_router_3' => 'Router: RG-EG310GH-P-E',
     'network_prem_router_4' => 'Router: RG-EG310GH-P-E',
 
+    'continue_to_login' => 'Masuk ke Dashboard',
     // Premium Infrastructure Packages
     'network_premium_infra_label' => 'Wi-Fi Infrastructure Packages',
     'network_premium_infra_title' => 'Paket Infrastruktur Wi-Fi Premium',

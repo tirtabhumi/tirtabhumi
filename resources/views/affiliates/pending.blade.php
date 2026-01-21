@@ -1,84 +1,85 @@
 <x-layout-upventure title="Dokumen Sedang Direview">
-    <section class="py-24 bg-[#eef2f6] relative overflow-hidden min-h-screen flex items-center">
-        <!-- Background Blobs -->
+    
+        <!-- Subdued Background Blobs -->
         <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
-            <div
-                class="absolute top-0 left-1/4 w-96 h-96 bg-amber-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob">
-            </div>
-            <div
-                class="absolute bottom-0 right-1/4 w-96 h-96 bg-orange-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-2000">
-            </div>
+            <div class="absolute top-[10%] left-[10%] w-[30%] h-[30%] bg-indigo-500/10 rounded-full blur-[100px] animate-blob"></div>
+            <div class="absolute bottom-[20%] right-[10%] w-[35%] h-[35%] bg-blue-500/10 rounded-full blur-[120px] animate-blob animation-delay-2000"></div>
         </div>
 
         <div class="container mx-auto px-6 relative z-10 max-w-2xl">
-            <div class="neu-flat p-12 rounded-3xl border border-white/50 text-center animate-fade-in-up">
-                <!-- Icon -->
-                <div
-                    class="inline-flex p-6 bg-gradient-to-br from-amber-400 to-orange-500 rounded-3xl mb-6 animate-pulse">
-                    <svg class="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
+            <!-- Tirta Bhumi Solid Neumorphic Card -->
+            <div class="neu-flat p-12 md:p-20 rounded-[3rem] border border-white/60 text-center animate-fade-in">
+                
+                <!-- Status Icon with Glow -->
+                <div class="relative inline-flex mb-12">
+                    <div class="absolute inset-0 bg-indigo-500 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+                    <div class="relative w-28 h-28 bg-gradient-to-br from-indigo-50 to-white rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.05)] border border-indigo-100 flex items-center justify-center -rotate-3 hover:rotate-0 transition-transform duration-500">
+                        <svg class="w-14 h-14 text-indigo-600 animate-spin-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
                 </div>
 
-                <!-- Title -->
-                <h1 class="text-3xl font-bold text-slate-800 mb-4">
+                <!-- Headline (Tirta style font-black) -->
+                <h1 class="text-4xl md:text-5xl font-black text-slate-800 mb-6 tracking-tight leading-tight">
                     {{ __('messages.documents_under_review') }}
                 </h1>
 
-                <!-- Description -->
-                <p class="text-lg text-slate-600 mb-8 leading-relaxed">
+                <!-- Body Text -->
+                <p class="text-lg text-slate-500 font-medium mb-12 leading-relaxed max-w-lg mx-auto">
                     {!! __('messages.pending_affiliate_desc') !!}
                 </p>
 
-                <!-- Info Box -->
-                <div
-                    class="bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-200 rounded-2xl p-6 mb-8 text-left">
-                    <h3 class="font-bold text-slate-800 mb-3 flex items-center gap-2">
-                        <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                        </svg>
-                        {{ __('messages.what_you_need_to_know') }}
-                    </h3>
-                    <ul class="space-y-2 text-sm text-slate-700">
-                        <li class="flex gap-2">
-                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>{{ __('messages.review_time_desc') }}</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>{{ __('messages.email_notification_desc') }}</span>
-                        </li>
-                        <li class="flex gap-2">
-                            <svg class="w-5 h-5 text-blue-600 flex-shrink-0" fill="none" stroke="currentColor"
-                                viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                            </svg>
-                            <span>{{ __('messages.ensure_valid_data_desc') }}</span>
-                        </li>
-                    </ul>
-                </div>
-
-                <!-- Action Button -->
-                <a href="{{ route('dashboard') }}"
-                    class="inline-flex items-center gap-2 px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 19l-7-7m0 0l7-7m-7 7h18"></path>
+                <!-- Action Button (Tirta style CTA) -->
+                <div class="flex flex-col items-center gap-8">
+                   <a href="{{ route('dashboard') }}" class="group inline-flex items-center justify-center px-6 py-3 bg-indigo-600 text-white font-semibold rounded-xl text-sm transition-all duration-200 hover:bg-indigo-700 hover:shadow-md">
+                    <svg class="w-4 h-4 mr-2 transition-transform group-hover:-translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                     </svg>
                     {{ __('messages.back_to_dashboard') }}
                 </a>
+
+                <div class="flex items-center gap-3">
+                    <span class="flex h-2 w-2 rounded-full bg-indigo-500 animate-ping"></span>
+                    <p class="text-xs font-black text-slate-400 uppercase tracking-widest">
+                        Proses Verifikasi Sedang Berjalan
+                    </p>
+                </div>
+                </div>
             </div>
         </div>
-    </section>
+
+    <style>
+        .animate-spin-slow {
+            animation: spin 10s linear infinite;
+        }
+
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes blob {
+            0%, 100% { transform: translate(0px, 0px) scale(1); }
+            33% { transform: translate(20px, -30px) scale(1.05); }
+            66% { transform: translate(-20px, 20px) scale(0.95); }
+        }
+        
+        .animate-blob {
+            animation: blob 10s infinite;
+        }
+        
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+    </style>
 </x-layout-upventure>
