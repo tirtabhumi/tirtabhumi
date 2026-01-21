@@ -57,7 +57,16 @@ class WithdrawalRequestResource extends Resource
                     ->required()
                     ->numeric()
                     ->live(debounce: 500)
-                    ->minValue(10000),
+                    ->minValue(10000)
+                    ->rules([
+                        fn (Forms\Get $get): \Closure => function (string $attribute, $value, \Closure $fail) use ($get) {
+                            $userId = $get('user_id') ?? auth()->id();
+                            $wallet = \App\Models\Wallet::where('user_id', $userId)->first();
+                            if (!$wallet || $wallet->balance < $value) {
+                                $fail('Saldo tidak mencukupi.');
+                            }
+                        },
+                    ]),
                 Forms\Components\Placeholder::make('breakdown')
                     ->label('Rincian Potongan')
                     ->content(function (Forms\Get $get) {
