@@ -77,6 +77,16 @@
         input::-ms-clear {
             display: none;
         }
+
+        /* Prevent background change on autofill */
+        input:-webkit-autofill,
+        input:-webkit-autofill:hover,
+        input:-webkit-autofill:focus,
+        input:-webkit-autofill:active {
+            -webkit-box-shadow: 0 0 0 30px #eef2f6 inset !important;
+            -webkit-text-fill-color: #334155 !important;
+            transition: background-color 5000s ease-in-out 0s;
+        }
     </style>
 </head>
 

@@ -20,7 +20,11 @@
                         </div>
                         <h1 class="text-3xl md:text-4xl font-bold text-slate-800 text-center md:text-left">Cek Email Anda!</h1>
                         <p class="text-slate-500 leading-relaxed text-center md:text-left">
-                            Kami telah mengirimkan tautan verifikasi ke alamat email Anda. Silakan klik tautan tersebut untuk mengaktifkan akun.
+                            Kami telah mengirimkan tautan verifikasi ke alamat email Anda. 
+                            Silakan klik tautan tersebut untuk mengaktifkan akun.
+                        </p>
+
+                        <p class="text-slate-500 leading-relaxed text-center md:text-left mt-4">
                             Mohon menunggu hingga 5 menit. Apabila email belum diterima, silakan kirim ulang tautan verifikasi.
                         </p>
                     </div>

@@ -28,7 +28,7 @@
 
                 <div class="space-y-4">
                     <a href="{{ route('login') }}"
-                        class="block w-full px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg hover:shadow-blue-200 hover:-translate-y-0.5 text-center">
+                        class="block w-full px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-500/30 hover:shadow-blue-500/40 hover:-translate-y-0.5 text-center">
                         Continue to Login / Dashboard
                     </a>
                 </div>
