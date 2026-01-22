@@ -38,7 +38,7 @@
                 <!-- Image Column -->
                 <div class="lg:w-5/12 relative animate-fade-in-up" style="animation-delay: 0.6s">
                     <div class="neu-flat p-4 rounded-[2.5rem] relative z-10">
-                        <img src="{{ asset('images/service-infrastructure-v2.jpg') }}" alt="IT Infrastructure Indonesia" class="w-full h-full object-cover rounded-[2rem] shadow-sm">
+                        <img src="{{ asset('images/service-infra-3d.png') }}" alt="IT Infrastructure Indonesia" class="w-full h-full object-cover rounded-[2rem] shadow-sm">
                     </div>
                     <!-- Decorative Elements -->
                     <div class="absolute -top-8 -right-8 w-32 h-32 bg-cyan-400/20 rounded-full blur-2xl z-0"></div>

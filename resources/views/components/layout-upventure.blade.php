@@ -609,6 +609,17 @@
                         e.stopPropagation();
                     });
                 }
+                // Navbar Scroll Effect
+                const navbar = document.getElementById('navbar');
+                function handleScroll() {
+                    if (window.scrollY > 20) {
+                        navbar.classList.add('bg-[#eef2f6]/80', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/20');
+                    } else {
+                        navbar.classList.remove('bg-[#eef2f6]/80', 'backdrop-blur-md', 'shadow-sm', 'border-b', 'border-white/20');
+                    }
+                }
+                window.addEventListener('scroll', handleScroll);
+                handleScroll(); // Initial check
             });
         </script>
 </body>
