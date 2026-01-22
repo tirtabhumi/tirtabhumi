@@ -27,8 +27,6 @@
         font-weight: 700 !important;
         }
     </style>
-
-    <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
         <!-- Animated Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div class="absolute top-0 right-1/4 w-96 h-96 bg-indigo-300/20 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -129,9 +127,6 @@
                                 @endif
 
 
-
-
-
                                 <!-- Type Filter -->
                                 @if(isset($filters['type']) && !empty($filters['type']))
                                 <div id="type-filter-container" style="{{ (in_array('webinar', (array)request('category', [])) || in_array('workshop', (array)request('category', []))) ? 'display: block;' : 'display: none;' }}">
@@ -176,10 +171,6 @@
                                 <h2 class="text-2xl font-bold text-slate-800 mb-1">Available Programs</h2>
                                 <p class="text-slate-500 text-sm">{{ $trainings->total() }} programs found</p>
                             </div>
-                            <a href="{{ route('trainings.index') }}" class="inline-flex items-center gap-2 px-4 py-2 neu-flat rounded-xl text-indigo-600 font-bold hover:text-indigo-700 hover:scale-105 transition-all text-sm">
-                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                                Back to UpVenture
-                            </a>
                         </div>
                         <div class="w-full">
                              <form action="{{ request()->url() }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">
@@ -247,7 +238,6 @@
                 </div>
             </div>
         </div>
-    </section>
 
     <script>
         function toggleSortDropdown() {
