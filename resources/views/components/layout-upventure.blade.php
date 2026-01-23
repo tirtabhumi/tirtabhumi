@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="overflow-x-hidden">
 
 <head>
     <meta charset="utf-8">
@@ -132,6 +132,7 @@
 
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
             background: #cbd5e1;
+            border-radius: 10px;
         }
 
         /* Hide browser native password reveal button */
@@ -142,7 +143,7 @@
     </style>
 </head>
 
-<body class="antialiased text-slate-800">
+<body class="antialiased text-slate-800 overflow-x-hidden">
     @if(config('services.google.tag_manager_id'))
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{ config('services.google.tag_manager_id') }}"
@@ -295,7 +296,7 @@
         </div>
     </header>
 
-    <main class="pt-32 min-h-screen">
+    <main class="pt-32 min-h-screen relative overflow-hidden">
         @if(session('success'))
             <div class="container mx-auto px-6 mb-6">
                 <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">

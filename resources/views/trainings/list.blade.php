@@ -2,7 +2,7 @@
     <style>
         @media (min-width: 1024px) {
             .sidebar-width { width: 20% !important; flex: 0 0 20% !important; }
-            .content-width { width: 80% !important; flex: 0 0 80% !important; }
+            .content-width { width: 77% !important; flex: 0 0 77% !important; }
         }
         /* Active state: input checked -> ubah bulatan + centang + teks */
         label input[type="checkbox"]:checked + .checkbox-ui{
