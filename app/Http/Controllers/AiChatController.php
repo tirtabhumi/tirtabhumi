@@ -14,7 +14,7 @@ class AiChatController extends Controller
             'industry' => 'nullable|string',
         ]);
 
-        $apiKey = env('OPENAI_API_KEY', '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');
+        $apiKey = config('openai.api_key');
 
         $industry = $request->input('industry', 'General');
         
@@ -66,7 +66,7 @@ class AiChatController extends Controller
                 'Authorization' => 'Bearer ' . $apiKey,
                 'Content-Type' => 'application/json',
             ])->post('https://api.openai.com/v1/chat/completions', [
-                'model' => 'gpt-3.5-turbo',
+                'model' => config('openai.model', 'gpt-3.5-turbo'),
                 'messages' => $messages,
                 'max_tokens' => 200,
                 'temperature' => 0.7,
@@ -85,12 +85,21 @@ class AiChatController extends Controller
                 ]);
             }
 
+            \Log::error('OpenAI API Error', [
+                'status' => $response->status(),
+                'body' => $response->body(),
+            ]);
+
             return response()->json([
                 'error' => 'Gagal terhubung dengan layanan AI.',
                 'details' => $response->body(),
             ], 500);
 
         } catch (\Exception $e) {
+            \Log::error('AI System Error: ' . $e->getMessage(), [
+                'trace' => $e->getTraceAsString()
+            ]);
+
             return response()->json([
                 'error' => 'Terjadi kesalahan sistem.',
                 'message' => $e->getMessage(),
