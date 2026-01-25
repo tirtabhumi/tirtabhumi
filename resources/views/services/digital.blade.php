@@ -257,6 +257,15 @@
                         modal.classList.remove('hidden');
                         document.body.style.overflow = 'hidden';
 
+                        // Reset input state
+                        const input = document.getElementById('chat-input');
+                        const sendBtn = document.getElementById('send-btn');
+                        input.disabled = false;
+                        input.placeholder = "Ketik pesan Anda...";
+                        input.classList.remove('bg-slate-100', 'cursor-not-allowed');
+                        sendBtn.disabled = false;
+                        sendBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+
                         // Reset state
                         document.getElementById('chat-setup').classList.remove('hidden');
                         document.getElementById('chat-interface').classList.add('hidden');
@@ -348,7 +357,7 @@
                                 appendMessage('ai', data.reply);
 
                                 // Check for CTA trigger
-                                if (messageCount >= 3) {
+                                if (messageCount >= 5) {
                                     setTimeout(() => {
                                         appendCTA();
                                     }, 1000);

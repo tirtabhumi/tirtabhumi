@@ -6,6 +6,7 @@ use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ProcurementController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AiChatController;
 
 // Public Routes
 Route::get('/', function () {
@@ -219,9 +220,7 @@ Route::post('/contact', function () {
     return back()->with('success', 'Thank you for your message. We will get back to you soon!');
 })->name('contacts.store');
 
-Route::post('/ai-chat', function (Illuminate\Http\Request $request) {
-    return response()->json(['reply' => 'Halo! Terima kasih telah mencoba demo AI kami. Untuk diskusi lebih mendalam mengenai kebutuhan ' . ($request->industry ?? 'bisnis') . ' Anda, silakan hubungi tim kami via WhatsApp.']);
-})->name('ai.chat');
+Route::post('/ai-chat', [AiChatController::class, 'chat'])->name('ai.chat');
 
 Route::get('/webbundling', function () {
     return view('landing-page');
