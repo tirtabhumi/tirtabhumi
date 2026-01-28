@@ -98,54 +98,6 @@
         </div>
     </section>
 
-    <!-- Product Knowledge Section -->
-    <section class="py-24 bg-white relative overflow-hidden">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">{{ __('messages.dm_pk_title') }}</h2>
-                <p class="text-slate-500 text-lg">{{ __('messages.dm_pk_subtitle') }}</p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                <!-- Google Ads -->
-                <div class="neu-flat p-8 rounded-3xl border border-blue-100 bg-blue-50/30">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                            <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M44.5 20H24V28.5H35.8C34.7 31.8 31.5 34.5 24 34.5C17.9 34.5 13 29.6 13 23.5C13 17.4 17.9 12.5 24 12.5C27.1 12.5 30 13.6 32.1 15.5L38.3 9.3C34.5 5.8 29.6 3.5 24 3.5C12.9 3.5 3.5 12.9 3.5 24C3.5 35.1 12.9 44.5 24 44.5C35.8 44.5 45 36 45 24C45 22.7 44.8 21.3 44.5 20Z" fill="#4285F4"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800">{{ __('messages.dm_pk_google_title') }}</h3>
-                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mt-1">{{ __('messages.dm_pk_google_badge') }}</span>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 text-lg leading-relaxed">
-                        {{ __('messages.dm_pk_google_desc') }}
-                    </p>
-                </div>
-
-                <!-- Meta Ads -->
-                <div class="neu-flat p-8 rounded-3xl border border-purple-100 bg-purple-50/30">
-                    <div class="flex items-center gap-4 mb-6">
-                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
-                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z"/>
-                            </svg>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800">{{ __('messages.dm_pk_meta_title') }}</h3>
-                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full mt-1">{{ __('messages.dm_pk_meta_badge') }}</span>
-                        </div>
-                    </div>
-                    <p class="text-slate-600 text-lg leading-relaxed">
-                        {{ __('messages.dm_pk_meta_desc') }}
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Pricing Section -->
     <section id="pricing" class="relative overflow-hidden py-24 bg-[#eef2f6]">
         <!-- Background Glow -->
@@ -203,7 +155,56 @@
         </div>
     </section>
 
+
+    <!-- Product Knowledge Section -->
+    <section class="py-24 bg-white relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">{{ __('messages.dm_pk_title') }}</h2>
+                <p class="text-slate-500 text-lg">{{ __('messages.dm_pk_subtitle') }}</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+                <!-- Google Ads -->
+                <div class="neu-flat p-8 rounded-3xl border border-blue-100 bg-blue-50/30">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                            <svg class="w-8 h-8" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M44.5 20H24V28.5H35.8C34.7 31.8 31.5 34.5 24 34.5C17.9 34.5 13 29.6 13 23.5C13 17.4 17.9 12.5 24 12.5C27.1 12.5 30 13.6 32.1 15.5L38.3 9.3C34.5 5.8 29.6 3.5 24 3.5C12.9 3.5 3.5 12.9 3.5 24C3.5 35.1 12.9 44.5 24 44.5C35.8 44.5 45 36 45 24C45 22.7 44.8 21.3 44.5 20Z" fill="#4285F4"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">{{ __('messages.dm_pk_google_title') }}</h3>
+                            <span class="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full mt-1">{{ __('messages.dm_pk_google_badge') }}</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        {{ __('messages.dm_pk_google_desc') }}
+                    </p>
+                </div>
+
+                <!-- Meta Ads -->
+                <div class="neu-flat p-8 rounded-3xl border border-purple-100 bg-purple-50/30">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-white rounded-xl shadow-sm flex items-center justify-center">
+                            <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12 2.04c-5.5 0-10 4.49-10 10.02c0 5 3.66 9.15 8.44 9.9v-7H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.78-3.89c1.09 0 2.23.19 2.23.19v2.47h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33v7a10 10 0 0 0 8.44-9.9c0-5.53-4.5-10.02-10-10.02Z"/>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-slate-800">{{ __('messages.dm_pk_meta_title') }}</h3>
+                            <span class="inline-block px-3 py-1 bg-purple-100 text-purple-700 text-xs font-bold rounded-full mt-1">{{ __('messages.dm_pk_meta_badge') }}</span>
+                        </div>
+                    </div>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        {{ __('messages.dm_pk_meta_desc') }}
+                    </p>
+                </div>
+            </div>
+        </div>
     </section>
+
+
 
     <!-- Testimonials Section -->
     <section class="py-24 bg-white">

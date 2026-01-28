@@ -122,6 +122,68 @@
         </div>
     </section>
 
+    <!-- Pricing Section -->
+    <section class="relative overflow-hidden py-24 bg-[#eef2f6]">
+
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">{{ __('messages.pricing_title') }}</h2>
+                <p class="text-slate-500 text-lg">{{ __('messages.pricing_subtitle') }}</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
+                <!-- Basic -->
+                <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.pricing_basic_title') }}</h3>
+                    <p class="text-slate-500 text-sm mb-6">{{ __('messages.pricing_basic_desc') }}</p>
+                    <div class="text-3xl font-bold text-slate-900 mb-1">{{ __('messages.pricing_basic_price') }}</div>
+                    <div class="text-xs text-slate-400 mb-8 italic">{{ __('messages.pricing_basic_note') }}</div>
+                    <ul class="space-y-4 mb-8 text-slate-700 text-sm">
+                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_basic_list_1') }}</li>
+                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_basic_list_2') }}</li>
+                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_basic_list_3') }}</li>
+                    </ul>
+                    <a href="https://wa.me/6282229046099?text=Info%20Paket%20Rintisan" class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">{{ __('messages.pricing_btn_choose') }}</a>
+                </div>
+
+                <!-- Pro (Highlighted) -->
+                <div class="neu-flat rounded-3xl p-8 relative transform md:scale-110 shadow-2xl z-10 border-2 border-indigo-500">
+                    <div class="absolute top-0 right-0 bg-indigo-100 text-indigo-700 px-6 py-2 rounded-bl-3xl rounded-tr-3xl text-xs font-bold shadow-sm whitespace-nowrap border-b border-l border-indigo-200">
+                        {{ __('messages.pricing_pro_badge') }}
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 text-slate-800">{{ __('messages.pricing_pro_title') }}</h3>
+                    <p class="text-slate-500 text-sm mb-8 font-medium">{{ __('messages.pricing_pro_desc') }}</p>
+                    <div class="text-4xl font-bold text-slate-900 mb-1">{{ __('messages.pricing_pro_price') }}</div>
+                    <div class="text-xs text-slate-400 mb-8 italic">{{ __('messages.pricing_pro_note') }}</div>
+                    <ul class="space-y-5 mb-10 text-slate-700 text-sm font-medium">
+                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>{{ __('messages.pricing_pro_list_1') }}</strong></li>
+                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>{{ __('messages.pricing_pro_list_2') }}</strong></li>
+                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> {{ __('messages.pricing_pro_list_3') }}</li>
+                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> {{ __('messages.pricing_pro_list_4') }}</li>
+                    </ul>
+                    <a href="https://wa.me/6282229046099?text=Info%20Paket%20Juragan" class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-indigo-700 font-bold text-center transition-all">{{ __('messages.pricing_btn_choose') }}</a>
+                </div>
+
+                <!-- Custom -->
+                <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.pricing_custom_title') }}</h3>
+                    <p class="text-slate-500 text-sm mb-6">{{ __('messages.pricing_custom_desc') }}</p>
+                    <div class="text-3xl font-bold text-slate-900 mb-8">{{ __('messages.pricing_custom_price') }}</div>
+                    <ul class="space-y-4 mb-8 text-slate-700 text-sm">
+                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_custom_list_1') }}</li>
+                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_custom_list_2') }}</li>
+                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_custom_list_3') }}</li>
+                    </ul>
+                    <a href="https://wa.me/6282229046099?text=Info%20Paket%20Sultan" class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">{{ __('messages.pricing_btn_consult') }}</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
 
 
     <!-- Reality Check (Comparison) -->
@@ -431,65 +493,7 @@
 
 
 
-    <!-- Pricing Section -->
-    <section class="relative overflow-hidden py-24 bg-[#eef2f6]">
-        <!-- Background Glow -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
 
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-4">{{ __('messages.pricing_title') }}</h2>
-                <p class="text-slate-500 text-lg">{{ __('messages.pricing_subtitle') }}</p>
-            </div>
-
-            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto items-center">
-                <!-- Basic -->
-                <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.pricing_basic_title') }}</h3>
-                    <p class="text-slate-500 text-sm mb-6">{{ __('messages.pricing_basic_desc') }}</p>
-                    <div class="text-3xl font-bold text-slate-900 mb-1">{{ __('messages.pricing_basic_price') }}</div>
-                    <div class="text-xs text-slate-400 mb-8 italic">{{ __('messages.pricing_basic_note') }}</div>
-                    <ul class="space-y-4 mb-8 text-slate-700 text-sm">
-                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_basic_list_1') }}</li>
-                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_basic_list_2') }}</li>
-                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_basic_list_3') }}</li>
-                    </ul>
-                    <a href="https://wa.me/6282229046099?text=Info%20Paket%20Rintisan" class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">{{ __('messages.pricing_btn_choose') }}</a>
-                </div>
-
-                <!-- Pro (Highlighted) -->
-                <div class="neu-flat rounded-3xl p-8 relative transform md:scale-110 shadow-2xl z-10 border-2 border-indigo-500">
-                    <div class="absolute top-0 right-0 bg-indigo-100 text-indigo-700 px-6 py-2 rounded-bl-3xl rounded-tr-3xl text-xs font-bold shadow-sm whitespace-nowrap border-b border-l border-indigo-200">
-                        {{ __('messages.pricing_pro_badge') }}
-                    </div>
-                    <h3 class="text-2xl font-bold mb-2 text-slate-800">{{ __('messages.pricing_pro_title') }}</h3>
-                    <p class="text-slate-500 text-sm mb-8 font-medium">{{ __('messages.pricing_pro_desc') }}</p>
-                    <div class="text-4xl font-bold text-slate-900 mb-1">{{ __('messages.pricing_pro_price') }}</div>
-                    <div class="text-xs text-slate-400 mb-8 italic">{{ __('messages.pricing_pro_note') }}</div>
-                    <ul class="space-y-5 mb-10 text-slate-700 text-sm font-medium">
-                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>{{ __('messages.pricing_pro_list_1') }}</strong></li>
-                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> <strong>{{ __('messages.pricing_pro_list_2') }}</strong></li>
-                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> {{ __('messages.pricing_pro_list_3') }}</li>
-                        <li class="flex gap-3 items-center"><span class="text-indigo-600 font-bold">✓</span> {{ __('messages.pricing_pro_list_4') }}</li>
-                    </ul>
-                    <a href="https://wa.me/6282229046099?text=Info%20Paket%20Juragan" class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-indigo-700 font-bold text-center transition-all">{{ __('messages.pricing_btn_choose') }}</a>
-                </div>
-
-                <!-- Custom -->
-                <div class="neu-flat border border-white/50 rounded-3xl p-8 hover:-translate-y-1 transition-all">
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.pricing_custom_title') }}</h3>
-                    <p class="text-slate-500 text-sm mb-6">{{ __('messages.pricing_custom_desc') }}</p>
-                    <div class="text-3xl font-bold text-slate-900 mb-8">{{ __('messages.pricing_custom_price') }}</div>
-                    <ul class="space-y-4 mb-8 text-slate-700 text-sm">
-                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_custom_list_1') }}</li>
-                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_custom_list_2') }}</li>
-                        <li class="flex gap-3"><span class="text-green-600 font-bold">✓</span> {{ __('messages.pricing_custom_list_3') }}</li>
-                    </ul>
-                    <a href="https://wa.me/6282229046099?text=Info%20Paket%20Sultan" class="block w-full py-4 rounded-xl neu-flat hover:neu-pressed text-slate-700 text-center transition-all font-medium">{{ __('messages.pricing_btn_consult') }}</a>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Final CTA -->
     <section class="py-24 bg-[#eef2f6] text-center">
