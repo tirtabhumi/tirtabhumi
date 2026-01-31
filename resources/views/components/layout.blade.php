@@ -348,14 +348,12 @@
                             <li><a href="/"
                                     class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.home') }}</a>
                             </li>
-                            <li><a href="/#about"
-                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.about') }}</a>
-                            </li>
+
                             <li><a href="/#services"
-                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_people_title') }}</a>
+                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.services') }}</a>
                             </li>
                             <li><a href="{{ route('trainings.index') }}"
-                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.services') }}</a>
+                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_people_title') }}</a>
                             </li>
                             <li><a href="{{ route('blog.index') }}"
                                     class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.blog') }}</a>
@@ -451,8 +449,7 @@
 
                     <a href="{{ route('trainings.index') }}"
                         class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.service_people_title') }}</a>
-                    <a href="/#about"
-                        class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.about') }}</a>
+
                     <a href="{{ route('blog.index') }}"
                         class="text-lg font-medium text-slate-800 hover:text-indigo-600 transition-colors py-4 border-b border-slate-100">{{ __('messages.blog') }}</a>
                     <a href="{{ route('contacts.index') }}"
