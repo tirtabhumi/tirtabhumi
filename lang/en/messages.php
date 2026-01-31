@@ -9,7 +9,7 @@ return [
     'login' => 'Sign In',
     'hero_title_1' => 'Grow Faster, Digitalize Better',
     'hero_title_2' => 'with Tirta Bhumi Indonesia',
-    'hero_subtitle' => 'Empowering your business with cutting-edge digital transformation, robust IT infrastructure, integrated procurement solutions, and UpVenture learning platform.',
+    'hero_subtitle' => 'PT Tirta Bhumi Indonesia is an integrated solution provider specializing in digital transformation, IT infrastructure, general procurement, and high-quality talent development in Indonesia.',
     'hero_rotating_text' => [
         'Trusted by 50+ Government Agencies',
         '9,000+ AI & CCTV Implementations',
@@ -831,8 +831,8 @@ return [
     'mentor_role_product_manager' => 'Product Design Manager',
     'mentor_subtitle_design_thinking' => 'Design Thinking Expert',
     'mentor_role_research_lead' => 'UX Research Lead',
-    'mentor_role_research_lead' => 'UX Research Lead',
-    'mentor_subtitle_research_specialist' => 'User Research Specialist',
+    'mentor_role_uiux_specialist' => 'UI UX Design Specialist',
+    'mentor_subtitle_uiux_expert' => 'Expert UI/UX Designer',
     
     // Category & Stats
     'category_section_badge' => 'Most Updated Material',

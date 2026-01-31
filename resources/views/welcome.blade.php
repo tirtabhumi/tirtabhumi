@@ -1,5 +1,5 @@
 <x-layout title="Home - PT Tirta Bhumi Indonesia"
-    description="Mitra Strategis Transformasi Digital, Infrastruktur IT, Pengembangan SDM, dan Pengadaan Barang & Jasa Terpadu.">
+    description="PT Tirta Bhumi Indonesia adalah perusahaan penyedia solusi terpadu yang berfokus pada transformasi digital, infrastruktur IT, pengadaan barang & jasa, serta pengembangan SDM.">
     <!-- Hero Section -->
     <section class="relative min-h-screen flex flex-col overflow-hidden pt-32">
         <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">

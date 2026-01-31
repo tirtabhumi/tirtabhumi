@@ -9,7 +9,7 @@ return [
     'login' => 'Sign In',
     'hero_title_1' => 'Grow Faster, Digitalize Better',
     'hero_title_2' => 'with Tirta Bhumi Indonesia',
-    'hero_subtitle' => 'Memberdayakan bisnis Anda dengan transformasi digital terdepan, infrastruktur IT yang handal, solusi pengadaan terintegrasi, dan platform pembelajaran UpVenture.',
+    'hero_subtitle' => 'PT Tirta Bhumi Indonesia adalah perusahaan penyedia solusi terpadu yang berfokus pada transformasi digital, infrastruktur IT, pengadaan barang & jasa, serta pengembangan SDM berkualitas di Indonesia.',
     'hero_rotating_text' => [
         'Dipercaya oleh 50+ Instansi Pemerintah',
         '9.000+ Implementasi AI & CCTV',
@@ -1050,8 +1050,8 @@ return [
     'mentor_subtitle_visual_expert' => 'Ahli Desain Visual',
     'mentor_role_product_manager' => 'Product Design Manager',
     'mentor_subtitle_design_thinking' => 'Ahli Design Thinking',
-    'mentor_role_research_lead' => 'Lead UX Research',
-    'mentor_subtitle_research_specialist' => 'Spesialis Riset Pengguna',
+    'mentor_role_uiux_specialist' => 'Spesialis Desain UI/UX',
+    'mentor_subtitle_uiux_expert' => 'Ahli UI/UX',
 
     // Category & Stats
     'category_section_badge' => 'Materi Paling Update',

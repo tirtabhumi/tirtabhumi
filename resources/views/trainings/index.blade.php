@@ -96,12 +96,12 @@
                             'linkedin' => 'https://www.linkedin.com/in/hanny-zora-agustina-607274210'
                         ],
                         [
-                            'name' => 'Andi Wijaya S.Kom, M.T',
-                            'title' => __('messages.mentor_role_senior_ux'),
-                            'subtitle' => __('messages.mentor_subtitle_product_specialist'),
-                            'image' => 'mentor-3.png',
-                            'certs' => ['UX Certified'],
-                            'linkedin' => '#'
+                            'name' => 'Indra Riyanto, S.Ds',
+                            'title' => __('messages.mentor_role_uiux_specialist'),
+                            'subtitle' => __('messages.mentor_subtitle_uiux_expert'),
+                            'image' => 'indra-riyanto.png',
+                            'certs' => ['UI UX Certified G2 Academy'],
+                            'linkedin' => 'https://www.linkedin.com/in/indra-riyanto-555b22333/'
                         ],
                        
                     ];
