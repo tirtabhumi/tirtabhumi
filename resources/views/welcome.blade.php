@@ -223,8 +223,11 @@
         <div class="container mx-auto px-6">
             @php
                 $trainings = \App\Models\Training::where('is_active', true)
-                    ->where('event_date', '>=', now())
-                    ->orderBy('event_date', 'asc')
+                    ->where(function ($q) {
+                        $q->where('event_date', '>=', now())
+                            ->orWhereNull('event_date');
+                    })
+                    ->orderByRaw('event_date IS NULL DESC, event_date ASC')
                     ->take(3)
                     ->get();
             @endphp
