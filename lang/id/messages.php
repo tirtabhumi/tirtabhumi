@@ -9,7 +9,7 @@ return [
     'login' => 'Sign In',
     'hero_title_1' => 'Grow Faster, Digitalize Better',
     'hero_title_2' => 'with Tirta Bhumi Indonesia',
-    'hero_subtitle' => 'PT Tirta Bhumi Indonesia adalah perusahaan penyedia solusi terpadu yang berfokus pada transformasi digital, infrastruktur IT, pengadaan barang & jasa, serta pengembangan SDM berkualitas di Indonesia.',
+    'hero_subtitle' => 'Kami adalah perusahaan Digital Services, Infrastruktur IT, dan Pengadaan Barang terpercaya. Kami membantu bisnis Anda Go Digital, mengelola jaringan internet, hingga memenuhi kebutuhan operasional kantor dengan mudah.',
     'hero_rotating_text' => [
         'Dipercaya oleh 50+ Instansi Pemerintah',
         '9.000+ Implementasi AI & CCTV',
@@ -338,7 +338,7 @@ return [
     'training_schedule_desc' => 'Pilih pelatihan yang sesuai dengan minat dan kebutuhan karir Anda.',
     'login_to_register' => 'Silakan Sign In untuk melanjutkan pendaftaran',
     'total_earnings' => 'Total Pendapatan',
-  
+
 
     'class_title' => 'UpVenture Learnings',
     'class_desc' => 'Program intensif jangka panjang untuk menguasai skill digital secara mendalam.',
@@ -738,7 +738,7 @@ return [
     'network_managed_term_4' => 'Maintenance aktif selama masa sewa',
     'network_managed_term_5' => 'Pembayaran mengikuti BAST',
 
-    
+
     'network_basic_rd_1' => 'RG-RAP2200(F) Reyee Wi-Fi5 Ceiling Access Point',
     'network_basic_rd_2' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
     'network_basic_rd_3' => 'RG-RAP2260(G) Reyee Wi-Fi 6 AX1800 Ceiling Access Point',
