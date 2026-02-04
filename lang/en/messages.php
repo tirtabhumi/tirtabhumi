@@ -9,7 +9,7 @@ return [
     'login' => 'Sign In',
     'hero_title_1' => 'Grow Faster, Digitalize Better',
     'hero_title_2' => 'with Tirta Bhumi Indonesia',
-    'hero_subtitle' => 'PT Tirta Bhumi Indonesia is an integrated solution provider specializing in digital transformation, IT infrastructure, general procurement, and high-quality talent development in Indonesia.',
+    'hero_subtitle' => 'We are a trusted Digital Services, IT Infrastructure, and Procurement company. We help your business Go Digital, manage internet networks, and fulfill office operational needs with ease.',
     'hero_rotating_text' => [
         'Trusted by 50+ Government Agencies',
         '9,000+ AI & CCTV Implementations',
@@ -815,7 +815,7 @@ return [
     'search' => 'Search by name',
     'status' => 'by Status',
     'total_earnings' => 'Total Earnings',
-    
+
     // Mentors Section
     'mentors_section_title' => 'Our Best Mentors',
     'mentors_section_desc' => 'Learn directly from experienced practitioners who are internationally certified.',
@@ -833,7 +833,7 @@ return [
     'mentor_role_research_lead' => 'UX Research Lead',
     'mentor_role_uiux_specialist' => 'UI UX Design Specialist',
     'mentor_subtitle_uiux_expert' => 'Expert UI/UX Designer',
-    
+
     // Category & Stats
     'category_section_badge' => 'Most Updated Material',
     'category_section_title' => 'Most Updated Subjects',
