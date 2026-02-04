@@ -191,17 +191,8 @@ Route::prefix('upventure')->group(function () {
 });
 
 
-Route::get('/blog', function () {
-    $posts = \App\Models\Post::with('category')
-        ->whereNotNull('published_at')
-        ->latest()
-        ->paginate(9);
-    return view('blog.index', compact('posts'));
-})->name('blog.index');
-
-Route::get('/blog/{post:slug}', function (\App\Models\Post $post) {
-    return view('blog.show', compact('post'));
-})->name('blog.show');
+Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{post:slug}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/contact', function () {
     return view('contact');
