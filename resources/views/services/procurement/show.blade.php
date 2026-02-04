@@ -14,14 +14,38 @@
                 <div class="grid md:grid-cols-3 gap-16 lg:gap-24">
                     <!-- Main Content -->
                     <div class="md:col-span-2 space-y-12">
-                        <!-- Poster Image -->
-                        <div class="rounded-2xl overflow-hidden neu-flat border border-white/50">
-                            @if($product->image)
-                                <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" loading="lazy" class="w-full h-auto">
-                            @else
-                                <div class="aspect-video bg-slate-200 flex items-center justify-center text-slate-400">
-                                    <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                        <!-- Poster Image & Gallery -->
+                        <div class="space-y-4">
+                            <div class="rounded-2xl overflow-hidden neu-flat border border-white/50 relative">
+                                @if(!empty($product->images) && isset($product->images[0]))
+                                    <img id="main-image" src="{{ Storage::url($product->images[0]) }}" alt="{{ $product->name }}" loading="lazy" class="w-full h-auto transition-opacity duration-300">
+                                @else
+                                    <div class="aspect-video bg-slate-200 flex items-center justify-center text-slate-400">
+                                        <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                    </div>
+                                @endif
+                            </div>
+
+                            @if(!empty($product->images) && count($product->images) > 1)
+                                <div class="grid grid-cols-5 gap-4">
+                                    @foreach($product->images as $index => $image)
+                                        <button onclick="changeImage('{{ Storage::url($image) }}')" class="rounded-xl overflow-hidden neu-flat border border-white/50 hover:opacity-80 transition-opacity focus:ring-2 focus:ring-indigo-600 focus:outline-none">
+                                            <img src="{{ Storage::url($image) }}" alt="Thumbnail {{ $index + 1 }}" class="w-full aspect-square object-cover">
+                                        </button>
+                                    @endforeach
                                 </div>
+                                <script>
+                                    function changeImage(src) {
+                                        const mainImage = document.getElementById('main-image');
+                                        mainImage.style.opacity = '0';
+                                        setTimeout(() => {
+                                            mainImage.src = src;
+                                            mainImage.onload = () => {
+                                                mainImage.style.opacity = '1';
+                                            }
+                                        }, 150);
+                                    }
+                                </script>
                             @endif
                         </div>
                         
@@ -78,6 +102,8 @@
                                                             'E-Katalog' => 'bg-red-50 text-red-600 border border-red-200',
                                                             'PadiUMKM' => 'bg-emerald-50 text-emerald-600 border border-emerald-200',
                                                             'SIPLah' => 'bg-indigo-50 text-indigo-600 border border-indigo-200',
+                                                            'Tokopedia' => 'bg-green-50 text-green-600 border border-green-200',
+                                                            'Shopee' => 'bg-orange-50 text-orange-600 border border-orange-200',
                                                             default => 'bg-slate-50 text-slate-600 border border-slate-200',
                                                         };
                                                     @endphp

@@ -130,7 +130,7 @@
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
                                     <div id="platform-list" class="space-y-3">
-                                        @foreach(['SIPLah', 'E-Katalog', 'PadiUMKM'] as $platform)
+                                        @foreach(['SIPLah', 'E-Katalog', 'PadiUMKM', 'Tokopedia', 'Shopee'] as $platform)
                                             <label class="flex items-center gap-3 cursor-pointer group select-none relative">
                                                 <input type="checkbox" name="platform[]" value="{{ $platform }}" 
                                                     class="peer sr-only" 
@@ -190,8 +190,8 @@
                                 <a href="{{ route('services.procurement.show', $product) }}" class="absolute inset-0 z-10"><span class="sr-only">Lihat Detail Profit</span></a>
 
                                 <div class="relative aspect-video overflow-hidden bg-slate-100">
-                                    @if($product->image)
-                                        <img src="{{ Storage::url($product->image) }}" alt="{{ $product->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                    @if(!empty($product->images) && isset($product->images[0]))
+                                        <img src="{{ Storage::url($product->images[0]) }}" alt="{{ $product->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                     @else
                                         <div class="flex items-center justify-center w-full h-full text-slate-300">
                                             <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -225,6 +225,8 @@
                                                     'E-Katalog' => 'bg-red-50 text-red-600 border border-red-200',
                                                     'PadiUMKM' => 'bg-emerald-50 text-emerald-600 border border-emerald-200',
                                                     'SIPLah' => 'bg-indigo-50 text-indigo-600 border border-indigo-200',
+                                                    'Tokopedia' => 'bg-green-50 text-green-600 border border-green-200',
+                                                    'Shopee' => 'bg-orange-50 text-orange-600 border border-orange-200',
                                                     default => 'bg-slate-50 text-slate-600 border border-slate-200',
                                                 };
                                             @endphp

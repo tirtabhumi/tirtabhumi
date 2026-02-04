@@ -14,7 +14,7 @@ class Post extends Model
         'category_id',
         'title',
         'slug',
-        'image',
+        'images',
         'content',
         'published_at',
         'is_featured',
@@ -23,6 +23,7 @@ class Post extends Model
     protected $casts = [
         'published_at' => 'datetime',
         'is_featured' => 'boolean',
+        'images' => 'array',
     ];
 
     public function category()

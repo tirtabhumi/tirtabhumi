@@ -13,11 +13,13 @@ class Product extends Model
         'category',
         'price',
         'platforms',
-        'image',
+        'images',
+        'description',
     ];
 
     protected $casts = [
         'platforms' => 'array',
+        'images' => 'array',
         'price' => 'decimal:2',
     ];
 }
