@@ -18,7 +18,11 @@
                     <div class="space-y-6 max-w-sm mx-auto">
                         <div class="rounded-2xl overflow-hidden neu-flat border border-white/50 relative aspect-square w-full bg-white flex items-center justify-center cursor-zoom-in group" onclick="openModal()">
                             @if(!empty($product->images) && isset($product->images[0]))
-                                <img id="main-image" src="{{ Storage::url($product->images[0]) }}" alt="{{ $product->name }}" loading="lazy" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105">
+                                @php 
+                                    $firstImage = $product->images[0];
+                                    $firstImageUrl = str_starts_with($firstImage, 'http') ? $firstImage : Storage::url($firstImage);
+                                @endphp
+                                <img id="main-image" src="{{ $firstImageUrl }}" alt="{{ $product->name }}" loading="lazy" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105">
                                 
                                 <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
                             @else
@@ -31,9 +35,10 @@
                         @if(!empty($product->images) && count($product->images) > 1)
                             <div class="flex flex-wrap gap-3 justify-center">
                                 @foreach($product->images as $index => $image)
-                                    <button onclick="changeImage('{{ Storage::url($image) }}', this)" 
+                                    @php $imageUrl = str_starts_with($image, 'http') ? $image : Storage::url($image); @endphp
+                                    <button onclick="changeImage('{{ $imageUrl }}', this)" 
                                             class="thumbnail-btn w-16 h-16 rounded-xl overflow-hidden neu-flat border-2 transition-all focus:outline-none {{ $index === 0 ? 'border-indigo-600 ring-2 ring-indigo-600/20' : 'border-white/50 hover:border-indigo-300' }}">
-                                        <img src="{{ Storage::url($image) }}" alt="Thumbnail {{ $index + 1 }}" class="w-full aspect-square object-cover">
+                                        <img src="{{ $imageUrl }}" alt="Thumbnail {{ $index + 1 }}" class="w-full aspect-square object-cover">
                                     </button>
                                 @endforeach
                             </div>
@@ -87,7 +92,7 @@
                                     </div>
                                     <div>
                                         <span class="block text-slate-500 text-xs mb-1">Kategori</span>
-                                        <span class="font-bold text-slate-800 block">{{ $product->category }}</span>
+                                        <span class="font-bold text-slate-800 block">{{ $product->category->name ?? 'Uncategorized' }}</span>
                                     </div>
                                 </li>
                                 
@@ -157,7 +162,10 @@
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
         <div class="max-w-5xl max-h-[90vh] relative" onclick="event.stopPropagation()">
-            <img id="modal-image" src="{{ !empty($product->images) ? Storage::url($product->images[0]) : '' }}" alt="Enlarged Image" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain">
+            @php 
+                $modalImageUrl = !empty($product->images) ? (str_starts_with($product->images[0], 'http') ? $product->images[0] : Storage::url($product->images[0])) : ''; 
+            @endphp
+            <img id="modal-image" src="{{ $modalImageUrl }}" alt="Enlarged Image" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain">
         </div>
     </div>
 

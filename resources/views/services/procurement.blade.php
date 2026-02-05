@@ -81,7 +81,8 @@
                                             @switch(request('sort'))
                                                 @case('price_asc') Harga Terendah @break
                                                 @case('price_desc') Harga Tertinggi @break
-                                                @default Paling Sesuai
+                                                @case('oldest') Terlama @break
+                                                @default Terbaru
                                             @endswitch
                                         </span>
                                         <svg class="h-4 w-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
@@ -90,7 +91,8 @@
                                     <!-- Custom Dropdown Menu -->
                                     <div id="sort-menu" class="absolute z-20 mt-4 w-full rounded-xl neu-flat bg-[#eef2f6] p-2 hidden border border-white/50">
                                         <div class="space-y-1">
-                                            <button type="button" onclick="selectSort('latest', 'Paling Sesuai')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Paling Sesuai</button>
+                                            <button type="button" onclick="selectSort('latest', 'Terbaru')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'latest' || !request('sort') ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Terbaru</button>
+                                            <button type="button" onclick="selectSort('oldest', 'Terlama')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'oldest' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Terlama</button>
                                             <button type="button" onclick="selectSort('price_asc', 'Harga Terendah')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_asc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Harga Terendah</button>
                                             <button type="button" onclick="selectSort('price_desc', 'Harga Tertinggi')" class="block w-full text-left px-4 py-2 text-sm rounded-lg transition-colors {{ request('sort') == 'price_desc' ? 'text-indigo-600 font-bold bg-white/50 shadow-sm' : 'text-slate-600 hover:bg-white/30 hover:text-indigo-600' }}">Harga Tertinggi</button>
                                         </div>
@@ -106,17 +108,34 @@
                                         <svg class="w-4 h-4 text-slate-400 group-hover:text-indigo-600 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
                                     </button>
                                     <div id="category-list" class="space-y-3">
-                                        @foreach($categories as $category)
-                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="checkbox" name="category[]" value="{{ $category }}" 
-                                                    class="peer sr-only" 
-                                                    {{ in_array($category, (array)request('category', [])) ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
-                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
-                                                    <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                        <!-- All Option -->
+                                        <div class="relative">
+                                            <input type="radio" name="category" value="" id="cat-all"
+                                                class="peer sr-only" 
+                                                {{ !request('category') ? 'checked' : '' }}
+                                                onchange="submitFormWithScroll(this.form)">
+                                            <label for="cat-all" class="flex items-center gap-3 cursor-pointer group select-none">
+                                                <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ !request('category') ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
+                                                    <svg class="w-3.5 h-3.5 transform {{ !request('category') ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                                 </div>
-                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $category }}</span>
+                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium {{ !request('category') ? 'text-indigo-700 font-bold' : '' }}">Semua Kategori</span>
                                             </label>
+                                        </div>
+
+                                        @foreach($categories as $category)
+                                            <div class="relative">
+                                                <input type="radio" name="category" value="{{ $category->slug }}" id="cat-{{ $category->slug }}"
+                                                    class="peer sr-only" 
+                                                    {{ request('category') == $category->slug ? 'checked' : '' }}
+                                                    onchange="submitFormWithScroll(this.form)">
+                                                <label for="cat-{{ $category->slug }}" class="flex items-center gap-3 cursor-pointer group select-none">
+                                                    @php $isActive = request('category') == $category->slug; @endphp
+                                                    <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ $isActive ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
+                                                        <svg class="w-3.5 h-3.5 transform {{ $isActive ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                                    </div>
+                                                    <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium {{ $isActive ? 'text-indigo-700 font-bold' : '' }}">{{ $category->name }}</span>
+                                                </label>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -135,11 +154,12 @@
                                                 <input type="checkbox" name="platform[]" value="{{ $platform }}" 
                                                     class="peer sr-only" 
                                                     {{ in_array($platform, (array)request('platform', [])) ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
-                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
-                                                    <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                                    onchange="submitFormWithScroll(this.form)">
+                                                @php $isPlatformActive = in_array($platform, (array)request('platform', [])); @endphp
+                                                <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ $isPlatformActive ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
+                                                    <svg class="w-3.5 h-3.5 transform {{ $isPlatformActive ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
                                                 </div>
-                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $platform }}</span>
+                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium {{ $isPlatformActive ? 'text-indigo-700 font-bold' : '' }}">{{ $platform }}</span>
                                             </label>
                                         @endforeach
                                     </div>
@@ -158,9 +178,9 @@
                         </div>
                         <div class="w-full">
                              <form action="{{ route('services.procurement') }}" method="GET" class="relative w-full flex items-center rounded-full neu-pressed bg-[#eef2f6] px-6 transition-all hover:shadow-md">
-                                @if(request('category')) @foreach((array)request('category') as $cat) <input type="hidden" name="category[]" value="{{ $cat }}"> @endforeach @endif
-                                @if(request('platform')) @foreach((array)request('platform') as $plat) <input type="hidden" name="platform[]" value="{{ $plat }}"> @endforeach @endif
-                                @if(request('sort')) <input type="hidden" name="sort" value="{{ request('sort') }}"> @endif
+                                 @if(request('category')) <input type="hidden" name="category" value="{{ request('category') }}"> @endif
+                                 @if(request('platform')) @foreach((array)request('platform') as $plat) <input type="hidden" name="platform[]" value="{{ $plat }}"> @endforeach @endif
+                                 @if(request('sort')) <input type="hidden" name="sort" value="{{ request('sort') }}"> @endif
 
                                 <input type="text" 
                                        name="search" 
@@ -176,10 +196,10 @@
                         </div>
                     </div>
 
-                    <!-- Search Info -->
                     @if(request('search'))
-                        <div class="mb-4 text-slate-500">
-                            Menampilkan hasil pencarian untuk "<span class="font-bold text-slate-800">{{ request('search') }}</span>"
+                        <div class="mb-6 p-4 rounded-xl bg-indigo-50 border border-indigo-100 text-indigo-700 flex items-center justify-between">
+                            <span>Menampilkan hasil pencarian untuk "<span class="font-bold">{{ request('search') }}</span>"</span>
+                            <a href="{{ route('services.procurement') }}" class="text-xs font-bold hover:underline">Hapus Filter</a>
                         </div>
                     @endif
 
@@ -191,7 +211,8 @@
 
                                 <div class="relative aspect-video overflow-hidden bg-slate-100">
                                     @if(!empty($product->images) && isset($product->images[0]))
-                                        <img src="{{ Storage::url($product->images[0]) }}" alt="{{ $product->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                                        @php $indexImageUrl = str_starts_with($product->images[0], 'http') ? $product->images[0] : Storage::url($product->images[0]); @endphp
+                                        <img src="{{ $indexImageUrl }}" alt="{{ $product->name }}" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                                     @else
                                         <div class="flex items-center justify-center w-full h-full text-slate-300">
                                             <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -203,7 +224,7 @@
                                 <div class="p-6 flex flex-col flex-grow">
                                     <div class="flex items-center gap-3 mb-3">
                                         <span class="text-xs font-bold px-3 py-1 rounded-full neu-pressed text-indigo-600 transition-colors duration-300">
-                                            {{ $product->category }}
+                                            {{ $product->category->name ?? 'Uncategorized' }}
                                         </span>
                                     </div>
                                     
@@ -279,7 +300,7 @@
             input.value = value;
             document.getElementById('sort-label').innerText = label;
             document.getElementById('sort-menu').classList.add('hidden');
-            input.form.submit();
+            submitFormWithScroll(input.form);
         }
 
         document.addEventListener('click', function(e) {
@@ -289,5 +310,19 @@
                 menu.classList.add('hidden'); 
             }
         });
+
+        // Scroll Persistence
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollPos = sessionStorage.getItem('scrollPos_procurement');
+            if (scrollPos) {
+                window.scrollTo(0, scrollPos);
+                sessionStorage.removeItem('scrollPos_procurement');
+            }
+        });
+
+        window.submitFormWithScroll = function(form) {
+            sessionStorage.setItem('scrollPos_procurement', window.scrollY);
+            form.submit();
+        };
     </script>
 </x-layout>

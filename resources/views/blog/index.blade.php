@@ -86,7 +86,7 @@
                                             <input type="radio" name="category" value="" id="cat-all"
                                                 class="peer sr-only" 
                                                 {{ !request('category') ? 'checked' : '' }}
-                                                onchange="this.form.submit()">
+                                                onchange="submitFormWithScroll(this.form)">
                                             <label for="cat-all" class="flex items-center gap-3 cursor-pointer group select-none">
                                                 <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ !request('category') ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
                                                     <svg class="w-3.5 h-3.5 transform {{ !request('category') ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
@@ -101,7 +101,7 @@
                                                     <input type="radio" name="category" value="{{ $category->slug }}" id="cat-{{ $category->slug }}"
                                                         class="peer sr-only" 
                                                         {{ request('category') == $category->slug ? 'checked' : '' }}
-                                                        onchange="this.form.submit()">
+                                                        onchange="submitFormWithScroll(this.form)">
                                                     <label for="cat-{{ $category->slug }}" class="flex items-center gap-3 cursor-pointer group select-none">
                                                         @php $isActive = request('category') == $category->slug; @endphp
                                                         <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ $isActive ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
@@ -217,7 +217,7 @@
             input.value = value;
             document.getElementById('sort-label').innerText = label;
             document.getElementById('sort-menu').classList.add('hidden');
-            input.form.submit();
+            submitFormWithScroll(input.form);
         }
 
         document.addEventListener('click', function(e) {
@@ -227,5 +227,19 @@
                 menu.classList.add('hidden'); 
             }
         });
+
+        // Scroll Persistence
+        document.addEventListener('DOMContentLoaded', function() {
+            const scrollPos = sessionStorage.getItem('scrollPos_blog');
+            if (scrollPos) {
+                window.scrollTo(0, scrollPos);
+                sessionStorage.removeItem('scrollPos_blog');
+            }
+        });
+
+        window.submitFormWithScroll = function(form) {
+            sessionStorage.setItem('scrollPos_blog', window.scrollY);
+            form.submit();
+        };
     </script>
 </x-layout>
