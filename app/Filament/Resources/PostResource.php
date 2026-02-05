@@ -54,10 +54,14 @@ class PostResource extends Resource
                         Forms\Components\Toggle::make('is_featured')
                             ->label('Artikel Unggulan (Featured)')
                             ->required(),
-                        Forms\Components\FileUpload::make('image')
-                            ->label('Gambar Sampul')
+                        Forms\Components\FileUpload::make('images')
+                            ->label('Gambar Galeri')
                             ->image()
-                            ->directory('posts'),
+                            ->directory('posts')
+                            ->multiple()
+                            ->maxFiles(5)
+                            ->reorderable()
+                            ->required(),
                         Forms\Components\RichEditor::make('content')
                             ->label('Isi Konten')
                             ->columnSpanFull(),
@@ -69,8 +73,11 @@ class PostResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image')
-                    ->label('Gambar'),
+                Tables\Columns\ImageColumn::make('images')
+                    ->label('Gambar')
+                    ->circular()
+                    ->stacked()
+                    ->limit(3),
                 Tables\Columns\TextColumn::make('title')
                     ->label('Judul')
                     ->searchable(),

@@ -61,11 +61,19 @@ class ProductResource extends Resource
                         'SIPLah' => 'SIPLah',
                         'E-Katalog' => 'E-Katalog',
                         'PadiUMKM' => 'PadiUMKM',
+                        'Tokopedia' => 'Tokopedia',
+                        'Shopee' => 'Shopee',
                     ])
                     ->required(),
-                Forms\Components\FileUpload::make('image')
+                Forms\Components\FileUpload::make('images')
                     ->image()
-                    ->directory('products'),
+                    ->directory('products')
+                    ->multiple()
+                    ->maxFiles(10)
+                    ->reorderable()
+                    ->required(),
+                Forms\Components\RichEditor::make('description')
+                    ->columnSpanFull(),
             ]);
     }
 
@@ -73,7 +81,10 @@ class ProductResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('images')
+                    ->circular()
+                    ->stacked()
+                    ->limit(3),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category')
