@@ -1,9 +1,9 @@
 <x-layout title="{{ $product->name }} - Tirtabhumi Procurement" description="{{ Str::limit(strip_tags($product->description), 150) }}">
 
-    <section class="pt-24 pb-20 bg-[#f5f5f5]">
+    <article class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative z-10">
         <div class="container mx-auto px-4 sm:px-6">
             <!-- Breadcrumb -->
-            <div class="mb-12">
+            <div class="mb-12 pt-16">
                 <a href="{{ route('services.procurement') }}" class="text-slate-400 hover:text-indigo-600 transition-colors flex items-center gap-2 text-sm font-semibold uppercase tracking-wider">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                     Kembali ke E-Procurement
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </article>
     <!-- Image Modal -->
     <div id="image-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/90 backdrop-blur-sm p-4 cursor-zoom-out" onclick="closeModal()">
         <button class="absolute top-6 right-6 text-white hover:text-indigo-400 transition-colors z-[110]" onclick="closeModal()">
