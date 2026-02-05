@@ -33,14 +33,20 @@ class BlogController extends Controller
         $sort = $request->input('sort', 'latest');
         if ($sort === 'oldest') {
             $query->oldest('published_at');
-        } else {
+        }
+        else {
             $query->latest('published_at');
         }
 
         $posts = $query->paginate(9)->withQueryString();
-        $categories = Category::has('posts')->get(); // Only show categories with posts
 
-        return view('blog.index', compact('posts', 'categories'));
+        // Fetch categories that have posts, ensures we always have a collection
+        $categories = Category::has('posts')->get() ?? collect();
+
+        return view('blog.index', [
+            'posts' => $posts,
+            'categories' => $categories
+        ]);
     }
 
     public function show(Post $post)

@@ -93,18 +93,20 @@
                                             <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">Semua Kategori</span>
                                         </label>
 
-                                        @foreach($categories as $category)
-                                            <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                <input type="radio" name="category" value="{{ $category->slug }}" 
-                                                    class="peer sr-only" 
-                                                    {{ request('category') == $category->slug ? 'checked' : '' }}
-                                                    onchange="this.form.submit()">
-                                                <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
-                                                    <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                                                </div>
-                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $category->name }}</span>
-                                            </label>
-                                        @endforeach
+                                        @if(isset($categories) && count($categories) > 0)
+                                            @foreach($categories as $category)
+                                                <label class="flex items-center gap-3 cursor-pointer group select-none relative">
+                                                    <input type="radio" name="category" value="{{ $category->slug }}" 
+                                                        class="peer sr-only" 
+                                                        {{ request('category') == $category->slug ? 'checked' : '' }}
+                                                        onchange="this.form.submit()">
+                                                    <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
+                                                        <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                                    </div>
+                                                    <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $category->name }}</span>
+                                                </label>
+                                            @endforeach
+                                        @endif
                                     </div>
                                 </div>
                             </div>
