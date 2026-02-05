@@ -312,8 +312,12 @@
                             <a href="{{ route('blog.show', $post) }}"
                                 class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-none transition-all hover:-translate-y-1">
                                 <div class="relative aspect-video overflow-hidden bg-slate-100">
-                                    <img src="{{ $post->image ? Storage::url($post->image) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}"
-                                        alt="{{ $post->title }}" loading="lazy"
+                                    @php
+                                        $blogImage = (!empty($post->images) && isset($post->images[0]))
+                                            ? Storage::url($post->images[0])
+                                            : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image';
+                                    @endphp
+                                    <img src="{{ $blogImage }}" alt="{{ $post->title }}" loading="lazy"
                                         class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
                                 </div>
                                 <div class="p-6">
