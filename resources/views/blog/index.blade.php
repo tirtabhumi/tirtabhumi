@@ -153,7 +153,12 @@
                            class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
                            style="animation-delay: {{ ($loop->index + 1) * 100 }}ms">
                             <div class="relative aspect-video overflow-hidden bg-slate-100">
-                                <img src="{{ $post->image ? Storage::url($post->image) : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image' }}" alt="{{ $post->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-700">
+                                @php
+                                    $blogImage = (!empty($post->images) && isset($post->images[0])) 
+                                        ? Storage::url($post->images[0]) 
+                                        : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image';
+                                @endphp
+                                <img src="{{ $blogImage }}" alt="{{ $post->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-700">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
                             <div class="p-6">
