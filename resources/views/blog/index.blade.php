@@ -82,29 +82,34 @@
                                     </button>
                                     <div id="category-list" class="space-y-3">
                                         <!-- All Option -->
-                                        <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                            <input type="radio" name="category" value="" 
+                                        <div class="relative">
+                                            <input type="radio" name="category" value="" id="cat-all"
                                                 class="peer sr-only" 
                                                 {{ !request('category') ? 'checked' : '' }}
                                                 onchange="this.form.submit()">
-                                            <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
-                                                <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                                            </div>
-                                            <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">Semua Kategori</span>
-                                        </label>
+                                            <label for="cat-all" class="flex items-center gap-3 cursor-pointer group select-none">
+                                                <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ !request('category') ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
+                                                    <svg class="w-3.5 h-3.5 transform {{ !request('category') ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                                </div>
+                                                <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium {{ !request('category') ? 'text-indigo-700 font-bold' : '' }}">Semua Kategori</span>
+                                            </label>
+                                        </div>
 
                                         @if(isset($categories) && count($categories) > 0)
                                             @foreach($categories as $category)
-                                                <label class="flex items-center gap-3 cursor-pointer group select-none relative">
-                                                    <input type="radio" name="category" value="{{ $category->slug }}" 
+                                                <div class="relative">
+                                                    <input type="radio" name="category" value="{{ $category->slug }}" id="cat-{{ $category->slug }}"
                                                         class="peer sr-only" 
                                                         {{ request('category') == $category->slug ? 'checked' : '' }}
                                                         onchange="this.form.submit()">
-                                                    <div class="w-5 h-5 flex-shrink-0 rounded-md neu-pressed flex items-center justify-center text-white transition-all duration-200 border border-transparent peer-checked:bg-indigo-600">
-                                                        <svg class="w-3.5 h-3.5 transform scale-0 transition-transform duration-200 peer-checked:scale-100" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
-                                                    </div>
-                                                    <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium peer-checked:text-indigo-700 peer-checked:font-bold">{{ $category->name }}</span>
-                                                </label>
+                                                    <label for="cat-{{ $category->slug }}" class="flex items-center gap-3 cursor-pointer group select-none">
+                                                        @php $isActive = request('category') == $category->slug; @endphp
+                                                        <div class="w-5 h-5 flex-shrink-0 rounded-md flex items-center justify-center transition-all duration-200 border border-transparent {{ $isActive ? 'neu-flat text-indigo-600' : 'neu-pressed text-transparent' }}">
+                                                            <svg class="w-3.5 h-3.5 transform {{ $isActive ? 'scale-100' : 'scale-0' }} transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+                                                        </div>
+                                                        <span class="text-slate-600 group-hover:text-indigo-600 transition-colors text-sm font-medium {{ $isActive ? 'text-indigo-700 font-bold' : '' }}">{{ $category->name }}</span>
+                                                    </label>
+                                                </div>
                                             @endforeach
                                         @endif
                                     </div>

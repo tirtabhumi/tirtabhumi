@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class ProductResource extends Resource
 {
@@ -46,11 +47,9 @@ class ProductResource extends Resource
         return $form
             ->schema([
                 Forms\Components\TextInput::make('name')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\TextInput::make('category')
-                    ->required()
-                    ->maxLength(255),
+                    ->required(),
+                Forms\Components\Select::make('category_id')->label('Kategori')->relationship('category', 'name')
+                    ->required(),
                 Forms\Components\TextInput::make('price')
                     ->required()
                     ->numeric()
@@ -74,6 +73,11 @@ class ProductResource extends Resource
                     ->required(),
                 Forms\Components\RichEditor::make('description')
                     ->columnSpanFull(),
+                Forms\Components\FileUpload::make('attachment')
+                    ->label('Brosur/Lampiran (PDF)')
+                    ->acceptedFileTypes(['application/pdf'])
+                    ->directory('attachments')
+                    ->maxSize(10240),
             ]);
     }
 
@@ -87,11 +91,17 @@ class ProductResource extends Resource
                     ->limit(3),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('category')
+                Tables\Columns\TextColumn::make('category.name')->label('Kategori')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
                     ->money('IDR')
                     ->sortable(),
+                Tables\Columns\IconColumn::make('attachment')
+                    ->label('PDF')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('danger')
+                    ->url(fn ($record) => $record->attachment ? Storage::url($record->attachment) : null)
+                    ->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('platforms')
                     ->badge(),
                 Tables\Columns\TextColumn::make('created_at')

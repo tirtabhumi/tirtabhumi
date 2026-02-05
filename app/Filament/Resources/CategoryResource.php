@@ -18,10 +18,11 @@ class CategoryResource extends Resource
     protected static ?string $model = Category::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-tag';
+    protected static ?int $navigationSort = 2;
     
     public static function getNavigationGroup(): ?string
     {
-        return 'General';
+        return 'Manajemen Konten';
     }
 
     public static function canViewAny(): bool

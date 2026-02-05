@@ -12,6 +12,7 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Illuminate\Support\Facades\Storage;
 
 class PostResource extends Resource
 {
@@ -20,6 +21,7 @@ class PostResource extends Resource
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static ?string $modelLabel = 'Artikel / Berita';
     protected static ?string $pluralModelLabel = 'Artikel / Berita';
+    protected static ?int $navigationSort = 1;
 
     public static function getNavigationGroup(): ?string
     {
@@ -65,6 +67,11 @@ class PostResource extends Resource
                         Forms\Components\RichEditor::make('content')
                             ->label('Isi Konten')
                             ->columnSpanFull(),
+                        Forms\Components\FileUpload::make('attachment')
+                            ->label('Lampiran (PDF)')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->directory('attachments')
+                            ->maxSize(10240),
                     ])
             ]);
     }
@@ -83,7 +90,6 @@ class PostResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('category.name')
                     ->label('Kategori')
-                    ->numeric()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('user.name')
                     ->label('Penulis')
@@ -93,6 +99,12 @@ class PostResource extends Resource
                     ->label('Tanggal Terbit')
                     ->dateTime()
                     ->sortable(),
+                Tables\Columns\IconColumn::make('attachment')
+                    ->label('PDF')
+                    ->icon('heroicon-o-document-arrow-down')
+                    ->color('danger')
+                    ->url(fn ($record) => $record->attachment ? Storage::url($record->attachment) : null)
+                    ->openUrlInNewTab(),
                 Tables\Columns\IconColumn::make('is_featured')
                     ->label('Unggulan')
                     ->boolean(),

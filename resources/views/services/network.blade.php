@@ -1,4 +1,4 @@
-﻿<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
+<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
     <!-- Custom Styles -->
     <!-- Custom Styles -->
     <style>
@@ -140,12 +140,14 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">{{ __('messages.network_managed_title') }}</h2>
                 <p class="text-slate-500 text-lg mb-8">{{ __('messages.network_managed_desc') }}</p>
                 <div class="inline-flex bg-slate-200/50 p-1.5 rounded-full relative">
-                    <button id="btn-basic" onclick="switchScheme('basic')" class="relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-cyan-600">{{ __('messages.network_managed_scheme_basic') }}</button>
-                    <button id="btn-premium" onclick="switchScheme('premium')" class="relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600">{{ __('messages.network_managed_scheme_premium') }}</button>
+                    <button id="btn-basic" onclick="switchScheme('basic')" class="relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-cyan-600">{{ __('messages.network_managed_scheme_basic') }}</button>
+                    <button id="btn-premium" onclick="switchScheme('premium')" class="relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600">{{ __('messages.network_managed_scheme_premium') }}</button>
+                    <button id="btn-bundling" onclick="switchScheme('bundling')" class="relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-purple-600">Bundling</button>
                 </div>
                 <div class="mt-4 text-xs text-slate-400">
                     <span id="label-basic" class="">{{ __('messages.network_managed_basic_note') }}</span>
                     <span id="label-premium" class="hidden">{{ __('messages.network_managed_premium_note') }}</span>
+                    <span id="label-bundling" class="hidden">Paket bundling internet dedicated + managed WiFi access point</span>
                 </div>
             </div>
             
@@ -268,35 +270,180 @@
                 </div>
             </div>
             
+            <!-- BUNDLING GRID -->
+            <div id="grid-bundling" class="hidden grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Paket 1: 3 AP + 100 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-gradient-to-r from-cyan-500 to-indigo-500 px-3 py-1 rounded-full shadow-sm">BUNDLING 1</span><span class="text-cyan-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">3 AP + 100 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_bundling_concurrent', ['count' => 100]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 2.345.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_bundling_lease_term') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Router RG-EG105G-V3</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> RG-RAP2260(G) Reyee Wi-Fi 6 AX1800</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Wallmount Rack 4U</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Cabling UTP Cat 6</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> 1 unit backup access point</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%201%20(3%20AP%20+%20100%20Mbps)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                
+                <!-- Paket 2: 7 AP + 150 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-gradient-to-r from-cyan-500 to-indigo-500 px-3 py-1 rounded-full shadow-sm">BUNDLING 2</span><span class="text-cyan-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">7 AP + 150 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_bundling_concurrent', ['count' => 300]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 3.245.960 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_bundling_lease_term') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Router RG-EG310GH-P-E</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> RG-RAP2260(G) Reyee Wi-Fi 6 AX1800</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Switch RG-ES209GC-P</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Wallmount Rack 4U</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Cabling UTP Cat 6</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> 1 unit backup access point</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%202%20(7%20AP%20+%20150%20Mbps)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                
+                <!-- Paket 3: 10 AP + 200 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-gradient-to-r from-cyan-600 to-indigo-600 px-3 py-1 rounded-full shadow-sm">BUNDLING 3</span><span class="text-indigo-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">10 AP + 200 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_bundling_concurrent', ['count' => 300]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 3.983.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_bundling_lease_term') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Router RG-EG310GH-P-E</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> RG-RAP2260(G) Reyee Wi-Fi 6 AX1800</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Switch RG-ES209GC-P</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Wallmount Rack 4U</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Cabling UTP Cat 6</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> 1 unit backup access point</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%203%20(10%20AP%20+%20200%20Mbps)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+                
+                <!-- Paket 4: 15 AP + 300 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 transform md:scale-105 shadow-xl border-indigo-200">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-white bg-gradient-to-r from-cyan-600 to-indigo-600 px-3 py-1 rounded-full shadow-sm">BUNDLING 4</span><span class="text-indigo-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">15 AP + 300 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_bundling_concurrent', ['count' => 300]) }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 5.158.440 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400 mt-1">{{ __('messages.network_bundling_lease_term') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Router RG-EG310GH-P-E</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> RG-RAP2260(G) Reyee Wi-Fi 6 AX1800</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Switch RG-ES220GS-LP</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Wallmount Rack 4U</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> Cabling UTP Cat 6</li>
+                        <li class="flex items-start gap-2"><span class="text-indigo-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> 2 unit backup access point</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%204%20(15%20AP%20+%20300%20Mbps)." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a></div>
+                </div>
+            </div>
         </div>
         
 
     </section>
   
+    <!-- Dedicated Internet Section -->
+    <section id="dedicated-internet" class="relative overflow-hidden py-24 bg-gradient-to-br from-[#eef2f6] to-[#e0e7ef]">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-purple-600 font-bold tracking-wider uppercase text-sm mb-2 block">{{ __('messages.network_dedicated_badge') }}</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">{{ __('messages.network_dedicated_title') }}</h2>
+                <p class="text-slate-500 text-lg mb-8">{{ __('messages.network_dedicated_desc') }}</p>
+            </div>
+            
+            <!-- Dedicated Internet Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 100 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 100</span><span class="text-purple-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">100 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 695.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20100%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+                
+                <!-- 150 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 150</span><span class="text-purple-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">150 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 845.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20150%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+                
+                <!-- 200 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 200</span><span class="text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">200 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.100.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20200%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+                
+                <!-- 300 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 transform md:scale-105 shadow-xl border-blue-200">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 300</span><span class="text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">300 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.500.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20300%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+
     <!-- SCRIPT_PLACEHOLDER -->
+
     <script>
         function switchScheme(scheme) {
             const gridBasic = document.getElementById('grid-basic');
             const gridPremium = document.getElementById('grid-premium');
+            const gridBundling = document.getElementById('grid-bundling');
             const btnBasic = document.getElementById('btn-basic');
             const btnPremium = document.getElementById('btn-premium');
+            const btnBundling = document.getElementById('btn-bundling');
             const labelBasic = document.getElementById('label-basic');
             const labelPremium = document.getElementById('label-premium');
+            const labelBundling = document.getElementById('label-bundling');
 
             if(scheme === 'basic') {
                 gridBasic.classList.remove('hidden');
                 gridPremium.classList.add('hidden');
-                btnBasic.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-cyan-600';
-                btnPremium.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600';
+                gridBundling.classList.add('hidden');
+                btnBasic.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-cyan-600';
+                btnPremium.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600';
+                btnBundling.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-purple-600';
                 labelBasic.classList.remove('hidden');
                 labelPremium.classList.add('hidden');
-            } else {
+                labelBundling.classList.add('hidden');
+            } else if(scheme === 'premium') {
                 gridBasic.classList.add('hidden');
                 gridPremium.classList.remove('hidden');
-                btnBasic.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-cyan-600';
-                btnPremium.className = 'relative z-10 px-8 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-indigo-600';
+                gridBundling.classList.add('hidden');
+                btnBasic.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-cyan-600';
+                btnPremium.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-indigo-600';
+                btnBundling.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-purple-600';
                 labelBasic.classList.add('hidden');
                 labelPremium.classList.remove('hidden');
+                labelBundling.classList.add('hidden');
+            } else if(scheme === 'bundling') {
+                gridBasic.classList.add('hidden');
+                gridPremium.classList.add('hidden');
+                gridBundling.classList.remove('hidden');
+                btnBasic.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-cyan-600';
+                btnPremium.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600';
+                btnBundling.className = 'relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 shadow-sm bg-white text-purple-600';
+                labelBasic.classList.add('hidden');
+                labelPremium.classList.add('hidden');
+                labelBundling.classList.remove('hidden');
             }
         }
 

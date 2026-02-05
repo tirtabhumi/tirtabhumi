@@ -1,7 +1,17 @@
+@use('Illuminate\Support\Facades\Storage')
 <x-layout title="{{ $post->title }} - {{ config('app.name') }}">
     <article class="pt-32 pb-24 bg-[#eef2f6] min-h-screen">
+        <!-- Navigation -->
+        <div class="container mx-auto px-6 max-w-4xl mb-8">
+            <a href="{{ route('blog.index') }}" class="text-slate-400 hover:text-indigo-600 transition-colors flex items-center gap-2 text-sm font-semibold uppercase tracking-wider">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                {{ __('messages.back_to_blog') }}
+            </a>
+        </div>
+
         <!-- Header -->
         <header class="container mx-auto px-6 mb-12 text-center max-w-4xl">
+
             <!-- Breadcrumb -->
             <x-breadcrumb :paths="[__('messages.blog') => route('blog.index')]" :current="Str::limit($post->title, 30)" class="justify-center" />
             
@@ -69,15 +79,26 @@
             <div class="prose prose-lg prose-slate max-w-none">
                 {!! $post->content !!}
             </div>
+            @if($post->attachment)
+                <div class="mt-12 p-6 rounded-2xl neu-flat border border-indigo-100 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="flex items-center gap-4 text-left">
+                        <div class="p-3 bg-red-50 rounded-xl text-red-600">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-slate-800">Lampiran Artikel</h4>
+                            <p class="text-sm text-slate-500">Unduh dokumen PDF terkait artikel ini</p>
+                        </div>
+                    </div>
+                    <a href="{{ Storage::url($post->attachment) }}" target="_blank" class="neu-btn px-8 py-3 rounded-xl text-indigo-600 font-bold flex items-center gap-2 hover:bg-white/50 transition-all">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                        Unduh PDF
+                    </a>
+                </div>
+            @endif
         </div>
 
-        <!-- Navigation -->
-        <div class="container mx-auto px-6 max-w-3xl mt-16 pt-8 border-t border-slate-200/50">
-            <a href="{{ route('blog.index') }}" class="inline-flex items-center text-slate-500 hover:text-indigo-600 transition-colors font-medium">
-                <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
-                {{ __('messages.back_to_blog') }}
-            </a>
-        </div>
+
     </article>
     <!-- Image Modal -->
     <div id="image-modal" class="fixed inset-0 z-[100] hidden items-center justify-center bg-slate-900/90 backdrop-blur-sm p-4 cursor-zoom-out" onclick="closeModal()">

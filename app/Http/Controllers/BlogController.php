@@ -40,8 +40,8 @@ class BlogController extends Controller
 
         $posts = $query->paginate(9)->withQueryString();
 
-        // Fetch categories that have posts, ensures we always have a collection
-        $categories = Category::has('posts')->get() ?? collect();
+        // Fetch all categories for the filter sidebar
+        $categories = Category::all();
 
         return view('blog.index', [
             'posts' => $posts,

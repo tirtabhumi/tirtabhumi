@@ -529,7 +529,7 @@ return [
     'network_pkg_1_feat_1' => 'Installation of 1–2 access points + basic configuration',
     'network_pkg_1_feat_2' => 'Cable routing and tidy setup for main working areas',
     'network_pkg_1_feat_3' => 'Wi-Fi optimization for workstations & meeting rooms',
-    'network_pkg_1_price' => 'Rp2.9M',         // ganti sesuai kurs atau tulis "2.9M IDR"
+    'network_pkg_1_price' => 'Rp2.9M', // ganti sesuai kurs atau tulis "2.9M IDR"
     'network_pkg_1_unit' => '/ site',
     'network_pkg_1_cta' => 'Choose This Package',
 
@@ -540,7 +540,7 @@ return [
     'network_pkg_2_feat_2' => 'Installation of 3–6 access points + gigabit switch',
     'network_pkg_2_feat_3' => 'Network segmentation (staff/guest/device) for security',
     'network_pkg_2_feat_4' => 'Router/Mikrotik tuning for traffic stability',
-    'network_pkg_2_price' => 'Rp5.9M',         // atau "5.9M IDR"
+    'network_pkg_2_price' => 'Rp5.9M', // atau "5.9M IDR"
     'network_pkg_2_unit' => '/ site',
     'network_pkg_2_cta' => 'Choose This Package',
 
@@ -992,4 +992,24 @@ return [
     'sort_price_low' => 'Lowest Amount',
     'sort_price_high' => 'Highest Amount',
     'payment_status_header' => 'Payment Status',
+
+    // Dedicated Internet Section
+    'network_dedicated_badge' => 'DEDICATED INTERNET PACKAGE',
+    'network_dedicated_title' => 'Dedicated Internet 1:1 Ratio',
+    'network_dedicated_desc' => 'Dedicated internet connection with balanced downstream and upstream bandwidth (1:1) for maximum performance',
+    'network_dedicated_bandwidth_ratio' => 'Bandwidth 1:1 Ratio',
+    'network_dedicated_per_month' => '/month',
+    'network_dedicated_price_note' => 'Price excludes VAT',
+    'network_dedicated_feat_1' => 'Unlimited experience',
+    'network_dedicated_feat_2' => 'Downstream and upstream bandwidth 1 : 1',
+    'network_dedicated_feat_3' => 'Non Public IP',
+    'network_dedicated_cta' => 'Choose Package',
+
+    // Bundling Section
+    'network_bundling_label' => 'Bundling',
+    'network_bundling_note' => 'Internet + Managed WiFi package with special price',
+    'network_bundling_lease_term' => 'Lease term: 36 months',
+    'network_bundling_rental_price' => 'Rental price',
+    'network_bundling_upfront_price' => 'Upfront price',
+    'network_bundling_concurrent' => 'Max :count concurrent sessions',
 ];

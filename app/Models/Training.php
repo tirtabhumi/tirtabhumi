@@ -14,6 +14,7 @@ class Training extends Model
         'slug',
         'description',
         'image',
+        'attachment',
         'event_date',
         'type',
         'category',
@@ -43,12 +44,12 @@ class Training extends Model
 
     public function userModuleProgresses()
     {
-        return $this->hasManyThrough(UserModuleProgress::class, TrainingModule::class);
+        return $this->hasManyThrough(UserModuleProgress::class , TrainingModule::class);
     }
 
     public function partner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(User::class , 'user_id');
     }
 
     public static function scopeOwnedByPartner($query)
@@ -59,10 +60,11 @@ class Training extends Model
                 $sq->where('user_id', $user->id);
                 if ($user->organization_id) {
                     $sq->orWhereHas('partner', function ($pq) use ($user) {
-                        $pq->where('organization_id', $user->organization_id);
+                                $pq->where('organization_id', $user->organization_id);
+                            }
+                            );
+                        }
                     });
-                }
-            });
         }
         return $query;
     }

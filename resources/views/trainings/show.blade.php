@@ -1,3 +1,4 @@
+@use('Illuminate\Support\Facades\Storage')
 <x-layout-upventure title="{{ $training->title }} - Tirtabhumi Training" description="{{ Str::limit(strip_tags($training->description), 150) }}">
 
     <section class="pt-4 pb-24 bg-[#eef2f6]">
@@ -18,6 +19,8 @@
                         <div class="rounded-2xl overflow-hidden neu-flat border border-white/50">
                             @if($training->image)
                                 <img src="{{ Storage::url($training->image) }}" alt="{{ $training->title }}" loading="lazy" class="w-full h-auto">
+                            @elseif($training->images && count($training->images) > 0)
+                                <img src="{{ Storage::url($training->images[0]) }}" alt="{{ $training->title }}" loading="lazy" class="w-full h-auto">
                             @else
                                 <div class="aspect-video bg-slate-200 flex items-center justify-center text-slate-400">
                                     <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -172,6 +175,21 @@
                                             </span>
                                         </div>
                                     </li>
+
+                                    @if($training->attachment)
+                                        <li class="flex items-start gap-4 pt-4 border-t border-slate-200/50">
+                                            <div class="neu-pressed p-3 rounded-full text-indigo-600">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                            </div>
+                                            <div class="flex-1">
+                                                <span class="block text-slate-500 text-xs mb-2">Dokumen Pendukung</span>
+                                                <a href="{{ Storage::url($training->attachment) }}" target="_blank" class="inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                                                    Unduh Silabus (PDF)
+                                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
+                                                </a>
+                                            </div>
+                                        </li>
+                                    @endif
                                 </ul>
                             </div>
 

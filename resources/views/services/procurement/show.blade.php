@@ -1,3 +1,4 @@
+@use('Illuminate\Support\Facades\Storage')
 <x-layout title="{{ $product->name }} - Tirtabhumi Procurement" description="{{ Str::limit(strip_tags($product->description), 150) }}">
 
     <article class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative z-10">
@@ -130,6 +131,15 @@
                                 </li>
                                 @endif
                             </ul>
+                            @if($product->attachment)
+                                <div class="mt-8 pt-6 border-t border-slate-200/50">
+                                    <a href="{{ Storage::url($product->attachment) }}" target="_blank" class="block w-full py-4 neu-pressed bg-indigo-50 text-indigo-700 rounded-xl font-bold text-center transition-all hover:shadow-md flex items-center justify-center gap-2">
+                                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+                                        Unduh Brosur (PDF)
+                                    </a>
+                                </div>
+                            @endif
+
                             <div class="mt-8 pt-6 border-t border-slate-200/50">
                                 <a href="https://wa.me/6282229046099?text=Halo,%20saya%20ingin%20bertanya%20tentang%20produk%20{{ urlencode($product->name) }}" target="_blank" class="block w-full py-4 neu-btn text-indigo-600 hover:text-indigo-700 rounded-xl font-bold text-center transition-all hover:-translate-y-0.5">
                                     Hubungi Kami via WhatsApp

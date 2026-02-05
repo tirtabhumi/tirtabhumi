@@ -1067,4 +1067,24 @@ return [
     'sort_price_low' => 'Nominal Terendah',
     'sort_price_high' => 'Nominal Tertinggi',
     'payment_status_header' => 'Status Pembayaran',
+
+    // Dedicated Internet Section
+    'network_dedicated_badge' => 'PAKET INET DEDICATED',
+    'network_dedicated_title' => 'Internet Dedicated 1:1 Ratio',
+    'network_dedicated_desc' => 'Koneksi internet dedicated dengan bandwidth downstream dan upstream yang seimbang (1:1) untuk performa maksimal',
+    'network_dedicated_bandwidth_ratio' => 'Bandwidth 1:1 Ratio',
+    'network_dedicated_per_month' => '/bulan',
+    'network_dedicated_price_note' => 'Harga belum termasuk PPN',
+    'network_dedicated_feat_1' => 'Unlimited experience',
+    'network_dedicated_feat_2' => 'Bandwidth downstream dan upstream 1 : 1',
+    'network_dedicated_feat_3' => 'Non IP Public',
+    'network_dedicated_cta' => 'Pilih Paket',
+
+    // Bundling Section
+    'network_bundling_label' => 'Bundling',
+    'network_bundling_note' => 'Paket Internet + Managed WiFi dengan harga spesial',
+    'network_bundling_lease_term' => 'Masa sewa: 36 bulan',
+    'network_bundling_rental_price' => 'Harga sewa',
+    'network_bundling_upfront_price' => 'Harga layang',
+    'network_bundling_concurrent' => 'Max :count concurrent session',
 ];

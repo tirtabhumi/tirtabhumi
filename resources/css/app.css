@@ -4,6 +4,8 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+@source '../../app/Filament/**/*.php';
+@source '../../app/Livewire/**/*.php';
 
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
@@ -74,4 +76,15 @@
 }
 .animation-delay-4000 {
     animation-delay: 4s;
+}
+
+/* Prose Link Styling */
+.prose a {
+    color: #4f46e5; /* indigo-600 */
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.prose a:hover {
+    color: #4338ca; /* indigo-700 */
 }

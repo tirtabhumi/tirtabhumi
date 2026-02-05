@@ -10,11 +10,12 @@ class Product extends Model
 
     protected $fillable = [
         'name',
-        'category',
+        'category_id',
         'price',
         'platforms',
         'images',
         'description',
+        'attachment',
     ];
 
     protected $casts = [
@@ -22,4 +23,9 @@ class Product extends Model
         'images' => 'array',
         'price' => 'decimal:2',
     ];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
