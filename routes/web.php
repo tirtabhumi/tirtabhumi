@@ -206,6 +206,10 @@ Route::post('/contact', function () {
         'message' => 'required|string',
     ]);
 
+    // Save to database
+    \App\Models\ContactSubmission::create($data);
+
+    // Send email
     \Illuminate\Support\Facades\Mail::to('hello@tirtabhumi.com')->send(new \App\Mail\ContactFormMail($data));
 
     return back()->with('success', 'Thank you for your message. We will get back to you soon!');
