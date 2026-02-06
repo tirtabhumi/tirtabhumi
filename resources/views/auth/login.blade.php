@@ -25,7 +25,8 @@
                 </div>
 
                 <!-- Login Form -->
-                <div class="p-8 animate-fade-in-up animation-delay-200">
+                <div
+                    class="bg-slate-50/50 rounded-3xl p-8 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
 
                     <form action="{{ route('login.store') }}" method="POST" class="space-y-4">
                         @csrf
@@ -35,7 +36,7 @@
                                 class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                 Address</label>
                             <input type="email" id="email" name="email" required
-                                class="w-full px-4 py-3 rounded-xl border-none text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-200 transition-all neu-pressed"
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                 placeholder="name@company.com" value="{{ old('email') }}">
                             @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -45,7 +46,7 @@
                             <label for="password"
                                 class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Password</label>
                             <div
-                                class="flex items-center rounded-xl border-none bg-transparent focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-pressed group relative w-full overflow-hidden">
+                                class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative w-full overflow-hidden">
                                 <input type="password" id="password" name="password" required
                                     class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-3 pl-4 pr-1"
                                     style="-ms-reveal: none; -webkit-appearance: none;" placeholder="••••••••">

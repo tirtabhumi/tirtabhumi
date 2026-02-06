@@ -144,10 +144,24 @@
                     <button id="btn-premium" onclick="switchScheme('premium')" class="relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-indigo-600">{{ __('messages.network_managed_scheme_premium') }}</button>
                     <button id="btn-bundling" onclick="switchScheme('bundling')" class="relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-all duration-300 text-slate-500 hover:text-purple-600">Bundling</button>
                 </div>
-                <div class="mt-4 text-xs text-slate-400">
-                    <span id="label-basic" class="">{{ __('messages.network_managed_basic_note') }}</span>
-                    <span id="label-premium" class="hidden">{{ __('messages.network_managed_premium_note') }}</span>
-                    <span id="label-bundling" class="hidden">Paket bundling internet dedicated + managed WiFi access point</span>
+                <div class="mt-6 flex justify-center px-4">
+                    <div id="note-container" class="max-w-3xl text-slate-500 text-center">
+                        <p class="text-sm leading-relaxed">
+                            <span id="label-basic" class="">{{ __('messages.network_managed_basic_note') }}</span>
+                            <span id="label-premium" class="hidden">{{ __('messages.network_managed_premium_note') }}</span>
+                            <span id="label-bundling" class="hidden">
+                                {!! str_replace(
+                                    ['Managed Wi-Fi Packages', 'PAKET INET DEDICATED', 'DEDICATED INET PACKAGE'], 
+                                    [
+                                        '<span class="text-indigo-600 font-bold underline decoration-indigo-200 underline-offset-2">Managed Wi-Fi Packages</span>', 
+                                        '<span class="text-purple-600 font-bold underline decoration-purple-200 underline-offset-2">PAKET INET DEDICATED</span>',
+                                        '<span class="text-purple-600 font-bold underline decoration-purple-200 underline-offset-2">DEDICATED INET PACKAGE</span>'
+                                    ], 
+                                    __('messages.network_managed_bundling_note')
+                                ) !!}
+                            </span>
+                        </p>
+                    </div>
                 </div>
             </div>
             

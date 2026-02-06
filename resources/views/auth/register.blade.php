@@ -1,4 +1,4 @@
-<x-layout-auth title="Register">
+<x-layout-auth title="Sign Up">
 
     <!-- Background Blobs -->
     <div class="absolute inset-0 w-full h-full overflow-hidden pointer-events-none">
@@ -25,7 +25,8 @@
                 </div>
 
                 <!-- Register Form -->
-                <div class="p-8 animate-fade-in-up animation-delay-200">
+                <div
+                    class="bg-slate-50/50 rounded-3xl p-8 border border-white/60 shadow-lg backdrop-blur-md animate-fade-in-up animation-delay-200">
                     <form action="{{ route('register.store') }}" method="POST" class="space-y-4">
                         @csrf
                         <!-- Name -->
@@ -33,7 +34,7 @@
                             <label for="name" class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Full
                                 Name</label>
                             <input type="text" id="name" name="name" required
-                                class="w-full px-4 py-3 rounded-xl border-none text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-200 transition-all neu-pressed"
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                 placeholder="John Doe" value="{{ old('name') }}">
                             @error('name') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -44,7 +45,7 @@
                                 class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Email
                                 Address</label>
                             <input type="email" id="email" name="email" required
-                                class="w-full px-4 py-3 rounded-xl border-none text-sm placeholder:text-slate-400 focus:ring-2 focus:ring-indigo-200 transition-all neu-pressed"
+                                class="w-full px-4 py-2 rounded-xl border border-slate-300 text-sm placeholder:text-slate-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition-all neu-flat"
                                 placeholder="name@company.com" value="{{ old('email') }}">
                             @error('email') <p class="mt-1 text-xs text-red-600">{{ $message }}</p> @enderror
                         </div>
@@ -55,7 +56,7 @@
                                 class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Phone
                                 Number</label>
                             <div
-                                class="flex items-center rounded-xl border-none bg-transparent focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-pressed group relative overflow-hidden">
+                                class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative overflow-hidden">
                                 <div class="w-14 flex-shrink-0 relative">
                                     <select id="country_code" name="country_code" required
                                         class="w-full pl-3 pr-2 py-2.5 bg-transparent border-none focus:ring-0 text-sm cursor-pointer font-medium text-slate-700">
@@ -80,7 +81,7 @@
                             <label for="password"
                                 class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Password</label>
                             <div
-                                class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-pressed group relative w-full overflow-hidden">
+                                class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative w-full overflow-hidden">
                                 <input type="password" id="password" name="password" required
                                     class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-3 pl-4 pr-1"
                                     style="-ms-reveal: none; -webkit-appearance: none;"
@@ -118,7 +119,7 @@
                                 class="block text-xs font-semibold text-slate-800 mb-2 tracking-wide">Confirm
                                 Password</label>
                             <div
-                                class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-pressed group relative w-full overflow-hidden">
+                                class="flex items-center rounded-xl border border-slate-300 bg-[#eef2f6] focus-within:border-indigo-500 focus-within:ring-2 focus-within:ring-indigo-200 transition-all neu-flat group relative w-full overflow-hidden">
                                 <input type="password" id="password_confirmation" name="password_confirmation" required
                                     class="flex-1 min-w-0 bg-transparent border-none focus:ring-0 text-sm placeholder:text-slate-400 py-3 pl-4 pr-1"
                                     style="-ms-reveal: none; -webkit-appearance: none;" placeholder="Re-enter password">

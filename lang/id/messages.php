@@ -716,12 +716,13 @@ return [
     ],
     // Network Managed Services
     'network_managed_label' => 'Managed Wi-Fi Packages',
-    'network_managed_title' => 'Solusi Wi-Fi Handal untuk Bisnis Anda',
-    'network_managed_desc' => 'Pilih paket managed service yang sesuai dengan kebutuhan coverage dan kapasitas pengguna Anda.',
+    'network_managed_title' => 'Solusi Wi-Fi & Internet Terpadu',
+    'network_managed_desc' => 'Tingkatkan konektivitas bisnis Anda dengan pilihan paket Managed Wi-Fi atau Bundling Internet Dedicated yang stabil dan terkelola.',
     'network_managed_scheme_basic' => 'Basic Scheme',
     'network_managed_scheme_premium' => 'Premium Scheme',
     'network_managed_basic_note' => 'Biaya setup rendah, perangkat milik Anda setelah kontrak.',
     'network_managed_premium_note' => 'Tanpa investasi awal (OPEX), full maintenance & replacement.',
+    'network_managed_bundling_note' => 'Paket bundling ini merupakan gabungan dari Managed Wi-Fi Packages (Paket Basic) dengan PAKET INET DEDICATED',
 
     'network_managed_concurrent' => 'Maks :count pengguna bersamaan',
     'network_managed_per_month' => '/ bln',

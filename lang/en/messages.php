@@ -711,12 +711,13 @@ return [
     ],
     // Network Managed Services
     'network_managed_label' => 'Managed Wi-Fi Packages',
-    'network_managed_title' => 'Reliable Wi-Fi Solutions for Your Business',
-    'network_managed_desc' => 'Choose the managed service package that suits your coverage and user capacity needs.',
+    'network_managed_title' => 'Integrated Wi-Fi & Internet Solutions',
+    'network_managed_desc' => 'Enhance your business connectivity with Managed Wi-Fi or stable, managed Dedicated Internet Bundling options.',
     'network_managed_scheme_basic' => 'Basic Scheme',
     'network_managed_scheme_premium' => 'Premium Scheme',
     'network_managed_basic_note' => 'Low setup cost, device belongs to you after contract.',
     'network_managed_premium_note' => 'No initial investment (OPEX), full maintenance & replacement.',
+    'network_managed_bundling_note' => 'This bundling package is a combination of Managed Wi-Fi Packages (Basic) and DEDICATED INET PACKAGE',
 
     'network_managed_concurrent' => 'Max :count concurrent users',
     'network_managed_per_month' => '/ month',

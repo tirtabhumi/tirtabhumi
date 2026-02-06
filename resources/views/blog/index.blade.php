@@ -1,8 +1,7 @@
 <x-layout title="{{ __('messages.blog') }} - {{ config('app.name') }}">
     <style>
         @media (min-width: 1024px) {
-            .sidebar-width { width: 20% !important; flex: 0 0 20% !important; }
-            .content-width { width: 80% !important; flex: 0 0 80% !important; }
+            .sidebar-width { width: 22% !important; flex: 0 0 22% !important; }
         }
     </style>
     <section class="pt-32 pb-24 bg-[#eef2f6] min-h-screen relative overflow-hidden">
@@ -120,7 +119,7 @@
                 </div>
 
                 <!-- Blog Grid -->
-                <div class="w-full lg:w-[80%] content-width">
+                <div class="w-full lg:flex-1">
                     <div class="mb-8">
                         <div class="mb-6">
                             <h2 class="text-2xl font-bold text-slate-800 mb-1">Daftar Artikel</h2>
@@ -152,37 +151,39 @@
                         </div>
                     @endif
 
-                    <div class="grid md:grid-cols-3 gap-8">
+                    <div class="grid md:grid-cols-3 gap-6">
                         @forelse($posts as $post)
                         <a href="{{ route('blog.show', $post) }}" 
-                           class="block group cursor-pointer neu-flat rounded-2xl overflow-hidden border border-white/50 hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-fade-in-up"
+                           class="group block bg-white rounded-3xl border border-white/50 shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1 h-full flex flex-col animate-fade-in-up"
                            style="animation-delay: {{ ($loop->index + 1) * 100 }}ms">
-                            <div class="relative aspect-video overflow-hidden bg-slate-100">
+                            <div class="aspect-video relative overflow-hidden bg-slate-100 flex-shrink-0">
                                 @php
                                     $blogImage = (!empty($post->images) && isset($post->images[0])) 
                                         ? Storage::url($post->images[0]) 
                                         : 'https://placehold.co/600x400/e2e8f0/64748b?text=No+Image';
                                 @endphp
-                                <img src="{{ $blogImage }}" alt="{{ $post->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-110 transition-transform duration-700">
+                                <img src="{{ $blogImage }}" alt="{{ $post->title }}" loading="lazy" class="object-cover w-full h-full transform group-hover:scale-105 transition-transform duration-500">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </div>
-                            <div class="p-6">
-                                <div class="flex items-center gap-3 mb-4">
-                                    <span class="text-xs font-bold px-3 py-1 rounded-full neu-pressed text-indigo-600 transition-colors duration-300">
+                            <div class="p-6 flex flex-col flex-grow">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="text-[10px] font-bold px-2.5 py-1 rounded-full bg-indigo-50 text-indigo-600 uppercase tracking-wider border border-indigo-100">
                                         {{ $post->category->name }}
                                     </span>
-                                    <span class="text-xs text-slate-500">{{ $post->created_at->format('M d, Y') }}</span>
+                                    <span class="text-[10px] text-slate-500 font-bold uppercase tracking-wider">{{ $post->created_at->format('M d, Y') }}</span>
                                 </div>
-                                <h2 class="text-xl font-bold mb-3 text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-tight">
+                                <h3 class="text-xl font-bold mb-2 text-slate-800 group-hover:text-indigo-600 transition-colors line-clamp-2 leading-tight">
                                     {{ $post->title }}
-                                </h2>
-                                <p class="text-slate-500 text-sm line-clamp-3 mb-4 leading-relaxed">
-                                    {{ Str::limit(strip_tags($post->content), 120) }}
+                                </h3>
+                                <p class="text-slate-500 text-sm line-clamp-2 mb-4 leading-relaxed">
+                                    {{ Str::limit(strip_tags($post->content), 100) }}
                                 </p>
-                                <span class="inline-flex items-center text-sm font-bold text-indigo-600 group-hover:gap-2 transition-all duration-300">
-                                    {{ __('messages.read_article') }}
-                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-                                </span>
+                                <div class="mt-auto">
+                                    <span class="inline-flex items-center text-sm font-bold text-indigo-600 group">
+                                        {{ __('messages.read_article') }}
+                                        <svg class="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+                                    </span>
+                                </div>
                             </div>
                         </a>
                         @empty
