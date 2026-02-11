@@ -1,4 +1,4 @@
-<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
+﻿<x-layout title="{{ __('messages.network_title') }} - {{ config('app.name') }}" description="{{ __('messages.network_hero_desc') }}">
     <!-- Custom Styles -->
     <!-- Custom Styles -->
     <style>
@@ -131,6 +131,70 @@
         </div>
     </section>
 
+    <!-- Dedicated Internet Section -->
+    <section id="dedicated-internet" class="relative overflow-hidden py-24 bg-gradient-to-br from-[#eef2f6] to-[#e0e7ef]">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-200/30 rounded-full blur-[120px] pointer-events-none"></div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-purple-600 font-bold tracking-wider uppercase text-sm mb-2 block">{{ __('messages.network_dedicated_badge') }}</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">{{ __('messages.network_dedicated_title') }}</h2>
+                <p class="text-slate-500 text-lg mb-8">{{ __('messages.network_dedicated_desc') }}</p>
+            </div>
+            
+            <!-- Dedicated Internet Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- 100 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">DASHBOARD MONITORING 100</span><span class="text-purple-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">100 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 695.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20DASHBOARD%20MONITORING%201:1%20100%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+                
+                <!-- 150 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">DASHBOARD MONITORING 150</span><span class="text-purple-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">150 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 845.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20DASHBOARD%20MONITORING%201:1%20150%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+                
+                <!-- 200 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">DASHBOARD MONITORING 200</span><span class="text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">200 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.100.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20DASHBOARD%20MONITORING%201:1%20200%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+                
+                <!-- 300 Mbps -->
+                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 transform md:scale-105 shadow-xl border-blue-200">
+                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">DASHBOARD MONITORING 300</span><span class="text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">300 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
+                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.500.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
+                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
+                    </ul>
+                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20DASHBOARD%20MONITORING%201:1%20300%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
+                </div>
+            </div>
+            
+        </div>
+    </section>
+  
     <!-- Managed Service Access Point Section -->
     <section id="managed-wifi-pricing" class="relative overflow-hidden py-24 bg-[#eef2f6]">
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none"></div>
@@ -151,9 +215,9 @@
                             <span id="label-premium" class="hidden">{{ __('messages.network_managed_premium_note') }}</span>
                             <span id="label-bundling" class="hidden">
                                 {!! str_replace(
-                                    ['Managed Wi-Fi Packages', 'PAKET INET DEDICATED', 'DEDICATED INET PACKAGE'], 
+                                    ['Managed Infrastructure Packages', 'PAKET INET DEDICATED', 'DEDICATED INET PACKAGE'], 
                                     [
-                                        '<span class="text-indigo-600 font-bold underline decoration-indigo-200 underline-offset-2">Managed Wi-Fi Packages</span>', 
+                                        '<span class="text-indigo-600 font-bold underline decoration-indigo-200 underline-offset-2">Managed Infrastructure Packages</span>', 
                                         '<span class="text-purple-600 font-bold underline decoration-purple-200 underline-offset-2">PAKET INET DEDICATED</span>',
                                         '<span class="text-purple-600 font-bold underline decoration-purple-200 underline-offset-2">DEDICATED INET PACKAGE</span>'
                                     ], 
@@ -348,70 +412,6 @@
         </div>
         
 
-    </section>
-  
-    <!-- Dedicated Internet Section -->
-    <section id="dedicated-internet" class="relative overflow-hidden py-24 bg-gradient-to-br from-[#eef2f6] to-[#e0e7ef]">
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-200/30 rounded-full blur-[120px] pointer-events-none"></div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-purple-600 font-bold tracking-wider uppercase text-sm mb-2 block">{{ __('messages.network_dedicated_badge') }}</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">{{ __('messages.network_dedicated_title') }}</h2>
-                <p class="text-slate-500 text-lg mb-8">{{ __('messages.network_dedicated_desc') }}</p>
-            </div>
-            
-            <!-- Dedicated Internet Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- 100 Mbps -->
-                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 100</span><span class="text-purple-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">100 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
-                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 695.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
-                    </ul>
-                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20100%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
-                </div>
-                
-                <!-- 150 Mbps -->
-                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 150</span><span class="text-purple-500"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">150 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
-                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 845.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
-                    </ul>
-                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20150%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
-                </div>
-                
-                <!-- 200 Mbps -->
-                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
-                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 200</span><span class="text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">200 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
-                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.100.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
-                    </ul>
-                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20200%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
-                </div>
-                
-                <!-- 300 Mbps -->
-                <div class="neu-flat p-6 rounded-3xl border border-white/50 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 transform md:scale-105 shadow-xl border-blue-200">
-                    <div class="mb-4"><div class="flex justify-between items-start mb-2"><span class="text-sm font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">NETMONK 300</span><span class="text-purple-600"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg></span></div><h3 class="text-xl font-bold text-slate-800">300 Mbps</h3><p class="text-sm text-slate-500 font-medium">{{ __('messages.network_dedicated_bandwidth_ratio') }}</p></div>
-                    <div class="mb-6"><div class="text-3xl font-extrabold text-slate-800">Rp 1.500.000 <span class="text-sm font-normal text-slate-500">{{ __('messages.network_dedicated_per_month') }}</span></div><div class="text-xs text-slate-400">{{ __('messages.network_dedicated_price_note') }}</div></div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_1') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_2') }}</li>
-                        <li class="flex items-start gap-2"><span class="text-purple-500"><svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg></span> {{ __('messages.network_dedicated_feat_3') }}</li>
-                    </ul>
-                    <div class="mt-auto"><a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20INET%20NETMONK%201:1%20300%20Mbps." class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-purple-600 hover:text-purple-700">{{ __('messages.network_dedicated_cta') }}</a></div>
-                </div>
-            </div>
-            
-        </div>
     </section>
 
     <!-- SCRIPT_PLACEHOLDER -->

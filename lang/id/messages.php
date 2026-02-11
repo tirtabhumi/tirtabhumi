@@ -715,14 +715,14 @@ return [
         ],
     ],
     // Network Managed Services
-    'network_managed_label' => 'Managed Wi-Fi Packages',
-    'network_managed_title' => 'Solusi Wi-Fi & Internet Terpadu',
-    'network_managed_desc' => 'Tingkatkan konektivitas bisnis Anda dengan pilihan paket Managed Wi-Fi atau Bundling Internet Dedicated yang stabil dan terkelola.',
+    'network_managed_label' => 'Managed Infrastructure Packages',
+    'network_managed_title' => 'Solusi Penyewaan Access Point & Infrastruktur',
+    'network_managed_desc' => 'Optimalkan jaringan bisnis Anda dengan solusi penyewaan Access Point dan infrastruktur terkelola.',
     'network_managed_scheme_basic' => 'Basic Scheme',
     'network_managed_scheme_premium' => 'Premium Scheme',
     'network_managed_basic_note' => 'Biaya setup rendah, perangkat milik Anda setelah kontrak.',
     'network_managed_premium_note' => 'Tanpa investasi awal (OPEX), full maintenance & replacement.',
-    'network_managed_bundling_note' => 'Paket bundling ini merupakan gabungan dari Managed Wi-Fi Packages (Paket Basic) dengan PAKET INET DEDICATED',
+    'network_managed_bundling_note' => 'Paket bundling ini merupakan gabungan dari Managed Infrastructure Packages (Paket Basic) dengan PAKET INET DEDICATED',
 
     'network_managed_concurrent' => 'Maks :count pengguna bersamaan',
     'network_managed_per_month' => '/ bln',
@@ -1070,8 +1070,8 @@ return [
     'payment_status_header' => 'Status Pembayaran',
 
     // Dedicated Internet Section
-    'network_dedicated_badge' => 'PAKET INET DEDICATED',
-    'network_dedicated_title' => 'Internet Dedicated 1:1 Ratio',
+    'network_dedicated_badge' => 'DEDICATED INTERNET PACKAGE',
+    'network_dedicated_title' => 'Dedicated Internet 1:1 Ratio',
     'network_dedicated_desc' => 'Koneksi internet dedicated dengan bandwidth downstream dan upstream yang seimbang (1:1) untuk performa maksimal',
     'network_dedicated_bandwidth_ratio' => 'Bandwidth 1:1 Ratio',
     'network_dedicated_per_month' => '/bulan',
