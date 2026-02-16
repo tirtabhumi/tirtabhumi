@@ -104,7 +104,7 @@
                             'linkedin' => 'https://www.linkedin.com/in/indra-riyanto-555b22333/'
                         ],
                         [
-                            'name' => 'Rifky Praptama, S. Kom. M. Pd. CM.NLP',
+                            'name' => 'Rifky Praptama, S.Kom, M.Pd',
                             'title' => 'CEO INOVASIKA',
                             'subtitle' => 'Professional Mentor',
                             'image' => 'rifky-praptama.jpg',
@@ -147,9 +147,9 @@
 
                                 <!-- Mentor Info -->
                                 <div class="w-full">
-                                    <h3 class="text-base font-bold text-slate-900 mb-0.5 truncate">{{ $mentor['name'] }}</h3>
-                                    <p class="text-indigo-600 font-bold text-xs mb-0.5 truncate">{{ $mentor['title'] }}</p>
-                                    <p class="text-slate-600 font-semibold text-[10px] mb-2 truncate">{{ $mentor['subtitle'] }}</p>
+                                    <h3 class="text-base font-bold text-slate-900 mb-0.5">{{ $mentor['name'] }}</h3>
+                                    <p class="text-indigo-600 font-bold text-xs mb-0.5">{{ $mentor['title'] }}</p>
+                                    <p class="text-slate-600 font-semibold text-[10px] mb-2">{{ $mentor['subtitle'] }}</p>
                                     
                                     <!-- Certifications -->
                                     <div class="flex flex-wrap gap-1.5 justify-center mb-3 min-h-[50px]">
