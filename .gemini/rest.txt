@@ -1,839 +1,4 @@
-﻿<x-layout title="Wifi Murah dan Cepat - Pasang Wifi Rumah Paling Murah"
-    description="Layanan Wifi Murah dan Cepat. Harga pasang wifi murah mulai 190rb. Internet cepat, stabil, dan support 24 jam. Solusi wifi yang bagus dan murah untuk rumah Anda.">
-    <!-- Custom Styles -->
-    <!-- Custom Styles -->
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
-
-        [x-cloak] {
-            display: none !important;
-        }
-
-        .bg-grid-pattern {
-            background-image: linear-gradient(to right, rgba(14, 165, 233, 0.04) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(14, 165, 233, 0.04) 1px, transparent 1px);
-            background-size: 48px 48px;
-        }
-
-        /* Premium Reveal Animations */
-        .reveal-up {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .reveal-up.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-scale {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-
-        .reveal-scale.active {
-            opacity: 1;
-            transform: scale(1);
-        }
-
-        /* Staggered Delays */
-        .delay-100 {
-            transition-delay: 0.1s;
-        }
-
-        .delay-200 {
-            transition-delay: 0.2s;
-        }
-
-        .delay-300 {
-            transition-delay: 0.3s;
-        }
-
-        .delay-400 {
-            transition-delay: 0.4s;
-        }
-
-        /* Blob Animation */
-        @keyframes blob {
-            0% {
-                transform: translate(0px, 0px) scale(1);
-            }
-
-            33% {
-                transform: translate(30px, -50px) scale(1.1);
-            }
-
-            66% {
-                transform: translate(-20px, 20px) scale(0.9);
-            }
-
-            100% {
-                transform: translate(0px, 0px) scale(1);
-            }
-        }
-
-        .animate-blob {
-            animation: blob 7s infinite;
-        }
-
-        .animation-delay-2000 {
-            animation-delay: 2s;
-        }
-
-        .animation-delay-4000 {
-            animation-delay: 4s;
-        }
-
-        /* ======== Enhanced Neumorphism Cards ======== */
-        .neu-card {
-            background: #eef2f6;
-            box-shadow: 8px 8px 20px #d1d9e6, -8px -8px 20px #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .neu-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 12px 12px 28px #c8d0db, -12px -12px 28px #ffffff;
-        }
-
-        /* Best Seller Card */
-        .neu-card-featured {
-            background: #eef2f6;
-            box-shadow: 10px 10px 24px #c8d0db, -10px -10px 24px #ffffff;
-            border: 2px solid rgba(59, 130, 246, 0.3);
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .neu-card-featured:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 14px 14px 32px #c0c8d3, -14px -14px 32px #ffffff;
-            border-color: rgba(59, 130, 246, 0.5);
-        }
-
-        /* Enhanced Neumorphism Button */
-        .neu-cta {
-            background: #eef2f6;
-            box-shadow: 6px 6px 14px #d1d9e6, -6px -6px 14px #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-            display: block;
-            width: 100%;
-            padding: 0.75rem 1rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.875rem;
-        }
-
-        .neu-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 8px 8px 18px #d1d9e6, -8px -8px 18px #ffffff;
-        }
-
-        .neu-cta:active {
-            transform: translateY(0);
-            box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
-        }
-
-        /* Filled CTA button (flex, for inside cards & sticky bar) */
-        .neu-cta-filled {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            box-shadow: 6px 6px 14px #d1d9e6, -6px -6px 14px #ffffff, 0 4px 16px rgba(37, 99, 235, 0.3);
-            border: none;
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0.875rem 1rem;
-            font-weight: 700;
-            font-size: 0.875rem;
-            color: #ffffff;
-        }
-
-        .neu-cta-filled:hover {
-            transform: translateY(-2px);
-            box-shadow: 8px 8px 18px #d1d9e6, -8px -8px 18px #ffffff, 0 8px 24px rgba(37, 99, 235, 0.4);
-        }
-
-        .neu-cta-filled:active {
-            transform: translateY(0);
-        }
-
-        /* Inline variant for standalone CTA buttons */
-        .neu-cta-inline {
-            background: #eef2f6;
-            box-shadow: 6px 6px 14px #d1d9e6, -6px -6px 14px #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 0.75rem;
-            transition: all 0.3s ease;
-            padding: 0.875rem 2rem;
-            text-align: center;
-            font-weight: 700;
-            font-size: 0.875rem;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .neu-cta-inline:hover {
-            transform: translateY(-2px);
-            box-shadow: 8px 8px 18px #d1d9e6, -8px -8px 18px #ffffff;
-        }
-
-        .neu-cta-inline:active {
-            transform: translateY(0);
-            box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff;
-        }
-
-        /* Neumorphism step circles for Alur Pendaftaran */
-        .neu-step {
-            background: #eef2f6;
-            box-shadow: 6px 6px 14px #d1d9e6, -6px -6px 14px #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            transition: all 0.3s ease;
-        }
-
-        .neu-step:hover,
-        .group:hover .neu-step {
-            box-shadow: 8px 8px 18px #d1d9e6, -8px -8px 18px #ffffff;
-            transform: scale(1.08);
-        }
-
-        /* Neumorphism inset for wireless section */
-        .neu-wireless-card {
-            background: #eef2f6;
-            box-shadow: 8px 8px 20px #d1d9e6, -8px -8px 20px #ffffff;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 1.5rem;
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-
-        .neu-wireless-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 12px 12px 28px #c8d0db, -12px -12px 28px #ffffff;
-        }
-
-        /* Divider between sections */
-        .section-divider {
-            height: 1px;
-            background: linear-gradient(to right, transparent, rgba(148, 163, 184, 0.2), transparent);
-        }
-
-        /* Sticky Mobile CTA */
-        .sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 50;
-            transform: translateY(100%);
-            transition: transform 0.3s ease;
-        }
-
-        .sticky-cta.show {
-            transform: translateY(0);
-        }
-
-        /* Smooth connector line */
-        .step-connector {
-            position: absolute;
-            top: 2rem;
-            left: calc(50% + 2rem);
-            width: calc(100% - 2rem);
-            height: 2px;
-            background: linear-gradient(to right, #d1d9e6 50%, transparent);
-        }
-    </style>
-
-    <!-- Dedicated Internet Section -->
-    <section id="dedicated-internet" class="relative overflow-hidden pt-32 pb-24 bg-[#eef2f6]">
-        <div
-            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-200/30 rounded-full blur-[120px] pointer-events-none">
-        </div>
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block">Paket Internet</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Pilihan Paket Wifi Murah dan Cepat</h2>
-                <p class="text-slate-500 text-lg mb-8">Pilih paket yang sesuai dengan kebutuhan Anda.</p>
-            </div>
-
-            <!-- Dedicated Internet Grid -->
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Paket 1: 20 Mbps -->
-                <div class="neu-card p-6 flex flex-col h-full">
-                    <div class="mb-4 min-h-[85px]">
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">PAKET
-                                TERMURAH</span>
-                            <span class="text-cyan-500"><svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg></span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">20 Mbps</h3>
-                        <p class="text-sm text-slate-500 font-medium">Promo 1+1 Gratis</p>
-                    </div>
-                    <div class="mb-6 space-y-4">
-                        <div class="min-h-[90px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-1">Total Bayar Awal
-                            </p>
-                            <div id="initial-cost-20mbps" class="text-xl font-extrabold text-slate-800">Rp ---</div>
-                            <p class="text-[10px] text-slate-500 mt-1">1 bulan dan biaya pasang</p>
-                        </div>
-                        <div class="min-h-[50px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
-                            <div class="text-lg font-bold text-slate-700">Rp 190.000 <span
-                                    class="text-xs font-normal text-slate-400">/bln</span></div>
-                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> 1 bulan dan biaya pasang</li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Biaya pasang Rp 99.000</li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> <span id="next-payment-20mbps" class="font-bold text-slate-800">Pembayaran
-                                kembali bulan ...</span></li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Biaya Layanan Rp 5.000</li>
-                    </ul>
-                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
-                        <div class="mb-4">
-                            <button type="button" onclick="openTermsModal()"
-                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
-                                Syarat & Ketentuan
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Termurah%2020%20Mbps."
-                            class="neu-cta text-blue-600 hover:text-blue-700">Pilih Paket</a>
-                    </div>
-                </div>
-
-                <!-- Paket 2: 50 Mbps Best Seller -->
-                <div class="neu-card-featured p-6 flex flex-col h-full transform md:scale-105 relative z-10">
-                    <div
-                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
-                        TERLARIS</div>
-                    <div class="mb-4 min-h-[85px]">
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-[10px] font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-3 py-1 rounded-full shadow-sm">BEST
-                                SELLER</span>
-                            <span class="text-blue-600"><svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
-                                    </path>
-                                </svg></span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">50 Mbps</h3>
-                        <p class="text-sm text-slate-500 font-medium">Promo 2+1 Gratis</p>
-                    </div>
-                    <div class="mb-6 space-y-4">
-                        <div class="min-h-[90px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">Total Bayar Awal
-                            </p>
-                            <div class="text-xl font-extrabold text-slate-800">Rp 460.000</div>
-                            <p class="text-[10px] text-slate-500 mt-1">2 Bulan Bayar Di Muka</p>
-                        </div>
-                        <div class="min-h-[50px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
-                            <div class="text-lg font-bold text-slate-700">Rp 230.000 <span
-                                    class="text-xs font-normal text-slate-400">/bln</span></div>
-                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> 2 bulan bayar di muka (2+1 gratis)</li>
-                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> <b class="text-slate-800">Pasang GRATIS</b></li>
-                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> <span id="next-payment-50mbps" class="font-bold text-slate-800">Pembayaran
-                                kembali bulan ...</span></li>
-                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Biaya Layanan Rp 5.000</li>
-                    </ul>
-                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
-                        <div class="mb-4">
-                            <button type="button" onclick="openTermsModal()"
-                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
-                                Syarat & Ketentuan
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Best%20Seller%2050%20Mbps."
-                            class="neu-cta-filled">Pilih Paket</a>
-                    </div>
-                </div>
-
-                <!-- Paket 3: 50 Mbps Prioritas -->
-                <div class="neu-card p-6 flex flex-col h-full">
-                    <div class="mb-4 min-h-[85px]">
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">PAKET
-                                PRIORITAS</span>
-                            <span class="text-cyan-500"><svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg></span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">50 Mbps</h3>
-                        <p class="text-sm text-slate-500 font-medium">Pasang Dulu, Bayar Nanti</p>
-                    </div>
-                    <div class="mb-6 space-y-4">
-                        <div class="min-h-[90px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-1">Total Bayar Awal
-                            </p>
-                            <div class="text-xl font-extrabold text-slate-800">Rp 99.000</div>
-                            <p class="text-[10px] text-slate-500 mt-1">Hanya Biaya Pasang</p>
-                        </div>
-                        <div class="min-h-[50px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
-                            <div class="text-lg font-bold text-slate-700">Rp 285.000 <span
-                                    class="text-xs font-normal text-slate-400">/bln</span></div>
-                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Pasang dulu, aktif baru bayar</li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Layanan Prioritas</li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> <span id="next-payment-prioritas"
-                                class="font-bold text-slate-800">Pembayaran kembali bulan ...</span></li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Biaya Layanan Rp 5.000</li>
-                    </ul>
-                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
-                        <div class="mb-4">
-                            <button type="button" onclick="openTermsModal()"
-                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
-                                Syarat & Ketentuan
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Prioritas%2050%20Mbps."
-                            class="neu-cta text-blue-600 hover:text-blue-700">Pilih Paket</a>
-                    </div>
-                </div>
-
-                <!-- Paket 4: 75 Mbps Cepat -->
-                <div class="neu-card p-6 flex flex-col h-full">
-                    <div class="mb-4 min-h-[85px]">
-                        <div class="flex justify-between items-start mb-2">
-                            <span
-                                class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">PAKET
-                                CEPAT</span>
-                            <span class="text-cyan-500"><svg class="w-6 h-6" fill="none" stroke="currentColor"
-                                    viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                                </svg></span>
-                        </div>
-                        <h3 class="text-xl font-bold text-slate-800">75 Mbps</h3>
-                        <p class="text-sm text-slate-500 font-medium">Promo 2+1 Gratis</p>
-                    </div>
-                    <div class="mb-6 space-y-4">
-                        <div class="min-h-[90px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-1">Total Bayar Awal
-                            </p>
-                            <div class="text-xl font-extrabold text-slate-800">Rp 500.000</div>
-                            <p class="text-[10px] text-slate-500 mt-1">2 Bulan Bayar Di Muka</p>
-                        </div>
-                        <div class="min-h-[50px] flex flex-col justify-center">
-                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
-                            <div class="text-lg font-bold text-slate-700">Rp 250.000 <span
-                                    class="text-xs font-normal text-slate-400">/bln</span></div>
-                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
-                        </div>
-                    </div>
-                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> 2 bulan bayar di muka (2+1 gratis)</li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> <b class="text-slate-800">Pasang GRATIS</b></li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> <span id="next-payment-75mbps" class="font-bold text-slate-800">Pembayaran
-                                kembali bulan ...</span></li>
-                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
-                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M5 13l4 4L19 7"></path>
-                                </svg></span> Biaya Layanan Rp 5.000</li>
-                    </ul>
-                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
-                        <div class="mb-4">
-                            <button type="button" onclick="openTermsModal()"
-                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
-                                Syarat & Ketentuan
-                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                        <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Cepat%2075%20Mbps."
-                            class="neu-cta text-blue-600 hover:text-blue-700">Pilih Paket</a>
-                    </div>
-                </div>
-            </div>
-
-
-
-        </div>
-    </section>
-
-    <!-- Hero Section -->
-    <section class="relative py-20 overflow-hidden bg-[#eef2f6]">
-        <div class="absolute inset-0 w-full h-full">
-            <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
-        </div>
-
-        <div class="container mx-auto px-6 relative z-10 text-center max-w-4xl">
-            <!-- Rotating Stats -->
-            <div
-                class="inline-flex items-center px-4 py-2 rounded-full bg-white border border-slate-200 text-indigo-600 text-sm font-bold reveal-up mb-8 shadow-sm">
-                <span class="relative flex h-3 w-3 mr-3">
-                    <span
-                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                    <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
-                </span>
-                <span id="rotating-stat" class="transition-opacity duration-500">
-                    Koneksi Fiber Optic 100%
-                </span>
-            </div>
-
-            <script>
-                document.addEventListener('DOMContentLoaded', () => {
-                    const stats = [
-                        "Koneksi Fiber Optic 100%",
-                        "Support Teknis 24 Jam",
-                        "Streaming & Gaming Lancar"
-                    ];
-                    const statElement = document.getElementById('rotating-stat');
-                    let currentIndex = 0;
-
-                    if (stats.length > 1) {
-                        setInterval(() => {
-                            statElement.style.opacity = '0';
-                            setTimeout(() => {
-                                currentIndex = (currentIndex + 1) % stats.length;
-                                statElement.textContent = stats[currentIndex];
-                                statElement.style.opacity = '1';
-                            }, 500);
-                        }, 3000);
-                    }
-                });
-            </script>
-
-            <h2
-                class="text-3xl md:text-5xl font-bold mb-6 text-slate-800 tracking-tight leading-tight reveal-up delay-100">
-                Mengapa <span class="text-blue-600">Wifi Murah dan Cepat</span>?
-            </h2>
-            <p class="text-lg text-slate-500 max-w-3xl mx-auto leading-relaxed mb-8 reveal-up delay-200">
-                Koneksi fiber optic 100% yang stabil untuk streaming, gaming, dan produktivitas keluarga Anda.
-            </p>
-
-            <!-- Trust Indicators -->
-            <div class="flex flex-wrap justify-center gap-6 mb-10 reveal-up delay-200">
-                <div class="flex items-center gap-2 text-sm text-slate-600">
-                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Harga Terjangkau</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-slate-600">
-                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Support 24 Jam</span>
-                </div>
-                <div class="flex items-center gap-2 text-sm text-slate-600">
-                    <svg class="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                    <span>Fiber Optic 100%</span>
-                </div>
-            </div>
-            <div class="flex flex-col md:flex-row gap-4 justify-center reveal-up delay-300">
-                <a href="https://wa.me/628970238105?text=Halo,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20Wifi%20Murah%20dan%20Cepat."
-                    class="neu-cta-inline text-blue-600 hover:text-blue-700">
-                    <span>🚀 Dapatkan Konsultasi Gratis</span>
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Alur Pendaftaran Section -->
-    <section id="registration-flow" class="relative py-24 bg-[#eef2f6] overflow-hidden">
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-bold tracking-wide mb-4">MUDAH
-                    & CEPAT</span>
-                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6 leading-tight">Alur Pendaftaran</h2>
-                <p class="text-slate-500 text-lg leading-relaxed max-w-2xl mx-auto">Proses pendaftaran yang simple dan
-                    transparan. Dari pemilihan paket hingga internet aktif hanya dalam hitungan hari.</p>
-            </div>
-            <div class="max-w-5xl mx-auto">
-                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8">
-                    <div class="relative flex flex-col items-center text-center group">
-                        <div
-                            class="w-16 h-16 rounded-2xl neu-step flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
-                            1</div>
-                        <div class="step-connector hidden lg:block"></div>
-                        <h3 class="font-bold text-slate-800 mb-1 text-sm">Pilih Paket</h3>
-                        <p class="text-xs text-slate-500">Tentukan paket sesuai kebutuhan</p>
-                    </div>
-                    <div class="relative flex flex-col items-center text-center group">
-                        <div
-                            class="w-16 h-16 rounded-2xl neu-step flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
-                            2</div>
-                        <div class="step-connector hidden lg:block"></div>
-                        <h3 class="font-bold text-slate-800 mb-1 text-sm">Verifikasi</h3>
-                        <p class="text-xs text-slate-500">Tim kami verifikasi data Anda</p>
-                    </div>
-                    <div class="relative flex flex-col items-center text-center group">
-                        <div
-                            class="w-16 h-16 rounded-2xl neu-step flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
-                            3</div>
-                        <div class="step-connector hidden lg:block"></div>
-                        <h3 class="font-bold text-slate-800 mb-1 text-sm">Tunggu 1-2 Hari</h3>
-                        <p class="text-xs text-slate-500">Persiapan pemasangan</p>
-                    </div>
-                    <div class="relative flex flex-col items-center text-center group">
-                        <div
-                            class="w-16 h-16 rounded-2xl neu-step flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
-                            4</div>
-                        <div class="step-connector hidden lg:block"></div>
-                        <h3 class="font-bold text-slate-800 mb-1 text-sm">Pemasangan</h3>
-                        <p class="text-xs text-slate-500">Router wifi dipasang teknisi</p>
-                    </div>
-                    <div class="relative flex flex-col items-center text-center group">
-                        <div
-                            class="w-16 h-16 rounded-2xl neu-step flex items-center justify-center text-blue-600 font-bold text-xl mb-4">
-                            5</div>
-                        <div class="step-connector hidden lg:block"></div>
-                        <h3 class="font-bold text-slate-800 mb-1 text-sm">Bayar</h3>
-                        <p class="text-xs text-slate-500">Bayar biaya awal sesuai paket</p>
-                    </div>
-                    <div class="relative flex flex-col items-center text-center group">
-                        <div
-                            class="w-16 h-16 rounded-2xl neu-step flex items-center justify-center text-green-600 font-bold text-xl mb-4">
-                            ✓</div>
-                        <h3 class="font-bold text-slate-800 mb-1 text-sm">Internet Aktif</h3>
-                        <p class="text-xs text-slate-500">Nikmati koneksi Anda</p>
-                    </div>
-                </div>
-                <div class="text-center mt-12">
-                    <a href="https://wa.me/628970238105?text=Halo,%20saya%20ingin%20mendaftar%20Wifi%20Murah%20dan%20Cepat."
-                        class="neu-cta-inline text-blue-600 hover:text-blue-700">
-                        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-                        </svg>
-                        <span>Mulai Pendaftaran via WhatsApp</span>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-
-
-    <!-- Wifi Wireless Section -->
-    <section id="eznet-wireless" class="relative py-24 bg-[#eef2f6] overflow-hidden">
-        <!-- Background Elements -->
-        <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute -top-[20%] -right-[10%] w-[600px] h-[600px] bg-cyan-500/5 rounded-full blur-[120px]">
-            </div>
-            <div class="absolute -bottom-[20%] -left-[10%] w-[600px] h-[600px] bg-blue-500/5 rounded-full blur-[120px]">
-            </div>
-        </div>
-
-        <div class="container mx-auto px-6 relative z-10">
-            <div class="text-center max-w-3xl mx-auto mb-16">
-                <span
-                    class="inline-block px-4 py-1.5 rounded-full bg-cyan-500/10 text-cyan-600 text-sm font-bold tracking-wide mb-4 border border-cyan-500/20">
-                    LOKASI KAMU TIDAK ADA JARINGAN?
-                </span>
-                <h2 class="text-3xl md:text-5xl font-bold text-slate-800 mb-6">
-                    Tidak ada tiang ODP disekitarmu? <br />
-                    <span class="text-cyan-600">Gunakan Wifi Wireless (Tanpa Kabel)</span>
-                </h2>
-                <p class="text-slate-500 text-lg leading-relaxed">
-                    Solusi internet rumah tanpa kabel fiber optic. Sistem Home Lock yang terhubung langsung dengan
-                    menara BTS terdekat.
-                </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto mb-16">
-                <!-- Paket 10 Mbps -->
-                <div class="neu-wireless-card p-8 group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800 mb-2">10 Mbps</h3>
-                            <p class="text-slate-500 text-sm">Maksimal 3 Orang/HP</p>
-                        </div>
-                        <span class="px-3 py-1 bg-cyan-50 rounded-lg text-cyan-600 text-sm font-bold">Recommended</span>
-                    </div>
-                    <div class="mb-8">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
-                        <div class="text-4xl font-bold text-slate-800">Rp 190.000<span
-                                class="text-lg text-slate-400 font-normal">/bln</span></div>
-                        <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
-                    </div>
-                    <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Wifi%20Wireless%20(Tanpa%20Kabel)%2010%20Mbps."
-                        class="neu-cta text-blue-600 hover:text-blue-700">
-                        Pilih Paket Ini
-                    </a>
-                </div>
-
-                <!-- Paket 15 Mbps -->
-                <div class="neu-wireless-card p-8 group">
-                    <div class="flex justify-between items-start mb-6">
-                        <div>
-                            <h3 class="text-2xl font-bold text-slate-800 mb-2">15 Mbps</h3>
-                            <p class="text-slate-500 text-sm">Maksimal 5 Orang/HP</p>
-                        </div>
-                        <span class="px-3 py-1 bg-blue-50 rounded-lg text-blue-600 text-sm font-bold">Family</span>
-                    </div>
-                    <div class="mb-8">
-                        <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
-                        <div class="text-4xl font-bold text-slate-800">Rp 250.000<span
-                                class="text-lg text-slate-400 font-normal">/bln</span></div>
-                        <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
-                    </div>
-                    <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Wifi%20Wireless%20(Tanpa%20Kabel)%2015%20Mbps."
-                        class="neu-cta text-blue-600 hover:text-blue-700">
-                        Pilih Paket Ini
-                    </a>
-                </div>
-            </div>
-
-            <!-- Additional Info -->
-            <div class="max-w-4xl mx-auto grid md:grid-cols-2 gap-6">
-                <div class="neu-card p-6">
-                    <h4 class="text-slate-800 font-bold mb-4 flex items-center gap-2">
-                        <svg class="w-5 h-5 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z">
-                            </path>
-                        </svg>
-                        Biaya & Ketentuan
-                    </h4>
-                    <ul class="space-y-3 text-sm text-slate-600">
-                        <li class="flex justify-between border-b border-slate-100 pb-2">
-                            <span>Biaya Pasang Awal:</span>
-                            <span class="font-bold text-slate-800">Rp 83.250</span>
-                        </li>
-                        <li class="flex justify-between border-b border-slate-100 pb-2">
-                            <span>Garansi Teknisi:</span>
-                            <span class="font-bold text-slate-800">2 Bulan</span>
-                        </li>
-                        <li class="flex justify-between border-b border-slate-100 pb-2">
-                            <span>Tagihan Bulanan:</span>
-                            <span class="font-bold text-slate-800">Mulai bulan kedua</span>
-                        </li>
-                        <li class="text-xs italic text-slate-400 mt-2">*Harga belum termasuk PPN 11%</li>
-                    </ul>
-                </div>
-
-                <div class="neu-card p-6 relative overflow-hidden">
-                    <div class="relative z-10">
-                        <h4 class="text-cyan-800 font-bold mb-3 flex items-center gap-2">
-                            <svg class="w-5 h-5 text-cyan-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                            </svg>
-                            Jalur Prioritas Fiber
-                        </h4>
-                        <p class="text-sm text-cyan-700 leading-relaxed">
-                            Pelanggan Wifi Wireless (Tanpa Kabel) akan <b>diprioritaskan</b> untuk pendataan pembangunan
-                            jaringan fiber optic di wilayahnya dan dapat <b>upgrade ke fiber optic</b> secara prioritas
-                            saat jaringan tersedia.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section id="managed-wifi-pricing" class="relative overflow-hidden py-24 bg-[#eef2f6] hidden">
+﻿    <section id="managed-wifi-pricing" class="relative overflow-hidden py-24 bg-[#eef2f6] hidden">
         <div
             class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-indigo-200/30 rounded-full blur-[120px] pointer-events-none">
         </div>
@@ -936,8 +101,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Small%20(3%20AP)."
-                            class="neu-cta text-blue-600 hover:text-blue-700">{{ __('messages.network_managed_btn_choose') }}</a>
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Small%20(3%20AP)."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
                 <!-- Medium -->
@@ -1005,8 +170,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Medium%20(7%20AP)."
-                            class="neu-cta text-blue-600 hover:text-blue-700">{{ __('messages.network_managed_btn_choose') }}</a>
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Medium%20(7%20AP)."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
                 <!-- Large -->
@@ -1074,8 +239,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Large%20(10%20AP)."
-                            class="neu-cta text-blue-600 hover:text-blue-700">{{ __('messages.network_managed_btn_choose') }}</a>
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Large%20(10%20AP)."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
                 <!-- Enterprise -->
@@ -1143,8 +308,8 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Enterprise%20(15%20AP)."
-                            class="neu-cta text-blue-600 hover:text-blue-700">{{ __('messages.network_managed_btn_choose') }}</a>
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Basic%20Enterprise%20(15%20AP)."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
             </div>
@@ -1215,7 +380,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Small%20(3%20AP)."
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Small%20(3%20AP)."
                             class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
@@ -1284,7 +449,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Medium%20(7%20AP)."
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Medium%20(7%20AP)."
                             class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
@@ -1353,7 +518,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 9l-7 7-7-7"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Large%20(10%20AP)."
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Large%20(10%20AP)."
                             class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
@@ -1422,7 +587,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 9l-7 7-7-7"></path>
                                 </svg></button></div><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Enterprise%20(15%20AP)."
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Premium%20Enterprise%20(15%20AP)."
                             class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
@@ -1480,8 +645,8 @@
                                 </svg></span> 1 unit backup access point</li>
                     </ul>
                     <div class="mt-auto"><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%201%20(3%20AP%20+%20100%20Mbps)."
-                            class="neu-cta text-blue-600 hover:text-blue-700">{{ __('messages.network_managed_btn_choose') }}</a>
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%201%20(3%20AP%20+%20100%20Mbps)."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
 
@@ -1540,8 +705,8 @@
                                 </svg></span> 1 unit backup access point</li>
                     </ul>
                     <div class="mt-auto"><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%202%20(7%20AP%20+%20150%20Mbps)."
-                            class="neu-cta text-blue-600 hover:text-blue-700">{{ __('messages.network_managed_btn_choose') }}</a>
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%202%20(7%20AP%20+%20150%20Mbps)."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
 
@@ -1600,7 +765,7 @@
                                 </svg></span> 1 unit backup access point</li>
                     </ul>
                     <div class="mt-auto"><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%203%20(10%20AP%20+%20200%20Mbps)."
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%203%20(10%20AP%20+%20200%20Mbps)."
                             class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
@@ -1661,7 +826,7 @@
                                 </svg></span> 2 unit backup access point</li>
                     </ul>
                     <div class="mt-auto"><a
-                            href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%204%20(15%20AP%20+%20300%20Mbps)."
+                            href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Bundling%204%20(15%20AP%20+%20300%20Mbps)."
                             class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-indigo-600 hover:text-indigo-700">{{ __('messages.network_managed_btn_choose') }}</a>
                     </div>
                 </div>
@@ -1674,7 +839,7 @@
     <!-- SCRIPT_PLACEHOLDER -->
 
     <script>
-     function switchScheme(scheme) {
+        function switchScheme(scheme) {
             const gridBasic = document.getElementById('grid-basic');
             const gridPremium = document.getElementById('grid-premium');
             const gridBundling = document.getElementById('grid-bundling');
@@ -1683,7 +848,9 @@
             const btnBundling = document.getElementById('btn-bundling');
             const labelBasic = document.getElementById('label-basic');
             const labelPremium = document.getElementById('label-premium');
-            const labelBundling = document.getElementById('label-bundling');            if (scheme === 'basic') {
+            const labelBundling = document.getElementById('label-bundling');
+
+            if (scheme === 'basic') {
                 gridBasic.classList.remove('hidden');
                 gridPremium.classList.add('hidden');
                 gridBundling.classList.add('hidden');
@@ -1703,7 +870,7 @@
                 labelBasic.classList.add('hidden');
                 labelPremium.classList.remove('hidden');
                 labelBundling.classList.add('hidden');
-             } else if (scheme === 'bundling') {
+            } else if (scheme === 'bundling') {
                 gridBasic.classList.add('hidden');
                 gridPremium.classList.add('hidden');
                 gridBundling.classList.remove('hidden');
@@ -1714,21 +881,6 @@
                 labelPremium.classList.add('hidden');
                 labelBundling.classList.remove('hidden');
             }
-        }
-
-        
-        function openTermsModal() {
-            const terms = [
-                'Harga yang tertera belum termasuk PPN 11%.',
-                'Biaya bulanan bersifat tetap (FLAT) selama masa berlangganan.',
-                'Pembayaran dilakukan setiap bulan (tanggal 1-20) melalui kanal resmi (Indomaret, Alfamart, BRILink, M-Banking, Virtual Account).',
-                'Petugas lapangan tidak diperkenankan menerima pembayaran tunai.',
-                'Perangkat Modem/ONT dipinjamkan cuma-cuma selama berlangganan.',
-                'Masa minimum berlangganan adalah 12 bulan.',
-                'Pemutusan layanan sebelum kontrak habis dapat dikenakan biaya administrasi.',
-                'Proses instalasi normal 1-3 hari kerja sejak verifikasi data.'
-            ];
-            openModal('Syarat & Ketentuan Layanan', terms);
         }
 
         function openModal(title, items) {
@@ -1914,9 +1066,9 @@
             </h2>
             <p class="text-slate-500 text-lg mb-12 max-w-2xl mx-auto">{{ __('messages.network_cta_desc') }}</p>
             <div>
-                <a href="https://wa.me/628970238105" target="_blank"
-                    class="neu-cta-inline text-blue-600 hover:text-blue-700">
-                    <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <a href="https://wa.me/6282229046099" target="_blank"
+                    class="px-8 py-4 neu-btn font-bold text-indigo-600 inline-flex items-center justify-center">
+                    <svg class="w-6 h-6 mr-3" fill="currentColor" viewBox="0 0 24 24">
                         <path
                             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
                     </svg>
@@ -1926,11 +1078,10 @@
         </div>
     </section>
     <!-- Sticky Mobile CTA -->
-    <div class="sticky-cta md:hidden bg-[#eef2f6] border-t border-white/50 p-4"
-        style="box-shadow: 0 -4px 16px rgba(0,0,0,0.06);">
-        <a href="https://wa.me/628970238105?text=Halo,%20saya%20mau%20konsultasi%20tentang%20Network%20Solutions."
-            class="neu-cta-filled flex items-center justify-center w-full gap-2">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <div class="sticky-cta md:hidden bg-white border-t border-slate-200 shadow-2xl p-4">
+        <a href="https://wa.me/6282229046099?text=Halo,%20saya%20mau%20konsultasi%20tentang%20Network%20Solutions."
+            class="flex items-center justify-center w-full px-6 py-3.5 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold shadow-lg shadow-indigo-200 transition-all active:scale-95">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                 <path
                     d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
             </svg>

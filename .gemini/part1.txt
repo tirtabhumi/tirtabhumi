@@ -1,0 +1,172 @@
+﻿<x-layout title="Tirtanet - {{ config('app.name') }}" description="Layanan Internet Tirtanet">
+    <!-- Custom Styles -->
+    <!-- Custom Styles -->
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .bg-grid-pattern {
+            background-image: linear-gradient(to right, rgba(14, 165, 233, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(14, 165, 233, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* Premium Reveal Animations */
+        .reveal-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-up.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Staggered Delays */
+        .delay-100 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-200 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-300 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-400 {
+            transition-delay: 0.4s;
+        }
+
+        /* Blob Animation */
+        @keyframes blob {
+            0% {
+                transform: translate(0px, 0px) scale(1);
+            }
+
+            33% {
+                transform: translate(30px, -50px) scale(1.1);
+            }
+
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+
+            100% {
+                transform: translate(0px, 0px) scale(1);
+            }
+        }
+
+        .animate-blob {
+            animation: blob 7s infinite;
+        }
+
+        .animation-delay-2000 {
+            animation-delay: 2s;
+        }
+
+        .animation-delay-4000 {
+            animation-delay: 4s;
+        }
+
+        /* Sticky Mobile CTA */
+        .sticky-cta {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 50;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .sticky-cta.show {
+            transform: translateY(0);
+        }
+    </style>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-32 pb-24 bg-[#eef2f6]">
+        <div class="absolute inset-0 w-full h-full bg-[#eef2f6]">
+            <div class="absolute inset-0 bg-grid-pattern opacity-60"></div>
+
+        </div>
+
+        <div class="container mx-auto px-6 relative z-10 text-center">
+            <!-- Rotating Stats -->
+            <div
+                class="inline-flex items-center px-4 py-2 rounded-full bg-white border border-slate-200 text-indigo-600 text-sm font-bold reveal-up mb-8 shadow-sm">
+                <span class="relative flex h-3 w-3 mr-3">
+                    <span
+                        class="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-3 w-3 bg-indigo-500"></span>
+                </span>
+                <span id="rotating-stat" class="transition-opacity duration-500">
+                    Koneksi Fiber Optic 100%
+                </span>
+            </div>
+
+            <script>
+                document.addEventListener('DOMContentLoaded', () => {
+                    const stats = [
+                        "Koneksi Fiber Optic 100%",
+                        "Tanpa Batas Kuota (FUP)",
+                        "Support Teknis 24 Jam",
+                        "Streaming & Gaming Lancar"
+                    ];
+                    const statElement = document.getElementById('rotating-stat');
+                    let currentIndex = 0;
+
+                    if (stats.length > 1) {
+                        setInterval(() => {
+                            statElement.style.opacity = '0';
+                            setTimeout(() => {
+                                currentIndex = (currentIndex + 1) % stats.length;
+                                statElement.textContent = stats[currentIndex];
+                                statElement.style.opacity = '1';
+                            }, 500);
+                        }, 3000);
+                    }
+                });
+            </script>
+
+            <h1
+                class="text-5xl md:text-7xl font-bold mb-8 text-slate-900 tracking-tight leading-tight reveal-up delay-100">
+                Tirtanet: Melangkah Lebih Cepat ke Masa Depan
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 max-w-4xl mx-auto leading-relaxed mb-10 reveal-up delay-200">
+                Bebaskan potensi digital Anda dengan koneksi fiber optic yang super cepat, stabil, dan tanpa batas FUP.
+                Pilihan cerdas untuk produktivitas tanpa gangguan dan hiburan keluarga tanpa batas.
+            </p>
+            <div class="flex flex-col md:flex-row gap-4 justify-center reveal-up delay-300">
+                <a href="https://wa.me/6282229046099?text=Halo,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20Tirtanet."
+                    class="px-8 py-4 font-bold text-white bg-indigo-600 rounded-2xl hover:bg-indigo-700 transition-all shadow-lg shadow-indigo-200 group flex items-center gap-2">
+                    <span>🚀 Dapatkan Konsultasi Gratis</span>
+                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                        stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+

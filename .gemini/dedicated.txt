@@ -1,0 +1,327 @@
+﻿    <!-- Dedicated Internet Section -->
+    <section id="dedicated-internet" class="relative overflow-hidden py-24 bg-[#eef2f6]">
+        <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-200/30 rounded-full blur-[120px] pointer-events-none">
+        </div>
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <span class="text-blue-600 font-bold tracking-wider uppercase text-sm mb-2 block">Paket Internet</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-slate-800 mb-6">Pilihan Paket Tirtanet</h2>
+                <p class="text-slate-500 text-lg mb-8">Pilih paket yang sesuai dengan kebutuhan Anda.</p>
+            </div>
+
+            <!-- Dedicated Internet Grid -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Paket 1: 20 Mbps -->
+                <div
+                    class="neu-flat p-6 rounded-3xl border border-slate-200 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4 min-h-[105px]">
+                        <div class="flex justify-between items-start mb-2">
+                            <span
+                                class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">PAKET
+                                TERMURAH</span>
+                            <span class="text-cyan-500"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg></span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">20 Mbps</h3>
+                        <p class="text-sm text-slate-500 font-medium">Promo 1+1 Gratis</p>
+                    </div>
+                    <div class="mb-6 space-y-4">
+                        <div class="min-h-[140px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-1">Total Bayar Awal
+                            </p>
+                            <div id="initial-cost-20mbps" class="text-xl font-extrabold text-slate-800">Rp ---</div>
+                            <p class="text-[10px] text-slate-500 mt-1">1 bulan dan biaya pasang</p>
+                        </div>
+                        <div class="min-h-[60px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
+                            <div class="text-lg font-bold text-slate-700">Rp 190.000 <span
+                                    class="text-xs font-normal text-slate-400">/bln</span></div>
+                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> 1 bulan dan biaya pasang</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Biaya pasang Rp 99.000</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> <span id="next-payment-20mbps" class="font-bold text-slate-800">Pembayaran
+                                kembali bulan ...</span></li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Biaya Layanan Rp 5.000</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
+                        <div class="mb-4">
+                            <button type="button" onclick="openModal('Keterangan Penting', [
+                                'Bayar 1 atau 2 bulan dulu setelah pasang, baru normal mulai bulan berikutnya (tanggal 3–20 setiap bulannya).',
+                                'Biaya bulanan FLAT tidak berubah.',
+                                'Pembayaran mudah via Indomaret, Alfamart, BRILink, M-Banking, atau Virtual Account (tidak menerima pembayaran tunai ke petugas).',
+                                'Harga belum termasuk PPN.'
+                            ])"
+                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
+                                Syarat & Ketentuan
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Termurah%2020%20Mbps."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">Pilih
+                            Paket</a>
+                    </div>
+                </div>
+
+                <!-- Paket 2: 50 Mbps Best Seller -->
+                <div
+                    class="neu-flat p-6 rounded-3xl border border-slate-200 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300 transform md:scale-105 shadow-xl border-blue-200 relative z-10">
+                    <div
+                        class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-red-500 to-orange-500 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg">
+                        TERLARIS</div>
+                    <div class="mb-4 min-h-[105px]">
+                        <div class="flex justify-between items-start mb-2">
+                            <span
+                                class="text-[10px] font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-500 px-3 py-1 rounded-full shadow-sm">BEST
+                                SELLER</span>
+                            <span class="text-blue-600"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z">
+                                    </path>
+                                </svg></span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">50 Mbps</h3>
+                        <p class="text-sm text-slate-500 font-medium">Promo 2+1 Gratis</p>
+                    </div>
+                    <div class="mb-6 space-y-4">
+                        <div class="min-h-[140px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-blue-600 uppercase tracking-wider mb-1">Total Bayar Awal
+                            </p>
+                            <div class="text-xl font-extrabold text-slate-800">Rp 460.000</div>
+                            <p class="text-[10px] text-slate-500 mt-1">2 Bulan Bayar Di Muka</p>
+                        </div>
+                        <div class="min-h-[60px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
+                            <div class="text-lg font-bold text-slate-700">Rp 230.000 <span
+                                    class="text-xs font-normal text-slate-400">/bln</span></div>
+                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> 2 bulan bayar di muka (2+1 gratis)</li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> <b class="text-slate-800">Pasang GRATIS</b></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> <span id="next-payment-50mbps" class="font-bold text-slate-800">Pembayaran
+                                kembali bulan ...</span></li>
+                        <li class="flex items-start gap-2"><span class="text-blue-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Biaya Layanan Rp 5.000</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
+                        <div class="mb-4">
+                            <button type="button" onclick="openModal('Keterangan Penting', [
+                                'Bayar 1 atau 2 bulan dulu setelah pasang, baru normal mulai bulan berikutnya (tanggal 3–20 setiap bulannya).',
+                                'Biaya bulanan FLAT tidak berubah.',
+                                'Pembayaran mudah via Indomaret, Alfamart, BRILink, M-Banking, atau Virtual Account (tidak menerima pembayaran tunai ke petugas).',
+                                'Harga belum termasuk PPN.'
+                            ])"
+                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
+                                Syarat & Ketentuan
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Best%20Seller%2050%20Mbps."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 shadow-lg shadow-blue-200">Pilih
+                            Paket</a>
+                    </div>
+                </div>
+
+                <!-- Paket 3: 50 Mbps Prioritas -->
+                <div
+                    class="neu-flat p-6 rounded-3xl border border-slate-200 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4 min-h-[105px]">
+                        <div class="flex justify-between items-start mb-2">
+                            <span
+                                class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">PAKET
+                                PRIORITAS</span>
+                            <span class="text-cyan-500"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg></span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">50 Mbps</h3>
+                        <p class="text-sm text-slate-500 font-medium">Pasang Dulu, Bayar Nanti</p>
+                    </div>
+                    <div class="mb-6 space-y-4">
+                        <div class="min-h-[140px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-1">Total Bayar Awal
+                            </p>
+                            <div class="text-xl font-extrabold text-slate-800">Rp 99.000</div>
+                            <p class="text-[10px] text-slate-500 mt-1">Hanya Biaya Pasang</p>
+                        </div>
+                        <div class="min-h-[60px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
+                            <div class="text-lg font-bold text-slate-700">Rp 285.000 <span
+                                    class="text-xs font-normal text-slate-400">/bln</span></div>
+                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Pasang dulu, aktif baru bayar</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Layanan Prioritas</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> <span id="next-payment-prioritas"
+                                class="font-bold text-slate-800">Pembayaran kembali bulan ...</span></li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Biaya Layanan Rp 5.000</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
+                        <div class="mb-4">
+                            <button type="button" onclick="openModal('Keterangan Penting', [
+                                'Bayar 1 atau 2 bulan dulu setelah pasang, baru normal mulai bulan berikutnya (tanggal 3–20 setiap bulannya).',
+                                'Biaya bulanan FLAT tidak berubah.',
+                                'Pembayaran mudah via Indomaret, Alfamart, BRILink, M-Banking, atau Virtual Account (tidak menerima pembayaran tunai ke petugas).',
+                                'Harga belum termasuk PPN.'
+                            ])"
+                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
+                                Syarat & Ketentuan
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Prioritas%2050%20Mbps."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">Pilih
+                            Paket</a>
+                    </div>
+                </div>
+
+                <!-- Paket 4: 75 Mbps Cepat -->
+                <div
+                    class="neu-flat p-6 rounded-3xl border border-slate-200 flex flex-col h-full hover:-translate-y-2 transition-transform duration-300">
+                    <div class="mb-4 min-h-[105px]">
+                        <div class="flex justify-between items-start mb-2">
+                            <span
+                                class="text-[10px] font-bold text-blue-600 bg-blue-50 border border-blue-200 px-3 py-1 rounded-full shadow-sm">PAKET
+                                CEPAT</span>
+                            <span class="text-cyan-500"><svg class="w-6 h-6" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                                </svg></span>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-800">75 Mbps</h3>
+                        <p class="text-sm text-slate-500 font-medium">Promo 2+1 Gratis</p>
+                    </div>
+                    <div class="mb-6 space-y-4">
+                        <div class="min-h-[140px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-cyan-600 uppercase tracking-wider mb-1">Total Bayar Awal
+                            </p>
+                            <div class="text-xl font-extrabold text-slate-800">Rp 500.000</div>
+                            <p class="text-[10px] text-slate-500 mt-1">2 Bulan Bayar Di Muka</p>
+                        </div>
+                        <div class="min-h-[60px] flex flex-col justify-center">
+                            <p class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-1">Biaya Perbulan</p>
+                            <div class="text-lg font-bold text-slate-700">Rp 250.000 <span
+                                    class="text-xs font-normal text-slate-400">/bln</span></div>
+                            <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm text-slate-600 mb-8 flex-grow">
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> 2 bulan bayar di muka (2+1 gratis)</li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> <b class="text-slate-800">Pasang GRATIS</b></li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> <span id="next-payment-75mbps" class="font-bold text-slate-800">Pembayaran
+                                kembali bulan ...</span></li>
+                        <li class="flex items-start gap-2"><span class="text-cyan-500"><svg
+                                    class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M5 13l4 4L19 7"></path>
+                                </svg></span> Biaya Layanan Rp 5.000</li>
+                    </ul>
+                    <div class="mt-auto border-t border-slate-100 pt-4 relative">
+                        <div class="mb-4">
+                            <button type="button" onclick="openModal('Keterangan Penting', [
+                                'Bayar 1 atau 2 bulan dulu setelah pasang, baru normal mulai bulan berikutnya (tanggal 3–20 setiap bulannya).',
+                                'Biaya bulanan FLAT tidak berubah.',
+                                'Pembayaran mudah via Indomaret, Alfamart, BRILink, M-Banking, atau Virtual Account (tidak menerima pembayaran tunai ke petugas).',
+                                'Harga belum termasuk PPN.'
+                            ])"
+                                class="flex items-center justify-between w-full text-sm font-bold text-slate-500 hover:text-cyan-600 transition-colors z-20 relative">
+                                Syarat & Ketentuan
+                                <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <a href="https://wa.me/6282229046099?text=Halo,%20saya%20berminat%20dengan%20Paket%20Cepat%2075%20Mbps."
+                            class="neu-btn block w-full py-3 rounded-xl text-center text-sm font-bold text-cyan-600 hover:text-cyan-700">Pilih
+                            Paket</a>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </section>

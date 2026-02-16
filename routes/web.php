@@ -13,30 +13,30 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/tirtanet', function () {
+Route::get('/wifimurah', function () {
     return view('tirtanet');
-});
+})->name('wifi.murah');
 
 Route::get('/upventure', function () {
     return view('upventure');
 });
 
 // Auth Routes
-Route::get('/login', [AuthController::class , 'login'])->name('login')->middleware('guest');
-Route::post('/login', [AuthController::class , 'loginStore'])->name('login.store');
-Route::post('/logout', [AuthController::class , 'logout'])->name('logout');
-Route::get('/register', [AuthController::class , 'register'])->name('register')->middleware('guest');
-Route::post('/register', [AuthController::class , 'registerStore'])->name('register.store');
+Route::get('/login', [AuthController::class, 'login'])->name('login')->middleware('guest');
+Route::post('/login', [AuthController::class, 'loginStore'])->name('login.store');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/register', [AuthController::class, 'register'])->name('register')->middleware('guest');
+Route::post('/register', [AuthController::class, 'registerStore'])->name('register.store');
 
 // Google SSO
-Route::get('/auth/google', [AuthController::class , 'redirectToGoogle'])->name('auth.google');
-Route::get('/auth/google/callback', [AuthController::class , 'handleGoogleCallback']);
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('auth.google');
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback']);
 
 // Forgot Password Flow
-Route::get('forgot-password', [AuthController::class , 'forgotPassword'])->name('password.request');
-Route::post('forgot-password', [AuthController::class , 'sendResetLink'])->name('password.email');
-Route::get('reset-password/{token}', [AuthController::class , 'resetPassword'])->name('password.reset');
-Route::post('reset-password', [AuthController::class , 'updatePassword'])->name('password.update');
+Route::get('forgot-password', [AuthController::class, 'forgotPassword'])->name('password.request');
+Route::post('forgot-password', [AuthController::class, 'sendResetLink'])->name('password.email');
+Route::get('reset-password/{token}', [AuthController::class, 'resetPassword'])->name('password.reset');
+Route::post('reset-password', [AuthController::class, 'updatePassword'])->name('password.update');
 
 // Email Verification Routes
 Route::get('/email/verify', function () {
@@ -49,7 +49,7 @@ Route::get('/email/verify', function () {
 Route::get('/email/verify/{id}/{hash}', function ($id, $hash, Illuminate\Http\Request $request) {
     $user = \App\Models\User::find($id);
 
-    if (!$user || !hash_equals((string)$hash, sha1($user->getEmailForVerification()))) {
+    if (!$user || !hash_equals((string) $hash, sha1($user->getEmailForVerification()))) {
         abort(403);
     }
 
@@ -68,7 +68,9 @@ Route::post('/email/verification-notification', function (Illuminate\Http\Reques
 
 // Protected Routes
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
+    Route::get(
+        '/dashboard',
+        function () {
             $user = auth()->user();
 
             if ($user->hasRole(['super_admin', 'admin', 'partner'])) {
@@ -81,127 +83,140 @@ Route::middleware(['auth', 'verified'])->group(function () {
                 ->get();
             return view('dashboard', compact('registrations'));
         }
-        )->name('dashboard');
+    )->name('dashboard');
 
-        Route::get('/payment/history', [PaymentController::class , 'index'])->name('payments.index');
-        Route::get('/payment/{registration}', [PaymentController::class , 'show'])->name('payment.show');
-        Route::post('/payment/{registration}', [PaymentController::class , 'process'])->name('payment.process');
-        Route::get('/payment/{registration}/finish', [PaymentController::class , 'finish'])->name('payment.finish');
-        Route::post('/payment/{registration}/cancel', [PaymentController::class , 'cancel'])->name('payment.cancel');
+    Route::get('/payment/history', [PaymentController::class, 'index'])->name('payments.index');
+    Route::get('/payment/{registration}', [PaymentController::class, 'show'])->name('payment.show');
+    Route::post('/payment/{registration}', [PaymentController::class, 'process'])->name('payment.process');
+    Route::get('/payment/{registration}/finish', [PaymentController::class, 'finish'])->name('payment.finish');
+    Route::post('/payment/{registration}/cancel', [PaymentController::class, 'cancel'])->name('payment.cancel');
 
-        // My Classes Routes
-        Route::get('/my-classes', [\App\Http\Controllers\MyClassController::class , 'index'])->name('my-classes.index');
-        Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class , 'show'])->name('my-classes.show');
-        Route::get('/my-classes/{training}/certificate', [\App\Http\Controllers\MyClassController::class , 'certificate'])->name('my-classes.certificate');
-        Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class , 'markComplete'])->name('my-classes.module.complete');
-        Route::post('/my-classes/module/{module}/submit', [\App\Http\Controllers\MyClassController::class , 'submitAssignment'])->name('my-classes.module.submit');
+    // My Classes Routes
+    Route::get('/my-classes', [\App\Http\Controllers\MyClassController::class, 'index'])->name('my-classes.index');
+    Route::get('/my-classes/{training}', [\App\Http\Controllers\MyClassController::class, 'show'])->name('my-classes.show');
+    Route::get('/my-classes/{training}/certificate', [\App\Http\Controllers\MyClassController::class, 'certificate'])->name('my-classes.certificate');
+    Route::post('/my-classes/module/{module}/complete', [\App\Http\Controllers\MyClassController::class, 'markComplete'])->name('my-classes.module.complete');
+    Route::post('/my-classes/module/{module}/submit', [\App\Http\Controllers\MyClassController::class, 'submitAssignment'])->name('my-classes.module.submit');
 
-        // Certificates Route
-        Route::get('/my-certificates', [\App\Http\Controllers\CertificateController::class , 'index'])->name('certificates.index');
+    // Certificates Route
+    Route::get('/my-certificates', [\App\Http\Controllers\CertificateController::class, 'index'])->name('certificates.index');
 
-        // Profile Routes
-        Route::get('/profile', [\App\Http\Controllers\ProfileController::class , 'edit'])->name('profile.edit');
-        Route::patch('/profile', [\App\Http\Controllers\ProfileController::class , 'update'])->name('profile.update');
-        Route::post('/profile/avatar', [\App\Http\Controllers\ProfileController::class , 'updateAvatar'])->name('profile.avatar.update');
-        Route::delete('/profile/avatar', [\App\Http\Controllers\ProfileController::class , 'deleteAvatar'])->name('profile.avatar.delete');
+    // Profile Routes
+    Route::get('/profile', [\App\Http\Controllers\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [\App\Http\Controllers\ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    Route::delete('/profile/avatar', [\App\Http\Controllers\ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
 
-        // Secure Password Change Flow
-        // Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
-        /* 
-     Route::get('/profile/security/change-password/{user}', [\App\Http\Controllers\ProfileController::class, 'editPassword'])
-     ->name('profile.password.edit')
-     ->middleware('signed');
-     Route::put('/profile/security/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
-     */
+    // Secure Password Change Flow
+    // Route::post('/profile/security/verify', [\App\Http\Controllers\ProfileController::class, 'sendPasswordChangeLink'])->name('profile.security.verify');
+    /* 
+ Route::get('/profile/security/change-password/{user}', [\App\Http\Controllers\ProfileController::class, 'editPassword'])
+ ->name('profile.password.edit')
+ ->middleware('signed');
+ Route::put('/profile/security/password', [\App\Http\Controllers\ProfileController::class, 'updatePassword'])->name('profile.password.update');
+ */
 
 
 
-        // Affiliate Routes
-        Route::get('/affiliate', [\App\Http\Controllers\AffiliateController::class , 'index'])->name('affiliates.index');
-        Route::get('/affiliate/sales', [\App\Http\Controllers\AffiliateController::class , 'sales'])->name('affiliates.sales');
-        Route::get('/affiliate/points', [\App\Http\Controllers\AffiliateController::class , 'points'])->name('affiliates.points'); // New Route
-        Route::post('/affiliate/register', [\App\Http\Controllers\AffiliateController::class , 'register'])->name('affiliates.register');
-        Route::post('/affiliate/withdrawal', [\App\Http\Controllers\AffiliateController::class , 'requestWithdrawal'])->name('affiliates.withdrawal');
+    // Affiliate Routes
+    Route::get('/affiliate', [\App\Http\Controllers\AffiliateController::class, 'index'])->name('affiliates.index');
+    Route::get('/affiliate/sales', [\App\Http\Controllers\AffiliateController::class, 'sales'])->name('affiliates.sales');
+    Route::get('/affiliate/points', [\App\Http\Controllers\AffiliateController::class, 'points'])->name('affiliates.points'); // New Route
+    Route::post('/affiliate/register', [\App\Http\Controllers\AffiliateController::class, 'register'])->name('affiliates.register');
+    Route::post('/affiliate/withdrawal', [\App\Http\Controllers\AffiliateController::class, 'requestWithdrawal'])->name('affiliates.withdrawal');
 
-        // Profile Routes
-        Route::get('/profile', [ProfileController::class , 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class , 'update'])->name('profile.update');
-        Route::post('/profile/avatar', [ProfileController::class , 'updateAvatar'])->name('profile.avatar.update');
-        Route::delete('/profile/avatar', [ProfileController::class , 'deleteAvatar'])->name('profile.avatar.delete');
+    // Profile Routes
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::post('/profile/avatar', [ProfileController::class, 'updateAvatar'])->name('profile.avatar.update');
+    Route::delete('/profile/avatar', [ProfileController::class, 'deleteAvatar'])->name('profile.avatar.delete');
 
-        // Profile Password Management
-        Route::post('/profile/password-link', [ProfileController::class , 'sendPasswordChangeLink'])->name('profile.password.link');
-        Route::get('/profile/password/{user}', [ProfileController::class , 'editPassword'])->name('profile.password.edit')->middleware('signed');
-        Route::put('/profile/password', [ProfileController::class , 'updatePassword'])->name('profile.password.update');
+    // Profile Password Management
+    Route::post('/profile/password-link', [ProfileController::class, 'sendPasswordChangeLink'])->name('profile.password.link');
+    Route::get('/profile/password/{user}', [ProfileController::class, 'editPassword'])->name('profile.password.edit')->middleware('signed');
+    Route::put('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.password.update');
 
-        // Debug route
-        Route::get('/debug-classes', function () {
+    // Debug route
+    Route::get(
+        '/debug-classes',
+        function () {
             $user = auth()->user();
             $registrations = \App\Models\Registration::where('email', $user->email)->get();
             $completed = \App\Models\Registration::where('email', $user->email)->where('status', 'completed')->get();
 
             return response()->json([
-            'user_email' => $user->email,
-            'total_registrations' => $registrations->count(),
-            'completed_count' => $completed->count(),
-            'registrations' => $registrations->map(fn($r) => [
-            'id' => $r->id,
-            'training_id' => $r->training_id,
-            'status' => $r->status,
-            'training_title' => $r->training->title ?? 'N/A',
-            'training_category' => $r->training->category ?? 'N/A',
-            ]),
+                'user_email' => $user->email,
+                'total_registrations' => $registrations->count(),
+                'completed_count' => $completed->count(),
+                'registrations' => $registrations->map(fn($r) => [
+                    'id' => $r->id,
+                    'training_id' => $r->training_id,
+                    'status' => $r->status,
+                    'training_title' => $r->training->title ?? 'N/A',
+                    'training_category' => $r->training->category ?? 'N/A',
+                ]),
             ]);
         }
-        );    });
+    );
+});
 
 
 // Services Routes
 Route::prefix('services')->name('services.')->group(function () {
 
 
-    Route::get('/infrastructure', function () {
+    Route::get(
+        '/infrastructure',
+        function () {
             return view('services.infrastructure');
         }
-        )->name('infrastructure');
+    )->name('infrastructure');
 
-        Route::get('/network', function () {
+    Route::get(
+        '/network',
+        function () {
             return view('services.network');
         }
-        )->name('network');
+    )->name('network');
 
-        Route::get('/server', function () {
+    Route::get(
+        '/server',
+        function () {
             return view('services.server');
         }
-        )->name('server');
+    )->name('server');
 
-        Route::get('/securityservices', function () {
+    Route::get(
+        '/securityservices',
+        function () {
             return view('services.security');
         }
-        )->name('security');
+    )->name('security');
 
-        Route::get('/people', function () {
+    Route::get(
+        '/people',
+        function () {
             return view('services.people');
         }
-        )->name('people');
+    )->name('people');
 
-        Route::get('/procurement', [ProcurementController::class , 'index'])->name('procurement');
+    Route::get('/procurement', [ProcurementController::class, 'index'])->name('procurement');
 
-        Route::get('/procurement/{product}', [ProcurementController::class , 'show'])->name('procurement.show');
+    Route::get('/procurement/{product}', [ProcurementController::class, 'show'])->name('procurement.show');
 
-    });
+});
 
 // Training/UpVenture Routes
 Route::prefix('upventure')->group(function () {
-    Route::get('/', [TrainingController::class , 'index'])->name('trainings.index');
-    Route::get('/list', [TrainingController::class , 'list'])->name('trainings.list');
-    Route::get('/{training:slug}', [TrainingController::class , 'show'])->name('trainings.show');
-    Route::post('/{training:slug}/register', [TrainingController::class , 'register'])->name('trainings.register');
+    Route::get('/', [TrainingController::class, 'index'])->name('trainings.index');
+    Route::get('/list', [TrainingController::class, 'list'])->name('trainings.list');
+    Route::get('/{training:slug}', [TrainingController::class, 'show'])->name('trainings.show');
+    Route::post('/{training:slug}/register', [TrainingController::class, 'register'])->name('trainings.register');
 });
 
 
-Route::get('/blog', [\App\Http\Controllers\BlogController::class , 'index'])->name('blog.index');
-Route::get('/blog/{post:slug}', [\App\Http\Controllers\BlogController::class , 'show'])->name('blog.show');
+Route::get('/blog', [\App\Http\Controllers\BlogController::class, 'index'])->name('blog.index');
+Route::get('/blog/{post:slug}', [\App\Http\Controllers\BlogController::class, 'show'])->name('blog.show');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -224,7 +239,7 @@ Route::post('/contact', function () {
     return back()->with('success', 'Thank you for your message. We will get back to you soon!');
 })->name('contacts.store');
 
-Route::post('/ai-chat', [AiChatController::class , 'chat'])->name('ai.chat');
+Route::post('/ai-chat', [AiChatController::class, 'chat'])->name('ai.chat');
 
 Route::get('/webbundling', function () {
     return view('landing-page');
