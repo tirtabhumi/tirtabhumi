@@ -28,10 +28,20 @@
 
             <!-- Poster Image & Gallery -->
             <div class="space-y-6 max-w-sm mx-auto">
-                <div class="rounded-2xl overflow-hidden neu-flat border border-white/50 relative aspect-square w-full bg-white flex items-center justify-center cursor-zoom-in group" onclick="openModal()">
+                <div class="rounded-2xl overflow-hidden neu-flat border border-white/50 relative aspect-square w-full bg-white flex items-center justify-center cursor-zoom-in group">
                     @if(!empty($post->images) && isset($post->images[0]))
-                        <img id="main-image" src="{{ Storage::url($post->images[0]) }}" alt="{{ $post->title }}" loading="lazy" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105">
-                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors"></div>
+                        <img id="main-image" src="{{ Storage::url($post->images[0]) }}" alt="{{ $post->title }}" loading="lazy" class="w-full h-full object-contain transition-all duration-300 group-hover:scale-105" onclick="openModal()">
+                        <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors pointer-events-none"></div>
+                        
+                        @if(count($post->images) > 1)
+                            <!-- Main Image Navigation -->
+                            <button onclick="navigateImage(-1)" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-800 flex items-center justify-center hover:bg-white/40 transition-all z-10 opacity-0 group-hover:opacity-100">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                            </button>
+                            <button onclick="navigateImage(1)" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-slate-800 flex items-center justify-center hover:bg-white/40 transition-all z-10 opacity-0 group-hover:opacity-100">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </button>
+                        @endif
                     @else
                         <div class="w-full h-full bg-slate-200 flex items-center justify-center text-slate-400">
                             <svg class="w-16 h-16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
@@ -42,14 +52,21 @@
                 @if(!empty($post->images) && count($post->images) > 1)
                     <div class="flex flex-wrap gap-3 justify-center">
                         @foreach($post->images as $index => $image)
-                            <button onclick="changeImage('{{ Storage::url($image) }}', this)" 
-                                    class="thumbnail-btn w-16 h-16 rounded-xl overflow-hidden neu-flat border-2 transition-all focus:outline-none {{ $index === 0 ? 'border-indigo-600 ring-2 ring-indigo-600/20' : 'border-white/50 hover:border-indigo-300' }}">
+                            <button onclick="changeImage({{ $index }}, this)" 
+                                    class="thumbnail-btn w-16 h-16 rounded-xl overflow-hidden neu-flat border-2 transition-all focus:outline-none {{ $index === 0 ? 'border-indigo-600 ring-2 ring-indigo-600/20' : 'border-white/50 hover:border-indigo-300' }}"
+                                    data-src="{{ Storage::url($image) }}"
+                                    data-index="{{ $index }}">
                                 <img src="{{ Storage::url($image) }}" alt="Thumbnail {{ $index + 1 }}" class="w-full aspect-square object-cover">
                             </button>
                         @endforeach
                     </div>
                     <script>
-                        function changeImage(src, btn) {
+                        let currentImageIndex = 0;
+                        const images = {!! json_encode(array_map(fn($img) => Storage::url($img), $post->images)) !!};
+
+                        function changeImage(index, btn = null) {
+                            currentImageIndex = index;
+                            const src = images[index];
                             const mainImage = document.getElementById('main-image');
                             const modalImage = document.getElementById('modal-image');
                             
@@ -57,8 +74,15 @@
                                 el.classList.remove('border-indigo-600', 'ring-2', 'ring-indigo-600/20');
                                 el.classList.add('border-white/50');
                             });
-                            btn.classList.add('border-indigo-600', 'ring-2', 'ring-indigo-600/20');
-                            btn.classList.remove('border-white/50');
+
+                            if (!btn) {
+                                btn = document.querySelector(`.thumbnail-btn[data-index="${index}"]`);
+                            }
+
+                            if (btn) {
+                                btn.classList.add('border-indigo-600', 'ring-2', 'ring-indigo-600/20');
+                                btn.classList.remove('border-white/50');
+                            }
 
                             mainImage.style.opacity = '0';
                             setTimeout(() => {
@@ -68,6 +92,13 @@
                                     mainImage.style.opacity = '1';
                                 }
                             }, 150);
+                        }
+
+                        function navigateImage(direction) {
+                            let newIndex = currentImageIndex + direction;
+                            if (newIndex >= images.length) newIndex = 0;
+                            if (newIndex < 0) newIndex = images.length - 1;
+                            changeImage(newIndex);
                         }
                     </script>
                 @endif
@@ -105,6 +136,17 @@
         <button class="absolute top-6 right-6 text-white hover:text-indigo-400 transition-colors z-[110]" onclick="closeModal()">
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
+
+        @if(!empty($post->images) && count($post->images) > 1)
+            <!-- Modal Navigation -->
+            <button onclick="event.stopPropagation(); navigateImage(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-all z-[110]">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button onclick="event.stopPropagation(); navigateImage(1)" class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-all z-[110]">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        @endif
+
         <div class="max-w-5xl max-h-[90vh] relative" onclick="event.stopPropagation()">
             <img id="modal-image" src="{{ !empty($post->images) ? Storage::url($post->images[0]) : '' }}" alt="Enlarged Image" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain">
         </div>
@@ -123,9 +165,13 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Close on escape key
+        // Keyboard navigation
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') closeModal();
+            if (document.getElementById('image-modal').classList.contains('flex')) {
+                if (e.key === 'ArrowRight') navigateImage(1);
+                if (e.key === 'ArrowLeft') navigateImage(-1);
+            }
         });
     </script>
 </x-layout>

@@ -230,9 +230,16 @@
                                                 {{ __('messages.completed') }}
                                             </span>
                                         @endif
-                                        <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
-                                            {{ __('messages.continue_learning') }} &rarr;
-                                        </a>
+                                        
+                                        @if($reg->status === 'completed')
+                                            <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                                                {{ __('messages.continue_learning') }} &rarr;
+                                            </a>
+                                        @else
+                                            <a href="{{ route('payment.show', $reg->id) }}" class="text-xs font-bold text-amber-600 hover:text-amber-800 transition-colors">
+                                                {{ __('messages.pay_now') }} &rarr;
+                                            </a>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
