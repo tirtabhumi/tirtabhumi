@@ -103,12 +103,19 @@
                             'certs' => ['UI UX Certified G2 Academy'],
                             'linkedin' => 'https://www.linkedin.com/in/indra-riyanto-555b22333/'
                         ],
-                       
+                        [
+                            'name' => 'Rifky Praptama, S. Kom. M. Pd. CM.NLP',
+                            'title' => 'CEO INOVASIKA',
+                            'subtitle' => 'Professional Mentor',
+                            'image' => 'rifky-praptama.jpg',
+                            'certs' => ['CM.NLP'],
+                            'linkedin' => 'https://www.linkedin.com/in/rifky-praptama-s-kom-cm-nlp-1710369b/'
+                        ],
                     ];
                 @endphp
 
             <div class="relative group">
-                @if(count($mentors) > 3)
+                @if(count($mentors) > 4)
                     <!-- Left Button -->
                     <button onclick="document.getElementById('mentor-carousel').scrollBy({left: -300, behavior: 'smooth'})" 
                             class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 z-20 w-12 h-12 flex items-center justify-center neu-flat rounded-full text-indigo-600 hover:text-indigo-700 transition-all duration-300 opacity-0 group-hover:opacity-100 focus:opacity-100 hidden md:flex">
@@ -127,7 +134,7 @@
                 @endif
 
                 <!-- Scroll Container -->
-                <div id="mentor-carousel" class="flex {{ count($mentors) > 3 ? 'overflow-x-auto pb-8 hide-scrollbar' : 'justify-center flex-wrap' }} gap-4 snap-x snap-mandatory scroll-smooth px-1" style="scrollbar-width: none; -ms-overflow-style: none;">
+                <div id="mentor-carousel" class="flex {{ count($mentors) > 4 ? 'overflow-x-auto pb-8 hide-scrollbar' : 'justify-center flex-wrap' }} gap-4 snap-x snap-mandatory scroll-smooth px-1" style="scrollbar-width: none; -ms-overflow-style: none;">
                     @foreach($mentors as $mentor)
                         <div class="flex-shrink-0 w-64 snap-start neu-flat rounded-3xl p-4 bg-[#eef2f6] hover:shadow-xl transition-all duration-300 my-4 mx-2">
                             <div class="flex flex-col items-center text-center">
@@ -175,7 +182,7 @@
                     @endforeach
                 </div>
                 
-                @if(count($mentors) > 3)
+                @if(count($mentors) > 4)
                     <!-- Gradient Shadows for visual cue -->
                     <div class="pointer-events-none absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-white to-transparent z-10 hidden md:block"></div>
                     <div class="pointer-events-none absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-white to-transparent z-10 hidden md:block"></div>
