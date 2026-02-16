@@ -158,7 +158,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
             ]),
             ]);
         }
-        );    });
+        );
+    });
 
 
 // Services Routes

@@ -14,10 +14,16 @@ class PaymentController extends Controller
 
         // Filter by payment status
         if ($request->filled('payment_status')) {
-            $query->where('payment_status', $request->payment_status);
+            $status = strtolower($request->payment_status);
+            if ($status === 'unpaid') {
+                // Broadly define unpaid as 'unpaid', 'expired', or 'pending'
+                $query->whereIn('payment_status', ['unpaid', 'expired', 'pending']);
+            } else {
+                $query->where('payment_status', $status);
+            }
         }
 
-        // Filter by status
+        // Filter by status (completed, pending, cancelled)
         if ($request->filled('status')) {
             $query->where('status', $request->status);
         }
@@ -128,13 +134,8 @@ class PaymentController extends Controller
         }
     }
 
-
-
     private function creditPartnerWallet(Registration $registration)
     {
-        // Prevent double credit if already paid (this check should be done before calling this, but safe to double check if needed)
-        // Here we assume the caller has verified the status transition to 'paid'
-
         $training = $registration->training;
         if (!$training)
             return;
@@ -143,7 +144,6 @@ class PaymentController extends Controller
         if (!$partner)
             return;
 
-        // Revert to 100% Credit (Fee deducted at Withdrawal)
         $partnerWallet = \App\Models\Wallet::firstOrCreate(
             ['user_id' => $partner->id],
             ['balance' => 0]
@@ -178,11 +178,9 @@ class PaymentController extends Controller
                 $invoices = $apiInstance->getInvoices(null, $registration->transaction_id);
 
                 if (!empty($invoices) && count($invoices) > 0) {
-                    // Start checking the first match (usually correct due to unique external_id)
                     $invoice = $invoices[0];
                     $status = $invoice['status'];
 
-                    // Only update if status is actually changing from non-final to final
                     if (($status === 'PAID' || $status === 'SETTLED') && $registration->payment_status !== 'paid') {
                         $registration->update([
                             'status' => 'completed',
@@ -205,7 +203,6 @@ class PaymentController extends Controller
             }
         }
 
-        // Reload to get fresh data
         $registration->load('training');
 
         return view('payment.finish', compact('registration'));
@@ -240,13 +237,11 @@ class PaymentController extends Controller
 
         $data = $request->all();
 
-        // Check for invoice callback
         if (isset($data['status']) && isset($data['external_id'])) {
             $registration = Registration::with('training.partner')->where('transaction_id', $data['external_id'])->first();
 
             if ($registration) {
                 if ($data['status'] === 'PAID') {
-                    // Check if not already paid to avoid double credit
                     if ($registration->payment_status !== 'paid') {
                         $registration->update([
                             'status' => 'completed',

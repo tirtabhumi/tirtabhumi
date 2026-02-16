@@ -187,13 +187,16 @@
                     <a href="{{ route('my-classes.index') }}" class="text-sm font-bold text-indigo-600 hover:underline">{{ __('messages.view_all') }}</a>
                 </div>
 
-                @if($registrations->count() > 0)
+                @php
+                    $completedRegistrations = $registrations->where('status', 'completed');
+                @endphp
+
+                @if($completedRegistrations->count() > 0)
                     <div class="space-y-4 max-h-[400px] overflow-y-auto pr-2">
-                        @foreach($registrations->take(10) as $reg)
+                        @foreach($completedRegistrations->take(10) as $reg)
                             <div class="group flex items-center justify-between p-4 bg-white/30 rounded-2xl border border-white/30 hover:bg-white/50 transition-all duration-300">
                                 <div class="flex items-center gap-4">
                                     <div class="p-3 bg-indigo-50/50 rounded-xl text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-colors duration-300">
-                                        {{-- Dynamic Icon based on Category? Or just generic --}}
                                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
@@ -231,15 +234,9 @@
                                             </span>
                                         @endif
                                         
-                                        @if($reg->status === 'completed')
-                                            <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
-                                                {{ __('messages.continue_learning') }} &rarr;
-                                            </a>
-                                        @else
-                                            <a href="{{ route('payment.show', $reg->id) }}" class="text-xs font-bold text-amber-600 hover:text-amber-800 transition-colors">
-                                                {{ __('messages.pay_now') }} &rarr;
-                                            </a>
-                                        @endif
+                                        <a href="{{ route('my-classes.show', $reg->training->slug) }}" class="text-xs font-bold text-indigo-600 hover:text-indigo-800 transition-colors">
+                                            {{ __('messages.continue_learning') }} &rarr;
+                                        </a>
                                     </div>
                                 </div>
                             </div>
