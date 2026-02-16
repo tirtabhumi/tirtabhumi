@@ -137,18 +137,35 @@
             <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
 
-        @if(!empty($post->images) && count($post->images) > 1)
-            <!-- Modal Navigation -->
-            <button onclick="event.stopPropagation(); navigateImage(-1)" class="absolute left-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-all z-[110]">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
-            </button>
-            <button onclick="event.stopPropagation(); navigateImage(1)" class="absolute right-6 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white flex items-center justify-center hover:bg-white/20 transition-all z-[110]">
-                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-            </button>
-        @endif
+        <div class="max-w-[95vw] max-h-[95vh] flex items-center justify-center gap-4 relative" onclick="event.stopPropagation()">
+            @if(!empty($post->images) && count($post->images) > 1)
+                <!-- Desktop Navigation (Left) -->
+                <button onclick="navigateImage(-1)" class="hidden md:flex w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white items-center justify-center hover:bg-indigo-600 hover:border-indigo-500 transition-all shadow-xl group/btn flex-shrink-0">
+                    <svg class="w-8 h-8 group-hover/btn:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+            @endif
 
-        <div class="max-w-5xl max-h-[90vh] relative" onclick="event.stopPropagation()">
-            <img id="modal-image" src="{{ !empty($post->images) ? Storage::url($post->images[0]) : '' }}" alt="Enlarged Image" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain">
+            <!-- Image Container -->
+            <div class="relative group/modal max-w-full max-h-full">
+                @if(!empty($post->images) && count($post->images) > 1)
+                    <!-- Mobile Navigation (Overlay) -->
+                    <button onclick="navigateImage(-1)" class="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center md:hidden z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                    </button>
+                    <button onclick="navigateImage(1)" class="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-black/30 backdrop-blur-sm text-white flex items-center justify-center md:hidden z-10">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    </button>
+                @endif
+
+                <img id="modal-image" src="{{ !empty($post->images) ? Storage::url($post->images[0]) : '' }}" alt="Enlarged Image" class="max-w-full max-h-[90vh] rounded-xl shadow-2xl object-contain border border-white/10">
+            </div>
+
+            @if(!empty($post->images) && count($post->images) > 1)
+                <!-- Desktop Navigation (Right) -->
+                <button onclick="navigateImage(1)" class="hidden md:flex w-14 h-14 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white items-center justify-center hover:bg-indigo-600 hover:border-indigo-500 transition-all shadow-xl group/btn flex-shrink-0">
+                    <svg class="w-8 h-8 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            @endif
         </div>
     </div>
 
