@@ -1,6 +1,24 @@
 ﻿<x-layout title="Wifi Murah dan Cepat - Pasang Wifi Rumah Paling Murah"
     description="Layanan Wifi Murah dan Cepat. Harga pasang wifi murah mulai 190rb. Internet cepat, stabil, dan support 24 jam. Solusi wifi yang bagus dan murah untuk rumah Anda.">
     <!-- Custom Styles -->
+    <script>
+        function gtag_report_conversion(url) {
+            var callback = function () {
+                if (typeof (url) != 'undefined') {
+                    window.location = url;
+                }
+            };
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'conversion', {
+                    'send_to': 'AW-17782266879/hxTSCPPmrfobEP-3n59C',
+                    'event_callback': callback
+                });
+            } else {
+                callback();
+            }
+            return false;
+        }
+    </script>
     <!-- Custom Styles -->
     <style>
         html {
@@ -333,6 +351,7 @@
                             </button>
                         </div>
                         <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Termurah%2020%20Mbps."
+                            onclick="return gtag_report_conversion(this.href);"
                             class="neu-cta text-blue-600 hover:text-blue-700">Pilih Paket</a>
                     </div>
                 </div>
@@ -406,7 +425,7 @@
                             </button>
                         </div>
                         <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Best%20Seller%2050%20Mbps."
-                            class="neu-cta-filled">Pilih Paket</a>
+                            onclick="return gtag_report_conversion(this.href);" class="neu-cta-filled">Pilih Paket</a>
                     </div>
                 </div>
 
@@ -475,6 +494,7 @@
                             </button>
                         </div>
                         <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Prioritas%2050%20Mbps."
+                            onclick="return gtag_report_conversion(this.href);"
                             class="neu-cta text-blue-600 hover:text-blue-700">Pilih Paket</a>
                     </div>
                 </div>
@@ -544,6 +564,7 @@
                             </button>
                         </div>
                         <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Paket%20Cepat%2075%20Mbps."
+                            onclick="return gtag_report_conversion(this.href);"
                             class="neu-cta text-blue-600 hover:text-blue-700">Pilih Paket</a>
                     </div>
                 </div>
@@ -628,6 +649,7 @@
             </div>
             <div class="flex flex-col md:flex-row gap-4 justify-center reveal-up delay-300">
                 <a href="https://wa.me/628970238105?text=Halo,%20saya%20ingin%20konsultasi%20mengenai%20layanan%20Wifi%20Murah%20dan%20Cepat."
+                    onclick="return gtag_report_conversion(this.href);"
                     class="neu-cta-inline text-blue-600 hover:text-blue-700">
                     <span>🚀 Dapatkan Konsultasi Gratis</span>
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -702,6 +724,7 @@
                 </div>
                 <div class="text-center mt-12">
                     <a href="https://wa.me/628970238105?text=Halo,%20saya%20ingin%20mendaftar%20Wifi%20Murah%20dan%20Cepat."
+                        onclick="return gtag_report_conversion(this.href);"
                         class="neu-cta-inline text-blue-600 hover:text-blue-700">
                         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                             <path
@@ -759,6 +782,7 @@
                         <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
                     </div>
                     <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Wifi%20Wireless%20(Tanpa%20Kabel)%2010%20Mbps."
+                        onclick="return gtag_report_conversion(this.href);"
                         class="neu-cta text-blue-600 hover:text-blue-700">
                         Pilih Paket Ini
                     </a>
@@ -780,6 +804,7 @@
                         <p class="text-[10px] text-slate-400 mt-1 italic">Harga belum termasuk PPN 11%</p>
                     </div>
                     <a href="https://wa.me/628970238105?text=Halo,%20saya%20berminat%20dengan%20Wifi%20Wireless%20(Tanpa%20Kabel)%2015%20Mbps."
+                        onclick="return gtag_report_conversion(this.href);"
                         class="neu-cta text-blue-600 hover:text-blue-700">
                         Pilih Paket Ini
                     </a>
@@ -1674,7 +1699,7 @@
     <!-- SCRIPT_PLACEHOLDER -->
 
     <script>
-     function switchScheme(scheme) {
+        function switchScheme(scheme) {
             const gridBasic = document.getElementById('grid-basic');
             const gridPremium = document.getElementById('grid-premium');
             const gridBundling = document.getElementById('grid-bundling');
@@ -1683,7 +1708,7 @@
             const btnBundling = document.getElementById('btn-bundling');
             const labelBasic = document.getElementById('label-basic');
             const labelPremium = document.getElementById('label-premium');
-            const labelBundling = document.getElementById('label-bundling');            if (scheme === 'basic') {
+            const labelBundling = document.getElementById('label-bundling'); if (scheme === 'basic') {
                 gridBasic.classList.remove('hidden');
                 gridPremium.classList.add('hidden');
                 gridBundling.classList.add('hidden');
@@ -1703,7 +1728,7 @@
                 labelBasic.classList.add('hidden');
                 labelPremium.classList.remove('hidden');
                 labelBundling.classList.add('hidden');
-             } else if (scheme === 'bundling') {
+            } else if (scheme === 'bundling') {
                 gridBasic.classList.add('hidden');
                 gridPremium.classList.add('hidden');
                 gridBundling.classList.remove('hidden');
@@ -1716,7 +1741,7 @@
             }
         }
 
-        
+
         function openTermsModal() {
             const terms = [
                 'Harga yang tertera belum termasuk PPN 11%.',
