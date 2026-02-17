@@ -2,6 +2,11 @@
     description="Layanan Wifi Murah dan Cepat. Harga pasang wifi murah mulai 190rb. Internet cepat, stabil, dan support 24 jam. Solusi wifi yang bagus dan murah untuk rumah Anda.">
     <!-- Custom Styles -->
     <script>
+        // Configure Google Ads Account
+        if (typeof gtag !== 'undefined') {
+            gtag('config', 'AW-17782266879');
+        }
+
         function gtag_report_conversion(url) {
             var callback = function () {
                 if (typeof (url) != 'undefined') {
