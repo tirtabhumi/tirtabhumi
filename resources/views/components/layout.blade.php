@@ -226,8 +226,16 @@
                             </a>
 
                             <a href="{{ route('services.procurement') }}"
-                                class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50">
+                                class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
                                 {{ __('messages.service_procurement_title') }}
+                            </a>
+                            <a href="{{ route('wifi.bisnis') }}"
+                                class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50 border-b border-slate-100">
+                                {{ __('messages.service_wifi_bisnis') }}
+                            </a>
+                            <a href="{{ route('wifi.murah') }}"
+                                class="block px-4 py-3 text-sm text-slate-600 hover:text-indigo-600 hover:bg-slate-200/50">
+                                {{ __('messages.service_wifi_murah') }}
                             </a>
                         </div>
                     </div>
@@ -355,6 +363,12 @@
                             <li><a href="{{ route('trainings.index') }}"
                                     class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_people_title') }}</a>
                             </li>
+                            <li><a href="{{ route('wifi.bisnis') }}"
+                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_wifi_bisnis') }}</a>
+                            </li>
+                            <li><a href="{{ route('wifi.murah') }}"
+                                    class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.service_wifi_murah') }}</a>
+                            </li>
                             <li><a href="{{ route('blog.index') }}"
                                     class="hover:text-indigo-600 transition-all hover:translate-x-1 inline-block">{{ __('messages.blog') }}</a>
                             </li>
@@ -444,6 +458,10 @@
 
                             <a href="{{ route('services.procurement') }}"
                                 class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_procurement_title') }}</a>
+                            <a href="{{ route('wifi.bisnis') }}"
+                                class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_wifi_bisnis') }}</a>
+                            <a href="{{ route('wifi.murah') }}"
+                                class="text-base text-slate-500 hover:text-indigo-600 py-2 block">{{ __('messages.service_wifi_murah') }}</a>
                         </div>
                     </div>
 

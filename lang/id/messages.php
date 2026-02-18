@@ -75,6 +75,8 @@ return [
 
     'service_procurement_title' => 'Pengadaan',
     'service_procurement_desc' => 'Layanan pengadaan fleksibel (Sewa & Beli) untuk kebutuhan kantor, mulai dari perangkat IT hingga perawatan fasilitas (Gardening) yang terpercaya.',
+    'service_wifi_bisnis' => 'Wifi Bisnis',
+    'service_wifi_murah' => 'Wifi Terjangkau',
 
     'target_market_title' => 'Siapa yang Kami Layani?',
     'tm_gov' => 'Government (B2G)',

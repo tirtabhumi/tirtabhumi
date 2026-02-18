@@ -21,6 +21,10 @@ Route::get('/upventure', function () {
     return view('upventure');
 });
 
+Route::get('/wifibisnismurah', [\App\Http\Controllers\BusinessWifiController::class , 'index'])->name('wifi.bisnis');
+Route::get('/wifibisnismurah/register', [\App\Http\Controllers\BusinessWifiController::class , 'register'])->name('wifi.bisnis.register');
+Route::post('/wifibisnismurah/register', [\App\Http\Controllers\BusinessWifiController::class , 'store'])->name('wifi.bisnis.store');
+
 // Auth Routes
 Route::get('/login', [AuthController::class , 'login'])->name('login')->middleware('guest');
 Route::post('/login', [AuthController::class , 'loginStore'])->name('login.store');

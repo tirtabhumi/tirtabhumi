@@ -75,6 +75,8 @@ return [
 
     'service_procurement_title' => 'Procurement',
     'service_procurement_desc' => 'Flexible procurement services (Rental & Purchase) for office needs, from IT equipment to facility maintenance (Gardening) you can trust.',
+    'service_wifi_bisnis' => 'Business Wifi',
+    'service_wifi_murah' => 'Affordable Wifi',
     'service_procurement_desc_full' => "Streamline your operational efficiency with our comprehensive procurement services. We offer flexible solutions ranging from high-quality IT equipment rentals to complete facility maintenance (Gardening), ensuring your office needs are met with reliability and speed.\n\nWhether you require short-term rentals for specific projects or long-term procurement strategies, our trusted network of suppliers guarantees premium quality and competitive pricing. Let us handle the logistics so you can focus on growing your core business.",
 
     'target_market_title' => 'Who Do We Serve?',
