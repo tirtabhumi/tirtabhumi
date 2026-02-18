@@ -69,18 +69,20 @@
     <!-- Pricing Section -->
     <!-- Pricing Section -->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
-    <section class="py-20 bg-[#eef2f6]" x-data="{ openModal: false }" @keydown.escape.window="openModal = false">
+    <section class="py-20 bg-[#eef2f6]" x-data="{ openModal: false }" @keydown.escape.window="openModal = false" x-effect="document.body.classList.toggle('overflow-hidden', openModal)">
         <div class="container mx-auto px-6 text-center">
             <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Paket Internet Dedicated</span>
             <h2 class="text-3xl font-bold text-slate-800 mb-3">Internet Dedicated Rasio 1:1</h2>
             <p class="text-slate-500 max-w-xl mx-auto mb-12">Koneksi internet dedicated dengan bandwidth downstream dan upstream seimbang (1:1) untuk performa maksimal.</p>
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @php
                     $packages = [
-                        ['badge' => 'BASIC BUSINESS', 'name' => '100 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '695.000'],
-                        ['badge' => 'STARTER BIZ', 'name' => '150 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '845.000'],
-                        ['badge' => 'PRO BUSINESS', 'name' => '200 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '1.100.000'],
-                        ['badge' => 'ENTERPRISE', 'name' => '300 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '1.500.000'],
+                        ['badge' => 'PSB 70% - 50', 'name' => '50 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 50 Mbps', 'price' => '439.000'],
+                        ['badge' => 'PSB 70% - 75', 'name' => '75 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 75 Mbps', 'price' => '519.000'],
+                        ['badge' => 'PSB 70% - 100', 'name' => '100 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 100 Mbps', 'price' => '669.000'],
+                        ['badge' => 'PSB 70% - 150', 'name' => '150 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 150 Mbps', 'price' => '819.000'],
+                        ['badge' => 'PSB 70% - 200', 'name' => '200 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 200 Mbps', 'price' => '1.049.000'],
+                        ['badge' => 'PSB 70% - 300', 'name' => '300 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 300 Mbps', 'price' => '1.499.000'],
                     ];
                 @endphp
 
@@ -128,7 +130,7 @@
 
         <!-- T&C Modal -->
         <template x-teleport="body">
-            <div x-show="openModal" class="fixed inset-0 flex items-center justify-center p-4" style="z-index: 9999;" x-cloak>
+            <div x-show="openModal" class="fixed inset-0 z-[9999] flex items-center justify-center p-4 sm:p-6" x-cloak>
                 <!-- Overlay -->
                 <div x-show="openModal" 
                     x-transition:enter="transition ease-out duration-300" 
@@ -150,7 +152,7 @@
                     x-transition:leave="transition ease-in duration-200" 
                     x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
                     x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
-                    class="bg-[#eef2f6] w-full max-w-2xl rounded-2xl shadow-2xl border border-white/50 max-h-[80vh] overflow-y-auto relative z-10 text-left"
+                    class="bg-[#eef2f6] w-full max-w-2xl rounded-2xl shadow-2xl border border-white/50 max-h-full overflow-y-auto relative z-10 text-left"
                     style="background-color: #eef2f6;">
                     
                     <!-- Header -->
