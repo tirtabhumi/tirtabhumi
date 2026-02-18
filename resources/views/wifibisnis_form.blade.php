@@ -16,6 +16,22 @@
         .neu-input:focus {
             box-shadow: inset 2px 2px 4px #d1d9e6, inset -2px -2px 4px #ffffff;
         }
+        .neu-input.error {
+            box-shadow: inset 4px 4px 8px #ffd1d1, inset -4px -4px 8px #ffffff;
+            border: 1px solid #ef4444;
+        }
+        .file-label.error {
+            box-shadow: 6px 6px 12px #ffd1d1, -6px -6px 12px #ffffff;
+            border: 1px solid #ef4444;
+            color: #ef4444;
+        }
+        .error-text {
+            color: #ef4444;
+            font-size: 10px;
+            font-weight: bold;
+            margin-top: 4px;
+            display: block;
+        }
         .file-label {
             cursor: pointer;
             background: #eef2f6;
@@ -96,23 +112,26 @@
                     {{-- Identitas Pribadi --}}
                     <p class="text-[11px] font-bold text-indigo-500 uppercase tracking-widest pt-1">Identitas Pribadi</p>
 
-                    <div>
+                    <div class="field-group" id="field-ktp_name">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Nama Sesuai KTP <span class="req">*</span></label>
-                        <input type="text" name="ktp_name" value="{{ old('ktp_name') }}" placeholder="Sesuai kartu identitas" class="neu-input" required>
+                        <input type="text" name="ktp_name" value="{{ old('ktp_name') }}" placeholder="Sesuai kartu identitas" class="neu-input @error('ktp_name') error @enderror" required>
+                        @error('ktp_name') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
-                    <div>
+                    <div class="field-group" id="field-phone">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Nomor HP / WhatsApp <span class="req">*</span></label>
-                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="08123456789" class="neu-input" required>
+                        <input type="tel" name="phone" value="{{ old('phone') }}" placeholder="08123456789" class="neu-input @error('phone') error @enderror" required>
+                        @error('phone') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
-                    <div>
+                    <div class="field-group" id="field-ktp_photo">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Foto KTP <span class="req">*</span></label>
-                        <label class="file-label">
+                        <label class="file-label @error('ktp_photo') error @enderror">
                             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             <span id="ktp-label-text">Upload Foto KTP</span>
                             <input type="file" name="ktp_photo" class="hidden" required accept="image/*" onchange="updateLabel(this, 'ktp-label-text')">
                         </label>
-                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG — Maks 5MB</p>
+                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG — Maks 10MB</p>
+                        @error('ktp_photo') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
                     <hr class="section-divider">
@@ -120,43 +139,49 @@
                     {{-- Informasi Bisnis --}}
                     <p class="text-[11px] font-bold text-indigo-500 uppercase tracking-widest pt-1">Informasi Bisnis</p>
 
-                    <div>
+                    <div class="field-group" id="field-company_name">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Nama Perusahaan / Toko <span class="req">*</span></label>
-                        <input type="text" name="company_name" value="{{ old('company_name') }}" placeholder="Nama bisnis Anda" class="neu-input" required>
+                        <input type="text" name="company_name" value="{{ old('company_name') }}" placeholder="Nama bisnis Anda" class="neu-input @error('company_name') error @enderror" required>
+                        @error('company_name') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
-                    <div>
+                    <div class="field-group" id="field-business_field">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Bergerak Di Bidang Apa? <span class="req">*</span></label>
-                        <input type="text" name="business_field" value="{{ old('business_field') }}" placeholder="Kuliner, Retail, Jasa IT" class="neu-input" required>
+                        <input type="text" name="business_field" value="{{ old('business_field') }}" placeholder="Kuliner, Retail, Jasa IT" class="neu-input @error('business_field') error @enderror" required>
+                        @error('business_field') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
-                    <div>
+                    <div class="field-group" id="field-address">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Alamat Lengkap Bisnis <span class="req">*</span></label>
-                        <textarea name="address" rows="2" placeholder="Jl. Contoh No. 1, Kota, Provinsi" class="neu-input" required>{{ old('address') }}</textarea>
+                        <textarea name="address" rows="2" placeholder="Jl. Contoh No. 1, Kota, Provinsi" class="neu-input @error('address') error @enderror" required>{{ old('address') }}</textarea>
+                        @error('address') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
-                    <div>
+                    <div class="field-group" id="field-npwp">
                         <label class="block text-xs font-bold text-slate-700 mb-1">NPWP <span class="req">*</span></label>
-                        <input type="text" name="npwp" value="{{ old('npwp') }}" placeholder="Nomor NPWP Bisnis" class="neu-input" required>
+                        <input type="text" name="npwp" value="{{ old('npwp') }}" placeholder="Nomor NPWP Bisnis" class="neu-input @error('npwp') error @enderror" required>
+                        @error('npwp') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
-                    <div>
+                    <div class="field-group" id="field-npwp_doc">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Dokumen NPWP <span class="req">*</span></label>
-                        <label class="file-label">
+                        <label class="file-label @error('npwp_doc') error @enderror">
                             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             <span id="npwp-label-text">Upload NPWP</span>
                             <input type="file" name="npwp_doc" class="hidden" required accept="image/*,.pdf" onchange="updateLabel(this, 'npwp-label-text')">
                         </label>
-                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG, PDF — Maks 5MB</p>
+                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG, PDF — Maks 10MB</p>
+                        @error('npwp_doc') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
-                    <div>
+                    <div class="field-group" id="field-nib_doc">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Dokumen NIB <span class="text-[11px] font-normal text-slate-400">(Opsional)</span></label>
-                        <label class="file-label">
-                            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
+                        <label class="file-label @error('nib_doc') error @enderror">
+                            <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path></svg>
                             <span id="nib-label-text">Upload NIB</span>
                             <input type="file" name="nib_doc" class="hidden" accept="image/*,.pdf" onchange="updateLabel(this, 'nib-label-text')">
                         </label>
-                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG, PDF — Maks 5MB</p>
+                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG, PDF — Maks 10MB</p>
+                        @error('nib_doc') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
                     <hr class="section-divider">
@@ -164,14 +189,15 @@
                     {{-- Foto Tempat Bisnis --}}
                     <p class="text-[11px] font-bold text-indigo-500 uppercase tracking-widest pt-1">Foto Tempat Bisnis</p>
 
-                    <div>
+                    <div class="field-group" id="field-business_photo">
                         <label class="block text-xs font-bold text-slate-700 mb-1">Foto Depan Tempat Bisnis / Toko <span class="req">*</span></label>
-                        <label class="file-label">
+                        <label class="file-label @error('business_photo') error @enderror">
                             <svg class="w-5 h-5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                             <span id="bisnis-label-text">Upload Foto</span>
                             <input type="file" name="business_photo" class="hidden" required accept="image/*" onchange="updateLabel(this, 'bisnis-label-text')">
                         </label>
-                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG — Maks 5MB</p>
+                        <p class="mt-1 text-[11px] text-slate-400 italic">JPG, PNG — Maks 10MB</p>
+                        @error('business_photo') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
                     <div class="pt-4 flex gap-3">
@@ -192,6 +218,17 @@
             const span = document.getElementById(labelId);
             if (span && input.files[0]) span.textContent = input.files[0].name;
         }
+
+        // Auto-scroll to first error
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstError = document.querySelector('.error-text');
+            if (firstError) {
+                const parentGroup = firstError.closest('.field-group');
+                if (parentGroup) {
+                    parentGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            }
+        });
     </script>
 
 </x-layout>

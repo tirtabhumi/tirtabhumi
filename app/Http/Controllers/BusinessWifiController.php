@@ -28,10 +28,10 @@ class BusinessWifiController extends Controller
             'business_field' => 'required|string|max:255',
             'npwp' => 'required|string|max:255',
             'address' => 'required|string',
-            'ktp_photo' => 'required|image|max:5120',
-            'npwp_doc' => 'required|mimes:jpg,jpeg,png,pdf|max:5120',
-            'nib_doc' => 'nullable|mimes:jpg,jpeg,png,pdf|max:5120',
-            'business_photo' => 'required|image|max:5120',
+            'ktp_photo' => 'required|mimes:jpg,jpeg,png,webp|max:10240',
+            'npwp_doc' => 'required|mimes:jpg,jpeg,png,pdf|max:10240',
+            'nib_doc' => 'nullable|mimes:jpg,jpeg,png,pdf|max:10240',
+            'business_photo' => 'required|mimes:jpg,jpeg,png,webp|max:10240',
             'package_name' => 'required|string|max:255',
         ]);
 
