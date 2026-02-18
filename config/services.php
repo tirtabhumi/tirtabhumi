@@ -42,6 +42,7 @@ return [
         'analytics_id' => env('GOOGLE_ANALYTICS_ID', 'G-HD40Z9KRKN'),
         'tag_manager_id' => env('GOOGLE_TAG_MANAGER_ID', 'GTM-PJ9GZ5CT'),
         'site_verification' => env('GOOGLE_SITE_VERIFICATION'),
+        'maps_key' => env('GOOGLE_MAPS_API_KEY'),
     ],
 
     'xendit' => [

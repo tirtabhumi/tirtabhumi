@@ -20,6 +20,8 @@ class BusinessWifiOrder extends Model
         'npwp_doc_path',
         'nib_doc_path',
         'address',
+        'latitude',
+        'longitude',
         'business_photo_path',
         'package_name',
         'status',

@@ -1,5 +1,5 @@
-<x-layout title="Wifi Bisnis Murah dan Cepat - Solusi Internet Perusahaan"
-    description="Layanan Wifi Bisnis Murah dan Cepat khusus untuk kebutuhan kantor dan usaha Anda. Internet dedicated 1:1, stabil, dan dukungan teknis 24 jam.">
+<x-layout title="Wifi Bisnis Premium - Solusi Internet Dedicated Kantor & Corporate"
+    description="Pilihan utama Business Owner & IT Manager. Layanan Internet Dedicated 1:1 stabil untuk operasional perusahaan. Tingkatkan produktivitas tim dengan uptime 99.9% dan support prioritas.">
     
     <style>
         html { scroll-behavior: smooth; }
@@ -67,18 +67,20 @@
     </section>
 
     <!-- Pricing Section -->
-    <section class="py-20 bg-[#eef2f6]">
+    <!-- Pricing Section -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+    <section class="py-20 bg-[#eef2f6]" x-data="{ openModal: false }" @keydown.escape.window="openModal = false">
         <div class="container mx-auto px-6 text-center">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Dedicated Internet Package</span>
-            <h2 class="text-3xl font-bold text-slate-800 mb-3">Dedicated Internet 1:1 Ratio</h2>
+            <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Paket Internet Dedicated</span>
+            <h2 class="text-3xl font-bold text-slate-800 mb-3">Internet Dedicated Rasio 1:1</h2>
             <p class="text-slate-500 max-w-xl mx-auto mb-12">Koneksi internet dedicated dengan bandwidth downstream dan upstream seimbang (1:1) untuk performa maksimal.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
                 @php
                     $packages = [
-                        ['badge' => 'DASHBOARD MONITORING 100', 'name' => '100 Mbps', 'desc' => 'Bandwidth 1:1 Ratio', 'price' => '695.000'],
-                        ['badge' => 'DASHBOARD MONITORING 150', 'name' => '150 Mbps', 'desc' => 'Bandwidth 1:1 Ratio', 'price' => '845.000'],
-                        ['badge' => 'DASHBOARD MONITORING 200', 'name' => '200 Mbps', 'desc' => 'Bandwidth 1:1 Ratio', 'price' => '1.100.000'],
-                        ['badge' => 'DASHBOARD MONITORING 300', 'name' => '300 Mbps', 'desc' => 'Bandwidth 1:1 Ratio', 'price' => '1.500.000'],
+                        ['badge' => 'BASIC BUSINESS', 'name' => '100 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '695.000'],
+                        ['badge' => 'STARTER BIZ', 'name' => '150 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '845.000'],
+                        ['badge' => 'PRO BUSINESS', 'name' => '200 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '1.100.000'],
+                        ['badge' => 'ENTERPRISE', 'name' => '300 Mbps', 'desc' => 'Rasio Bandwidth 1:1', 'price' => '1.500.000'],
                     ];
                 @endphp
 
@@ -95,29 +97,118 @@
                     <!-- Price -->
                     <div class="mb-1">
                         <span class="text-3xl font-extrabold text-slate-800">Rp {{ $pkg['price'] }}</span>
-                        <span class="text-slate-500 text-sm"> /month</span>
+                        <span class="text-slate-500 text-sm"> /bulan</span>
                     </div>
-                    <p class="text-xs text-slate-400 mb-6">Price excludes VAT</p>
+                    <p class="text-xs text-slate-400 mb-6">Harga belum termasuk PPN</p>
                     <!-- Features -->
                     <ul class="space-y-3 mb-8 flex-grow">
                         <li class="flex items-center gap-2 text-sm text-slate-600">
                             <svg class="w-4 h-4 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                            Unlimited experience
+                            Pengalaman Internet Unlimited
                         </li>
                         <li class="flex items-center gap-2 text-sm text-slate-600">
                             <svg class="w-4 h-4 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                            Downstream and upstream bandwidth 1 : 1
+                            Bandwidth Download & Upload 1:1
                         </li>
                         <li class="flex items-center gap-2 text-sm text-slate-600">
                             <svg class="w-4 h-4 text-indigo-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path></svg>
-                            Non Public IP
+                            IP Private (Non Public)
                         </li>
                     </ul>
-                    <a href="{{ route('wifi.bisnis.register', ['package' => $pkg['name']]) }}" class="neu-cta-filled">Choose Package</a>
+                    <a href="{{ route('wifi.bisnis.register', ['package' => $pkg['name']]) }}" class="neu-cta-filled">Pilih Paket</a>
+                    
+                    <!-- S&K Trigger -->
+                    <button type="button" @click="openModal = true" class="mt-4 text-[10px] text-slate-400 hover:text-indigo-500 underline text-center w-full">
+                        *Syarat & Ketentuan Berlaku
+                    </button>
                 </div>
                 @endforeach
             </div>
         </div>
+
+        <!-- T&C Modal -->
+        <template x-teleport="body">
+            <div x-show="openModal" class="fixed inset-0 flex items-center justify-center p-4" style="z-index: 9999;" x-cloak>
+                <!-- Overlay -->
+                <div x-show="openModal" 
+                    x-transition:enter="transition ease-out duration-300" 
+                    x-transition:enter-start="opacity-0" 
+                    x-transition:enter-end="opacity-100" 
+                    x-transition:leave="transition ease-in duration-200" 
+                    x-transition:leave-start="opacity-100" 
+                    x-transition:leave-end="opacity-0" 
+                    class="absolute inset-0 bg-slate-900/60 backdrop-blur-sm"
+                    style="background-color: rgba(15, 23, 42, 0.6);"
+                    @click="openModal = false">
+                </div>
+                
+                <!-- Modal Content -->
+                <div x-show="openModal" 
+                    x-transition:enter="transition ease-out duration-300" 
+                    x-transition:enter-start="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                    x-transition:enter-end="opacity-100 translate-y-0 sm:scale-100" 
+                    x-transition:leave="transition ease-in duration-200" 
+                    x-transition:leave-start="opacity-100 translate-y-0 sm:scale-100" 
+                    x-transition:leave-end="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95" 
+                    class="bg-[#eef2f6] w-full max-w-2xl rounded-2xl shadow-2xl border border-white/50 max-h-[80vh] overflow-y-auto relative z-10 text-left"
+                    style="background-color: #eef2f6;">
+                    
+                    <!-- Header -->
+                    <div class="sticky top-0 bg-[#eef2f6]/95 backdrop-blur-md px-6 py-4 border-b border-slate-200 flex justify-between items-center z-20">
+                        <h3 class="text-lg font-bold text-slate-800">Syarat & Ketentuan Layanan</h3>
+                        <button @click="openModal = false" class="text-slate-400 hover:text-red-500 transition-colors">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+
+                    <!-- Body -->
+                    <div class="p-6 space-y-6 text-sm text-slate-600 leading-relaxed">
+                        
+                        <!-- Generated Content -->
+                        <div class="prose prose-sm max-w-none prose-slate">
+                            <p class="font-bold text-base text-slate-800">1. Ketentuan Umum</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Layanan Internet Dedicated Tirtanet Bisnis ditujukan khusus untuk penggunaan korporasi, kantor, dan instansi komersial.</li>
+                                <li>Pelanggan wajib melampirkan dokumen legalitas usaha (NPWP, NIB/SIUP) saat pendaftaran.</li>
+                                <li>Harga yang tertera belum termasuk PPN 11%.</li>
+                            </ul>
+
+                            <p class="font-bold text-base text-slate-800 mt-4">2. Perjanjian Tingkat Layanan (SLA)</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Kami menjamin uptime koneksi sebesar <strong>99.9%</strong> setiap bulannya.</li>
+                                <li>Dukungan teknis prioritas tersedia 24/7 melalui hotline khusus bisnis.</li>
+                                <li>Estimasi waktu penanganan gangguan (MTTR) maksimal 4 jam sejak laporan diterima.</li>
+                            </ul>
+
+                            <p class="font-bold text-base text-slate-800 mt-4">3. Instalasi & Perangkat</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Biaya instalasi (OTC) mungkin berlaku tergantung pada hasil survei lokasi dan tingkat kesulitan pemasangan.</li>
+                                <li>Perangkat modem/ONT dipinjamkan selama masa berlangganan aktif. Kerusakan perangkat akibat kelalaian pelanggan (tersambar petir karena grounding buruk elektrikal gedung, terkena air, dll) menjadi tanggung jawab pelanggan.</li>
+                            </ul>
+
+                            <p class="font-bold text-base text-slate-800 mt-4">4. Pembayaran & Kontrak</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Kontrak berlangganan minimal 12 (dua belas) bulan.</li>
+                                <li>Pembayaran tagihan dilakukan maksimal tanggal 20 setiap bulannya.</li>
+                                <li>Pemutusan layanan sebelum masa kontrak berakhir akan dikenakan denda penalti sebesar sisa bulan kontrak.</li>
+                            </ul>
+
+                            <p class="font-bold text-base text-slate-800 mt-4">5. Lain-lain</p>
+                            <ul class="list-disc pl-5 space-y-1">
+                                <li>Dilarang menggunakan layanan untuk kegiatan ilegal atau melanggar hukum di Indonesia.</li>
+                                <li>Tirtanet berhak melakukan penyesuaian layanan jika ditemukan indikasi penyalahgunaan bandwidth yang mengganggu integritas jaringan utama.</li>
+                            </ul>
+                        </div>
+
+                        <div class="mt-6 pt-6 border-t border-slate-200 flex justify-end">
+                            <button @click="openModal = false" class="px-6 py-2 bg-slate-200 hover:bg-slate-300 text-slate-700 rounded-lg font-bold transition text-xs">
+                                SAYA MENGERTI
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </template>
     </section>
 
     <!-- Pain Point Section -->
@@ -176,10 +267,10 @@
                     <!-- Right: Stats Cards -->
                     <div class="grid grid-cols-2 gap-4">
                         @foreach([
-                            ['val' => '1:1', 'label' => 'Rasio Bandwidth\nSimetris', 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'color' => 'text-indigo-500'],
-                            ['val' => '99.9%', 'label' => 'Uptime\nTerjamin', 'icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'color' => 'text-green-500'],
-                            ['val' => '24/7', 'label' => 'Dukungan\nTeknis', 'icon' => 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z', 'color' => 'text-blue-500'],
-                            ['val' => 'Dedicated', 'label' => 'Jalur Eksklusif\nHanya untuk Anda', 'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'color' => 'text-purple-500'],
+                            ['val' => '1:1', 'label' => "Rasio Bandwidth\nSimetris", 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'color' => 'text-indigo-500'],
+                            ['val' => '99.9%', 'label' => "Uptime\nTerjamin", 'icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'color' => 'text-green-500'],
+                            ['val' => '24/7', 'label' => "Dukungan\nTeknis", 'icon' => 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z', 'color' => 'text-blue-500'],
+                            ['val' => 'Dedicated', 'label' => "Jalur Eksklusif\nHanya untuk Anda", 'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'color' => 'text-purple-500'],
                         ] as $stat)
                         <div class="neu-card p-5 text-center">
                             <svg class="w-7 h-7 {{ $stat['color'] }} mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $stat['icon'] }}"></path></svg>
