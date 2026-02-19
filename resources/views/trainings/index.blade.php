@@ -1,5 +1,6 @@
 <x-layout title="{{ __('messages.training_title') }} - {{ config('app.name') }}">
-     <section class="pt-32 pb-20 bg-[#eef2f6] relative overflow-hidden">
+    <!-- Class Section (UpVenture Learnings) - Moved to Top -->
+    <section id="classes" class="pt-32 pb-24 bg-[#eef2f6] relative overflow-hidden">
         <!-- Home-style Background -->
         <div class="absolute inset-0 w-full h-full pointer-events-none">
             <div class="absolute top-0 left-1/4 w-96 h-96 bg-indigo-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob"></div>
@@ -7,58 +8,98 @@
             <div class="absolute -bottom-32 left-1/3 w-96 h-96 bg-purple-300/30 rounded-full blur-3xl mix-blend-multiply animate-blob animation-delay-4000"></div>
         </div>
 
-        
-        <!-- Main Hero Content -->
         <div class="container mx-auto px-6 relative z-10">
             <!-- Breadcrumb -->
             <div class="mb-10 animate-fade-in-up">
                 <x-breadcrumb :current="__('messages.training_title')" />
             </div>
 
-            <div class="text-center mb-16 animate-fade-in-up">
-            <h1
-                class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black animate-fade-in-up animation-delay-100">
-                {{ __('messages.training_title') }}
-            </h1>
-            <p
-                class="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
-                {{ __('messages.training_subtitle') }}
-            </p>
-
-            <div class="flex flex-col md:flex-row gap-6 justify-center animate-fade-in-up animation-delay-400 mb-20">
-                <a href="#classes"
-                    class="px-8 py-4 neu-flat text-indigo-600 font-bold hover:scale-105 transition-transform duration-300">
-                    {{ __('messages.training_btn_schedule') }}
-                </a>
-                <a href="{{ route('contacts.index') }}" class="px-8 py-4 neu-btn-dark font-bold">
-                    Start Collaboration Now
+            <div class="flex items-center justify-between mb-12">
+                <div class="text-left">
+                    <h2 class="text-3xl md:text-5xl font-bold mb-4 text-slate-800">{{ __('messages.class_title') }}</h2>
+                    <p class="text-slate-500 max-w-2xl text-lg">{{ __('messages.class_desc') }}</p>
+                </div>
+                <a href="{{ route('trainings.list') }}"
+                    class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
+                    {{ __('messages.see_all') }}
+                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                    </svg>
                 </a>
             </div>
 
-            <!-- Floating Decorative Elements -->
-            <div class="flex flex-col md:flex-row gap-6 justify-center items-center mt-16">
-                <!-- Project Based Chip -->
-                <div class="animate-bounce transition-all duration-1000" style="animation-duration: 3s;">
-                    <div class="neu-flat px-6 py-3 rounded-2xl flex items-center gap-3 bg-white/40 backdrop-blur-md border border-white/50 shadow-lg min-w-[200px]">
-                        <div class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.538.538a2 2 0 01-2.828 0l-.538-.538z"></path></svg>
-                        </div>
-                        <div class="text-left">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Project Based</p>
-                            <p class="text-sm font-bold text-slate-800">Learn by Doing</p>
-                        </div>
+            @if($trainings->count() > 0)
+                <div class="grid md:grid-cols-3 gap-8">
+                    @foreach($trainings as $training)
+                        <x-training-card :training="$training" />
+                    @endforeach
+                </div>
+            @else
+                <div class="text-center py-24 bg-white rounded-3xl border border-slate-100 shadow-sm">
+                    <div
+                        class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6 text-indigo-400">
+                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
+                            </path>
+                        </svg>
                     </div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.class_empty_title') }}</h3>
+                    <p class="text-slate-500">{{ __('messages.class_empty_desc') }}</p>
+                </div>
+            @endif
+        </div>
+    </section>
+
+    <!-- Original Hero Section - Moved Down -->
+    <section class="py-24 bg-[#eef2f6] relative overflow-hidden">
+        <div class="container mx-auto px-6 relative z-10">
+            <div class="text-center mb-16 animate-fade-in-up">
+                <h1
+                    class="text-5xl md:text-7xl font-bold tracking-tight mb-6 text-black animate-fade-in-up animation-delay-100">
+                    {{ __('messages.training_title') }}
+                </h1>
+                <p
+                    class="text-lg md:text-xl text-slate-500 mb-12 max-w-2xl mx-auto leading-relaxed animate-fade-in-up animation-delay-200">
+                    {{ __('messages.training_subtitle') }}
+                </p>
+
+                <div class="flex flex-col md:flex-row gap-6 justify-center animate-fade-in-up animation-delay-400 mb-20">
+                    <a href="#classes"
+                        class="px-8 py-4 neu-flat text-indigo-600 font-bold hover:scale-105 transition-transform duration-300">
+                        {{ __('messages.training_btn_schedule') }}
+                    </a>
+                    <a href="{{ route('contacts.index') }}" class="px-8 py-4 neu-btn-dark font-bold">
+                        Start Collaboration Now
+                    </a>
                 </div>
 
-                <!-- Certification Chip -->
-                <div class="animate-bounce transition-all duration-1000" style="animation-duration: 3s;">
-                    <div class="neu-flat px-6 py-3 rounded-2xl flex items-center gap-3 bg-white/40 backdrop-blur-md border border-white/50 shadow-lg min-w-[200px]">
-                        <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
-                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"></path></svg>
+                <!-- Floating Decorative Elements -->
+                <div class="flex flex-col md:flex-row gap-6 justify-center items-center mt-16">
+                    <!-- Project Based Chip -->
+                    <div class="animate-bounce transition-all duration-1000" style="animation-duration: 3s;">
+                        <div class="neu-flat px-6 py-3 rounded-2xl flex items-center gap-3 bg-white/40 backdrop-blur-md border border-white/50 shadow-lg min-w-[200px]">
+                            <div class="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center text-indigo-600 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.538.538a2 2 0 01-2.828 0l-.538-.538z"></path></svg>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Project Based</p>
+                                <p class="text-sm font-bold text-slate-800">Learn by Doing</p>
+                            </div>
                         </div>
-                        <div class="text-left">
-                            <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Certification</p>
-                            <p class="text-sm font-bold text-slate-800">Official Partner</p>
+                    </div>
+
+                    <!-- Certification Chip -->
+                    <div class="animate-bounce transition-all duration-1000" style="animation-duration: 3s;">
+                        <div class="neu-flat px-6 py-3 rounded-2xl flex items-center gap-3 bg-white/40 backdrop-blur-md border border-white/50 shadow-lg min-w-[200px]">
+                            <div class="w-10 h-10 rounded-xl bg-purple-100 flex items-center justify-center text-purple-600 flex-shrink-0">
+                                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138z"></path></svg>
+                            </div>
+                            <div class="text-left">
+                                <p class="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Certification</p>
+                                <p class="text-sm font-bold text-slate-800">Official Partner</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -104,11 +145,11 @@
                             'linkedin' => 'https://www.linkedin.com/in/indra-riyanto-555b22333/'
                         ],
                         [
-                            'name' => 'Rifky Praptama, S.Kom, M.Pd',
+                            'name' => 'Rifky Praptama, S.Kom., M.Pd., CM.NLP',
                             'title' => 'CEO INOVASIKA',
                             'subtitle' => 'Professional Mentor',
                             'image' => 'rifky-praptama.jpg',
-                            'certs' => ['CM.NLP'],
+                            'certs' => ['BNSP Certification'],
                             'linkedin' => 'https://www.linkedin.com/in/rifky-praptama-s-kom-cm-nlp-1710369b/'
                         ],
                     ];
@@ -279,46 +320,6 @@
     </section>
 
 
-    <!-- Class Section -->
-    <section id="classes" class="py-24 bg-[#eef2f6]">
-        <div class="container mx-auto px-6">
-            <div class="flex items-center justify-between mb-12">
-                <div class="text-left">
-                    <h2 class="text-3xl md:text-4xl font-bold mb-4 text-slate-800">{{ __('messages.class_title') }}</h2>
-                    <p class="text-slate-500 max-w-2xl text-lg">{{ __('messages.class_desc') }}</p>
-                </div>
-                <a href="{{ route('trainings.list') }}"
-                    class="inline-flex items-center text-indigo-600 font-bold hover:text-indigo-700 transition-colors">
-                    {{ __('messages.see_all') }}
-                    <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                    </svg>
-                </a>
-            </div>
-
-            @if($trainings->count() > 0)
-                <div class="grid md:grid-cols-3 gap-8">
-                    @foreach($trainings as $training)
-                        <x-training-card :training="$training" />
-                    @endforeach
-                </div>
-            @else
-                <div class="text-center py-24 bg-white rounded-3xl border border-slate-100 shadow-sm">
-                    <div
-                        class="w-16 h-16 bg-indigo-50 rounded-full flex items-center justify-center mx-auto mb-6 text-indigo-400">
-                        <svg class="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253">
-                            </path>
-                        </svg>
-                    </div>
-                    <h3 class="text-xl font-bold text-slate-800 mb-2">{{ __('messages.class_empty_title') }}</h3>
-                    <p class="text-slate-500">{{ __('messages.class_empty_desc') }}</p>
-                </div>
-            @endif
-        </div>
-    </section>
 
 
     <!-- About Section & Privileges -->
