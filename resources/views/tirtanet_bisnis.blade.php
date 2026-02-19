@@ -1,5 +1,5 @@
-<x-layout title="Wifi Bisnis Premium - Solusi Internet Dedicated Kantor & Corporate"
-    description="Pilihan utama Business Owner & IT Manager. Layanan Internet Dedicated 1:1 stabil untuk operasional perusahaan. Tingkatkan produktivitas tim dengan uptime 99.9% dan support prioritas.">
+<x-layout title="Wifi Bisnis Premium - Solusi Internet Broadband Kantor & Corporate"
+    description="Pilihan utama Business Owner & IT Manager. Layanan Internet Broadband 1:1 stabil untuk operasional perusahaan. Tingkatkan produktivitas tim dengan uptime 99.9% dan support prioritas.">
     
     <style>
         html { scroll-behavior: smooth; }
@@ -55,7 +55,7 @@
         <div class="absolute inset-0 bg-grid-pattern opacity-40"></div>
         <div class="container mx-auto px-6 relative z-10 text-center">
             <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-sm font-bold tracking-wide mb-6">WIFI BISNIS TERBAIK</span>
-            <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight">Internet Dedicated <br/><span class="text-indigo-600">Untuk Bisnis Anda</span></h1>
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-6 leading-tight">Internet Broadband <br/><span class="text-indigo-600">Untuk Bisnis Anda</span></h1>
             <p class="text-lg text-slate-500 max-w-2xl mx-auto mb-10">Koneksi internet tanpa hambatan dengan bandwidth simetris 1:1. Dirancang untuk performa maksimal operasional bisnis Anda.</p>
             
             @if(session('success'))
@@ -71,18 +71,18 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
     <section class="py-20 bg-[#eef2f6]" x-data="{ openModal: false }" @keydown.escape.window="openModal = false" x-effect="document.body.classList.toggle('overflow-hidden', openModal)">
         <div class="container mx-auto px-6 text-center">
-            <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Paket Internet Dedicated</span>
-            <h2 class="text-3xl font-bold text-slate-800 mb-3">Internet Dedicated Rasio 1:1</h2>
-            <p class="text-slate-500 max-w-xl mx-auto mb-12">Koneksi internet dedicated dengan bandwidth downstream dan upstream seimbang (1:1) untuk performa maksimal.</p>
+            <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Paket Internet Broadband</span>
+            <h2 class="text-3xl font-bold text-slate-800 mb-3">Internet Broadband Rasio 1:1</h2>
+            <p class="text-slate-500 max-w-xl mx-auto mb-12">Koneksi internet broadband dengan bandwidth downstream dan upstream seimbang (1:1) untuk performa maksimal.</p>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                 @php
                     $packages = [
-                        ['badge' => 'PSB 70% - 50', 'name' => '50 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 50 Mbps', 'price' => '439.000'],
-                        ['badge' => 'PSB 70% - 75', 'name' => '75 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 75 Mbps', 'price' => '519.000'],
-                        ['badge' => 'PSB 70% - 100', 'name' => '100 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 100 Mbps', 'price' => '669.000'],
-                        ['badge' => 'PSB 70% - 150', 'name' => '150 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 150 Mbps', 'price' => '819.000'],
-                        ['badge' => 'PSB 70% - 200', 'name' => '200 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 200 Mbps', 'price' => '1.049.000'],
-                        ['badge' => 'PSB 70% - 300', 'name' => '300 Mbps', 'desc' => 'HSI Bisnis PSB 70% - 300 Mbps', 'price' => '1.499.000'],
+                        ['badge' => 'PSB 70% - 50', 'name' => '50 Mbps', 'desc' => 'Bisnis PSB 70% - 50 Mbps', 'price' => '439.000'],
+                        ['badge' => 'PSB 70% - 75', 'name' => '75 Mbps', 'desc' => 'Bisnis PSB 70% - 75 Mbps', 'price' => '519.000'],
+                        ['badge' => 'PSB 70% - 100', 'name' => '100 Mbps', 'desc' => 'Bisnis PSB 70% - 100 Mbps', 'price' => '669.000'],
+                        ['badge' => 'PSB 70% - 150', 'name' => '150 Mbps', 'desc' => 'Bisnis PSB 70% - 150 Mbps', 'price' => '819.000'],
+                        ['badge' => 'PSB 70% - 200', 'name' => '200 Mbps', 'desc' => 'Bisnis PSB 70% - 200 Mbps', 'price' => '1.049.000'],
+                        ['badge' => 'PSB 70% - 300', 'name' => '300 Mbps', 'desc' => 'Bisnis PSB 70% - 300 Mbps', 'price' => '1.499.000'],
                     ];
                 @endphp
 
@@ -170,7 +170,7 @@
                         <div class="prose prose-sm max-w-none prose-slate">
                             <p class="font-bold text-base text-slate-800">1. Ketentuan Umum</p>
                             <ul class="list-disc pl-5 space-y-1">
-                                <li>Layanan Internet Dedicated Tirtanet Bisnis ditujukan khusus untuk penggunaan korporasi, kantor, dan instansi komersial.</li>
+                                <li>Layanan Internet Broadband Tirtanet Bisnis ditujukan khusus untuk penggunaan korporasi, kantor, dan instansi komersial.</li>
                                 <li>Pelanggan wajib melampirkan dokumen legalitas usaha (NPWP, NIB/SIUP) saat pendaftaran.</li>
                                 <li>Harga yang tertera belum termasuk PPN 11%.</li>
                             </ul>
@@ -249,8 +249,8 @@
                     <!-- Left: Text -->
                     <div>
                         <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Solusi Tepat untuk Bisnis</span>
-                        <h2 class="text-3xl font-bold text-slate-800 mb-5 leading-snug">Kenapa Bisnis Anda Butuh <span class="text-indigo-600">Internet Dedicated?</span></h2>
-                        <p class="text-slate-500 mb-6">Internet biasa (shared) membagi bandwidth dengan ratusan pengguna lain. Hasilnya? Koneksi tidak konsisten, terutama di jam sibuk. Internet dedicated memberikan jalur eksklusif khusus untuk bisnis Anda — stabil, cepat, dan bisa diandalkan 24/7.</p>
+                        <h2 class="text-3xl font-bold text-slate-800 mb-5 leading-snug">Kenapa Bisnis Anda Butuh <span class="text-indigo-600">Internet Broadband?</span></h2>
+                        <p class="text-slate-500 mb-6">Internet biasa (shared) membagi bandwidth dengan ratusan pengguna lain. Hasilnya? Koneksi tidak konsisten, terutama di jam sibuk. Internet broadband memberikan jalur eksklusif khusus untuk bisnis Anda — stabil, cepat, dan bisa diandalkan 24/7.</p>
                         <ul class="space-y-3">
                             @foreach([
                                 'Bandwidth tidak dibagi dengan pengguna lain',
@@ -272,7 +272,7 @@
                             ['val' => '1:1', 'label' => "Rasio Bandwidth\nSimetris", 'icon' => 'M13 10V3L4 14h7v7l9-11h-7z', 'color' => 'text-indigo-500'],
                             ['val' => '99.9%', 'label' => "Uptime\nTerjamin", 'icon' => 'M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z', 'color' => 'text-green-500'],
                             ['val' => '24/7', 'label' => "Dukungan\nTeknis", 'icon' => 'M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z', 'color' => 'text-blue-500'],
-                            ['val' => 'Dedicated', 'label' => "Jalur Eksklusif\nHanya untuk Anda", 'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'color' => 'text-purple-500'],
+                            ['val' => 'Broadband', 'label' => "Jalur Eksklusif\nHanya untuk Anda", 'icon' => 'M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z', 'color' => 'text-purple-500'],
                         ] as $stat)
                         <div class="neu-card p-5 text-center">
                             <svg class="w-7 h-7 {{ $stat['color'] }} mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="{{ $stat['icon'] }}"></path></svg>
@@ -291,7 +291,7 @@
         <div class="container mx-auto px-6 text-center">
             <span class="inline-block px-4 py-1.5 rounded-full bg-indigo-50 border border-indigo-100 text-indigo-600 text-xs font-bold tracking-widest mb-4 uppercase">Untuk Siapa?</span>
             <h2 class="text-3xl font-bold text-slate-800 mb-3">Solusi Ini Tepat untuk Anda</h2>
-            <p class="text-slate-500 max-w-xl mx-auto mb-10">Layanan internet dedicated kami dirancang untuk berbagai jenis usaha yang membutuhkan koneksi andal.</p>
+            <p class="text-slate-500 max-w-xl mx-auto mb-10">Layanan internet broadband kami dirancang untuk berbagai jenis usaha yang membutuhkan koneksi andal.</p>
             <div class="grid grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
                 @foreach([
                     ['icon' => 'M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4', 'label' => 'Kantor & Perusahaan'],

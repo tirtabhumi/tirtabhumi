@@ -15,7 +15,7 @@ class BusinessWifiController extends Controller
 
     public function register()
     {
-        $package = request()->query('package', 'Dedicated 100 Mbps');
+        $package = request()->query('package', 'Broadband 100 Mbps');
         return view('wifibisnis_form', compact('package'));
     }
 

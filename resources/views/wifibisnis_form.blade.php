@@ -227,8 +227,9 @@
                     <div class="field-group" id="field-npwp">
                         <label class="block text-xs font-bold text-slate-700 mb-1">NPWP Bisnis <span
                                 class="req">*</span></label>
-                        <input type="text" name="npwp" value="{{ old('npwp') }}" placeholder="Nomor NPWP Bisnis"
-                            class="neu-input @error('npwp') error @enderror" required>
+                        <input type="text" id="npwp" name="npwp" value="{{ old('npwp') }}"
+                            placeholder="Nomor NPWP Bisnis" class="neu-input @error('npwp') error @enderror" required
+                            maxlength="20">
                         @error('npwp') <span class="error-text">{{ $message }}</span> @enderror
                     </div>
 
@@ -320,6 +321,25 @@
                 if (parentGroup) {
                     parentGroup.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 }
+            }
+
+            // NPWP Formatting
+            const npwpInput = document.getElementById('npwp');
+            if (npwpInput) {
+                npwpInput.addEventListener('input', function (e) {
+                    let value = e.target.value.replace(/\D/g, ''); // Remove non-digits
+                    if (value.length > 15) value = value.substring(0, 15); // Limit to 15 digits
+
+                    let formatted = '';
+                    if (value.length > 0) formatted += value.substring(0, 2);
+                    if (value.length > 2) formatted += '.' + value.substring(2, 5);
+                    if (value.length > 5) formatted += '.' + value.substring(5, 8);
+                    if (value.length > 8) formatted += '.' + value.substring(8, 9);
+                    if (value.length > 9) formatted += '-' + value.substring(9, 12);
+                    if (value.length > 12) formatted += '.' + value.substring(12, 15);
+
+                    e.target.value = formatted;
+                });
             }
 
             // Client-side validation warning
