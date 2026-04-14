@@ -86,6 +86,16 @@ class PaymentController extends Controller
             abort(403);
         }
 
+        // Guard: skip Xendit for free courses
+        if ((float) $registration->training->price == 0) {
+            $registration->update([
+                'status' => 'completed',
+                'payment_status' => 'paid',
+                'payment_method' => 'free',
+            ]);
+            return redirect()->route('payment.finish', $registration);
+        }
+
         // Initialize Xendit
         \Xendit\Configuration::setXenditKey(config('services.xendit.key'));
 

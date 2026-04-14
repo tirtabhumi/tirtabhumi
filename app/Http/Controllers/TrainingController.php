@@ -136,6 +136,18 @@ class TrainingController extends Controller
         // Clear referral code from session after use
         session()->forget('referral_code');
 
+        // Auto-complete if training is free
+        if ((float) $training->price == 0) {
+            $registration->update([
+                'status' => 'completed',
+                'payment_status' => 'paid',
+                'payment_method' => 'free',
+                'transaction_id' => 'FREE-' . strtoupper(uniqid()) . '-' . time(),
+            ]);
+            return redirect()->route('payment.finish', $registration)
+                ->with('success', 'Pendaftaran berhasil! Kelas ini gratis.');
+        }
+
         return redirect()->route('payment.show', $registration);
     }
 }
