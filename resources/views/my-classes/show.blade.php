@@ -1067,26 +1067,43 @@
         }
 
         function markComplete() {
-            if (!currentModuleId) return;
+            if (!currentModuleId) {
+                alert('Please select a module first.');
+                return;
+            }
 
             fetch(`/my-classes/module/${currentModuleId}/complete`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    'Accept': 'application/json',
+                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    'X-Requested-With': 'XMLHttpRequest'
                 },
                 body: JSON.stringify({ manual_complete: true })
             })
-                .then(response => response.json())
+                .then(async response => {
+                    const text = await response.text();
+                    let data;
+                    try { data = JSON.parse(text); } catch (e) {
+                        throw new Error('Server returned non-JSON response (status ' + response.status + '): ' + text.substring(0, 200));
+                    }
+                    if (!response.ok) {
+                        throw new Error(data.message || data.error || ('HTTP ' + response.status));
+                    }
+                    return data;
+                })
                 .then(data => {
                     if (data.success) {
                         alert('Module marked as complete! 🎉');
-                        location.reload(); 
+                        location.reload();
+                    } else {
+                        alert(data.message || 'Failed to mark as complete.');
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
-                    alert('Failed to mark as complete. Please try again.');
+                    console.error('Mark complete error:', error);
+                    alert('Failed to mark as complete: ' + error.message);
                 });
         }
 
