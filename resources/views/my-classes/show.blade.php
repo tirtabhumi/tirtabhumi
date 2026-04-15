@@ -821,6 +821,13 @@
                 } else if (videoUrl && videoUrl.includes('vimeo.com')) {
                     const videoId = extractVimeoId(videoUrl);
                     videoContainer.innerHTML = `<iframe class="w-full h-full" src="https://player.vimeo.com/video/${videoId}" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>`;
+                } else if (videoUrl && (videoUrl.includes('drive.google.com') || videoUrl.includes('docs.google.com'))) {
+                    const driveId = extractGoogleDriveId(videoUrl);
+                    if (driveId) {
+                        videoContainer.innerHTML = `<iframe class="w-full h-full" src="https://drive.google.com/file/d/${driveId}/preview" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    } else {
+                        videoContainer.innerHTML = '<div class="flex items-center justify-center h-full text-white text-center p-4">Invalid Google Drive link. Pastikan link berupa share link file (bukan folder) dan sudah diatur "Anyone with the link".</div>';
+                    }
                 } else if (videoUrl) {
                     // Generic video (mp4 etc)
                      videoContainer.innerHTML = `<video controls class="w-full h-full" src="${videoUrl}"></video>`;
@@ -1064,6 +1071,18 @@
             const regExp = /vimeo.*\/(\d+)/i;
             const match = url.match(regExp);
             return match ? match[1] : null;
+        }
+
+        function extractGoogleDriveId(url) {
+            if (!url) return null;
+            // Patterns: /file/d/{id}/..., open?id={id}, uc?id={id}, id={id}
+            let match = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+            if (match) return match[1];
+            match = url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+            if (match) return match[1];
+            match = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+            if (match) return match[1];
+            return null;
         }
 
         function markComplete() {
